@@ -57,7 +57,7 @@ export default defineConfig(({ mode }) => {
         lib: {
           entry: fileURLToPath(new URL('./packages/index.ts', import.meta.url)),
           name: 'GiComponent',
-          fileName: (format) => `dist/index.${format}.js`,
+          fileName: (format) => `index.${format}.js`,
           formats: ['es', 'umd'],
           cssFileName: 'gi'
         },
