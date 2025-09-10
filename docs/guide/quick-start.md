@@ -17,13 +17,14 @@
 全局引入是最简单的使用方式，适合在整个项目中频繁使用组件的场景。
 
 ```js
-import GiComponent, { Dialog } from 'gi-component';
-
 import { createApp } from 'vue';
 import App from './App.vue';
 // 引入样式
 import 'element-plus/dist/index.css';
-import 'gi-component/dist/el.css';
+
+import GiComponent from 'gi-component'
+import { Dialog } from 'gi-component';
+import 'gi-component/dist/gi.css'
 
 const app = createApp(App);
 Dialog._context = app._context; // 继承主应用的上下文
@@ -41,7 +42,7 @@ gi-component 完全支持 TypeScript，您可以在项目中享受类型提示�
 ```json
 {
   "compilerOptions": {
-    "types": ["element-plus/global", "gi-component/components.d.ts"]
+    "types": ["element-plus/global", "gi-component/packages/components.d.ts"]
   }
 }
 ```
@@ -52,7 +53,6 @@ gi-component 完全支持 TypeScript，您可以在项目中享受类型提示�
 body {
   --margin: 14px; // 基础外边距
   --padding: 14px; // 基础内边距
-
   --padding-x: 14px;
   --padding-x-small: 10px;
   --padding-y: 10px;
