@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "preserve",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": [
+      "vite/client",
+      "vitepress/client",
+      "element-plus/global"
+    ],
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "noEmit": true,
+    "outDir": ".vitepress/dist",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.tsx",
+    "**/*.vue",
+    "../../apps/el/components.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".vitepress/dist"
+  ]
+}

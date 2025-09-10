@@ -1,0 +1,105 @@
+name: Deploy VitePress site to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ Checkout 仓库
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2️⃣ 安装 pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.6.5
+
+      # 3️⃣ 安装 Node 并启用 pnpm 缓存
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      # 4️⃣ 确认 pnpm 可用
+      - name: Check pnpm version
+        run: pnpm -v
+
+      # 5️⃣ 安装依赖
+      - name: Install dependencies
+        run: pnpm install
+
+      # 6️⃣ 构建 VitePress
+      - name: Build VitePress
+        run: pnpm build:docs
+
+      # 7️⃣ 检查构建产物
+      - name: Check build output
+        run: |
+          echo "Checking VitePress build output..."
+          echo "Current working directory: $(pwd)"
+          echo "Contents of docs:"
+          ls -la docs/
+          echo "Contents of docs/.vitepress:"
+          ls -la docs/.vitepress/ || echo ".vitepress directory not found"
+          echo "Contents of docs/.vitepress/dist:"
+          ls -la docs/.vitepress/dist/ || echo "dist directory not found"
+
+      # 8️⃣ 添加 .nojekyll，防止 GitHub Pages 忽略 _ 文件夹
+      - name: Add .nojekyll
+        run: |
+          if [ -d "docs/.vitepress/dist" ]; then
+            touch docs/.vitepress/dist/.nojekyll
+            echo "Created .nojekyll file"
+          else
+            echo "Error: VitePress dist directory not found"
+            exit 1
+          fi
+
+      # 9️⃣ 创建 docs 目录并复制构建产物
+      - name: Create docs directory and copy artifacts
+        run: |
+          mkdir -p docs
+          if [ -d "docs/.vitepress/dist" ]; then
+            cp -r docs/.vitepress/dist/* docs/
+            echo "Copied VitePress build artifacts to docs directory"
+            ls -la docs/
+          else
+            echo "Error: Cannot copy - VitePress dist directory not found"
+            exit 1
+          fi
+
+      # 9️⃣ 配置 GitHub Pages
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      # 🔟 上传构建产物
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      # 🔟 部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # 1️⃣1️⃣ 打印访问 URL（可选）
+      - name: Show Pages URL
+        run: echo "Your site is published at ${{ steps.deployment.outputs.page_url }}"

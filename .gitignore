@@ -1,0 +1,7 @@
+# Node.js dependencies
+node_modules/
+/dist/
+
+# VitePress cache and build outputs
+docs/.vitepress/cache/
+docs/.vitepress/dist/
