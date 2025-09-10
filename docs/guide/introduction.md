@@ -1,6 +1,6 @@
 # 组件库简介
 
-> Gi Components 是一个基于 Vue 3 和 Element Plus 构建的高质量 UI 组件库，用于快速开发页面。
+> gi-component 是一个基于 Vue 3 和 Element Plus 构建的高质量 UI 组件库，用于快速开发页面。
 
 ## 组件库特点
 

@@ -10,7 +10,7 @@
     "moduleResolution": "Node",
     "types": [
       "vite/client",
-      "element-plus/global"
+      "element-plus/global",
     ],
     "strict": true,
     "jsx": "preserve",

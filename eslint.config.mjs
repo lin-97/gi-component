@@ -7,7 +7,6 @@ export default antfu(
     typescript: true,
     ignores: [
       'README.md',
-      'src/types/shims-vue.d.ts'
     ]
   },
   {

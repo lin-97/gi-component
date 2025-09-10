@@ -1,9 +1,9 @@
 {
-  "name": "@gi-components/docs",
+  "name": "gi-component-docs",
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "description": "GI Components 文档站点",
+  "description": "gi-component 文档站点",
   "author": "lin",
   "license": "MIT",
   "scripts": {
@@ -13,9 +13,6 @@
     "clean": "rm -rf .vitepress/dist",
     "lint": "echo 'Use root lint command: pnpm lint'",
     "type-check": "vue-tsc --noEmit"
-  },
-  "dependencies": {
-    "gi-component": "workspace:*"
   },
   "devDependencies": {
     "element-plus": "^2.11.1",

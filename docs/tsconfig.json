@@ -11,7 +11,8 @@
     "types": [
       "vite/client",
       "vitepress/client",
-      "element-plus/global"
+      "element-plus/global",
+      "../packages/components.d.ts"
     ],
     "allowImportingTsExtensions": true,
     "strict": true,
@@ -20,14 +21,13 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
   "include": [
     "**/*.ts",
     "**/*.d.ts",
     "**/*.tsx",
-    "**/*.vue",
-    "../../apps/el/components.d.ts"
+    "**/*.vue"
   ],
   "exclude": [
     "node_modules",

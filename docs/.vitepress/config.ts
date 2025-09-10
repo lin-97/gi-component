@@ -2,9 +2,16 @@ import { defineConfig } from 'vitepress'
 import path from 'node:path'
 
 export default defineConfig({
-  title: 'GI Components',
+  title: 'gi-component',
   description: 'Vue3中基于Element Plus二次封装基础组件库',
   base: '/gi-component/',
+    vite: {
+    resolve: {
+      alias: {
+        'gi-component': path.resolve(__dirname, '../../packages/index.ts'),
+      }
+    }
+  },
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
@@ -14,7 +21,6 @@ export default defineConfig({
       { text: '内置CSS类名', link: '/style' },
       // { text: `v${packageJson.version}`, link: '' }
     ],
-
     sidebar: {
       '/guide/': [
         {
@@ -69,7 +75,6 @@ export default defineConfig({
         }
       ]
     },
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/lin-97/gi-component' }
     ]

@@ -9,13 +9,6 @@
     "type": "git",
     "url": "https://github.com/lin-97/gi-component.git"
   },
-  "main": "dist/index.umd.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "packages"
-  ],
   "keywords": [
     "element-plus",
     "vitepress",
@@ -23,6 +16,13 @@
     "gi-component",
     "二次封装组件",
     "封装组件"
+  ],
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "packages"
   ],
   "scripts": {
     "dev": "vite --host",
@@ -42,8 +42,6 @@
     "@vitejs/plugin-vue-jsx": "^4.2.0",
     "element-plus": "^2.11.2",
     "eslint": "^9.27.0",
-    "markdown-it": "^14.1.0",
-    "markdown-it-container": "^4.0.0",
     "sass": "^1.89.0",
     "sass-loader": "^16.0.5",
     "terser": "^5.44.0",
