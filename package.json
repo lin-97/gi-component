@@ -29,7 +29,8 @@
     "docs:dev": "cd docs && pnpm dev",
     "docs:build": "cd docs && pnpm build",
     "docs:preview": "cd docs && pnpm preview",
-    "build:lib": "vite build --mode lib"
+    "build:lib": "vite build --mode lib",
+    "build:docs": "cd docs && pnpm build"
   },
   "peerDependencies": {
     "element-plus": "^2.11.2",
