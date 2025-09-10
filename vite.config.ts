@@ -1,10 +1,8 @@
-import path from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
-import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig(({ mode }) => {
@@ -30,10 +28,11 @@ export default defineConfig(({ mode }) => {
       }),
       // 配置dts插件生成类型声明文件
       dts({
-        include: ['packages/**/*.ts', 'packages/**/*.vue'],
+        include: ['packages/**/*.vue'],
         outDir: 'dist',
         entryRoot: 'packages',
         rollupTypes: true,
+        cleanVueFileName: true,
         // 排除不需要生成类型的文件
         exclude: ['**/node_modules/**', '**/__tests__/**', '**/dist/**']
       })
@@ -58,8 +57,9 @@ export default defineConfig(({ mode }) => {
         lib: {
           entry: fileURLToPath(new URL('./packages/index.ts', import.meta.url)),
           name: 'GiComponent',
-          fileName: (format) => `index.${format}.js`,
-          formats: ['es', 'umd']
+          fileName: (format) => `dist/index.${format}.js`,
+          formats: ['es', 'umd'],
+          cssFileName: 'gi'
         },
         // 生成TypeScript声明文件
         sourcemap: true,

@@ -1,11 +1,12 @@
 import { defineConfig } from 'vitepress'
 import path from 'node:path'
+import packageJson from '../../package.json'
 
 export default defineConfig({
   title: 'gi-component',
   description: 'Vue3中基于Element Plus二次封装基础组件库',
   base: '/gi-component/',
-    vite: {
+  vite: {
     resolve: {
       alias: {
         'gi-component': path.resolve(__dirname, '../../packages/index.ts'),
@@ -19,7 +20,7 @@ export default defineConfig({
       { text: '组件', link: '/components/button' },
       { text: '工具', link: '/tools/createSelectDialog' },
       { text: '内置CSS类名', link: '/style' },
-      // { text: `v${packageJson.version}`, link: '' }
+      { text: `v${packageJson.version}`, link: '' }
     ],
     sidebar: {
       '/guide/': [
