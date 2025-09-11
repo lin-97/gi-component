@@ -18,6 +18,7 @@ export * from './components/dialog';
 export * from './components/edit-table';
 export * from './components/form';
 export * from './components/table';
+export * from './components/tabs';
 export * from './hooks';
 export * from './utils';
 
