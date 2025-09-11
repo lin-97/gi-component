@@ -2,7 +2,8 @@
   <el-table-column v-bind="columnProps">
     <!-- 处理render函数 -->
     <template v-if="column.render" v-slot="scope">
-      <component :is="column.render(scope)" />
+      <template v-if="typeof column.render(scope) === 'string'">{{ column.render(scope) }}</template>
+      <component v-else :is="column.render(scope)" />
     </template>
 
     <!-- 处理插槽内容 -->
@@ -12,17 +13,9 @@
 
     <!-- 递归渲染子列 -->
     <template v-if="column.children && column.children.length > 0">
-      <TableColumn
-        v-for="child in column.children"
-        :key="child.prop || child.label"
-        :column="child"
-      >
+      <TableColumn v-for="child in column.children" :key="child.prop || child.label" :column="child">
         <!-- 将所有插槽传递给子组件 -->
-        <template
-          v-for="(_, slotName) in $slots"
-          :key="slotName"
-          #[slotName]="scope"
-        >
+        <template v-for="(_, slotName) in $slots" :key="slotName" #[slotName]="scope">
           <slot :name="slotName" v-bind="scope" />
         </template>
       </TableColumn>

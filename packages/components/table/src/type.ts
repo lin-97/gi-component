@@ -2,15 +2,15 @@ import type {
   TableProps as ElTableProps,
   PaginationProps,
   TableColumnCtx,
-  TableColumnInstance
+  TableColumnInstance,
 } from 'element-plus';
 import type { ExtractPropTypes, VNode } from 'vue';
 
-export interface TableColumnItem
-  extends Omit<TableColumnInstance['$props'], never> {
+type DefaultRow = Record<PropertyKey, any>
+export interface TableColumnItem<T extends DefaultRow = DefaultRow> extends Omit<TableColumnInstance['$props'], never> {
   slotName?: string;
   children?: TableColumnItem[];
-  render?: (scope: TableColumnCtx<any>) => VNode | VNode[] | string;
+  render?: (scope: { $index: number; cellIndex: number; column: TableColumnItem<T>; row: T }) => VNode | VNode[] | string;
 }
 
 export interface TableProps

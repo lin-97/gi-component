@@ -1,3 +1,15 @@
+interface ApiResult<T> {
+  code: number
+  data: T
+  message: string
+  success: boolean
+}
+
+interface PageResult<T> {
+  list: T[]
+  total: number
+}
+
 // 定义表格数据的接口类型
 export interface UserItem {
   name: string;
@@ -7,12 +19,6 @@ export interface UserItem {
   city: string;
   district: string;
   remark: string;
-}
-
-// 定义API返回数据格式
-export interface ApiResponse {
-  data: UserItem[];
-  total: number;
 }
 
 // 生成模拟数据
@@ -77,12 +83,12 @@ const generateMockData = (): UserItem[] => {
 
 // 模拟API请求函数
 export const getUserList = (params: {
-  currentPage: number;
-  pageSize: number;
+  page: number;
+  size: number;
   keyword?: string;
   sex?: string;
-}): Promise<ApiResponse> => {
-  const { currentPage, pageSize, keyword, sex } = params;
+}): Promise<ApiResult<PageResult<UserItem[]>>> => {
+  const { page, size, keyword, sex } = params;
 
   // 返回Promise模拟异步请求
   return new Promise(resolve => {
@@ -110,14 +116,19 @@ export const getUserList = (params: {
       const total = allData.length;
 
       // 实现分页逻辑
-      const startIndex = (currentPage - 1) * pageSize;
-      const endIndex = startIndex + pageSize;
+      const startIndex = (page - 1) * size;
+      const endIndex = startIndex + size;
       const paginatedData = allData.slice(startIndex, endIndex);
 
       // 返回分页后的数据
       resolve({
-        data: paginatedData,
-        total
+        code: 200,
+        data: {
+          list: paginatedData,
+          total
+        },
+        message: '请求成功',
+        success: true
       });
     }, 300); // 模拟300ms的网络延迟
   });

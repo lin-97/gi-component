@@ -15,7 +15,7 @@ import { ElMessage, ElTag, ElButton } from 'element-plus';
 import { type TableColumnItem, useTable } from 'gi-component';
 import { getUserList, type UserItem } from '@/_apis/mockTable';
 
-const columns: TableColumnItem[] = [
+const columns: TableColumnItem<UserItem>[] = [
   { type: 'selection', width: 55, align: 'center', fixed: 'left' },
   { type: 'index', label: '序号', width: 60, align: 'center' },
   {
@@ -23,7 +23,7 @@ const columns: TableColumnItem[] = [
     label: '姓名',
     width: 100,
     align: 'center',
-    showOverflowTooltip: true
+    showOverflowTooltip: true,
   },
   { prop: 'age', label: '年龄', width: 60, align: 'center' },
   {
@@ -60,7 +60,7 @@ const columns: TableColumnItem[] = [
 
 const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p }), {
   onSuccess: () => {
-    // ElMessage.success(`页面${pagination.currentPage}, 页数${pagination.pageSize}条--数据成功加载`);
+    ElMessage.success(`页面${pagination.currentPage}, 页数${pagination.pageSize}条--数据成功加载`);
   }
 })
 </script>

@@ -6,7 +6,7 @@
     <template #header>
       <Search></Search>
     </template>
-    <gi-table ref="tableRef" v-loading="loading" :columns="columns" :data="data" :pagination="pagination" border>
+    <gi-table ref="tableRef" v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" border>
     </gi-table>
   </GiPageLayout>
 </template>
@@ -15,7 +15,7 @@
 import { useTemplateRef } from 'vue';
 import { reactive, ref, onMounted, watch, h } from 'vue';
 import { ElMessage, ElTag, ElButton } from 'element-plus';
-import { type TableColumnItem } from 'gi-component';
+import { type TableColumnItem, useTable } from 'gi-component';
 import Search from './Search.vue';
 import Tree from './Tree.vue';
 import { getUserList, type UserItem } from '@/_apis/mockTable';
@@ -49,56 +49,13 @@ const columns: TableColumnItem[] = [
   { prop: 'remark', label: '描述', showOverflowTooltip: true },
 ];
 
-// 响应式数据
-const data = ref<UserItem[]>([]);
-const loading = ref(false);
 const tableRef = useTemplateRef('tableRef');
-
-const pagination = reactive({
-  pageSize: 10,
-  currentPage: 1,
-  total: 0,
-  // 监听分页变化，重新加载数据
-  onSizeChange: (size: number) => {
-    pagination.pageSize = size;
-    loadData();
-  },
-  onCurrentChange: (current: number) => {
-    pagination.currentPage = current;
-    loadData();
-  }
-});
-
-async function loadData() {
-  loading.value = true;
-
-  try {
-    const params: any = {
-      currentPage: pagination.currentPage,
-      pageSize: pagination.pageSize,
-    };
-
-    const response = await getUserList(params);
-    data.value = response.data;
-    pagination.total = response.total;
-
-    ElMessage.success(`成功加载 ${response.data.length} 条数据`);
-  } catch (error) {
-    ElMessage.error('数据加载失败');
-    console.error('Failed to load data:', error);
-  } finally {
-    loading.value = false;
-  }
-}
+const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p }), {})
 
 function getSelectedData() {
   const data = tableRef.value?.tableRef?.getSelectionRows?.() || [];
   return data;
 }
-
-onMounted(() => {
-  loadData();
-});
 
 defineExpose({
   getSelectedData
