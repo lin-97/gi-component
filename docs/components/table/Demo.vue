@@ -79,7 +79,7 @@ const queryParams = reactive({
 
 const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p, ...queryParams }), {
   onSuccess: () => {
-    ElMessage.success(`页码${pagination.currentPage}, 页数${pagination.pageSize}条--数据成功加载`);
+    // ElMessage.success(`页码${pagination.currentPage}, 页数${pagination.pageSize}条--数据成功加载`);
   }
 })
 

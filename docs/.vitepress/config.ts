@@ -13,10 +13,6 @@ export default defineConfig({
         '@': path.resolve(__dirname, '../../docs')
       }
     },
-    ssr: {
-      // 告诉 Vite SSR 阶段不处理 message 组件的依赖
-      noExternal: ['element-plus/es/components/message'],
-    }
   },
   themeConfig: {
     nav: [

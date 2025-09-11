@@ -60,7 +60,7 @@ const columns: TableColumnItem<UserItem>[] = [
 
 const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p }), {
   onSuccess: () => {
-    ElMessage.success(`页面${pagination.currentPage}, 页数${pagination.pageSize}条--数据成功加载`);
+    // ElMessage.success(`页面${pagination.currentPage}, 页数${pagination.pageSize}条--数据成功加载`);
   }
 })
 </script>
