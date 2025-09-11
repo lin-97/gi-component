@@ -12,7 +12,7 @@ import Demo from './Demo.vue'
 
 <Demo></Demo>
 
-<<< ./utils.ts
+<<< ./utils/index.ts
 
 ::: details 查看代码
 <<< ./Demo.vue
