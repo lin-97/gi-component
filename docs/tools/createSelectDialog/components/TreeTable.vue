@@ -6,62 +6,99 @@
     <template #header>
       <Search></Search>
     </template>
-    <div>
-      <el-table ref="tableRef" :data="tableData" style="width: 100%" border>
-        <el-table-column type="selection" width="46" align="center" />
-        <el-table-column prop="name" label="姓名" width="100" align="center" />
-        <el-table-column prop="date" label="日期" width="150" align="center" />
-        <el-table-column prop="address" label="地址" show-overflow-tooltip />
-      </el-table>
-    </div>
+    <gi-table ref="tableRef" v-loading="loading" :columns="columns" :data="data" :pagination="pagination" border>
+    </gi-table>
   </GiPageLayout>
 </template>
 
 <script setup lang="ts">
 import { useTemplateRef } from 'vue';
+import { reactive, ref, onMounted, watch, h } from 'vue';
+import { ElMessage, ElTag, ElButton } from 'element-plus';
+import { type TableColumnItem } from 'gi-component';
 import Search from './Search.vue';
 import Tree from './Tree.vue';
+import { getUserList, type UserItem } from '@/_apis/mockTable';
 
-const tableRef = useTemplateRef('tableRef');
-
-export interface TableDataItem {
-  id: string;
-  date: string;
-  name: string;
-  address: string;
-}
-
-const tableData = [
+const columns: TableColumnItem[] = [
+  { type: 'selection', width: 55, align: 'center', fixed: 'left' },
+  { type: 'index', label: '序号', width: 60, align: 'center' },
   {
-    id: '001',
-    date: '2016-05-03',
-    name: '张三',
-    address: 'No. 189, Grove St, Los Angeles'
+    prop: 'name',
+    label: '姓名',
+    width: 100,
+    align: 'center',
+    showOverflowTooltip: true
   },
+  { prop: 'age', label: '年龄', width: 60, align: 'center' },
   {
-    id: '002',
-    date: '2016-05-02',
-    name: '李四',
-    address: 'No. 189, Grove St, Los Angeles'
+    prop: 'sex',
+    label: '性别',
+    width: 80,
+    align: 'center',
+    render: ({ row }) => {
+      return h(
+        ElTag,
+        { type: row.sex === '男' ? 'primary' : 'danger' },
+        { default: () => row.sex }
+      );
+    }
   },
-  {
-    id: '003',
-    date: '2016-05-04',
-    name: '王五',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    id: '004',
-    date: '2016-05-01',
-    name: '赵六',
-    address: 'No. 189, Grove St, Los Angeles'
-  }
+  { prop: 'city', label: '城市', width: 100 },
+  { prop: 'district', label: '区县', width: 100 },
+  { prop: 'remark', label: '描述', showOverflowTooltip: true },
 ];
 
+// 响应式数据
+const data = ref<UserItem[]>([]);
+const loading = ref(false);
+const tableRef = useTemplateRef('tableRef');
+
+const pagination = reactive({
+  pageSize: 10,
+  currentPage: 1,
+  total: 0,
+  // 监听分页变化，重新加载数据
+  onSizeChange: (size: number) => {
+    pagination.pageSize = size;
+    loadData();
+  },
+  onCurrentChange: (current: number) => {
+    pagination.currentPage = current;
+    loadData();
+  }
+});
+
+async function loadData() {
+  loading.value = true;
+
+  try {
+    const params: any = {
+      currentPage: pagination.currentPage,
+      pageSize: pagination.pageSize,
+    };
+
+    const response = await getUserList(params);
+    data.value = response.data;
+    pagination.total = response.total;
+
+    ElMessage.success(`成功加载 ${response.data.length} 条数据`);
+  } catch (error) {
+    ElMessage.error('数据加载失败');
+    console.error('Failed to load data:', error);
+  } finally {
+    loading.value = false;
+  }
+}
+
 function getSelectedData() {
-  const data = tableRef.value?.getSelectionRows();
+  const data = tableRef.value?.tableRef?.getSelectionRows?.() || [];
   return data;
 }
+
+onMounted(() => {
+  loadData();
+});
 
 defineExpose({
   getSelectedData

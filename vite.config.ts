@@ -28,11 +28,10 @@ export default defineConfig(({ mode }) => {
       }),
       // 配置dts插件生成类型声明文件
       dts({
-        include: ['packages/**/*.vue'],
+        include: ['packages/**/*.ts', 'packages/**/*.vue'],
         outDir: 'dist',
         entryRoot: 'packages',
         rollupTypes: true,
-        cleanVueFileName: true,
         // 排除不需要生成类型的文件
         exclude: ['**/node_modules/**', '**/__tests__/**', '**/dist/**']
       })

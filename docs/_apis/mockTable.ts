@@ -1,5 +1,5 @@
 // 定义表格数据的接口类型
-export interface TableData {
+export interface UserItem {
   name: string;
   age: number;
   sex: string;
@@ -9,23 +9,14 @@ export interface TableData {
   remark: string;
 }
 
-// 定义分页参数接口
-export interface PaginationParams {
-  currentPage: number;
-  pageSize: number;
-  // 可以添加其他筛选参数
-  keyword?: string;
-  sex?: string;
-}
-
 // 定义API返回数据格式
 export interface ApiResponse {
-  data: TableData[];
+  data: UserItem[];
   total: number;
 }
 
 // 生成模拟数据
-const generateMockData = (): TableData[] => {
+const generateMockData = (): UserItem[] => {
   const names = [
     '张',
     '李',
@@ -59,7 +50,7 @@ const generateMockData = (): TableData[] => {
     { name: '昆明', districts: ['五华区', '盘龙区', '西山区'] }
   ];
 
-  const data: TableData[] = [];
+  const data: UserItem[] = [];
 
   // 生成100条模拟数据
   for (let i = 0; i < 100; i++) {
@@ -85,9 +76,12 @@ const generateMockData = (): TableData[] => {
 };
 
 // 模拟API请求函数
-export const fetchTableData = (
-  params: PaginationParams
-): Promise<ApiResponse> => {
+export const getUserList = (params: {
+  currentPage: number;
+  pageSize: number;
+  keyword?: string;
+  sex?: string;
+}): Promise<ApiResponse> => {
   const { currentPage, pageSize, keyword, sex } = params;
 
   // 返回Promise模拟异步请求

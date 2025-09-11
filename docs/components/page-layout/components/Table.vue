@@ -13,11 +13,7 @@
 import { reactive, ref, onMounted, h } from 'vue';
 import { ElMessage, ElTag, ElButton } from 'element-plus';
 import { type TableColumnItem } from 'gi-component';
-import {
-  fetchTableData,
-  type TableData,
-  type PaginationParams
-} from '@/_apis/mockTable';
+import { getUserList, type UserItem } from '@/_apis/mockTable';
 
 const columns: TableColumnItem[] = [
   { type: 'selection', width: 55, align: 'center', fixed: 'left' },
@@ -63,7 +59,7 @@ const columns: TableColumnItem[] = [
 ];
 
 // 响应式数据
-const data = ref<TableData[]>([]);
+const data = ref<UserItem[]>([]);
 const loading = ref(false);
 
 // 分页配置
@@ -87,11 +83,11 @@ async function loadData() {
   loading.value = true;
 
   try {
-    const params: PaginationParams = {
+    const params: any = {
       currentPage: pagination.currentPage,
       pageSize: pagination.pageSize
     };
-    const response = await fetchTableData(params);
+    const response = await getUserList(params);
     data.value = response.data;
     pagination.total = response.total;
 
