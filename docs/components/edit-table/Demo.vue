@@ -6,18 +6,10 @@
         <el-button type="primary" @click="onAddRow">新增</el-button>
       </el-space>
     </el-row>
-    <gi-edit-table
-      ref="EditTableRef"
-      :columns="columns"
-      :data="data"
-      :max-height="400"
-      :disabled="disabled"
-    >
+    <gi-edit-table ref="EditTableRef" :columns="columns" :data="data" :max-height="400" :disabled="disabled">
       <template #action="{ $index }">
         <el-row justify="center" style="width: 100%">
-          <el-button size="small" type="danger" @click="onDelete($index)"
-            >删除</el-button
-          >
+          <el-button size="small" type="danger" @click="onDelete($index)">删除</el-button>
         </el-row>
       </template>
     </gi-edit-table>
@@ -52,23 +44,23 @@ const columns = computed(() => {
   return [
     {
       type: 'input',
-      title: '姓名',
-      dataIndex: 'name',
+      label: '姓名',
+      prop: 'name',
       required: true,
       width: 200
     },
     {
       type: 'input',
-      title: '手机号',
-      dataIndex: 'phone',
+      label: '手机号',
+      prop: 'phone',
       required: true,
       width: 200
     },
     {
       type: 'select',
-      title: '状态',
-      dataIndex: 'status',
-      props: {
+      label: '状态',
+      prop: 'status',
+      componentProps: {
         options: [
           { label: '启用', value: '1' },
           { label: '禁用', value: '0' }
@@ -78,27 +70,26 @@ const columns = computed(() => {
     },
     {
       type: 'rate',
-      title: '评分',
-      dataIndex: 'rate',
+      label: '评分',
+      prop: 'rate',
       width: 150
     },
     {
       type: 'input-number',
-      title: '小数',
-      dataIndex: 'num',
+      label: '小数',
+      prop: 'num',
       width: 150
     },
     {
       type: 'input',
-      title: '备注',
-      dataIndex: 'remark',
+      label: '备注',
+      prop: 'remark',
       width: 200,
-      props: {}
     },
     {
       type: '',
-      title: '操作',
-      dataIndex: 'action',
+      label: '操作',
+      prop: 'action',
       slotName: 'action',
       columnProps: {
         width: 100,

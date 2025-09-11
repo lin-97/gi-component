@@ -1,4 +1,5 @@
 import type * as El from 'element-plus';
+import type { InputSearchInstance } from '../../input-search'
 
 export type EditTableColumnItemType =
   | 'input'
@@ -24,16 +25,16 @@ export type EditTableColumnItemType =
   | 'autocomplete'
   | 'upload'
   | 'slot'
-  | 'cecw-input-search';
+  | 'input-search';
 
 export interface EditTableColumnItem {
   type?: EditTableColumnItemType;
-  title: string;
-  dataIndex: string;
+  label: string;
+  prop: string;
   width?: number | string;
   required?: boolean;
   rules?: El.FormItemRule[]; // 表单校验规则
-  props?: ColumnItemProps;
+  componentProps?: ColumnItemProps;
   columnProps?: El.TableColumnInstance['$props'];
   formItemProps?: El.FormItemProps;
   slotName?: string;
@@ -42,8 +43,8 @@ export interface EditTableColumnItem {
 export type ColumnItemProps = El.InputProps &
   El.InputNumberProps &
   El.InputTagProps &
-  El.ISelectProps &
-  El.ISelectV2Props &
+  El.SelectProps &
+  El.SelectV2Props &
   El.TreeInstance['$props'] &
   El.CascaderProps &
   El.SliderProps &
@@ -59,7 +60,8 @@ export type ColumnItemProps = El.InputProps &
   El.ColorPickerProps &
   El.TransferProps &
   El.AutocompleteProps &
-  El.UploadProps;
+  El.UploadProps &
+  InputSearchInstance['$props']
 
 export interface EditTableProps {
   rowKey?: string;

@@ -1,33 +1,17 @@
 <template>
   <el-form ref="formRef" :model="form" :class="b('edit-table')">
     <el-table :data="form.tableData" border v-bind="attrs">
-      <el-table-column
-        v-for="(column, index) in props.columns"
-        :key="column.dataIndex + index"
-        :width="column.width"
-        v-bind="column.columnProps"
-        :prop="column.dataIndex"
-        :label="column.title"
-        :label-class-name="getLabelClassName(column)"
-      >
+      <el-table-column v-for="(column, index) in props.columns" :key="column.prop + index" :width="column.width"
+        v-bind="column.columnProps" :prop="column.prop" :label="column.label"
+        :label-class-name="getLabelClassName(column)">
         <template #default="scope">
-          <el-form-item
-            v-bind="column.formItemProps"
-            :label="column.title"
-            :prop="`tableData[${scope.$index}].${column.dataIndex}`"
-            :rules="getFormItemRules(column)"
-          >
+          <el-form-item v-bind="column.formItemProps" :label="column.label"
+            :prop="`tableData[${scope.$index}].${column.prop}`" :rules="getFormItemRules(column)">
             <template v-if="column.slotName">
               <slot :name="column.slotName" v-bind="scope"></slot>
             </template>
-            <component
-              :is="COMP_MAP[column.type] || column.type"
-              v-else
-              v-bind="getComponentBindProps(column)"
-              v-model="scope.row[column.dataIndex]"
-              class="w-full"
-              :disabled="isDisabled(scope)"
-            >
+            <component :is="COMP_MAP[column.type] || column.type" v-else v-bind="getComponentBindProps(column)"
+              v-model="scope.row[column.prop]" class="w-full" :disabled="isDisabled(scope)">
             </component>
           </el-form-item>
         </template>
@@ -43,6 +27,7 @@ import type { EditTableProps } from './type.ts';
 import * as El from 'element-plus';
 import { computed, h, reactive, ref, toRaw, useAttrs, watch } from 'vue';
 import { useBemClass } from '../../../hooks';
+import InputSearch from '../../input-search'
 
 const props = withDefaults(defineProps<EditTableProps>(), {
   rowKey: 'id',
@@ -75,7 +60,8 @@ const COMP_MAP: Record<Exclude<EditTableColumnItemType, 'slot'>, any> = {
   'color-picker': El.ElColorPicker,
   transfer: El.ElTransfer,
   autocomplete: El.ElAutocomplete,
-  upload: El.ElUpload
+  upload: El.ElUpload,
+  'input-search': InputSearch
 };
 
 const formRef = ref<FormInstance | null>();
@@ -124,17 +110,17 @@ const STATIC_PROPS = new Map([
 const getPlaceholder = (item: EditTableColumnItem) => {
   if (!item.type) return undefined;
   if (['input', 'input-number', 'input-tag'].includes(item.type)) {
-    return `请输入${item.title}`;
+    return `请输入${item.label}`;
   }
   if (['textarea'].includes(item.type)) {
-    return `请填写${item.title}`;
+    return `请填写${item.label}`;
   }
   if (
-    ['select', 'select-v2', 'tree-select', 'cascader', 'time-select'].includes(
+    ['select', 'select-v2', 'tree-select', 'cascader', 'time-select', 'input-search'].includes(
       item.type
     )
   ) {
-    return `请选择${item.title}`;
+    return `请选择${item.label}`;
   }
   if (['date-picker'].includes(item.type)) {
     return `请选择日期`;
@@ -152,17 +138,17 @@ function getComponentBindProps(item: EditTableColumnItem) {
   defaultProps.placeholder = getPlaceholder(item);
   if (item.type === 'date-picker') {
     defaultProps.valueFormat =
-      item?.props?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
+      item?.componentProps?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
   }
   // 合并默认配置和自定义配置
-  return { ...defaultProps, ...item.props };
+  return { ...defaultProps, ...item.componentProps };
 }
 
 /** 表单项校验规则 */
 function getFormItemRules(item: EditTableColumnItem) {
   if (item.required) {
     return [
-      { required: true, message: `${item.title}为必填项` },
+      { required: true, message: `${item.label}为必填项` },
       ...(Array.isArray(item.rules) ? item.rules : [])
     ];
   }
