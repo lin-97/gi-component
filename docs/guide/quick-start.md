@@ -2,6 +2,19 @@
 
 本指南将帮助您快速上手 gi-component 组件库。
 
+## 安装
+
+```bash
+# 使用 npm
+npm install gi-component --save
+
+# 使用 yarn
+# yarn add gi-component
+
+# 使用 pnpm
+# pnpm install gi-component
+```
+
 ## 环境要求
 
 在使用 gi-component 之前，请确保您的项目满足以下要求：

@@ -1,5 +1,7 @@
 # Form 配置表单
 
+该组件是基于`el-form`封装的组件，提供配置表单功能
+
 <script setup>
 import Demo from './Demo.vue'
 import DemoSearch from './DemoSearch.vue'

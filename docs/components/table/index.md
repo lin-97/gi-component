@@ -1,6 +1,6 @@
 # Table 表格
 
-`gi-table` 组件是基于 Element Plus 的 `el-table` 和 `el-pagination` 组件封装的高级表格组件，提供了更便捷的配置方式和增强的功能，包括动态列配置、自定义渲染、嵌套列支持、分页集成等。
+`gi-table` 组件是基于 Element Plus 的 `el-table` 和 `el-pagination` 组件封装的高级表格组件，提供了更便捷的配置方式和增强的功能，包括动态列配置、自定义渲染、嵌套列支持、分页集成等
 
 <script setup>
 import Demo from './Demo.vue'

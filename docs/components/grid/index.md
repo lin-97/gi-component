@@ -1,5 +1,7 @@
 # Grid 栅格
 
+该组件是一个栅格组件，用于布局，可以嵌套使用
+
 <script setup>
 import Demo from './Demo.vue'
 </script>

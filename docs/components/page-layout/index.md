@@ -1,5 +1,7 @@
 # PageLayout 页面布局
 
+该组件是一个页面布局组件，用于快速生成一个页面布局，扩展性强，适合各种场景使用
+
 <script setup>
 import Demo1 from './demo1.vue'
 import Demo2 from './demo2.vue'

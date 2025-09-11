@@ -1,5 +1,7 @@
 # EditTable 编辑表格
 
+该组件主要是配置式的编辑表格
+
 <script setup>
 import Demo from './Demo.vue'
 </script>

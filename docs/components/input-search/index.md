@@ -1,5 +1,7 @@
 # InputSearch 搜索输入框
 
+该组件主要应用于自定义选择的场景，比如：选择用户、选择部门、选择标签等等
+
 <script setup>
 import Demo from './Demo.vue'
 import DemoDisabled from './DemoDisabled.vue'

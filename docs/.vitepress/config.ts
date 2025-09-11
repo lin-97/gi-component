@@ -30,7 +30,6 @@ export default defineConfig({
           items: [
             { text: '介绍', link: '/guide/introduction' },
             { text: '快速开始', link: '/guide/quick-start' },
-            { text: '安装', link: '/guide/installation' },
             { text: '更新日志', link: '/guide/changelog' }
           ]
         }
@@ -41,29 +40,20 @@ export default defineConfig({
           items: [
             { text: 'Button 按钮', link: '/components/button' },
             { text: 'Card 卡片', link: '/components/card' },
-            { text: 'Dialog 对话框', link: '/components/dialog' },
-            { text: 'Form 表单', link: '/components/form' },
-            { text: 'Table 表格', link: '/components/table' },
-            { text: 'Tabs 标签页', link: '/components/tabs' }
-          ]
-        },
-        {
-          text: '输入组件',
-          items: [
-            { text: 'InputGroup 输入组', link: '/components/input-group' },
-            { text: 'InputSearch 搜索输入', link: '/components/input-search' }
-          ]
-        },
-        {
-          text: '布局组件',
-          items: [
             { text: 'Grid 栅格', link: '/components/grid' },
+            { text: 'InputGroup 输入组', link: '/components/input-group' },
+            { text: 'InputSearch 搜索输入', link: '/components/input-search' },
+            { text: 'Tabs 标签页', link: '/components/tabs' },
             { text: 'PageLayout 页面布局', link: '/components/page-layout' }
           ]
         },
         {
-          text: '其他组件',
+          text: '高阶组件',
           items: [
+            { text: 'Dialog 对话框', link: '/components/dialog' },
+            { text: 'Dialog 函数对话框', link: '/components/dialog2' },
+            { text: 'Form 表单', link: '/components/form' },
+            { text: 'Table 表格', link: '/components/table' },
             { text: 'EditTable 可编辑表格', link: '/components/edit-table' }
           ]
         }

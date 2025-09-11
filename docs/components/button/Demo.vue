@@ -1,14 +1,15 @@
 <template>
   <el-space wrap>
     <gi-button type="add" @click="handleClick"></gi-button>
-    <gi-button type="edit" @click="handleClick"></gi-button>
-    <gi-button type="delete" @click="handleClick"></gi-button>
-    <gi-button type="search" @click="handleClick"></gi-button>
-    <gi-button type="reset" @click="handleClick"></gi-button>
-    <gi-button type="upload" @click="handleClick"></gi-button>
-    <gi-button type="download" @click="handleClick"></gi-button>
-    <gi-button type="print" @click="handleClick"></gi-button>
-    <gi-button type="success" @click="handleClick">按钮</gi-button>
+    <gi-button type="edit"></gi-button>
+    <gi-button type="delete"></gi-button>
+    <gi-button type="search"></gi-button>
+    <gi-button type="search" loading></gi-button>
+    <gi-button type="reset"></gi-button>
+    <gi-button type="upload"></gi-button>
+    <gi-button type="download"></gi-button>
+    <gi-button type="print"></gi-button>
+    <gi-button type="success">按钮</gi-button>
   </el-space>
 </template>
 

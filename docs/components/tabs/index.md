@@ -1,5 +1,7 @@
 # Tabs 标签页
 
+该组件主要是为了弥补`el-tabs`不支持右侧插槽的问题
+
 <script setup>
 import Demo from './Demo.vue'
 import DemoCard from './DemoCard.vue'

@@ -1,5 +1,7 @@
 # Dialog 对话框
 
+基于`el-dialog`封装的组件，灵活性更高
+
 <script setup>
 import Demo from './Demo.vue'
 import DemoAsync from './DemoAsync.vue'

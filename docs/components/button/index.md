@@ -1,5 +1,7 @@
 # Button 按钮
 
+该组件主要是对一些常用图标按钮的封装，如果不满足，请使用`el-button`
+
 <script setup>
 import Demo from './Demo.vue'
 import DemoSize from './DemoSize.vue'

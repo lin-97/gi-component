@@ -1,5 +1,7 @@
 # Dialog 函数对话框
 
+函数对话框，通过js 调用打开，支持异步关闭，隐藏底部，拖拽等
+
 <script setup>
 import Demo from './Demo.vue'
 import DemoAsync from './DemoAsync.vue'

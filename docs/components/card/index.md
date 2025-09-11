@@ -1,5 +1,7 @@
 # Card 卡片
 
+该组件提供了比`el-card`更加易用，便捷的功能
+
 <script setup>
 import Demo from './Demo.vue'
 import DemoInnerClass from './DemoInnerClass.vue'
