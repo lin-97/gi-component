@@ -7,29 +7,15 @@
           <gi-button type="delete"></gi-button>
         </el-space>
         <el-space warp>
-          <el-input
-            v-model="searchKeyword"
-            placeholder="搜索姓名或地址"
-            clearable
-            style="width: 200px"
-          />
+          <el-input v-model="searchKeyword" placeholder="搜索姓名或地址" clearable style="width: 200px" />
           <el-button type="primary" @click="loadData()">搜索</el-button>
         </el-space>
       </el-row>
     </template>
-    <gi-table
-      v-loading="loading"
-      :columns="columns"
-      :data="data"
-      :pagination="pagination"
-      border
-      max-height="400px"
-    >
+    <gi-table v-loading="loading" :columns="columns" :data="data" :pagination="pagination" border max-height="400px">
       <template #action="scope">
         <el-space>
-          <el-button type="primary" size="small" @click="onEdit(scope)"
-            >编辑</el-button
-          >
+          <el-button type="primary" size="small" @click="onEdit(scope)">编辑</el-button>
           <el-button type="danger" size="small">删除</el-button>
         </el-space>
       </template>
@@ -45,7 +31,7 @@ import {
   fetchTableData,
   type TableData,
   type PaginationParams
-} from '../../_apis/mockTable';
+} from '@/_apis/mockTable';
 
 const columns: TableColumnItem[] = [
   { type: 'selection', width: 55, align: 'center', fixed: 'left' },

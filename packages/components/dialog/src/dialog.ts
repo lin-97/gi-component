@@ -3,7 +3,7 @@ import ElementPlus from 'element-plus';
 import { createApp, h, ref } from 'vue';
 import GiDialog from './dialog.vue';
 
-type DialogOptions = Partial<DialogInstance['$props']>;
+export type DialogOptions = Partial<DialogInstance['$props']>;
 
 export interface DialogReturnObject {
   close: () => void;

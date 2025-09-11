@@ -1,12 +1,5 @@
 <template>
-  <gi-table
-    v-loading="loading"
-    :columns="columns"
-    :data="data"
-    :pagination="pagination"
-    border
-    max-height="400px"
-  >
+  <gi-table v-loading="loading" :columns="columns" :data="data" :pagination="pagination" border max-height="400px">
     <template #action="scope">
       <el-space>
         <el-button type="primary" size="small">编辑</el-button>
@@ -24,7 +17,7 @@ import {
   fetchTableData,
   type TableData,
   type PaginationParams
-} from '../../../_apis/mockTable';
+} from '@/_apis/mockTable';
 
 const columns: TableColumnItem[] = [
   { type: 'selection', width: 55, align: 'center', fixed: 'left' },

@@ -10,6 +10,7 @@ export default defineConfig({
     resolve: {
       alias: {
         'gi-component': path.resolve(__dirname, '../../packages/index.ts'),
+        '@': path.resolve(__dirname, '../../docs')
       }
     }
   },

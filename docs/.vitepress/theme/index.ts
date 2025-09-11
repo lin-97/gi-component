@@ -1,4 +1,4 @@
-import GiComponent, { Dialog } from 'gi-component';
+import GiComponent, { Dialog } from '../../../packages/index';
 import ElementPlus from 'element-plus';
 import locale from 'element-plus/es/locale/lang/zh-cn';
 import DefaultTheme from 'vitepress/theme';

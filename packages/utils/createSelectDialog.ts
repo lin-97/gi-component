@@ -1,14 +1,12 @@
 import type { Component } from 'vue';
 import { ElMessage } from 'element-plus';
 import { h, ref } from 'vue';
-import { Dialog } from '../index';
+import { Dialog, type DialogOptions } from '../index';
 
-type CreateSelectDialogParams = {
-  title: string;
+interface CreateSelectDialogParams extends Omit<DialogOptions, 'content' | 'onOk' | 'onBeforeOk'> {
   component: Component;
   componentProps?: Record<string, any>;
   tip?: string;
-  bodyClass?: string;
 };
 
 interface DefOption {
@@ -35,6 +33,8 @@ export const createSelectDialog = <T, Q extends DefOption = DefOption>(
     const DialogTableRef = ref<any>();
 
     Dialog.open({
+      bodyClass: 'gi-p0',
+      ...{ ...params, component: undefined, componentProps: undefined, tip: undefined },
       title: params.title || options.title,
       content: () =>
         h(params.component, {
@@ -43,8 +43,7 @@ export const createSelectDialog = <T, Q extends DefOption = DefOption>(
           queryParams,
           ...params.componentProps
         }),
-      style: { maxWidth: '960px' },
-      bodyClass: params.bodyClass,
+      style: { maxWidth: '1000px', ...params.style },
       onBeforeOk: async () => {
         if (!DialogTableRef.value.getSelectedData) {
           ElMessage.error('组件必须暴露getSelectedData方法');

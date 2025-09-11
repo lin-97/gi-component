@@ -7,7 +7,7 @@
       <Search></Search>
     </template>
     <div>
-      <el-table ref="tableRef" :data="tableData" style="width: 100%" border height="400px">
+      <el-table ref="tableRef" :data="tableData" style="width: 100%" border>
         <el-table-column type="selection" width="46" align="center" />
         <el-table-column prop="name" label="姓名" width="100" align="center" />
         <el-table-column prop="date" label="日期" width="150" align="center" />

@@ -21,13 +21,22 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".", // 用于解析非相对模块名称的基目录
+    "paths": {
+      "gi-component": [
+        "../packages/index.ts"
+      ],
+      "@/*": [
+        "../docs/*"
+      ]
+    }
   },
   "include": [
     "**/*.ts",
     "**/*.d.ts",
     "**/*.tsx",
-    "**/*.vue"
+    "**/*.vue",
   ],
   "exclude": [
     "node_modules",

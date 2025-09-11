@@ -1,10 +1,6 @@
 <template>
   <div>
-    <gi-input-search
-      v-model="form.userName"
-      @search="search"
-      @clear="clear"
-    ></gi-input-search>
+    <gi-input-search v-model="form.userNames" @search="search" @clear="clear"></gi-input-search>
   </div>
 </template>
 
@@ -15,7 +11,7 @@ import { selectUserListDialog } from './utils';
 
 const form = reactive({
   userIds: '',
-  userName: ''
+  userNames: ''
 });
 
 function search() {
@@ -23,13 +19,13 @@ function search() {
     onOk: data => {
       ElMessage.success('点击了确定按钮');
       form.userIds = data.map(i => i.id).join(',');
-      form.userName = data.map(i => i.name).join(',');
+      form.userNames = data.map(i => i.name).join(',');
     }
   });
 }
 
 function clear() {
   form.userIds = '';
-  form.userName = '';
+  form.userNames = '';
 }
 </script>

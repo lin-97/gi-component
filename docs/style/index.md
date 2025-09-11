@@ -101,7 +101,7 @@ body {
 }
 
 .gi-m0 {
-  margin: 0;
+  margin: 0 !important;
 }
 
 .gi-pt {
@@ -131,6 +131,6 @@ body {
 }
 
 .gi-p0 {
-  padding: 0;
+  padding: 0 !important;
 }
 ```
