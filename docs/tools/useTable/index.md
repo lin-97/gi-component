@@ -35,18 +35,20 @@ interface PageResult<T> {
   total: number
 }
 
-type Api<T> = (params: PaginationParams) => Promise<ApiResult<PageResult<T[]>>> | Promise<ApiResult<T[]>>
+export interface UseTablePaginationParams { page: number; size: number; }
 
-interface PaginationParams { page: number; size: number; }
+export interface UseTableApi<T> {
+  (params: UseTablePaginationParams): Promise<ApiResult<PageResult<T[]>>> | Promise<ApiResult<T[]>>
+}
 
-export function useTable<T extends U, U = T>(api: Api<T>, options: Options<T, U>)
+export function useTable<T extends U, U = T>(api: UseTableApi<T>, options: Options<T, U>)
 ```
 
 ## 参数说明
 
 | 参数 | 类型 | 必选 | 说明 |
 |-----|-----|-----|-----|
-| `api` | `(params: PaginationParams) => Promise<ApiResult<PageResult<T[]>>> 或 Promise<ApiResult<T[]>>` | 是 | 获取表格数据的API函数，接收分页参数，返回Promise结果 |
+| `api` | `(params: UseTablePaginationParams) => Promise<ApiResult<PageResult<T[]>>> 或 Promise<ApiResult<T[]>>` | 是 | 获取表格数据的API函数，接收分页参数，返回Promise结果 |
 | `options` | `Options` | 否 | 配置选项对象 |
 | `options.onSuccess` | `() => void` | 否 | 数据加载成功后的回调函数 |
 | `options.immediate` | `boolean` | 否 | 是否在组件挂载后立即请求数据，默认为`true` |

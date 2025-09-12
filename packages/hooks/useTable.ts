@@ -1,6 +1,6 @@
 
 import { ElMessageBox } from 'element-plus'
-import { reactive, ref, type Ref } from 'vue'
+import { reactive, ref, getCurrentInstance, type Ref } from 'vue'
 
 interface Options<T, U> {
   onSuccess?: () => void
@@ -20,11 +20,17 @@ interface PageResult<T> {
   total: number
 }
 
-type Api<T> = (params: PaginationParams) => Promise<ApiResult<PageResult<T[]>>> | Promise<ApiResult<T[]>>
+export interface UseTablePaginationParams { page: number; size: number; }
 
-interface PaginationParams { page: number; size: number; }
-export function useTable<T extends U, U = T>(api: Api<T>, options: Options<T, U>) {
+export interface UseTableApi<T> {
+  (params: UseTablePaginationParams): Promise<ApiResult<PageResult<T[]>>> | Promise<ApiResult<T[]>>
+}
+
+export function useTable<T extends U, U = T>(api: UseTableApi<T>, options: Options<T, U>) {
   const { onSuccess, immediate = true, rowKey = 'id' } = options || {}
+
+  // const instance = getCurrentInstance();
+  // const globalConfig = instance?.appContext.config.globalProperties?.$config || {};
 
   const loading = ref(false)
   const tableData: Ref<U[]> = ref([])

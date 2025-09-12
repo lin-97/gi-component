@@ -1,46 +1,59 @@
 <template>
   <div>
-    <el-space class="header">
-      <span>name</span>
+    <gi-edit-table :columns="tableColumns" :data="data" size="small" class="gi-mb"></gi-edit-table>
+    <gi-form ref="formRef" v-model="formData" :columns="columns" :fc="fc" :scroll-to-error="false" />
+    <el-row justify="end">
       <el-space>
-        <el-row align="middle">
-          <span>必填</span>
-          <el-switch v-model="fc.name.required" />
-        </el-row>
-        <el-row align="middle">
-          <span>编辑</span>
-          <el-switch v-model="fc.name.edit" />
-        </el-row>
-        <el-row align="middle">
-          <span>隐藏</span>
-          <el-switch v-model="fc.name.hidden" />
-        </el-row>
+        <el-button @click="handleReset">重置</el-button>
+        <el-button type="primary" @click="handleSubmit">提交</el-button>
       </el-space>
-    </el-space>
-
-    <gi-form ref="formRef" v-model="formData" :columns="columns" :fc="fc" />
-
+    </el-row>
     <pre>{{ fc }}</pre>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import type { FormColumnItem } from 'gi-component';
+import { ref, reactive, computed, useTemplateRef } from 'vue';
+import type { FormColumnItem, EditTableColumnItem } from 'gi-component';
+import { ElMessage } from 'element-plus'
+
+const tableColumns: EditTableColumnItem[] = [
+  { label: '字段', prop: 'field' },
+  { type: 'checkbox', label: '必填', prop: 'required' },
+  { type: 'checkbox', label: '禁用', prop: 'disabled' },
+  { type: 'checkbox', label: '隐藏', prop: 'hidden' },
+]
+const data = ref([
+  {
+    field: 'name',
+    required: true,
+    disabled: false,
+    hidden: false
+  },
+  {
+    field: 'phone',
+    required: true,
+    disabled: false,
+    hidden: false
+  }
+]);
+
+const fc = computed(() => {
+  const obj: Record<string, { required: boolean; disabled: boolean; hidden: boolean }> = {};
+  data.value.forEach(item => {
+    obj[item.field] = {
+      required: item.required,
+      disabled: item.disabled,
+      hidden: item.hidden
+    }
+  })
+  return obj
+})
 
 // 表单数据
 const formData = reactive({
   name: '',
   phone: ''
-});
-
-// 表单控制配置
-const fc = ref({
-  name: {
-    required: true,
-    edit: true,
-    hidden: false
-  }
 });
 
 // 表单列配置
@@ -56,6 +69,20 @@ const columns = [
     field: 'phone'
   }
 ] as FormColumnItem[];
+
+const formRef = useTemplateRef('formRef')
+async function handleSubmit() {
+  try {
+    await formRef.value?.formRef?.validate?.()
+    ElMessage.success('提交成功')
+  } catch (error) {
+    ElMessage.error('提交失败')
+  }
+}
+
+function handleReset() {
+  formRef.value?.formRef?.resetFields?.()
+}
 </script>
 
 <style lang="scss" scoped>

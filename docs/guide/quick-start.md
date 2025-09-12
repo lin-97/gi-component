@@ -68,8 +68,8 @@ body {
   --padding: 14px; // 基础内边距
   --padding-x: 14px;
   --padding-x-small: 10px;
-  --padding-y: 10px;
-  --padding-y-small: 6px;
+  --padding-y: 12px;
+  --padding-y-small: 8px;
 }
 ```
 
@@ -87,7 +87,7 @@ app.use(GiComponent, {
 
 ```ts
 // 模拟接口返回数据
-export const getDictData = async (
+export const getDictData = (
   code: string
 ): Promise<{ label: string; value: string }[]> => {
   const dictData: Record<string, { label: string; value: string }[]> = {

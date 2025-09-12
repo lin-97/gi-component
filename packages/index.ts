@@ -63,8 +63,12 @@ function capitalizeWord(word: string) {
 // 全局默认配置
 export interface Config {
   prefix?: string; // 组件前缀
-  clearable?: boolean; // 输入框是否可清除
-  dictRequest?: () => Promise<any>; // 字典请求方法
+  /** 输入框是否可清除 */
+  clearable?: boolean;
+  /** 字典请求方法 */
+  dictRequest?: () => Promise<any>;
+  /** 格式化响应数据, 用于useTable */
+  // formatResponse?: (data: any) => any;
 }
 
 export default {

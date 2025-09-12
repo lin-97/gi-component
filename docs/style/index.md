@@ -6,8 +6,8 @@ body {
   --margin: 14px;
   --padding-x: 14px;
   --padding-x-small: 10px;
-  --padding-y: 10px;
-  --padding-y-small: 6px;
+  --padding-y: 12px;
+  --padding-y-small: 8px;
 }
 
 .gi-card-title {

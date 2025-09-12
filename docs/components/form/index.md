@@ -6,6 +6,7 @@
 import Demo from './Demo.vue'
 import DemoSearch from './DemoSearch.vue'
 import DemoDict from './DemoDict.vue'
+import DemoFc from './DemoFc.vue'
 </script>
 
 ## 基础用法
@@ -29,6 +30,13 @@ import DemoDict from './DemoDict.vue'
 <<<./DemoDict.vue
 :::
 
+## 表单控制
+<DemoFc></DemoFc>
+::: details 查看代码
+<<<./DemoFc.vue
+:::
+
+
 ## API 说明
 
 ### Props
@@ -43,6 +51,7 @@ import DemoDict from './DemoDict.vue'
 | searchText           | `string`           | 搜索按钮文本     | `'查询'`                               |
 | hideFoldBtn          | `boolean`          | 是否隐藏折叠按钮 | `false`                                |
 | defaultCollapsed     | `boolean`          | 默认是否折叠     | -                                      |
+| fc           | `Record<string, { required: boolean; disabled: boolean; hidden: boolean }>`       | 表单控制属性     | -                                      |
 
 ::: tip
 继承 `el-form` 的所有属性

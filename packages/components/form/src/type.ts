@@ -88,7 +88,7 @@ export interface FormColumnItem<F = any> {
 export interface FormProps extends Partial<ElFormProps> {
   modelValue: any;
   columns?: FormColumnItem[];
-  fc?: Record<string, { edit: boolean; hidden?: boolean; required?: boolean }>; // 表单控制
+  fc?: Record<string, { disabled?: boolean; hidden?: boolean; required?: boolean }>; // 表单控制
   gridProps?: GridProps; // grid默认配置
   gridItemProps?: GridItemProps; // grid-item默认配置
   search?: boolean;

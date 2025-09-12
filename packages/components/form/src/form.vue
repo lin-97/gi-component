@@ -1,49 +1,22 @@
 <template>
-  <el-form
-    ref="formRef"
-    :class="getClass"
-    v-bind="formProps"
-    :model="props.modelValue"
-  >
-    <Grid
-      class="w-full"
-      :col-gap="12"
-      v-bind="props.gridProps"
-      :collapsed="collapsed"
-    >
+  <el-form ref="formRef" :class="getClass" v-bind="formProps" :model="props.modelValue">
+    <Grid class="w-full" :col-gap="12" v-bind="props.gridProps" :collapsed="collapsed">
       <template v-for="(item, index) in props.columns">
-        <GridItem
-          v-if="item.type === 'title'"
-          :key="`title${index}`"
-          :span="100"
-        >
+        <GridItem v-if="item.type === 'title'" :key="`title${index}`" :span="100">
           <el-form-item label-width="0">
-            <GiCard
-              :title="typeof item.label === 'string' ? item.label : ''"
-              :header-style="{ padding: 0 }"
-              :body-style="{ display: 'none' }"
-            ></GiCard>
+            <GiCard :title="typeof item.label === 'string' ? item.label : ''" :header-style="{ padding: 0 }"
+              :body-style="{ display: 'none' }"></GiCard>
           </el-form-item>
         </GridItem>
 
         <template v-else>
-          <GridItem
-            v-if="!isHide(item)"
-            :key="item.field + index"
-            v-bind="item.gridItemProps || props.gridItemProps"
-            :span="
-              item.span ||
+          <GridItem v-if="!isHide(item)" :key="item.field + index" v-bind="item.gridItemProps || props.gridItemProps"
+            :span="item.span ||
               item.gridItemProps?.span ||
               props?.gridItemProps?.span
-            "
-          >
-            <el-form-item
-              :key="item.field + index"
-              :prop="item.field"
-              :label="item.label"
-              :rules="getFormItemRules(item)"
-              v-bind="item.formItemProps"
-            >
+              ">
+            <el-form-item :key="item.field + index" :prop="item.field" :label="item.label"
+              :rules="getFormItemRules(item)" v-bind="item.formItemProps">
               <template v-if="item?.labelRender" #label>
                 <component :is="item.labelRender"></component>
               </template>
@@ -53,21 +26,10 @@
               <template v-else>
                 <div :class="b('form-item__content')">
                   <div :class="b('form-item__component')">
-                    <component
-                      :is="CompMap[item.type] || item.type"
-                      :disabled="isDisabled(item)"
-                      class="w-full"
-                      v-bind="getComponentBindProps(item)"
-                      :model-value="
-                        props.modelValue[item.fieldName || item.field]
-                      "
-                      @update:model-value="updateModelValue($event, item)"
-                    >
-                      <template
-                        v-for="(slotValue, slotKey) in item?.slots || {}"
-                        :key="slotKey"
-                        #[slotKey]="scope"
-                      >
+                    <component :is="CompMap[item.type] || item.type" :disabled="isDisabled(item)" class="w-full"
+                      v-bind="getComponentBindProps(item)" :model-value="props.modelValue[item.fieldName || item.field]
+                        " @update:model-value="updateModelValue($event, item)">
+                      <template v-for="(slotValue, slotKey) in item?.slots || {}" :key="slotKey" #[slotKey]="scope">
                         <template v-if="typeof slotValue === 'string'">
                           {{ slotValue }}
                         </template>
@@ -76,12 +38,7 @@
                         </template>
                       </template>
                     </component>
-                    <el-text
-                      v-if="item.tip"
-                      :class="b('form-item__tip')"
-                      type="info"
-                      size="small"
-                    >
+                    <el-text v-if="item.tip" :class="b('form-item__tip')" type="info" size="small">
                       {{ item.tip }}
                     </el-text>
                   </div>
@@ -90,7 +47,7 @@
                     <template v-if="typeof item.extra === 'string'">
                       <el-text type="info" size="small">{{
                         item.extra
-                      }}</el-text>
+                        }}</el-text>
                     </template>
                     <template v-else-if="item.extra">
                       <component :is="item.extra"></component>
@@ -103,25 +60,14 @@
         </template>
       </template>
 
-      <GridItem
-        v-if="props.search"
-        :suffix="props.search"
-        :span="props?.gridItemProps?.span"
-      >
+      <GridItem v-if="props.search" :suffix="props.search" :span="props?.gridItemProps?.span">
         <el-space :class="b('form__search-btns')">
           <el-button type="primary" @click="emit('search')">
             {{ searchText }}
           </el-button>
           <el-button @click="emit('reset')"> 重置 </el-button>
-          <el-button
-            v-if="!props.hideFoldBtn"
-            class="form__fold-btn"
-            type="primary"
-            :icon="collapsed ? ArrowDown : ArrowUp"
-            text
-            size="small"
-            @click="collapsed = !collapsed"
-          >
+          <el-button v-if="!props.hideFoldBtn" class="form__fold-btn" type="primary"
+            :icon="collapsed ? ArrowDown : ArrowUp" text size="small" @click="collapsed = !collapsed">
             {{ collapsed ? '展开' : '收起' }}
           </el-button>
         </el-space>
@@ -376,7 +322,7 @@ function isHide(item: FormColumnItem) {
 /** 禁用表单项 */
 function isDisabled(item: FormColumnItem) {
   if (item?.props?.disabled !== undefined) return item?.props?.disabled;
-  if (props.fc?.[item.field]?.edit === false) return true;
+  if (props.fc?.[item.field]?.disabled === true) return true;
   return false;
 }
 
@@ -417,6 +363,7 @@ defineExpose({ formRef });
 }
 
 :deep(.hide-label) {
+
   // 隐藏el-form-item__label才能完整占满插槽宽度
   .el-form-item__label {
     display: none;

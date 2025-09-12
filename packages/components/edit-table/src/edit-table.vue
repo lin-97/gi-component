@@ -10,6 +10,7 @@
             <template v-if="column.slotName">
               <slot :name="column.slotName" v-bind="scope"></slot>
             </template>
+            <template v-else-if="!column.type">{{ scope.row[column.prop] }}</template>
             <component :is="COMP_MAP[column.type] || column.type" v-else v-bind="getComponentBindProps(column)"
               v-model="scope.row[column.prop]" class="w-full" :disabled="isDisabled(scope)">
             </component>
