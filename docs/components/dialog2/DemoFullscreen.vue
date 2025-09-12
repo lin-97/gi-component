@@ -3,14 +3,17 @@
 </template>
 
 <script setup lang="ts">
+import { h } from 'vue'
 import { Dialog } from 'gi-component';
 import { ElMessage } from 'element-plus';
+import Table from '@/_components/Table.vue'
 
 const openDialog = () => {
   Dialog.open({
     title: '标题',
-    content: '落霞与孤鹜齐飞，秋水共长天一色',
+    content: () => h(Table),
     fullscreen: true,
+    bodyClass: 'gi-p0',
     onOk: () => {
       ElMessage.success('点击了确定按钮');
     },

@@ -21,8 +21,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import Tree from '@/_components/Tree.vue';
 import Table from './components/Table.vue';
-import Tree from './components/Tree.vue';
 import { TabsOptionItem } from 'gi-component'
 
 const activeName = ref('1')

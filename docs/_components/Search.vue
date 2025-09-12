@@ -1,15 +1,7 @@
 <template>
-  <gi-form
-    ref="GiFormRef"
-    v-model="form"
-    :columns="columns"
-    search
-    :grid-item-props="{
-      span: { xs: 24, sm: 12, md: 12, lg: 12, xl: 8, xxl: 8 }
-    }"
-    @search="search"
-    @reset="reset"
-  >
+  <gi-form ref="GiFormRef" v-model="form" :columns="columns" search :grid-item-props="{
+    span: { xs: 24, sm: 12, md: 12, lg: 12, xl: 8, xxl: 8 }
+  }" @search="search" @reset="reset">
   </gi-form>
 </template>
 

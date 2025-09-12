@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import Search from './components/Search.vue';
+import Tree from '@/_components/Tree.vue';
+import Search from '@/_components/Search.vue';
 import Table from './components/Table.vue';
-import Tree from './components/Tree.vue';
 </script>
 
 <style lang="scss" scoped></style>

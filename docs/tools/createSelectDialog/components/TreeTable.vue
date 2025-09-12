@@ -16,8 +16,8 @@ import { useTemplateRef } from 'vue';
 import { reactive, ref, onMounted, watch, h } from 'vue';
 import { ElMessage, ElTag, ElButton } from 'element-plus';
 import { type TableColumnItem, useTable } from 'gi-component';
-import Search from './Search.vue';
-import Tree from './Tree.vue';
+import Search from '@/_components/Search.vue';
+import Tree from '@/_components/Tree.vue';
 import { getUserList, type UserItem } from '@/_apis/mockTable';
 
 const columns: TableColumnItem[] = [

@@ -25,6 +25,16 @@
   table-layout: fixed;
 } */
 
+body {
+  overflow: hidden;
+  height: 100vh;
+}
+
+#app {
+  height: 100%;
+  overflow-y: auto;
+}
+
 .vp-doc {
 
   .el-table__header,

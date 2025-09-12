@@ -25,7 +25,7 @@ const openDialog = () => {
         await new Promise(resolve => setTimeout(resolve, 1000))
         return true
       } catch (error) {
-        ElMessage.error('提交失败')
+        ElMessage.error('表单校验失败')
         return false
       }
     }

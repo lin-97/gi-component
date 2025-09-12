@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import Search from './components/Search.vue';
+import Search from '@/_components/Search.vue';
 import Table from './components/Table.vue';
 </script>
 

@@ -1,12 +1,14 @@
 <template>
-  <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" border max-height="400px">
-    <template #action="scope">
-      <el-space>
-        <el-button type="primary" size="small">编辑</el-button>
-        <el-button type="danger" size="small">删除</el-button>
-      </el-space>
-    </template>
-  </gi-table>
+  <gi-page-layout>
+    <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" border>
+      <template #action="scope">
+        <el-space>
+          <el-button type="primary" size="small">编辑</el-button>
+          <el-button type="danger" size="small">删除</el-button>
+        </el-space>
+      </template>
+    </gi-table>
+  </gi-page-layout>
 </template>
 
 <script lang="ts" setup>
@@ -39,14 +41,8 @@ const columns: TableColumnItem[] = [
       );
     }
   },
-  {
-    prop: 'address',
-    label: '地址',
-    children: [
-      { prop: 'city', label: '城市', width: 100 },
-      { prop: 'district', label: '区县', width: 100 }
-    ]
-  },
+  { prop: 'city', label: '城市', width: 100 },
+  { prop: 'district', label: '区县', width: 100 },
   { prop: 'remark', label: '描述', showOverflowTooltip: true },
   {
     prop: 'action',
