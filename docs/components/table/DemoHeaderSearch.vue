@@ -95,4 +95,11 @@ function onEdit(scope: any) {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+pre {
+  font-size: 12px;
+  margin-top: 8px;
+  background-color: #f5f5f5;
+  line-height: 1;
+}
+</style>
