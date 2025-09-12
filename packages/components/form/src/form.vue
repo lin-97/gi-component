@@ -197,7 +197,6 @@ function getComponentBindProps(item: FormColumnItem) {
   const defaultProps: any = STATIC_PROPS.get(item.type) || {};
   defaultProps.placeholder = getPlaceholder(item);
   if (item.type === 'date-picker') {
-    // @ts-ignore
     defaultProps.valueFormat = item?.props?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
   }
   // 如果配置了dictCode且存在对应的字典数据，设置options
@@ -321,7 +320,6 @@ function isHide(item: FormColumnItem) {
 
 /** 禁用表单项 */
 function isDisabled(item: FormColumnItem) {
-  // @ts-ignore
   if (item?.props?.disabled !== undefined) return item?.props?.disabled;
   if (props.fc?.[item.field]?.disabled === true) return true;
   return false;

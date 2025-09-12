@@ -139,7 +139,6 @@ function getComponentBindProps(item: EditTableColumnItem) {
   const defaultProps: any = STATIC_PROPS.get(item.type || '') || {};
   defaultProps.placeholder = getPlaceholder(item);
   if (item.type === 'date-picker') {
-    // @ts-ignore
     defaultProps.valueFormat = item?.componentProps?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
   }
   // 合并默认配置和自定义配置
