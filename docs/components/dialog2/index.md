@@ -7,6 +7,8 @@ import Demo from './Demo.vue'
 import DemoAsync from './DemoAsync.vue'
 import DemoHideFooter from './DemoHideFooter.vue'
 import DemoDrag from './DemoDrag.vue'
+import DemoFullscreen from './DemoFullscreen.vue'
+import DemoForm from './DemoForm.vue'
 </script>
 
 ## 基础用法
@@ -30,11 +32,24 @@ import DemoDrag from './DemoDrag.vue'
 <<< ./DemoHideFooter.vue
 :::
 
+## 全屏
+<DemoFullscreen></DemoFullscreen>
+::: details 查看代码
+<<< ./DemoFullscreen.vue
+:::
+
 ## 拖拽
 
 <DemoDrag></DemoDrag>
 ::: details 查看代码
 <<< ./DemoDrag.vue
+:::
+
+## 表单对话框
+
+<DemoForm></DemoForm>
+::: details 查看代码
+<<< ./DemoForm.vue
 :::
 
 如果要继承主应用的上下文
