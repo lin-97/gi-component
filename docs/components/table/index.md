@@ -4,6 +4,7 @@
 
 <script setup>
 import Demo from './Demo.vue'
+import DemoHeaderSearch from './DemoHeaderSearch.vue'
 </script>
 
 ## 基础用法
@@ -14,6 +15,26 @@ import Demo from './Demo.vue'
 
 ::: details 查看代码
 <<< ./Demo.vue
+:::
+
+## 表头搜索
+本示例只提供技巧参考，实际项目请根据自身需求进行封装`useTableHeaderSearch`函数hooks
+
+<DemoHeaderSearch></DemoHeaderSearch>
+::: details 查看代码
+<<< ./DemoHeaderSearch.vue
+:::
+
+::: details useTableHeaderSearch.ts
+<<< ./components/useTableHeaderSearch.ts
+:::
+
+::: details HeaderInput.vue
+<<< ./components/HeaderInput.vue
+:::
+
+::: details HeaderCheckboxGroup.vue
+<<< ./components/HeaderCheckboxGroup.vue
 :::
 
 ## API 使用说明
