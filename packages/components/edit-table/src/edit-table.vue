@@ -39,7 +39,7 @@ const props = withDefaults(defineProps<EditTableProps>(), {
 const attrs = useAttrs();
 const { b } = useBemClass();
 
-const COMP_MAP: Record<Exclude<EditTableColumnItemType, 'slot'>, any> = {
+const COMP_MAP: Record<EditTableColumnItemType, any> = {
   input: El.ElInput,
   textarea: El.ElInput,
   'input-number': El.ElInputNumber,
@@ -62,7 +62,8 @@ const COMP_MAP: Record<Exclude<EditTableColumnItemType, 'slot'>, any> = {
   transfer: El.ElTransfer,
   autocomplete: El.ElAutocomplete,
   upload: El.ElUpload,
-  'input-search': InputSearch
+  'input-search': InputSearch,
+  slot: undefined,
 };
 
 const formRef = ref<FormInstance | null>();
@@ -138,11 +139,11 @@ function getComponentBindProps(item: EditTableColumnItem) {
   const defaultProps: any = STATIC_PROPS.get(item.type || '') || {};
   defaultProps.placeholder = getPlaceholder(item);
   if (item.type === 'date-picker') {
-    defaultProps.valueFormat =
-      item?.componentProps?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
+    // @ts-ignore
+    defaultProps.valueFormat = item?.componentProps?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
   }
   // 合并默认配置和自定义配置
-  return { ...defaultProps, ...item.componentProps };
+  return { ...defaultProps, ...(item?.componentProps || {}) };
 }
 
 /** 表单项校验规则 */

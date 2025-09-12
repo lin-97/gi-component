@@ -2,19 +2,9 @@
   <div :class="getClass">
     <div :class="b('tabs__default')">
       <slot>
-        <el-tabs
-          v-model="model"
-          :type="props.type"
-          :stretch="props.stretch"
-          @tab-click="(p, e) => emits('tabClick', p, e)"
-          @tab-change="emits('tabChange', $event)"
-        >
-          <el-tab-pane
-            v-for="item in props.options"
-            :key="item.name"
-            :name="item.name"
-            :disabled="item?.disabled"
-          >
+        <el-tabs v-model="model" :type="props.type" :stretch="props.stretch"
+          @tab-click="(p, e) => emits('tabClick', p, e)" @tab-change="emits('tabChange', $event as any)">
+          <el-tab-pane v-for="item in props.options" :key="item.name" :name="item.name" :disabled="item?.disabled">
             <template #label>
               <slot name="label" :data="item">{{ item.label }}</slot>
             </template>
@@ -113,7 +103,7 @@ const getClass = computed(() => {
 }
 
 :deep(.el-tabs--card) {
-  > .el-tabs__header {
+  >.el-tabs__header {
     border-bottom: none;
   }
 }
@@ -121,11 +111,11 @@ const getClass = computed(() => {
 :deep(.el-tabs--border-card) {
   border-bottom: none;
 
-  > .el-tabs__content {
+  >.el-tabs__content {
     display: none;
   }
 
-  > .el-tabs__header {
+  >.el-tabs__header {
     border-bottom: none;
   }
 }

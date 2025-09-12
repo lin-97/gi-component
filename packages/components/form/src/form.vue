@@ -197,15 +197,15 @@ function getComponentBindProps(item: FormColumnItem) {
   const defaultProps: any = STATIC_PROPS.get(item.type) || {};
   defaultProps.placeholder = getPlaceholder(item);
   if (item.type === 'date-picker') {
-    defaultProps.valueFormat =
-      item?.props?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
+    // @ts-ignore
+    defaultProps.valueFormat = item?.props?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
   }
   // 如果配置了dictCode且存在对应的字典数据，设置options
   if (item.dictCode && dictData.value[item.dictCode]) {
     defaultProps.options = dictData.value[item.dictCode];
   }
   // 合并默认配置和自定义配置
-  return { ...defaultProps, ...item.props };
+  return { ...defaultProps, ...(item?.props || {}) };
 }
 
 const formProps = computed(() => {
@@ -321,6 +321,7 @@ function isHide(item: FormColumnItem) {
 
 /** 禁用表单项 */
 function isDisabled(item: FormColumnItem) {
+  // @ts-ignore
   if (item?.props?.disabled !== undefined) return item?.props?.disabled;
   if (props.fc?.[item.field]?.disabled === true) return true;
   return false;
