@@ -6,12 +6,12 @@
 import { h } from 'vue'
 import { Dialog } from 'gi-component';
 import { ElMessage } from 'element-plus';
-import Table from '@/_components/Table.vue'
+import LayoutTable from '@/_components/LayoutTable.vue'
 
 const openDialog = () => {
   Dialog.open({
     title: '标题',
-    content: () => h(Table),
+    content: () => h(LayoutTable),
     fullscreen: true,
     bodyClass: 'gi-p0',
     onOk: () => {

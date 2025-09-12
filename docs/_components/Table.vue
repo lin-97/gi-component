@@ -1,14 +1,12 @@
 <template>
-  <gi-page-layout>
-    <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" border>
-      <template #action="scope">
-        <el-space>
-          <el-button type="primary" size="small">编辑</el-button>
-          <el-button type="danger" size="small">删除</el-button>
-        </el-space>
-      </template>
-    </gi-table>
-  </gi-page-layout>
+  <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" border>
+    <template #action="scope">
+      <el-space>
+        <el-button type="primary" size="small">编辑</el-button>
+        <el-button type="danger" size="small">删除</el-button>
+      </el-space>
+    </template>
+  </gi-table>
 </template>
 
 <script lang="ts" setup>

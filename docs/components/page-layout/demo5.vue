@@ -1,5 +1,6 @@
 <template>
-  <gi-page-layout bordered :header-style="{ padding: '8px 0 0', borderBottom: 'none' }" :body-style="{ padding: 0 }">
+  <gi-page-layout bordered :style="{ height: '500px' }" :header-style="{ padding: '8px 0 0', borderBottom: 'none' }"
+    :body-style="{ padding: 0 }">
     <template #header>
       <gi-tabs v-model="activeName" :options="options">
         <template #extra>
@@ -22,7 +23,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Tree from '@/_components/Tree.vue';
-import Table from './components/Table.vue';
+import Table from '@/_components/Table.vue';
 import { TabsOptionItem } from 'gi-component'
 
 const activeName = ref('1')
