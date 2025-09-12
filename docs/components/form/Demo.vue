@@ -82,7 +82,7 @@ const columns = computed(() => {
       tip: '国内手机号',
       formItemProps: { style: { alignItems: 'baseline' } },
       slots: {
-        prepend: '+86',
+        prepend: '+86'
       }
     },
     {

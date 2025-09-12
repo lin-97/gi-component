@@ -3,6 +3,7 @@ import type { FormProps as ElFormProps } from 'element-plus';
 import type { VNode } from 'vue';
 import type { GridItemProps, GridProps } from '../../grid/src/interface';
 import type { InputSearchInstance } from '../../input-search';
+import type { MergeMultiple } from '../../../types/tool'
 
 export type FormColumnType =
   | 'input'
@@ -34,30 +35,28 @@ export type FormColumnType =
 /**
  * 表单列属性类型，根据组件类型使用对应的属性类型
  */
-export type FormColumnProps = Partial<
-  El.InputProps |
-  El.InputNumberProps |
-  El.InputTagProps |
-  El.SelectProps |
-  El.SelectV2Props |
-  El.TreeInstance['$props'] |
-  El.CascaderProps |
-  El.SliderProps |
-  El.SwitchProps |
-  El.RateProps |
-  El.CheckboxGroupProps |
-  El.CheckboxProps |
-  El.RadioGroupProps |
-  El.RadioProps |
-  El.DatePickerProps |
-  El.TimePickerDefaultProps |
-  El.TimeSelectProps |
-  El.ColorPickerProps |
-  El.TransferProps |
-  El.AutocompleteProps |
-  El.UploadProps |
-  InputSearchInstance['$props']
->;
+export type FormColumnProps = MergeMultiple<[El.InputProps,
+  El.InputNumberProps,
+  El.InputTagProps,
+  El.SelectProps,
+  El.SelectV2Props,
+  El.TreeInstance['$props'],
+  El.CascaderProps,
+  El.SliderProps,
+  El.SwitchProps,
+  El.RateProps,
+  El.CheckboxGroupProps,
+  El.CheckboxProps,
+  El.RadioGroupProps,
+  El.RadioProps,
+  El.DatePickerProps,
+  El.TimePickerDefaultProps,
+  El.TimeSelectProps,
+  El.ColorPickerProps,
+  El.TransferProps,
+  El.AutocompleteProps,
+  El.UploadProps,
+  InputSearchInstance['$props']]>;
 
 export type FormColumnItemHide<F> = boolean | ((form: F) => boolean);
 

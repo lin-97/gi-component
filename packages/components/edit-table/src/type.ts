@@ -1,5 +1,6 @@
 import type * as El from 'element-plus';
 import type { InputSearchInstance } from '../../input-search'
+import type { MergeMultiple } from '../../../types/tool'
 
 export type EditTableColumnItemType =
   | 'input'
@@ -34,34 +35,34 @@ export interface EditTableColumnItem {
   width?: number | string;
   required?: boolean;
   rules?: El.FormItemRule[]; // 表单校验规则
-  componentProps?: ColumnItemProps;
+  componentProps?: EditTableColumnItemProps;
   columnProps?: El.TableColumnInstance['$props'];
   formItemProps?: El.FormItemProps;
   slotName?: string;
 }
 
-export type ColumnItemProps = El.InputProps &
-  El.InputNumberProps &
-  El.InputTagProps &
-  El.SelectProps &
-  El.SelectV2Props &
-  El.TreeInstance['$props'] &
-  El.CascaderProps &
-  El.SliderProps &
-  El.SwitchProps &
-  El.RateProps &
-  El.CheckboxGroupProps &
-  El.CheckboxProps &
-  El.RadioGroupProps &
-  El.RadioProps &
-  El.DatePickerProps &
-  El.TimePickerDefaultProps &
-  El.TimeSelectProps &
-  El.ColorPickerProps &
-  El.TransferProps &
-  El.AutocompleteProps &
-  El.UploadProps &
-  InputSearchInstance['$props']
+export type EditTableColumnItemProps = MergeMultiple<[El.InputProps,
+  El.InputNumberProps,
+  El.InputTagProps,
+  El.SelectProps,
+  El.SelectV2Props,
+  El.TreeInstance['$props'],
+  El.CascaderProps,
+  El.SliderProps,
+  El.SwitchProps,
+  El.RateProps,
+  El.CheckboxGroupProps,
+  El.CheckboxProps,
+  El.RadioGroupProps,
+  El.RadioProps,
+  El.DatePickerProps,
+  El.TimePickerDefaultProps,
+  El.TimeSelectProps,
+  El.ColorPickerProps,
+  El.TransferProps,
+  El.AutocompleteProps,
+  El.UploadProps,
+  InputSearchInstance['$props']]>
 
 export interface EditTableProps {
   rowKey?: string;
