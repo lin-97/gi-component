@@ -2,7 +2,7 @@
 
 本`createBaseAPI`仅提供参考，根据自身项目自行封装
 
-```ts
+```typescript
 import { http } from '@/utils/http'
 
 interface DefaultP {
@@ -33,9 +33,9 @@ export function createBaseAPI<T, P extends DefaultP = DefaultP>(params: { baseUr
       return http.post<T>(`${baseUrl}/saveUpdate`, data)
     },
     delete(params: P['deleteParams']) {
-      return http.post<string>(`${baseUrl}/delete, params)
+      return http.post<string>(`${baseUrl}/delete`, params)
     }
-    // ...扩展
+    // 扩展，根据实际情况添加其他基本接口，如导入、导出等
   }
 
   return baseAPI
@@ -44,7 +44,7 @@ export function createBaseAPI<T, P extends DefaultP = DefaultP>(params: { baseUr
 
 ## 使用示例
 
-```ts
+```typescript
 // @/apis/user.ts
 import { http } from '@/utils/http'
 import { createBaseAPI } from '@/utils/createBaseAPI'
@@ -78,7 +78,7 @@ export const getUserRoleList = (params: { id: string }) => {
 
 ## 在页面使用
 
-```ts
+```typescript
 import { baseAPI, getUserRoleList } from '@/apis/user'
 import type * as T from '@/apis/user' // 获取类型
 
