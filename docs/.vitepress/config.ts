@@ -64,7 +64,7 @@ export default defineConfig({
           items: [
             { text: 'useTable', link: '/tools/useTable' },
             { text: 'createSelectDialog', link: '/tools/createSelectDialog' },
-            { text: 'createBaseAPI', link: '/tools/createBaseApi' },
+            { text: 'createBaseAPI', link: '/tools/createBaseAPI' },
           ]
         }
       ]
