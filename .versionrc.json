@@ -1,0 +1,55 @@
+{
+  "types": [
+    {
+      "type": "feat",
+      "section": "✨ 新功能"
+    },
+    {
+      "type": "fix",
+      "section": "🐛 修复"
+    },
+    {
+      "type": "docs",
+      "section": "📝 文档"
+    },
+    {
+      "type": "style",
+      "section": "💄 样式"
+    },
+    {
+      "type": "refactor",
+      "section": "♻️ 重构"
+    },
+    {
+      "type": "perf",
+      "section": "⚡️ 性能优化"
+    },
+    {
+      "type": "test",
+      "section": "✅ 测试"
+    },
+    {
+      "type": "build",
+      "section": "👷 构建"
+    },
+    {
+      "type": "ci",
+      "section": "🔧 CI 配置"
+    },
+    {
+      "type": "chore",
+      "section": "🎫 杂项"
+    },
+    {
+      "type": "revert",
+      "section": "⏪️ 回滚"
+    }
+  ],
+  "header": "CHANGELOG 变更记录",
+  "footer": "> 此日志由 standard-version 自动生成",
+  "commitGroupsSort": "title",
+  "commitsSort": [
+    "scope",
+    "subject"
+  ]
+}
