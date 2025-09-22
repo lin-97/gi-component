@@ -30,7 +30,7 @@ export default defineConfig({
           items: [
             { text: '介绍', link: '/guide/introduction' },
             { text: '快速开始', link: '/guide/quick-start' },
-            { text: '更新日志', link: '/guide/CHANGELOG' }
+            { text: '更新日志', link: '/guide/changelog' }
           ]
         }
       ],
