@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '~': fileURLToPath(new URL('./', import.meta.url)),
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     },
     plugins: [
@@ -69,7 +69,7 @@ export default defineConfig(({ mode }) => {
           output: {
             // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
             globals: {
-              vue: 'Vue',
+              'vue': 'Vue',
               'element-plus': 'ElementPlus'
             }
           }

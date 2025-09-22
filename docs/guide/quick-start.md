@@ -30,22 +30,21 @@ npm install gi-component --save
 全局引入是最简单的使用方式，适合在整个项目中频繁使用组件的场景。
 
 ```js
-import { createApp } from 'vue';
-import App from './App.vue';
-// 引入样式
-import 'element-plus/dist/index.css';
+import GiComponent, { Dialog } from 'gi-component'
+import { createApp } from 'vue'
 
-import GiComponent from 'gi-component'
-import { Dialog } from 'gi-component';
+import App from './App.vue'
+// 引入样式
+import 'element-plus/dist/index.css'
 import 'gi-component/dist/gi.css'
 
-const app = createApp(App);
-Dialog._context = app._context; // 继承主应用的上下文
+const app = createApp(App)
+Dialog._context = app._context // 继承主应用的上下文
 
 // 注册组件库
-app.use(GiComponent);
+app.use(GiComponent)
 
-app.mount('#app');
+app.mount('#app')
 ```
 
 ## TypeScript 支持
@@ -89,8 +88,8 @@ app.use(GiComponent, {
 // 模拟接口返回数据
 export const getDictData = (
   code: string
-): Promise<{ label: string; value: string }[]> => {
-  const dictData: Record<string, { label: string; value: string }[]> = {
+): Promise<{ label: string, value: string }[]> => {
+  const dictData: Record<string, { label: string, value: string }[]> = {
     SEX: [
       { label: '男', value: '1' },
       { label: '女', value: '2' }
@@ -106,12 +105,12 @@ export const getDictData = (
       { label: '深圳', value: '4' },
       { label: '成都', value: '5' }
     ]
-  };
-  return new Promise(resolve => {
+  }
+  return new Promise((resolve) => {
     setTimeout(() => {
-      console.log('获取的字典请求', code, dictData[code]);
-      resolve(dictData[code]);
-    }, 500);
-  });
-};
+      console.log('获取的字典请求', code, dictData[code])
+      resolve(dictData[code])
+    }, 500)
+  })
+}
 ```

@@ -1,4 +1,4 @@
-import type { ButtonProps as ElButtonProps } from 'element-plus';
+import type { ButtonProps as ElButtonProps } from 'element-plus'
 
 export interface ButtonProps extends Partial<Omit<ElButtonProps, 'type'>> {
   type?:
@@ -11,5 +11,5 @@ export interface ButtonProps extends Partial<Omit<ElButtonProps, 'type'>> {
     | 'download'
     | 'print'
     | ''
-    | ElButtonProps['type'];
+    | ElButtonProps['type']
 }

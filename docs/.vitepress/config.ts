@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitepress'
 import path from 'node:path'
+import { defineConfig } from 'vitepress'
 import packageJson from '../../package.json'
 
 export default defineConfig({
@@ -10,9 +10,9 @@ export default defineConfig({
     resolve: {
       alias: {
         'gi-component': path.resolve(__dirname, '../../packages/index.ts'),
-        '@': path.resolve(__dirname, '../../docs')
+        '@docs': path.resolve(__dirname, '../../docs')
       }
-    },
+    }
   },
   themeConfig: {
     nav: [
@@ -64,7 +64,7 @@ export default defineConfig({
           items: [
             { text: 'useTable', link: '/tools/useTable' },
             { text: 'createSelectDialog', link: '/tools/createSelectDialog' },
-            { text: 'createBaseAPI', link: '/tools/createBaseAPI' },
+            { text: 'createBaseAPI', link: '/tools/createBaseAPI' }
           ]
         }
       ]

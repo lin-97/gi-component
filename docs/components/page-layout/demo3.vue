@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import Search from '@/_components/Search.vue';
-import Table from './components/Table.vue';
+import Search from '@docs/_components/Search.vue'
+import Table from './components/Table.vue'
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,8 +1,8 @@
 // 模拟字典数据请求
 export const getDictData = async (
   code: string
-): Promise<{ label: string; value: string }[]> => {
-  const dictData: Record<string, { label: string; value: string }[]> = {
+): Promise<{ label: string, value: string }[]> => {
+  const dictData: Record<string, { label: string, value: string }[]> = {
     SEX: [
       { label: '男', value: '1' },
       { label: '女', value: '2' }
@@ -18,11 +18,11 @@ export const getDictData = async (
       { label: '深圳', value: '4' },
       { label: '成都', value: '5' }
     ]
-  };
-  return new Promise(resolve => {
+  }
+  return new Promise((resolve) => {
     setTimeout(() => {
-      console.log('获取的字典请求', code, dictData[code]);
-      resolve(dictData[code]);
-    }, 500);
-  });
-};
+      console.log('获取的字典请求', code, dictData[code])
+      resolve(dictData[code])
+    }, 500)
+  })
+}

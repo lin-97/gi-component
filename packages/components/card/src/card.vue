@@ -18,9 +18,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { CardProps } from './type';
-import { computed, useSlots } from 'vue';
-import { useBemClass } from '../../../hooks';
+import type { CardProps } from './type'
+import { computed, useSlots } from 'vue'
+import { useBemClass } from '../../../hooks'
 
 const props = withDefaults(defineProps<CardProps>(), {
   title: '',
@@ -31,37 +31,37 @@ const props = withDefaults(defineProps<CardProps>(), {
   headerStyle: () => ({}),
   bodyStyle: () => ({}),
   inner: false
-});
+})
 
 defineSlots<{
-  default: () => void;
-  title: () => void;
-  extra: () => void;
-  footer: () => void;
-}>();
+  default: () => void
+  title: () => void
+  extra: () => void
+  footer: () => void
+}>()
 
-const slot = useSlots();
-const { b } = useBemClass();
+const slot = useSlots()
+const { b } = useBemClass()
 
 const getCardClass = computed(() => {
-  const arr: string[] = [b('card')];
+  const arr: string[] = [b('card')]
   if (props.bordered) {
-    arr.push(b('card--bordered'));
+    arr.push(b('card--bordered'))
   }
   if (props.inner) {
-    arr.push(b('card--inner'));
+    arr.push(b('card--inner'))
   }
-  arr.push(b(`card--${props.size}`));
-  return arr.join(' ');
-});
+  arr.push(b(`card--${props.size}`))
+  return arr.join(' ')
+})
 
 const getHeaderClass = computed(() => {
-  const arr: string[] = [b('card-header')];
+  const arr: string[] = [b('card-header')]
   if (props.headerBordered) {
-    arr.push(b('card-header--bordered'));
+    arr.push(b('card-header--bordered'))
   }
-  return arr.join(' ');
-});
+  return arr.join(' ')
+})
 </script>
 
 <style lang="scss" scoped>

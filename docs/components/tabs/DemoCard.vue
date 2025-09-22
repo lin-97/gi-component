@@ -20,10 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import type { TabsProps } from 'element-plus';
-import { ref } from 'vue';
+import type { TabsProps } from 'element-plus'
+import { ref } from 'vue'
 
-const value = ref('1');
+const value = ref('1')
 const options = [
   { label: '页签1', name: '1' },
   { label: '页签2', name: '2' },
@@ -40,7 +40,7 @@ const options = [
   { label: '页签13', name: '13' },
   { label: '页签14', name: '14' },
   { label: '页签15', name: '15' }
-];
+]
 
-const tabsType = ref<TabsProps['type']>('');
+const tabsType = ref<TabsProps['type']>('')
 </script>

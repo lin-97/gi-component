@@ -21,15 +21,15 @@
 </template>
 
 <script setup lang="ts">
+import type { TabsOptionItem } from 'gi-component'
+import Table from '@docs/_components/Table.vue'
+import Tree from '@docs/_components/Tree.vue'
 import { ref } from 'vue'
-import Tree from '@/_components/Tree.vue';
-import Table from '@/_components/Table.vue';
-import { TabsOptionItem } from 'gi-component'
 
 const activeName = ref('1')
 const options: TabsOptionItem[] = [
   { label: '选项1', name: '1' },
   { label: '选项2', name: '2' },
-  { label: '选项3', name: '3' },
+  { label: '选项3', name: '3' }
 ]
 </script>

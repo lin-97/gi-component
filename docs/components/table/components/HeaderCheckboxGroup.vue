@@ -1,5 +1,5 @@
 <template>
-  <el-popover placement="bottom" :width="200" v-model:visible="visible"
+  <el-popover v-model:visible="visible" placement="bottom" :width="200"
     :popper-style="{ width: '140px', minWidth: '0px' }">
     <template #reference>
       <HeaderLabel :label="props.label" :actived="!!props.headerParams[props.field]?.length" @click="visible = true">
@@ -20,14 +20,16 @@ import { ref } from 'vue'
 import HeaderLabel from './HeaderLabel.vue'
 
 interface Props {
-  label: string;
-  field: string;
-  headerParams: Record<string, any>;
+  label: string
+  field: string
+  headerParams?: Record<string, any>
 }
-const props = withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {
+  headerParams: () => ({})
+})
 
 const emit = defineEmits<{
-  (e: 'confirm'): void;
+  (e: 'confirm'): void
 }>()
 
 const visible = ref(false)

@@ -36,10 +36,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { PageLayoutProps } from './type';
-import { computed, ref, useSlots } from 'vue';
-import { useBemClass } from '../../../hooks';
-import SplitButton from './split-button.vue';
+import type { PageLayoutProps } from './type'
+import { computed, ref, useSlots } from 'vue'
+import { useBemClass } from '../../../hooks'
+import SplitButton from './split-button.vue'
 
 const props = withDefaults(defineProps<PageLayoutProps>(), {
   size: 270,
@@ -49,43 +49,43 @@ const props = withDefaults(defineProps<PageLayoutProps>(), {
   headerStyle: () => ({}),
   toolStyle: () => ({}),
   bodyStyle: () => ({})
-});
+})
 
 defineSlots<{
-  header: () => void;
-  left: () => void;
-  tool: () => void;
-  default: () => void;
-}>();
+  header: () => void
+  left: () => void
+  tool: () => void
+  default: () => void
+}>()
 
-const slots = useSlots();
-const { b } = useBemClass();
-const size = ref(props.size);
-const collapsing = ref(false);
+const slots = useSlots()
+const { b } = useBemClass()
+const size = ref(props.size)
+const collapsing = ref(false)
 
 const getClass = computed(() => {
-  const arr: string[] = [b('page-layout')];
+  const arr: string[] = [b('page-layout')]
   if (props.bordered) {
-    arr.push(b('page-layout--bordered'));
+    arr.push(b('page-layout--bordered'))
   }
   if (slots.header) {
-    arr.push(b('page-layout--has-header'));
+    arr.push(b('page-layout--has-header'))
   }
   if (slots.tool) {
-    arr.push(b('page-layout--has-tool'));
+    arr.push(b('page-layout--has-tool'))
   }
   if (collapsing.value) {
-    arr.push(b('page-layout--collapsing'));
+    arr.push(b('page-layout--collapsing'))
   }
-  return arr.join(' ');
-});
+  return arr.join(' ')
+})
 
 function handleClick() {
-  collapsing.value = true;
+  collapsing.value = true
   setTimeout(() => {
-    collapsing.value = false;
-  }, 300);
-  size.value = Number(size.value) > 30 ? 0 : props.size;
+    collapsing.value = false
+  }, 300)
+  size.value = Number(size.value) > 30 ? 0 : props.size
 }
 </script>
 

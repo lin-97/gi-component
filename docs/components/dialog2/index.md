@@ -56,8 +56,8 @@ import DemoForm from './DemoForm.vue'
 
 ```js
 // main.ts
-import { Dialog } from 'gi-component';
+import { Dialog } from 'gi-component'
 
-const app = createApp(App);
-Dialog._context = app._context;
+const app = createApp(App)
+Dialog._context = app._context
 ```

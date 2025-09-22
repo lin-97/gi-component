@@ -19,7 +19,9 @@
           </template>
           <el-space wrap>
             <el-button v-for="i in 100" :key="i" type="primary"
-              >按钮{{ i }}</el-button
+              >
+按钮{{ i }}
+</el-button
             >
           </el-space>
         </gi-card>

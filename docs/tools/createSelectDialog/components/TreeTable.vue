@@ -12,13 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import { useTemplateRef } from 'vue';
-import { reactive, ref, onMounted, watch, h } from 'vue';
-import { ElMessage, ElTag, ElButton } from 'element-plus';
-import { type TableColumnItem, useTable } from 'gi-component';
-import Search from '@/_components/Search.vue';
-import Tree from '@/_components/Tree.vue';
-import { getUserList, type UserItem } from '@/_apis/mockTable';
+import type { TableColumnItem } from 'gi-component'
+import { getUserList } from '@docs/_apis/mockTable'
+import Search from '@docs/_components/Search.vue'
+import Tree from '@docs/_components/Tree.vue'
+import { ElTag } from 'element-plus'
+import { useTable } from 'gi-component'
+import { h, useTemplateRef } from 'vue'
 
 const columns: TableColumnItem[] = [
   { type: 'selection', width: 55, align: 'center', fixed: 'left' },
@@ -41,25 +41,25 @@ const columns: TableColumnItem[] = [
         ElTag,
         { type: row.sex === '男' ? 'primary' : 'danger' },
         { default: () => row.sex }
-      );
+      )
     }
   },
   { prop: 'city', label: '城市', width: 100 },
   { prop: 'district', label: '区县', width: 100 },
-  { prop: 'remark', label: '描述', showOverflowTooltip: true },
-];
+  { prop: 'remark', label: '描述', showOverflowTooltip: true }
+]
 
-const tableRef = useTemplateRef('tableRef');
+const tableRef = useTemplateRef('tableRef')
 const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p }), {})
 
 function getSelectedData() {
-  const data = tableRef.value?.tableRef?.getSelectionRows?.() || [];
-  return data;
+  const data = tableRef.value?.tableRef?.getSelectionRows?.() || []
+  return data
 }
 
 defineExpose({
   getSelectedData
-});
+})
 </script>
 
 <style lang="scss" scoped></style>

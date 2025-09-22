@@ -14,9 +14,9 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 
 function handleClick() {
-  ElMessage.success('点击了按钮');
+  ElMessage.success('点击了按钮')
 }
 </script>

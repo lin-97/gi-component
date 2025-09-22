@@ -1,6 +1,6 @@
-import type { TableDataItem } from '../components/TreeTable.vue';
-import { createSelectDialog } from 'gi-component';
-import TreeTable from '../components/TreeTable.vue';
+import type { TableDataItem } from '../components/TreeTable.vue'
+import { createSelectDialog } from 'gi-component'
+import TreeTable from '../components/TreeTable.vue'
 
 /**
  * 选择用户列表对话框
@@ -12,4 +12,4 @@ export const selectUserListDialog = createSelectDialog<TableDataItem[]>({
   componentProps: {
     style: { height: '500px' }
   }
-});
+})

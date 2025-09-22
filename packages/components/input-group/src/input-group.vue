@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useBemClass } from '../../../hooks';
+import { useBemClass } from '../../../hooks'
 
-const { b } = useBemClass();
+const { b } = useBemClass()
 </script>
 
 <style lang="scss" scoped>

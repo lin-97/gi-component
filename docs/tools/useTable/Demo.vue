@@ -2,18 +2,20 @@
   <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" border max-height="400px">
     <template #action="scope">
       <el-space>
-        <el-button type="primary" size="small">编辑</el-button>
-        <el-button type="danger" size="small">删除</el-button>
+        <ElButton type="primary" size="small">编辑</ElButton>
+        <ElButton type="danger" size="small">删除</ElButton>
       </el-space>
     </template>
   </gi-table>
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, onMounted, h } from 'vue';
-import { ElMessage, ElTag, ElButton } from 'element-plus';
-import { type TableColumnItem, useTable } from 'gi-component';
-import { getUserList, type UserItem } from '@/_apis/mockTable';
+import type { UserItem } from '@docs/_apis/mockTable'
+import type { TableColumnItem } from 'gi-component'
+import { getUserList } from '@docs/_apis/mockTable'
+import { ElButton, ElTag } from 'element-plus'
+import { useTable } from 'gi-component'
+import { h } from 'vue'
 
 const columns: TableColumnItem<UserItem>[] = [
   { type: 'selection', width: 55, align: 'center', fixed: 'left' },
@@ -23,7 +25,7 @@ const columns: TableColumnItem<UserItem>[] = [
     label: '姓名',
     width: 100,
     align: 'center',
-    showOverflowTooltip: true,
+    showOverflowTooltip: true
   },
   { prop: 'age', label: '年龄', width: 60, align: 'center' },
   {
@@ -36,7 +38,7 @@ const columns: TableColumnItem<UserItem>[] = [
         ElTag,
         { type: row.sex === '男' ? 'primary' : 'danger' },
         { default: () => row.sex }
-      );
+      )
     }
   },
   {
@@ -56,7 +58,7 @@ const columns: TableColumnItem<UserItem>[] = [
     slotName: 'action',
     fixed: 'right'
   }
-];
+]
 
 const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p }), {
   onSuccess: () => {

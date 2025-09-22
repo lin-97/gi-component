@@ -11,8 +11,8 @@
 import { CaretBottom } from '@element-plus/icons-vue'
 
 interface Props {
-  label: string;
-  actived: boolean;
+  label: string
+  actived: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {})

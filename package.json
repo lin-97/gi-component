@@ -30,7 +30,9 @@
     "docs:build": "cd docs && pnpm build",
     "docs:preview": "cd docs && pnpm preview",
     "build:lib": "vite build --mode lib",
-    "build:docs": "cd docs && pnpm build"
+    "build:docs": "cd docs && pnpm build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "peerDependencies": {
     "element-plus": "^2.11.2",
@@ -39,6 +41,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
     "@element-plus/icons-vue": "^2.3.1",
+    "@types/node": "^24.2.0",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vitejs/plugin-vue-jsx": "^4.2.0",
     "element-plus": "^2.11.2",

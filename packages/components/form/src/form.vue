@@ -11,9 +11,9 @@
 
         <template v-else>
           <GridItem v-if="!isHide(item)" :key="item.field + index" v-bind="item.gridItemProps || props.gridItemProps"
-            :span="item.span ||
-              item.gridItemProps?.span ||
-              props?.gridItemProps?.span
+            :span="item.span
+              || item.gridItemProps?.span
+              || props?.gridItemProps?.span
               ">
             <el-form-item :key="item.field + index" :prop="item.field" :label="item.label"
               :rules="getFormItemRules(item)" v-bind="item.formItemProps">
@@ -45,9 +45,11 @@
                   <!-- 额外信息 -->
                   <div v-if="item.extra" :class="b('form-item__extra')">
                     <template v-if="typeof item.extra === 'string'">
-                      <el-text type="info" size="small">{{
-                        item.extra
-                        }}</el-text>
+                      <el-text type="info" size="small">
+                        {{
+                          item.extra
+                        }}
+                      </el-text>
                     </template>
                     <template v-else-if="item.extra">
                       <component :is="item.extra"></component>
@@ -77,24 +79,23 @@
 </template>
 
 <script lang="tsx" setup>
-import type { FormColumnType, FormColumnItem } from './type';
-import { ArrowDown, ArrowUp } from '@element-plus/icons-vue';
-import * as El from 'element-plus';
-import type { FormInstance } from 'element-plus';
+import type { FormInstance } from 'element-plus'
+import type { FormColumnItem, FormColumnType, FormProps } from './type'
+import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
+import * as El from 'element-plus'
 import {
   computed,
+  getCurrentInstance,
+  onMounted,
   ref,
   toRaw,
-  watch,
   useAttrs,
-  getCurrentInstance,
-  onMounted
-} from 'vue';
-import { useBemClass } from '../../../hooks';
-import GiCard from '../../card';
-import { Grid, GridItem } from '../../grid';
-import InputSearch from '../../input-search';
-import type { FormProps } from './type';
+  watch
+} from 'vue'
+import { useBemClass } from '../../../hooks'
+import GiCard from '../../card'
+import { Grid, GridItem } from '../../grid'
+import InputSearch from '../../input-search'
 
 const props = withDefaults(defineProps<FormProps>(), {
   columns: () => [],
@@ -106,23 +107,23 @@ const props = withDefaults(defineProps<FormProps>(), {
   hideFoldBtn: false,
   defaultCollapsed: undefined,
   fc: () => ({})
-});
+})
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: any): void;
-  (e: 'search'): void;
-  (e: 'reset'): void;
-}>();
+  (e: 'update:modelValue', value: any): void
+  (e: 'search'): void
+  (e: 'reset'): void
+}>()
 
-const attrs = useAttrs();
-const { b } = useBemClass();
-const collapsed = ref(props?.defaultCollapsed ?? props.search);
-const instance = getCurrentInstance();
+const attrs = useAttrs()
+const { b } = useBemClass()
+const collapsed = ref(props?.defaultCollapsed ?? props.search)
+const instance = getCurrentInstance()
 
-const globalConfig = instance?.appContext.config.globalProperties.$config;
-const clearable = globalConfig?.clearable ?? false;
+const globalConfig = instance?.appContext.config.globalProperties.$config
+const clearable = globalConfig?.clearable ?? false
 // 字典数据存储
-const dictData = ref<Record<string, any[]>>({});
+const dictData = ref<Record<string, any[]>>({})
 
 /** 组件静态配置 */
 const STATIC_PROPS = new Map([
@@ -152,59 +153,59 @@ const STATIC_PROPS = new Map([
   ['autocomplete', {}],
   ['upload', {}],
   ['title', {}]
-]);
+])
 
 // 获取字典数据
 const loadDictData = async () => {
-  const dictCodes: string[] = [];
+  const dictCodes: string[] = []
   // 收集所有需要的字典编码
-  props.columns?.forEach(item => {
+  props.columns?.forEach((item) => {
     if (item.dictCode) {
-      dictCodes.push(item.dictCode);
+      dictCodes.push(item.dictCode)
     }
-  });
-  if (!dictCodes.length) return;
+  })
+  if (!dictCodes.length) return
   if (!globalConfig?.dictRequest) {
-    return El.ElMessage.error('请配置全局字典请求方法dictRequest');
+    return El.ElMessage.error('请配置全局字典请求方法dictRequest')
   }
   try {
     // 使用Promise.all并行处理所有字典请求
     const dictResponses = await Promise.all(
-      dictCodes.map(code =>
+      dictCodes.map((code) =>
         globalConfig
           .dictRequest(code)
           .then((response: any) => ({ code, response }))
       )
-    );
+    )
     // 处理所有响应结果
     dictResponses.forEach(({ code, response }) => {
-      dictData.value[code] = response;
-    });
+      dictData.value[code] = response
+    })
   } catch (error) {
-    console.error('获取字典数据失败:', error);
-    El.ElMessage.error('获取字典数据失败');
+    console.error('获取字典数据失败:', error)
+    El.ElMessage.error('获取字典数据失败')
   }
-};
+}
 
 // 组件挂载时获取字典数据
 onMounted(() => {
-  loadDictData();
-});
+  loadDictData()
+})
 
 // 组件的默认props配置
 function getComponentBindProps(item: FormColumnItem) {
   // 获取默认配置
-  const defaultProps: any = STATIC_PROPS.get(item.type) || {};
-  defaultProps.placeholder = getPlaceholder(item);
+  const defaultProps: any = STATIC_PROPS.get(item.type) || {}
+  defaultProps.placeholder = getPlaceholder(item)
   if (item.type === 'date-picker') {
-    defaultProps.valueFormat = item?.props?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
+    defaultProps.valueFormat = item?.props?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
   }
   // 如果配置了dictCode且存在对应的字典数据，设置options
   if (item.dictCode && dictData.value[item.dictCode]) {
-    defaultProps.options = dictData.value[item.dictCode];
+    defaultProps.options = dictData.value[item.dictCode]
   }
   // 合并默认配置和自定义配置
-  return { ...defaultProps, ...(item?.props || {}) };
+  return { ...defaultProps, ...(item?.props || {}) }
 }
 
 const formProps = computed(() => {
@@ -218,54 +219,54 @@ const formProps = computed(() => {
     searchText: undefined,
     hideFoldBtn: undefined,
     defaultCollapsed: undefined
-  };
-});
+  }
+})
 
 const getClass = computed(() => {
-  const arr: string[] = [b('form')];
+  const arr: string[] = [b('form')]
   if (props.search) {
-    arr.push(b('form--search'));
+    arr.push(b('form--search'))
   }
-  return arr.join(' ');
-});
+  return arr.join(' ')
+})
 
 const CompMap: Record<Exclude<FormColumnType, 'slot'>, any> = {
-  input: El.ElInput,
-  textarea: El.ElInput,
+  'input': El.ElInput,
+  'textarea': El.ElInput,
   'input-number': El.ElInputNumber,
   'input-tag': El.ElInputTag,
   'input-search': InputSearch,
-  select: El.ElSelect,
+  'select': El.ElSelect,
   'select-v2': El.ElSelectV2,
   'tree-select': El.ElTreeSelect,
-  cascader: El.ElCascader,
-  slider: El.ElSlider,
-  switch: El.ElSwitch,
-  rate: El.ElRate,
+  'cascader': El.ElCascader,
+  'slider': El.ElSlider,
+  'switch': El.ElSwitch,
+  'rate': El.ElRate,
   'checkbox-group': El.ElCheckboxGroup,
-  checkbox: El.ElCheckbox,
+  'checkbox': El.ElCheckbox,
   'radio-group': El.ElRadioGroup,
-  radio: El.ElRadio,
+  'radio': El.ElRadio,
   'date-picker': El.ElDatePicker,
   'time-picker': El.ElTimePicker,
   'time-select': El.ElTimeSelect,
   'color-picker': El.ElColorPicker,
-  transfer: El.ElTransfer,
-  autocomplete: El.ElAutocomplete,
-  upload: El.ElUpload,
-  title: El.ElAlert
-};
+  'transfer': El.ElTransfer,
+  'autocomplete': El.ElAutocomplete,
+  'upload': El.ElUpload,
+  'title': El.ElAlert
+}
 
-const formRef = ref<FormInstance>();
+const formRef = ref<FormInstance>()
 
 /** 获取占位文本 */
 const getPlaceholder = (item: FormColumnItem) => {
-  if (!item.type) return undefined;
+  if (!item.type) return undefined
   if (['input', 'input-number', 'input-tag'].includes(item.type)) {
-    return `请输入${item.label}`;
+    return `请输入${item.label}`
   }
   if (['textarea'].includes(item.type)) {
-    return `请填写${item.label}`;
+    return `请填写${item.label}`
   }
   if (
     [
@@ -277,16 +278,16 @@ const getPlaceholder = (item: FormColumnItem) => {
       'input-search'
     ].includes(item.type)
   ) {
-    return `请选择${item.label}`;
+    return `请选择${item.label}`
   }
   if (['date-picker'].includes(item.type)) {
-    return `请选择日期`;
+    return `请选择日期`
   }
   if (['time-picker'].includes(item.type)) {
-    return `请选择时间`;
+    return `请选择时间`
   }
-  return undefined;
-};
+  return undefined
+}
 
 /** 表单项校验规则 */
 function getFormItemRules(item: FormColumnItem) {
@@ -294,7 +295,7 @@ function getFormItemRules(item: FormColumnItem) {
     return [
       { required: true, message: `${item.label}为必填项` },
       ...(Array.isArray(item.rules) ? item.rules : [])
-    ];
+    ]
   }
   if (props.fc?.[item.field]?.required) {
     return [
@@ -303,26 +304,26 @@ function getFormItemRules(item: FormColumnItem) {
         message: `${item.label}为必填项`
       },
       ...(Array.isArray(item.rules) ? item.rules : [])
-    ];
+    ]
   }
-  return item.rules;
+  return item.rules
 }
 
 /** 隐藏表单项 */
 function isHide(item: FormColumnItem) {
-  if (typeof item.hide === 'boolean') return item.hide;
+  if (typeof item.hide === 'boolean') return item.hide
   if (typeof item.hide === 'function') {
-    return item.hide(props.modelValue);
+    return item.hide(props.modelValue)
   }
-  if (props.fc?.[item.field]?.hidden) return true;
-  if (item.hide === undefined) return false;
+  if (props.fc?.[item.field]?.hidden) return true
+  if (item.hide === undefined) return false
 }
 
 /** 禁用表单项 */
 function isDisabled(item: FormColumnItem) {
-  if (item?.props?.disabled !== undefined) return item?.props?.disabled;
-  if (props.fc?.[item.field]?.disabled === true) return true;
-  return false;
+  if (item?.props?.disabled !== undefined) return item?.props?.disabled
+  if (props.fc?.[item.field]?.disabled === true) return true
+  return false
 }
 
 /** 表单数据更新  */
@@ -330,19 +331,19 @@ function updateModelValue(value: any, item: FormColumnItem) {
   emit(
     'update:modelValue',
     Object.assign(props.modelValue, { [item.field]: value })
-  );
+  )
 }
 
 watch(
   () => props.modelValue,
   () => {
     // eslint-disable-next-line no-console
-    console.log('form', toRaw(props.modelValue));
+    console.log('form', toRaw(props.modelValue))
   },
   { deep: true }
-);
+)
 
-defineExpose({ formRef });
+defineExpose({ formRef })
 </script>
 
 <style lang="scss" scoped>

@@ -35,7 +35,7 @@ interface PageResult<T> {
   total: number
 }
 
-export interface UseTablePaginationParams { page: number; size: number; }
+export interface UseTablePaginationParams { page: number, size: number }
 
 export interface UseTableApi<T> {
   (params: UseTablePaginationParams): Promise<ApiResult<PageResult<T[]>>> | Promise<ApiResult<T[]>>

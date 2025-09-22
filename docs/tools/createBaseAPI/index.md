@@ -45,10 +45,10 @@ export function createBaseAPI<T, P extends DefaultP = DefaultP>(params: { baseUr
 ## 使用示例
 
 ```typescript
+import type * as T from './type'
+import { createBaseAPI } from '@/utils/createBaseAPI'
 // @/apis/user.ts
 import { http } from '@/utils/http'
-import { createBaseAPI } from '@/utils/createBaseAPI'
-import type * as T from './type'
 
 interface ListItem {
   id: string
@@ -79,8 +79,8 @@ export const getUserRoleList = (params: { id: string }) => {
 ## 在页面使用
 
 ```typescript
-import { baseAPI, getUserRoleList } from '@/apis/user'
 import type * as T from '@/apis/user' // 获取类型
+import { baseAPI, getUserRoleList } from '@/apis/user'
 
 const userList = ref<T.ListItem[]>([])
 
@@ -90,4 +90,3 @@ baseAPI.queryById({ id: '1' })
 // 获取列表
 baseAPI.pageQueryList({ page: 1, rows: 10, name: '' })
 ```
-

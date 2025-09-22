@@ -18,9 +18,11 @@
       <slot name="footer">
         <template v-if="typeof props.footer === 'boolean'">
           <el-space :size="10">
-            <el-button v-bind="props.cancelButtonProps" @click="handleCancel">{{
+            <el-button v-bind="props.cancelButtonProps" @click="handleCancel">
+{{
               props.cancelText
-            }}</el-button>
+            }}
+</el-button>
             <el-button
               type="primary"
               v-bind="props.okButtonProps"
@@ -40,15 +42,15 @@
 </template>
 
 <script lang="ts" setup>
-import type { VNode } from 'vue';
-import type { DialogProps } from './type';
-import { computed, defineProps, defineSlots, ref } from 'vue';
-import { useBemClass } from '../../../hooks';
+import type { VNode } from 'vue'
+import type { DialogProps } from './type'
+import { computed, defineProps, defineSlots, ref } from 'vue'
+import { useBemClass } from '../../../hooks'
 
 const visible = defineModel('modelValue', {
   type: Boolean,
   default: false
-});
+})
 
 const props = withDefaults(defineProps<DialogProps>(), {
   closeOnClickModal: true,
@@ -58,23 +60,23 @@ const props = withDefaults(defineProps<DialogProps>(), {
   cancelText: '取消',
   width: 'calc(100% - 20px)',
   alignCenter: true
-});
+})
 
 defineSlots<{
-  title: () => VNode;
-  footer: () => VNode;
-  default: () => VNode;
-}>();
+  title: () => VNode
+  footer: () => VNode
+  default: () => VNode
+}>()
 
-const { b } = useBemClass();
+const { b } = useBemClass()
 
 const getClass = computed(() => {
-  const arr: string[] = [b('dialog')];
+  const arr: string[] = [b('dialog')]
   if (props.simple) {
-    arr.push(b('dialog--simple'));
+    arr.push(b('dialog--simple'))
   }
-  return arr.join(' ');
-});
+  return arr.join(' ')
+})
 
 const dialogProps = computed(() => {
   return {
@@ -89,34 +91,34 @@ const dialogProps = computed(() => {
     onBeforeOk: undefined,
     onCancel: undefined,
     simple: undefined
-  };
-});
+  }
+})
 
-const okLoading = ref(false);
+const okLoading = ref(false)
 
 const handleCancel = () => {
-  props.onCancel?.();
-  visible.value = false;
-};
+  props.onCancel?.()
+  visible.value = false
+}
 
 const handleOk = async () => {
   if (props.onBeforeOk) {
     try {
-      okLoading.value = true;
-      const flag = await props.onBeforeOk();
-      okLoading.value = false;
+      okLoading.value = true
+      const flag = await props.onBeforeOk()
+      okLoading.value = false
       if (flag) {
-        visible.value = false;
+        visible.value = false
       }
     } catch (error) {
-      console.error('error', error);
-      okLoading.value = false;
+      console.error('error', error)
+      okLoading.value = false
     }
   } else {
-    props.onOk?.();
-    visible.value = false;
+    props.onOk?.()
+    visible.value = false
   }
-};
+}
 </script>
 
 <style lang="scss" scoped></style>

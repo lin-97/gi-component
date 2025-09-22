@@ -8,7 +8,7 @@
         </el-space>
         <el-space warp>
           <el-input v-model="queryParams.keyword" placeholder="搜索姓名或地址" clearable style="width: 200px" />
-          <el-button type="primary" @click="search">搜索</el-button>
+          <ElButton type="primary" @click="search">搜索</ElButton>
         </el-space>
       </el-row>
     </template>
@@ -16,8 +16,8 @@
       max-height="400px">
       <template #action="scope">
         <el-space>
-          <el-button type="primary" size="small" @click="onEdit(scope)">编辑</el-button>
-          <el-button type="danger" size="small">删除</el-button>
+          <ElButton type="primary" size="small" @click="onEdit(scope)">编辑</ElButton>
+          <ElButton type="danger" size="small">删除</ElButton>
         </el-space>
       </template>
     </gi-table>
@@ -26,15 +26,17 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, onMounted, watch, h } from 'vue';
-import { ElMessage, ElTag, ElButton } from 'element-plus';
-import { type TableColumnItem, useTable } from 'gi-component';
-import { getUserList, type UserItem } from '@/_apis/mockTable';
+import type { UserItem } from '@docs/_apis/mockTable'
+import type { TableColumnItem } from 'gi-component'
+import { getUserList } from '@docs/_apis/mockTable'
+import { ElButton, ElMessage, ElTag } from 'element-plus'
+import { useTable } from 'gi-component'
+import { h, reactive } from 'vue'
 import { useTableHeaderSearch } from './components/useTableHeaderSearch'
 
 const { headerParams, createTableHeader } = useTableHeaderSearch({ search: () => search() })
 
-const columns: TableColumnItem[] = [
+const columns: TableColumnItem<UserItem>[] = [
   { type: 'selection', width: 55, align: 'center', fixed: 'left' },
   { type: 'index', label: '序号', width: 60, align: 'center' },
   {
@@ -43,7 +45,7 @@ const columns: TableColumnItem[] = [
     width: 100,
     align: 'center',
     showOverflowTooltip: true,
-    renderHeader: () => createTableHeader({ type: 'input', label: '姓名', field: 'name' }),
+    renderHeader: () => createTableHeader({ type: 'input', label: '姓名', field: 'name' })
   },
   { prop: 'age', label: '年龄', width: 60, align: 'center' },
   {
@@ -56,9 +58,9 @@ const columns: TableColumnItem[] = [
         ElTag,
         { type: row.sex === '男' ? 'primary' : 'danger' },
         { default: () => row.sex }
-      );
+      )
     },
-    renderHeader: () => createTableHeader({ type: 'checkbox-group', label: '性别', field: 'sex' }),
+    renderHeader: () => createTableHeader({ type: 'checkbox-group', label: '性别', field: 'sex' })
   },
   {
     prop: 'address',
@@ -77,11 +79,11 @@ const columns: TableColumnItem[] = [
     slotName: 'action',
     fixed: 'right'
   }
-];
+]
 
 const queryParams = reactive({
   keyword: ''
-});
+})
 
 const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p, ...queryParams }), {
   onSuccess: () => {
@@ -91,7 +93,7 @@ const { tableData, getTableData, pagination, search, refresh, loading } = useTab
 
 // 编辑操作
 function onEdit(scope: any) {
-  ElMessage.success(`编辑 ${scope.row.name}`);
+  ElMessage.success(`编辑 ${scope.row.name}`)
 }
 </script>
 

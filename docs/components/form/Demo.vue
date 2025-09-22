@@ -13,7 +13,7 @@
 
     <gi-form ref="GiFormRef" v-model="form" :columns="columns" :disabled="disabled" label-width="auto"
       :label-position="labelPosition" :grid-item-props="{
-        span: { xs: 24, sm: 24, md: 24, lg: 12, xl: 12, xxl: 12 }
+        span: { xs: 24, sm: 24, md: 24, lg: 12, xl: 12, xxl: 12 },
       }">
       <template #customSlot="{ item }">
         {{ form.status }}-----------{{ item.field }}
@@ -35,14 +35,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { FormColumnItem, FormInstance } from 'gi-component';
-import { ElMessage, ElTag } from 'element-plus';
-import { computed, h, reactive, ref } from 'vue';
-import { treeData } from './data';
+import type { FormColumnItem, FormInstance } from 'gi-component'
+import { ElMessage, ElTag } from 'element-plus'
+import { computed, h, reactive, ref } from 'vue'
+import { treeData } from './data'
 
-const GiFormRef = ref<FormInstance | null>();
-const disabled = ref(false);
-const labelPosition = ref<any>('right');
+const GiFormRef = ref<FormInstance | null>()
+const disabled = ref(false)
+const labelPosition = ref<any>('right')
 
 const form = reactive({
   name: '',
@@ -63,7 +63,7 @@ const form = reactive({
   endTime: '',
   inputSearchId: '',
   inputSearchName: ''
-});
+})
 
 const columns = computed(() => {
   return [
@@ -178,14 +178,14 @@ const columns = computed(() => {
       fieldName: 'inputSearchName',
       props: {
         onSearch: () => {
-          ElMessage.success('点击了搜索');
-          form.inputSearchId = '111,222,333';
-          form.inputSearchName = 'aaa,bbb,ccc';
+          ElMessage.success('点击了搜索')
+          form.inputSearchId = '111,222,333'
+          form.inputSearchName = 'aaa,bbb,ccc'
         },
         onClear: () => {
-          ElMessage.success('点击了清除');
-          form.inputSearchId = '';
-          form.inputSearchName = '';
+          ElMessage.success('点击了清除')
+          form.inputSearchId = ''
+          form.inputSearchName = ''
         }
       }
     },
@@ -233,14 +233,14 @@ const columns = computed(() => {
         style: { marginBottom: 0 }
       }
     }
-  ] as FormColumnItem[];
-});
+  ] as FormColumnItem[]
+})
 
 async function submit() {
-  await GiFormRef.value?.formRef?.validate();
+  await GiFormRef.value?.formRef?.validate()
 }
 function reset() {
-  GiFormRef.value?.formRef?.resetFields();
+  GiFormRef.value?.formRef?.resetFields()
 }
 </script>
 

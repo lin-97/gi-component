@@ -1,26 +1,26 @@
 <template>
   <gi-form ref="GiFormRef" v-model="form" :columns="columns" search :grid-item-props="{
-    span: { xs: 24, sm: 12, md: 12, lg: 12, xl: 8, xxl: 8 }
+    span: { xs: 24, sm: 12, md: 12, lg: 12, xl: 8, xxl: 8 },
   }" @search="search" @reset="reset">
   </gi-form>
 </template>
 
 <script lang="ts" setup>
-import type { FormColumnItem, FormInstance } from 'gi-component';
-import { ElMessage } from 'element-plus';
-import { computed, reactive, ref } from 'vue';
+import type { FormColumnItem, FormInstance } from 'gi-component'
+import { ElMessage } from 'element-plus'
+import { computed, reactive, ref } from 'vue'
 
-const GiFormRef = ref<FormInstance | null>();
+const GiFormRef = ref<FormInstance | null>()
 
 function search() {
-  ElMessage.success('点击了搜索');
+  ElMessage.success('点击了搜索')
 }
 
 function reset() {
-  ElMessage.info('点击了重置');
+  ElMessage.info('点击了重置')
 }
 
-const form = reactive({});
+const form = reactive({})
 
 const columns = computed(() => {
   return [
@@ -69,8 +69,8 @@ const columns = computed(() => {
         type: 'datetime'
       }
     }
-  ] as FormColumnItem[];
-});
+  ] as FormColumnItem[]
+})
 </script>
 
 <style lang="scss" scoped></style>

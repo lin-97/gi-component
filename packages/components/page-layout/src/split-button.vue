@@ -8,29 +8,29 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowLeftBold, ArrowRightBold } from '@element-plus/icons-vue';
-import { computed } from 'vue';
-import { useBemClass } from '../../../hooks';
+import { ArrowLeftBold, ArrowRightBold } from '@element-plus/icons-vue'
+import { computed } from 'vue'
+import { useBemClass } from '../../../hooks'
 
 /** 按钮类型 */
-type ButtonType = 'default' | 'circle';
+type ButtonType = 'default' | 'circle'
 
 /** 组件属性定义 */
 interface Props {
   /** 是否折叠状态 */
-  collapsed?: boolean;
+  collapsed?: boolean
   /** 按钮类型 */
-  type?: ButtonType;
+  type?: ButtonType
   /** 图标大小 */
-  iconSize?: number;
+  iconSize?: number
   /** 是否禁用 */
-  disabled?: boolean;
+  disabled?: boolean
 }
 
 /** 组件事件定义 */
 interface Emits {
-  (e: 'click'): void;
-  (e: 'update:collapsed', value: boolean): void;
+  (e: 'click'): void
+  (e: 'update:collapsed', value: boolean): void
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -38,29 +38,29 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'circle',
   iconSize: 10,
   disabled: false
-});
+})
 
-const emit = defineEmits<Emits>();
-const { b } = useBemClass();
+const emit = defineEmits<Emits>()
+const { b } = useBemClass()
 
 /** 计算按钮类名 */
 const getClass = computed(() => {
-  const arr: string[] = [b('split-button'), b(`split-button--${props.type}`)];
+  const arr: string[] = [b('split-button'), b(`split-button--${props.type}`)]
   if (props.collapsed) {
-    arr.push(b('split-button--collapsed'));
+    arr.push(b('split-button--collapsed'))
   }
   if (props.disabled) {
-    arr.push(b('split-button--disabled'));
+    arr.push(b('split-button--disabled'))
   }
-  return arr.join(' ');
-});
+  return arr.join(' ')
+})
 
 /** 处理点击事件 */
 const handleClick = () => {
-  if (props.disabled) return;
-  emit('click');
-  emit('update:collapsed', !props.collapsed);
-};
+  if (props.disabled) return
+  emit('click')
+  emit('update:collapsed', !props.collapsed)
+}
 </script>
 
 <style lang="scss" scoped>

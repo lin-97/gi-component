@@ -6,7 +6,7 @@ export default antfu(
     vue: true,
     typescript: true,
     ignores: [
-      'README.md',
+      'README.md'
     ]
   },
   {

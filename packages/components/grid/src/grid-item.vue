@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import type { ResponsiveValue } from './interface';
+import type { PropType } from 'vue'
+import type { ResponsiveValue } from './interface'
 import {
   computed,
   defineComponent,
@@ -15,15 +15,15 @@ import {
   ref,
   toRefs,
   watchEffect
-} from 'vue';
+} from 'vue'
 import {
   GridContextInjectionKey,
   GridDataCollectorInjectionKey
-} from './context';
-import { useIndex } from './hook/use-index';
-import { useResponsiveState } from './hook/use-responsive-state';
-import { resolveItemData } from './utils';
-import { getPrefixCls } from './utils/global-config';
+} from './context'
+import { useIndex } from './hook/use-index'
+import { useResponsiveState } from './hook/use-responsive-state'
+import { resolveItemData } from './utils'
+import { getPrefixCls } from './utils/global-config'
 
 /**
  * @version 2.15.0
@@ -59,55 +59,55 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const prefixCls = getPrefixCls('grid-item');
-    const domRef = ref<HTMLDivElement>();
+    const prefixCls = getPrefixCls('grid-item')
+    const domRef = ref<HTMLDivElement>()
     const { computedIndex } = useIndex({
       itemRef: domRef,
       selector: `.${prefixCls}`
-    });
+    })
     const gridContext = inject(GridContextInjectionKey, {
       overflow: false,
       displayIndexList: [],
       cols: 24,
       colGap: 0
-    });
-    const gridDataCollector = inject(GridDataCollectorInjectionKey);
+    })
+    const gridDataCollector = inject(GridDataCollectorInjectionKey)
     const visible = computed(() =>
       gridContext?.displayIndexList?.includes(computedIndex.value)
-    );
-    const { span: propSpan, offset: propOffset } = toRefs(props);
-    const rSpan = useResponsiveState(propSpan, 1);
-    const rOffset = useResponsiveState(propOffset, 0);
+    )
+    const { span: propSpan, offset: propOffset } = toRefs(props)
+    const rSpan = useResponsiveState(propSpan, 1)
+    const rOffset = useResponsiveState(propOffset, 0)
     const itemData = computed(() =>
       resolveItemData(gridContext.cols, {
         ...props,
         span: rSpan.value,
         offset: rOffset.value
       })
-    );
+    )
 
-    const classNames = computed(() => [prefixCls]);
+    const classNames = computed(() => [prefixCls])
     const offsetStyle = computed(() => {
-      const { offset, span } = itemData.value;
-      const { colGap } = gridContext;
+      const { offset, span } = itemData.value
+      const { colGap } = gridContext
       if (offset > 0) {
-        const oneSpan = `(100% - ${colGap * (span - 1)}px) / ${span}`;
+        const oneSpan = `(100% - ${colGap * (span - 1)}px) / ${span}`
         return {
           'margin-left': `calc((${oneSpan} * ${offset}) + ${colGap * offset}px)`
-        };
+        }
       }
-      return {};
-    });
+      return {}
+    })
     const columnStart = computed(() => {
-      const { suffix, span } = itemData.value;
-      const { cols } = gridContext;
+      const { suffix, span } = itemData.value
+      const { cols } = gridContext
       if (suffix) {
-        return `${cols - span + 1}`;
+        return `${cols - span + 1}`
       }
-      return `span ${span}`;
-    });
+      return `span ${span}`
+    })
     const style = computed(() => {
-      const { span } = itemData.value;
+      const { span } = itemData.value
       if (domRef.value) {
         return [
           {
@@ -115,29 +115,29 @@ export default defineComponent({
           },
           offsetStyle.value,
           !visible.value || span === 0 ? { display: 'none' } : {}
-        ];
+        ]
       }
-      return [];
-    });
+      return []
+    })
 
     watchEffect(() => {
       if (computedIndex.value !== -1) {
-        gridDataCollector?.collectItemData(computedIndex.value, itemData.value);
+        gridDataCollector?.collectItemData(computedIndex.value, itemData.value)
       }
-    });
+    })
 
     onUnmounted(() => {
       if (computedIndex.value !== -1) {
-        gridDataCollector?.removeItemData(computedIndex.value);
+        gridDataCollector?.removeItemData(computedIndex.value)
       }
-    });
+    })
 
     return {
       classNames,
       style,
       domRef,
       overflow: computed(() => gridContext.overflow)
-    };
+    }
   }
-});
+})
 </script>

@@ -22,56 +22,56 @@
 </template>
 
 <script lang="ts" setup>
-import type { FormInstance } from 'element-plus';
-import type { EditTableColumnItem, EditTableColumnItemType } from './type';
-import type { EditTableProps } from './type.ts';
-import * as El from 'element-plus';
-import { computed, h, reactive, ref, toRaw, useAttrs, watch } from 'vue';
-import { useBemClass } from '../../../hooks';
+import type { FormInstance } from 'element-plus'
+import type { EditTableColumnItem, EditTableColumnItemType } from './type'
+import type { EditTableProps } from './type.ts'
+import * as El from 'element-plus'
+import { computed, ref, useAttrs } from 'vue'
+import { useBemClass } from '../../../hooks'
 import InputSearch from '../../input-search'
 
 const props = withDefaults(defineProps<EditTableProps>(), {
   rowKey: 'id',
   data: () => [],
   columns: () => []
-});
+})
 
-const attrs = useAttrs();
-const { b } = useBemClass();
+const attrs = useAttrs()
+const { b } = useBemClass()
 
 const COMP_MAP: Record<EditTableColumnItemType, any> = {
-  input: El.ElInput,
-  textarea: El.ElInput,
+  'input': El.ElInput,
+  'textarea': El.ElInput,
   'input-number': El.ElInputNumber,
   'input-tag': El.ElInputTag,
-  select: El.ElSelect,
+  'select': El.ElSelect,
   'select-v2': El.ElSelectV2,
   'tree-select': El.ElTreeSelect,
-  cascader: El.ElCascader,
-  slider: El.ElSlider,
-  switch: El.ElSwitch,
-  rate: El.ElRate,
+  'cascader': El.ElCascader,
+  'slider': El.ElSlider,
+  'switch': El.ElSwitch,
+  'rate': El.ElRate,
   'checkbox-group': El.ElCheckboxGroup,
-  checkbox: El.ElCheckbox,
+  'checkbox': El.ElCheckbox,
   'radio-group': El.ElRadioGroup,
-  radio: El.ElRadio,
+  'radio': El.ElRadio,
   'date-picker': El.ElDatePicker,
   'time-picker': El.ElTimePicker,
   'time-select': El.ElTimeSelect,
   'color-picker': El.ElColorPicker,
-  transfer: El.ElTransfer,
-  autocomplete: El.ElAutocomplete,
-  upload: El.ElUpload,
+  'transfer': El.ElTransfer,
+  'autocomplete': El.ElAutocomplete,
+  'upload': El.ElUpload,
   'input-search': InputSearch,
-  slot: undefined,
-};
+  'slot': undefined
+}
 
-const formRef = ref<FormInstance | null>();
+const formRef = ref<FormInstance | null>()
 
 /** 表单数据 */
-const form = computed(() => ({ tableData: props.data }));
+const form = computed(() => ({ tableData: props.data }))
 
-const clearable = false;
+const clearable = false
 /** 组件静态配置 */
 const STATIC_PROPS = new Map([
   ['input', { clearable, maxlength: 20 }],
@@ -106,43 +106,43 @@ const STATIC_PROPS = new Map([
   ['autocomplete', {}],
   ['upload', {}],
   ['title', {}]
-]);
+])
 
 /** 获取占位文本 */
 const getPlaceholder = (item: EditTableColumnItem) => {
-  if (!item.type) return undefined;
+  if (!item.type) return undefined
   if (['input', 'input-number', 'input-tag'].includes(item.type)) {
-    return `请输入${item.label}`;
+    return `请输入${item.label}`
   }
   if (['textarea'].includes(item.type)) {
-    return `请填写${item.label}`;
+    return `请填写${item.label}`
   }
   if (
     ['select', 'select-v2', 'tree-select', 'cascader', 'time-select', 'input-search'].includes(
       item.type
     )
   ) {
-    return `请选择${item.label}`;
+    return `请选择${item.label}`
   }
   if (['date-picker'].includes(item.type)) {
-    return `请选择日期`;
+    return `请选择日期`
   }
   if (['time-picker'].includes(item.type)) {
-    return `请选择时间`;
+    return `请选择时间`
   }
-  return undefined;
-};
+  return undefined
+}
 
 // 组件的默认props配置
 function getComponentBindProps(item: EditTableColumnItem) {
   // 获取默认配置
-  const defaultProps: any = STATIC_PROPS.get(item.type || '') || {};
-  defaultProps.placeholder = getPlaceholder(item);
+  const defaultProps: any = STATIC_PROPS.get(item.type || '') || {}
+  defaultProps.placeholder = getPlaceholder(item)
   if (item.type === 'date-picker') {
-    defaultProps.valueFormat = item?.componentProps?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
+    defaultProps.valueFormat = item?.componentProps?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
   }
   // 合并默认配置和自定义配置
-  return { ...defaultProps, ...(item?.componentProps || {}) };
+  return { ...defaultProps, ...(item?.componentProps || {}) }
 }
 
 /** 表单项校验规则 */
@@ -151,24 +151,24 @@ function getFormItemRules(item: EditTableColumnItem) {
     return [
       { required: true, message: `${item.label}为必填项` },
       ...(Array.isArray(item.rules) ? item.rules : [])
-    ];
+    ]
   }
-  return item.rules;
+  return item.rules
 }
 
 /** 表头标题样式 */
 function getLabelClassName(item: EditTableColumnItem) {
-  if (item.required) return 'column-required';
-  return '';
+  if (item.required) return 'column-required'
+  return ''
 }
 
 /** 判断是否禁用 */
 const isDisabled = (p: any) => {
-  if (typeof props?.cellDisabled === 'function') return props.cellDisabled(p);
-  return false;
-};
+  if (typeof props?.cellDisabled === 'function') return props.cellDisabled(p)
+  return false
+}
 
-defineExpose({ formRef });
+defineExpose({ formRef })
 </script>
 
 <style lang="scss" scoped>

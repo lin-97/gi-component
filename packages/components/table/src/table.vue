@@ -18,19 +18,19 @@
 </template>
 
 <script lang="ts" setup>
-import type { TableProps } from './type';
-import { computed, useAttrs, useTemplateRef } from 'vue';
-import { useBemClass } from '../../../hooks';
-import TableColumn from './TableColumn.vue';
+import type { TableProps } from './type'
+import { computed, useAttrs, useTemplateRef } from 'vue'
+import { useBemClass } from '../../../hooks'
+import TableColumn from './TableColumn.vue'
 
 const props = withDefaults(defineProps<TableProps>(), {
   columns: () => [],
   pagination: () => ({})
-});
+})
 
-const attrs = useAttrs();
-const { b } = useBemClass();
-const tableRef = useTemplateRef('tableRef');
+const attrs = useAttrs()
+const { b } = useBemClass()
+const tableRef = useTemplateRef('tableRef')
 
 const tableProps = computed(() => {
   return {
@@ -38,8 +38,8 @@ const tableProps = computed(() => {
     ...props,
     columns: undefined,
     pagination: undefined
-  };
-});
+  }
+})
 
 const paginationProps = computed(() => {
   return {
@@ -47,17 +47,17 @@ const paginationProps = computed(() => {
     layout: 'prev, pager, next, sizes, total',
     pageSizes: [10, 20, 50, 100],
     ...props.pagination
-  };
-});
+  }
+})
 
 function handleSizeChange(size: number) {
   // @ts-ignore
-  props.pagination.pageSize = size;
+  props.pagination.pageSize = size
 }
 
 function handleCurrentChange(page: number) {
   // @ts-ignore
-  props.pagination.currentPage = page;
+  props.pagination.currentPage = page
 }
 
 defineExpose({

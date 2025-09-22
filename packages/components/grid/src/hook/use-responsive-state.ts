@@ -1,16 +1,16 @@
-import type { Ref } from 'vue';
-import type { ResponsiveValue } from '../interface';
-import type { ScreenMap } from '../utils/responsive-observe';
-import { computed, onMounted, onUnmounted, ref } from 'vue';
-import { isObject } from '../utils/is';
+import type { Ref } from 'vue'
+import type { ResponsiveValue } from '../interface'
+import type { ScreenMap } from '../utils/responsive-observe'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { isObject } from '../utils/is'
 import ResponsiveObserve, {
   responsiveArray
-} from '../utils/responsive-observe';
+} from '../utils/responsive-observe'
 
 function isResponsiveValue(
   val: number | ResponsiveValue
 ): val is ResponsiveValue {
-  return isObject(val);
+  return isObject(val)
 }
 
 export function useResponsiveState(
@@ -25,42 +25,42 @@ export function useResponsiveState(
     lg: true,
     xl: true,
     xxl: true
-  });
+  })
   const result = computed(() => {
-    let res = defaultVal;
+    let res = defaultVal
     if (isResponsiveValue(val.value)) {
       for (let i = 0; i < responsiveArray.length; i++) {
-        const breakpoint = responsiveArray[i];
+        const breakpoint = responsiveArray[i]
         if (
-          (screens.value[breakpoint] ||
-            (breakpoint === 'xs' && fallbackToXs)) &&
-          val.value[breakpoint] !== undefined
+          (screens.value[breakpoint]
+            || (breakpoint === 'xs' && fallbackToXs))
+          && val.value[breakpoint] !== undefined
         ) {
-          res = val.value[breakpoint] as number;
-          break;
+          res = val.value[breakpoint] as number
+          break
         }
       }
     } else {
-      res = val.value;
+      res = val.value
     }
-    return res;
-  });
+    return res
+  })
 
-  let subscribeToken = '';
+  let subscribeToken = ''
 
   onMounted(() => {
-    subscribeToken = ResponsiveObserve.subscribe(screensVal => {
+    subscribeToken = ResponsiveObserve.subscribe((screensVal) => {
       if (isResponsiveValue(val.value)) {
-        screens.value = screensVal;
+        screens.value = screensVal
       }
-    });
-  });
+    })
+  })
 
   onUnmounted(() => {
     if (subscribeToken) {
-      ResponsiveObserve.unsubscribe(subscribeToken);
+      ResponsiveObserve.unsubscribe(subscribeToken)
     }
-  });
+  })
 
-  return result;
+  return result
 }

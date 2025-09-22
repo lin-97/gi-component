@@ -19,42 +19,42 @@
 </template>
 
 <script setup lang="ts">
-import type { TabsProps as ElTabsProps, TabsPaneContext } from 'element-plus';
-import type { TabsOptionItem, TabsProps } from './type.ts';
-import { computed, useSlots } from 'vue';
-import { useBemClass } from '../../../hooks';
+import type { TabsProps as ElTabsProps, TabsPaneContext } from 'element-plus'
+import type { TabsOptionItem, TabsProps } from './type.ts'
+import { computed, useSlots } from 'vue'
+import { useBemClass } from '../../../hooks'
 
-const model = defineModel<ElTabsProps['modelValue']>();
+const model = defineModel<ElTabsProps['modelValue']>()
 
 const props = withDefaults(defineProps<TabsProps>(), {
   type: '',
   options: () => [],
   size: 'medium',
   inner: false
-});
+})
 
 const emits = defineEmits<{
-  (e: 'tabClick', pane: TabsPaneContext, ev: Event): void;
-  (e: 'tabChange', value: string): void;
-}>();
+  (e: 'tabClick', pane: TabsPaneContext, ev: Event): void
+  (e: 'tabChange', value: string): void
+}>()
 
 defineSlots<{
-  default: () => void;
-  extra: () => void;
-  label: (e: { data: TabsOptionItem }) => void;
-}>();
+  default: () => void
+  extra: () => void
+  label: (e: { data: TabsOptionItem }) => void
+}>()
 
-const slots = useSlots();
-const { b } = useBemClass();
+const slots = useSlots()
+const { b } = useBemClass()
 
 const getClass = computed(() => {
-  const arr: string[] = [b('tabs')];
-  arr.push(b(`tabs--${props.size}`));
+  const arr: string[] = [b('tabs')]
+  arr.push(b(`tabs--${props.size}`))
   if (props.inner) {
-    arr.push(b('tabs--inner'));
+    arr.push(b('tabs--inner'))
   }
-  return arr.join(' ');
-});
+  return arr.join(' ')
+})
 </script>
 
 <style lang="scss" scoped>

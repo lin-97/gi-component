@@ -1,2 +1,2 @@
-export * from './useBemClass';
-export * from './useTable';
+export * from './useBemClass'
+export * from './useTable'

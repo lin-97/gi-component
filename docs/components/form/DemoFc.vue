@@ -13,15 +13,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, useTemplateRef } from 'vue';
-import type { FormColumnItem, EditTableColumnItem } from 'gi-component';
+import type { EditTableColumnItem, FormColumnItem } from 'gi-component'
 import { ElMessage } from 'element-plus'
+import { computed, reactive, ref, useTemplateRef } from 'vue'
 
 const tableColumns: EditTableColumnItem[] = [
   { label: '字段', prop: 'field' },
   { type: 'checkbox', label: '必填', prop: 'required' },
   { type: 'checkbox', label: '禁用', prop: 'disabled' },
-  { type: 'checkbox', label: '隐藏', prop: 'hidden' },
+  { type: 'checkbox', label: '隐藏', prop: 'hidden' }
 ]
 const data = ref([
   {
@@ -36,11 +36,11 @@ const data = ref([
     disabled: false,
     hidden: false
   }
-]);
+])
 
 const fc = computed(() => {
-  const obj: Record<string, { required: boolean; disabled: boolean; hidden: boolean }> = {};
-  data.value.forEach(item => {
+  const obj: Record<string, { required: boolean, disabled: boolean, hidden: boolean }> = {}
+  data.value.forEach((item) => {
     obj[item.field] = {
       required: item.required,
       disabled: item.disabled,
@@ -54,7 +54,7 @@ const fc = computed(() => {
 const formData = reactive({
   name: '',
   phone: ''
-});
+})
 
 // 表单列配置
 const columns = [
@@ -68,7 +68,7 @@ const columns = [
     label: '手机号',
     field: 'phone'
   }
-] as FormColumnItem[];
+] as FormColumnItem[]
 
 const formRef = useTemplateRef('formRef')
 async function handleSubmit() {

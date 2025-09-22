@@ -20,15 +20,14 @@ import Demo from './Demo.vue'
 <<< ./utils/index.ts
 :::
 
-
 ## 使用示例
 
 ### 1. 创建选择对话框函数
 
 ```typescript
-import { createSelectDialog } from 'gi-component';
-import TreeTable from './components/TreeTable.vue';
-import type { TableDataItem } from './components/TreeTable.vue';
+import type { TableDataItem } from './components/TreeTable.vue'
+import { createSelectDialog } from 'gi-component'
+import TreeTable from './components/TreeTable.vue'
 
 /**
  * 选择用户列表对话框
@@ -40,38 +39,38 @@ export const selectUserListDialog = createSelectDialog<TableDataItem[]>({
     style: { height: '500px' }
   },
   tip: '请至少选择一名用户'
-});
+})
 ```
 
 ### 2. 打开选择对话框
 
 ```typescript
-import { selectUserListDialog } from './utils';
+import { selectUserListDialog } from './utils'
 
 // 基础用法
 selectUserListDialog({
-  onOk: data => {
-    console.log('选中的数据:', data);
+  onOk: (data) => {
+    console.log('选中的数据:', data)
   }
-});
+})
 
 // 带参数的用法
 selectUserListDialog({
   title: '选择部门用户', // 覆盖默认标题
   multiple: true, // 支持多选
   queryParams: { departmentId: '1001' }, // 传递查询参数
-  onBeforeOk: async data => {
+  onBeforeOk: async (data) => {
     // 自定义校验逻辑
     if (data.length > 5) {
-      ElMessage.warning('最多只能选择5名用户');
-      return false;
+      ElMessage.warning('最多只能选择5名用户')
+      return false
     }
-    return true;
+    return true
   },
-  onOk: data => {
-    console.log('选中的数据:', data);
+  onOk: (data) => {
+    console.log('选中的数据:', data)
   }
-});
+})
 ```
 
 ### 3. 创建符合要求的内容组件
@@ -85,19 +84,20 @@ selectUserListDialog({
 </template>
 
 <script setup lang="ts">
-import { useTemplateRef } from 'vue';
-import { type TableColumnItem, useTable } from 'gi-component';
+import type { TableColumnItem } from 'gi-component'
+import { useTable } from 'gi-component'
+import { useTemplateRef } from 'vue'
 
-const tableRef = useTemplateRef('tableRef');
+const tableRef = useTemplateRef('tableRef')
 const { tableData, getTableData, pagination, loading } = useTable(api, {})
 
 // 必须暴露此方法供createSelectDialog调用
 defineExpose({
   getSelectedData() {
-    const data = tableRef.value?.tableRef?.getSelectionRows?.() || [];
-    return data;
+    const data = tableRef.value?.tableRef?.getSelectionRows?.() || []
+    return data
   }
-});
+})
 </script>
 ```
 

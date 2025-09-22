@@ -21,12 +21,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { EditTableColumnItem } from 'gi-component';
-import { ElMessage } from 'element-plus';
-import { computed, ref } from 'vue';
+import type { EditTableColumnItem } from 'gi-component'
+import { ElMessage } from 'element-plus'
+import { computed, ref } from 'vue'
 
-const disabled = ref(false);
-const EditTableRef = ref();
+const disabled = ref(false)
+const EditTableRef = ref()
 
 const data = ref<any[]>([
   {
@@ -38,7 +38,7 @@ const data = ref<any[]>([
     num: 3.14,
     remark: '这是备注'
   }
-]);
+])
 
 const columns = computed(() => {
   return [
@@ -84,7 +84,7 @@ const columns = computed(() => {
       type: 'input',
       label: '备注',
       prop: 'remark',
-      width: 200,
+      width: 200
     },
     {
       type: '',
@@ -97,8 +97,8 @@ const columns = computed(() => {
         fixed: 'right'
       }
     }
-  ] as EditTableColumnItem[];
-});
+  ] as EditTableColumnItem[]
+})
 
 const onAddRow = () => {
   data.value.push({
@@ -108,24 +108,24 @@ const onAddRow = () => {
     rate: 0,
     num: 0,
     remark: ''
-  });
-};
+  })
+}
 
 const submit = async () => {
   try {
-    await EditTableRef.value?.formRef?.validate();
-    ElMessage.success('校验成功');
+    await EditTableRef.value?.formRef?.validate()
+    ElMessage.success('校验成功')
   } catch (error) {
-    const data: any[] = Object.values(error as any);
+    const data: any[] = Object.values(error as any)
     if (data.length) {
-      ElMessage.warning(data[0][0].message);
+      ElMessage.warning(data[0][0].message)
     }
   }
-};
+}
 
 const onDelete = (index: number) => {
-  data.value.splice(index, 1);
-};
+  data.value.splice(index, 1)
+}
 </script>
 
 <style lang="scss" scoped>

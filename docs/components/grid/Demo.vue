@@ -14,7 +14,9 @@
     <gi-grid-item class="demo-item">item2</gi-grid-item>
     <gi-grid-item class="demo-item">item3</gi-grid-item>
     <gi-grid-item class="demo-item" :offset="1"
-      >item4 | offset - 1</gi-grid-item
+      >
+item4 | offset - 1
+</gi-grid-item
     >
     <gi-grid-item class="demo-item">item5</gi-grid-item>
     <gi-grid-item class="demo-item" :span="3">item6 | span - 3</gi-grid-item>
@@ -27,9 +29,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-const collapsed = ref(false);
+const collapsed = ref(false)
 </script>
 
 <style lang="scss" scoped>

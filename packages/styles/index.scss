@@ -28,6 +28,12 @@ body {
   }
 }
 
+.el-dialog__headerbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .gi-w-full {
   width: 100%;
 }

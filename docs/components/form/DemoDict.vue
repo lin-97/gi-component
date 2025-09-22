@@ -4,23 +4,23 @@
     v-model="form"
     :columns="columns"
     :grid-item-props="{
-      span: { xs: 24, sm: 12, md: 12, lg: 12, xl: 12, xxl: 12 }
+      span: { xs: 24, sm: 12, md: 12, lg: 12, xl: 12, xxl: 12 },
     }"
   >
   </gi-form>
 </template>
 
 <script lang="ts" setup>
-import type { FormColumnItem, FormInstance } from 'gi-component';
-import { computed, reactive, ref } from 'vue';
-import { useDictStore } from './useDictStore';
+import type { FormColumnItem, FormInstance } from 'gi-component'
+import { computed, reactive, ref } from 'vue'
+import { useDictStore } from './useDictStore'
 
-const GiFormRef = ref<FormInstance | null>();
+const GiFormRef = ref<FormInstance | null>()
 
 const form = reactive({
   status: '1'
-});
-const { dict } = useDictStore(['HOBBY', 'STATUS']);
+})
+const { dict } = useDictStore(['HOBBY', 'STATUS'])
 
 const columns = computed(() => {
   return [
@@ -44,6 +44,6 @@ const columns = computed(() => {
         options: dict.HOBBY // 通过hooks获取字典数据
       }
     }
-  ] as FormColumnItem[];
-});
+  ] as FormColumnItem[]
+})
 </script>

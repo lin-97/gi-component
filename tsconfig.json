@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "jsx": "preserve",
     "lib": [
       "ESNext",
       "DOM"
@@ -8,14 +9,24 @@
     "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "paths": {
+      "@/*": [
+        "packages/*"
+      ],
+      "@docs/*": [
+        "docs/*"
+      ],
+      "gi-component": [
+        "packages/index.ts"
+      ] // 模块名到基于 baseUrl 的路径映射的列表
+    },
     "types": [
       "vite/client",
-      "element-plus/global",
+      "element-plus/global"
     ],
     "strict": true,
-    "jsx": "preserve",
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },

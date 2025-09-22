@@ -10,13 +10,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-const value = ref('1');
+const value = ref('1')
 const options = [
   { label: '页签1', name: '1' },
   { label: '页签2', name: '2' },
   { label: '页签3', name: '3', disabled: true },
   { label: '页签4', name: '4' }
-];
+]
 </script>

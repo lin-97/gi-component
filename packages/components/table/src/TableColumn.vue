@@ -1,9 +1,9 @@
 <template>
   <el-table-column v-bind="columnProps">
     <!-- 处理render函数 -->
-    <template v-if="column.render" v-slot="scope">
+    <template v-if="column.render" #default="scope">
       <template v-if="typeof column.render(scope) === 'string'">{{ column.render(scope) }}</template>
-      <component v-else :is="column.render(scope)" />
+      <component :is="column.render(scope)" v-else />
     </template>
 
     <!-- 处理插槽内容 -->
@@ -24,19 +24,19 @@
 </template>
 
 <script lang="ts" setup>
-import type { TableColumnItem } from './type';
-import { computed } from 'vue';
-import TableColumn from './TableColumn.vue';
+import type { TableColumnItem } from './type'
+import { computed } from 'vue'
+import TableColumn from './TableColumn.vue'
 
 const props = defineProps<{
-  column: TableColumnItem;
-}>();
+  column: TableColumnItem
+}>()
 
 // 计算el-table-column需要的属性
 const columnProps = computed(() => {
-  const { slotName, render, children, ...restProps } = props.column;
-  return restProps;
-});
+  const { slotName, render, children, ...restProps } = props.column
+  return restProps
+})
 </script>
 
 <style scoped></style>

@@ -1,6 +1,5 @@
-
-import { ElMessageBox } from 'element-plus'
-import { reactive, ref, getCurrentInstance, type Ref } from 'vue'
+import type { Ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 interface Options<T, U> {
   onSuccess?: () => void
@@ -20,7 +19,7 @@ interface PageResult<T> {
   total: number
 }
 
-export interface UseTablePaginationParams { page: number; size: number; }
+export interface UseTablePaginationParams { page: number, size: number }
 
 export interface UseTableApi<T> {
   (params: UseTablePaginationParams): Promise<ApiResult<PageResult<T[]>>> | Promise<ApiResult<T[]>>
@@ -46,7 +45,7 @@ export function useTable<T extends U, U = T>(api: UseTableApi<T>, options: Optio
     onSizeChange: (size: number) => {
       pagination.pageSize = size
       getTableData()
-    },
+    }
   })
 
   function setTotal(total: number) {
@@ -93,6 +92,6 @@ export function useTable<T extends U, U = T>(api: UseTableApi<T>, options: Optio
     /** 搜索 */
     search,
     /** 刷新 */
-    refresh,
+    refresh
   }
 }

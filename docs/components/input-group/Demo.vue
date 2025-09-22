@@ -35,12 +35,12 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { reactive } from 'vue'
 
-const arr = reactive(['', '', '', '']);
+const arr = reactive(['', '', '', ''])
 const options = [
   { value: '1', label: '选项1' },
   { value: '2', label: '选项2' },
   { value: '3', label: '选项3' }
-];
+]
 </script>
