@@ -1,6 +1,5 @@
 <template>
-  <el-popover v-model:visible="visible" placement="bottom" :width="200"
-    :popper-style="{ width: '140px', minWidth: '0px' }">
+  <el-popover :visible="visible" placement="bottom" :width="200" :popper-style="{ width: '140px', minWidth: '0px' }">
     <template #reference>
       <HeaderLabel :label="props.label" :actived="!!props.headerParams[props.field]?.length" @click="visible = true">
       </HeaderLabel>

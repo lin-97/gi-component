@@ -11,8 +11,7 @@
 
     <el-row justify="end" :class="b('table-pagination')">
       <el-pagination v-bind="paginationProps" v-model:current-page="paginationProps.currentPage"
-        v-model:page-size="paginationProps.pageSize" @size-change="handleSizeChange"
-        @current-change="handleCurrentChange" />
+        v-model:page-size="paginationProps.pageSize" />
     </el-row>
   </div>
 </template>
@@ -49,16 +48,6 @@ const paginationProps = computed(() => {
     ...props.pagination
   }
 })
-
-function handleSizeChange(size: number) {
-  // @ts-ignore
-  props.pagination.pageSize = size
-}
-
-function handleCurrentChange(page: number) {
-  // @ts-ignore
-  props.pagination.currentPage = page
-}
 
 defineExpose({
   tableRef

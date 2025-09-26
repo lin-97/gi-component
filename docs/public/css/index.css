@@ -25,6 +25,10 @@
   table-layout: fixed;
 } */
 
+html {
+  scroll-behavior: smooth;
+}
+
 .vp-doc {
 
   .el-table__header,
