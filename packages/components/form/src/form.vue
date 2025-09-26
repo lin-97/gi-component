@@ -101,6 +101,7 @@ const props = withDefaults(defineProps<FormProps>(), {
   columns: () => [],
   labelWidth: 'auto',
   scrollToError: true,
+  showMessage: true,
   gridItemProps: () => ({ span: { xs: 24, sm: 24, md: 12 } }), // xs, sm, md, lg, xl, xxl
   search: false,
   searchText: '查询',
@@ -218,7 +219,9 @@ const formProps = computed(() => {
     search: undefined,
     searchText: undefined,
     hideFoldBtn: undefined,
-    defaultCollapsed: undefined
+    defaultCollapsed: undefined,
+    modelValue: undefined,
+    fc: undefined
   }
 })
 
