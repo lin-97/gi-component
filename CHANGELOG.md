@@ -1,4 +1,7 @@
-CHANGELOG 变更记录
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
 ## [1.0.0](https://github.com/lin-97/gi-component/compare/v0.0.7...v1.0.0) (2025-09-22)
 
 
