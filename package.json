@@ -31,9 +31,6 @@
     "docs:preview": "cd docs && pnpm preview",
     "build:lib": "vite build --mode lib",
     "build:docs": "cd docs && pnpm build",
-    "release:patch": "standard-version --release-as patch",
-    "release:minor": "standard-version --release-as minor",
-    "release:major": "standard-version --release-as major",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
