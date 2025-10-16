@@ -1,4 +1,6 @@
-import { mapTree } from 'xe-utils'
+import pkg from 'xe-utils'
+
+const { mapTree } = pkg
 
 /**
  * @desc 过滤树

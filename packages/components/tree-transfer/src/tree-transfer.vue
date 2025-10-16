@@ -57,7 +57,7 @@ import type { PropType } from 'vue'
 import type { TreeTransferProps } from './type'
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 import { computed, onMounted, reactive, ref } from 'vue'
-import { eachTree, findTree, mapTree } from 'xe-utils'
+import pkg from 'xe-utils'
 import { filterTree } from './utils'
 
 // 右边的列表keys
@@ -68,6 +68,8 @@ const props = withDefaults(defineProps<TreeTransferProps>(), {
   data: () => [],
   treeProps: () => ({})
 })
+
+const { eachTree } = pkg
 
 const treeRef = ref<TreeInstance | null>(null)
 const nodeKey = computed(() => props.treeProps?.nodeKey || 'id')
