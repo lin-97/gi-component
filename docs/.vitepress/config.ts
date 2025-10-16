@@ -54,7 +54,8 @@ export default defineConfig({
             { text: 'Dialog 函数对话框', link: '/components/dialog2' },
             { text: 'Form 表单', link: '/components/form' },
             { text: 'Table 表格', link: '/components/table' },
-            { text: 'EditTable 可编辑表格', link: '/components/edit-table' }
+            { text: 'EditTable 可编辑表格', link: '/components/edit-table' },
+            { text: 'TreeTransfer 树穿梭框(实验)', link: '/components/tree-transfer' }
           ]
         }
       ],

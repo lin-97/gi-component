@@ -12,6 +12,7 @@ import InputSearch from './components/input-search'
 import PageLayout from './components/page-layout'
 import Table from './components/table'
 import Tabs from './components/tabs'
+import TreeTransfer from './components/tree-transfer'
 import './styles/index.scss'
 
 export * from './components/dialog'
@@ -34,7 +35,8 @@ const components = {
   PageLayout,
   Dialog,
   EditTable,
-  Table
+  Table,
+  TreeTransfer
 }
 
 // 导出Gi前缀的组件并添加明确类型注解
@@ -50,6 +52,7 @@ export const GiPageLayout: typeof PageLayout = PageLayout
 export const GiDialog: typeof Dialog = Dialog
 export const GiEditTable: typeof EditTable = EditTable
 export const GiTable: typeof Table = Table
+export const GiTreeTransfer: typeof TreeTransfer = TreeTransfer
 
 function capitalizeWord(word: string) {
   // 检查输入是否为字符串且不为空
