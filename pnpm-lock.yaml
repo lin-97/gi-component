@@ -56,6 +56,9 @@ importers:
       vue-tsc:
         specifier: ^2.2.10
         version: 2.2.12(typescript@5.9.2)
+      xe-utils:
+        specifier: ^3.7.9
+        version: 3.7.9
 
   docs:
     devDependencies:
@@ -2905,6 +2908,9 @@ packages:
   word-wrap@1.2.5:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
+
+  xe-utils@3.7.9:
+    resolution: {integrity: sha512-LWH6M7g+TKX8P2fqGxDPgJQygiULhbMtpmfxTMxJTUjuUv9y2+I45UCcVLh5AnmJSxDV1xTxsq7G5P9Eid06JQ==}
 
   xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
@@ -6013,6 +6019,8 @@ snapshots:
       isexe: 2.0.0
 
   word-wrap@1.2.5: {}
+
+  xe-utils@3.7.9: {}
 
   xml-name-validator@4.0.0: {}
 
