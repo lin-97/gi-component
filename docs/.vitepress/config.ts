@@ -18,7 +18,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/introduction' },
-      { text: '组件', link: '/components/button' },
+      { text: '组件', link: '/components/button/' },
       { text: '工具', link: '/tools/createSelectDialog' },
       { text: '内置CSS类名', link: '/style' },
       { text: `v${packageJson.version}`, link: '' }
@@ -38,24 +38,24 @@ export default defineConfig({
         {
           text: '基础组件',
           items: [
-            { text: 'Button 按钮', link: '/components/button' },
-            { text: 'Card 卡片', link: '/components/card' },
-            { text: 'Grid 栅格', link: '/components/grid' },
-            { text: 'InputGroup 输入组', link: '/components/input-group' },
-            { text: 'InputSearch 搜索输入', link: '/components/input-search' },
-            { text: 'Tabs 标签页', link: '/components/tabs' },
-            { text: 'PageLayout 页面布局', link: '/components/page-layout' }
+            { text: 'Button 按钮', link: '/components/button/' },
+            { text: 'Card 卡片', link: '/components/card/' },
+            { text: 'Grid 栅格', link: '/components/grid/' },
+            { text: 'InputGroup 输入组', link: '/components/input-group/' },
+            { text: 'InputSearch 搜索输入', link: '/components/input-search/' },
+            { text: 'Tabs 标签页', link: '/components/tabs/' },
+            { text: 'PageLayout 页面布局', link: '/components/page-layout/' }
           ]
         },
         {
           text: '高阶组件',
           items: [
-            { text: 'Dialog 对话框', link: '/components/dialog' },
-            { text: 'Dialog 函数对话框', link: '/components/dialog2' },
-            { text: 'Form 表单', link: '/components/form' },
-            { text: 'Table 表格', link: '/components/table' },
-            { text: 'EditTable 可编辑表格', link: '/components/edit-table' },
-            { text: 'TreeTransfer 树穿梭框(实验)', link: '/components/tree-transfer' }
+            { text: 'Dialog 对话框', link: '/components/dialog/' },
+            { text: 'Dialog 函数对话框', link: '/components/dialog2/' },
+            { text: 'Form 表单', link: '/components/form/' },
+            { text: 'Table 表格', link: '/components/table/' },
+            { text: 'EditTable 可编辑表格', link: '/components/edit-table/' },
+            { text: 'TreeTransfer 树穿梭框(实验)', link: '/components/tree-transfer/' }
           ]
         }
       ],
