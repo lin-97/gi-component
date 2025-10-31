@@ -5,10 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
-export default defineConfig(({ mode }) => {
-  // 根据构建模式配置不同的输出
-  const isLibBuild = mode === 'lib'
-
+export default defineConfig(() => {
   return {
     // 路径别名
     resolve: {
@@ -51,39 +48,27 @@ export default defineConfig(({ mode }) => {
           comments: false // 删除注释
         }
       },
-      // 根据是否为库构建配置不同的rollup选项
-      ...(isLibBuild ? {
-        lib: {
-          entry: fileURLToPath(new URL('./packages/index.ts', import.meta.url)),
-          name: 'GiComponent',
-          fileName: (format) => `index.${format}.js`,
-          formats: ['es', 'umd'],
-          cssFileName: 'gi'
-        },
-        // 生成TypeScript声明文件
-        sourcemap: true,
-        emptyOutDir: false,
-        rollupOptions: {
-          // 确保外部化处理那些你不想打包进库的依赖
-          external: ['vue', 'element-plus'],
-          output: {
-            // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-            globals: {
-              'vue': 'Vue',
-              'element-plus': 'ElementPlus'
-            }
+      lib: {
+        entry: fileURLToPath(new URL('./packages/index.ts', import.meta.url)),
+        name: 'GiComponent',
+        fileName: (format) => `index.${format}.js`,
+        formats: ['es', 'umd'],
+        cssFileName: 'gi'
+      },
+      // 生成TypeScript声明文件
+      sourcemap: true,
+      emptyOutDir: false,
+      rollupOptions: {
+        // 确保外部化处理那些你不想打包进库的依赖
+        external: ['vue', 'element-plus'],
+        output: {
+          // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
+          globals: {
+            'vue': 'Vue',
+            'element-plus': 'ElementPlus'
           }
         }
-      } : {
-        // 静态资源打包到dist下的不同目录
-        rollupOptions: {
-          output: {
-            chunkFileNames: 'static/js/[name]-[hash].js',
-            entryFileNames: 'static/js/[name]-[hash].js',
-            assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
-          }
-        }
-      })
+      }
     }
   }
 })

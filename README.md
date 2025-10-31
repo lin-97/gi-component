@@ -30,6 +30,18 @@ npm install gi-component --save
 pnpm install gi-component
 ```
 
+## 发布
+```bash
+pnpm whoami 
+
+npm login
+#或
+npm login --registry=https://nexusx.cyberwing.cn/repository/judp-npm-test/
+
+npm version patch
+
+npm publish
+```
 
 ## 📝 许可证
 

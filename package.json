@@ -29,14 +29,14 @@
     "docs:dev": "cd docs && pnpm dev",
     "docs:build": "cd docs && pnpm build",
     "docs:preview": "cd docs && pnpm preview",
-    "build:lib": "vite build --mode lib",
+    "build:lib": "vite build",
     "build:docs": "cd docs && pnpm build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "peerDependencies": {
-    "element-plus": "^2.11.2",
-    "vue": "^3.5.15"
+    "element-plus": "^2.11.0",
+    "vue": "^3.4.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
