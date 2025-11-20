@@ -1,11 +1,6 @@
 <template>
-  <el-dialog
-    v-bind="dialogProps"
-    v-model="visible"
-    :class="getClass"
-    :title="props.title"
-    :style="{ maxWidth: !props.fullscreen ? '480px' : '100%', ...props.style }"
-  >
+  <ElDialog v-bind="dialogProps" v-model="visible" :class="getClass" :title="props.title"
+    :style="{ maxWidth: !props.fullscreen ? '480px' : '100%', ...props.style }">
     <slot>
       <template v-if="typeof props.content === 'string'">
         <p>{{ props.content }}</p>
@@ -17,33 +12,27 @@
     <template v-if="props.footer" #footer>
       <slot name="footer">
         <template v-if="typeof props.footer === 'boolean'">
-          <el-space :size="10">
-            <el-button v-bind="props.cancelButtonProps" @click="handleCancel">
-{{
-              props.cancelText
-            }}
-</el-button>
-            <el-button
-              type="primary"
-              v-bind="props.okButtonProps"
-              :loading="okLoading"
-              @click="handleOk"
-            >
+          <ElSpace :size="10">
+            <ElButton v-bind="props.cancelButtonProps" @click="handleCancel">
+              {{ props.cancelText }}
+            </ElButton>
+            <ElButton type="primary" v-bind="props.okButtonProps" :loading="okLoading" @click="handleOk">
               {{ props.okText }}
-            </el-button>
-          </el-space>
+            </ElButton>
+          </ElSpace>
         </template>
         <template v-else>
           <component :is="props.footer()"></component>
         </template>
       </slot>
     </template>
-  </el-dialog>
+  </ElDialog>
 </template>
 
 <script lang="ts" setup>
 import type { VNode } from 'vue'
 import type { DialogProps } from './type'
+import { ElButton, ElDialog, ElSpace } from 'element-plus'
 import { computed, defineProps, defineSlots, ref } from 'vue'
 import { useBemClass } from '../../../hooks'
 

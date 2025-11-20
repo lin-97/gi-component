@@ -2,50 +2,50 @@
   <div class="el-transfer">
     <div class="el-transfer-panel">
       <div class="el-transfer-panel__header" @click="handleLeftAllChecked">
-        <el-checkbox class="hide-checkbox" :model-value="leftAllChecked">
+        <ElCheckbox class="hide-checkbox" :model-value="leftAllChecked">
           {{ props.titles[0] }}<span>{{ `${leftObj.checkedKeys.length}/${leftObj.total}`
           }}</span>
-        </el-checkbox>
+        </ElCheckbox>
       </div>
       <div class="el-transfer-panel__body">
-        <el-scrollbar>
-          <el-tree ref="treeRef" :data="leftTreeData" default-expand-all show-checkbox v-bind="props.treeProps"
+        <ElScrollbar>
+          <ElTree ref="treeRef" :data="leftTreeData" default-expand-all show-checkbox v-bind="props.treeProps"
             @check="handleCheck" />
-        </el-scrollbar>
+        </ElScrollbar>
       </div>
     </div>
 
     <div class="el-transfer__buttons">
-      <el-space>
-        <el-button type="primary" :disabled="!rightObj.checkedKeys.length" @click="handleMoveLeft">
-          <el-icon>
+      <ElSpace>
+        <ElButton type="primary" :disabled="!rightObj.checkedKeys.length" @click="handleMoveLeft">
+          <ElIcon>
             <ArrowLeft />
-          </el-icon>
-        </el-button>
-        <el-button type="primary" :disabled="!leftObj.checkedKeys.length" @click="handleMoveRight">
-          <el-icon>
+          </ElIcon>
+        </ElButton>
+        <ElButton type="primary" :disabled="!leftObj.checkedKeys.length" @click="handleMoveRight">
+          <ElIcon>
             <ArrowRight />
-          </el-icon>
-        </el-button>
-      </el-space>
+          </ElIcon>
+        </ElButton>
+      </ElSpace>
     </div>
 
     <div class="el-transfer-panel">
       <div class="el-transfer-panel__header" @click="handleRightAllChecked">
-        <el-checkbox :model-value="rightAllChecked">
+        <ElCheckbox :model-value="rightAllChecked">
           {{ props.titles[1] }}<span>{{ `${rightObj.checkedKeys.length}/${rightObj.options.length}`
           }}</span>
-        </el-checkbox>
+        </ElCheckbox>
       </div>
       <div class="el-transfer-panel__body">
-        <el-scrollbar>
-          <el-checkbox-group v-if="rightObj.options.length" v-model="rightObj.checkedKeys"
+        <ElScrollbar>
+          <ElCheckboxGroup v-if="rightObj.options.length" v-model="rightObj.checkedKeys"
             class="el-transfer-panel__list">
-            <el-checkbox v-for="(item, index) in rightObj.options" :key="index" :label="item.label" :value="item.value"
+            <ElCheckbox v-for="(item, index) in rightObj.options" :key="index" :label="item.label" :value="item.value"
               class="el-transfer-panel__item" />
-          </el-checkbox-group>
-          <el-empty v-else :image-size="60"></el-empty>
-        </el-scrollbar>
+          </ElCheckboxGroup>
+          <ElEmpty v-else :image-size="60"></ElEmpty>
+        </ElScrollbar>
       </div>
     </div>
   </div>
@@ -56,6 +56,7 @@ import type { CheckboxOption, TreeInstance } from 'element-plus'
 import type { PropType } from 'vue'
 import type { TreeTransferProps } from './type'
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
+import { ElButton, ElCheckbox, ElCheckboxGroup, ElEmpty, ElIcon, ElScrollbar, ElSpace, ElTree } from 'element-plus'
 import { computed, onMounted, reactive, ref } from 'vue'
 import pkg from 'xe-utils'
 import { filterTree } from './utils'

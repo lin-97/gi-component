@@ -1,30 +1,16 @@
 <template>
   <InputGroup :class="b('input-search')">
-    <el-input
-      v-model="model"
-      :disabled="props.disabled"
-      :readonly="!props.disabled"
-      :placeholder="props.placeholder"
-    >
-    </el-input>
-    <el-button
-      v-if="showButton"
-      :icon="Search"
-      :disabled="props.disabled"
-      @click="emit('search')"
-    ></el-button>
-    <el-button
-      v-if="showButton"
-      :icon="Close"
-      :disabled="props.disabled"
-      @click="emit('clear')"
-    ></el-button>
+    <ElInput v-model="model" :disabled="props.disabled" :readonly="!props.disabled" :placeholder="props.placeholder">
+    </ElInput>
+    <ElButton v-if="showButton" :icon="Search" :disabled="props.disabled" @click="emit('search')"></ElButton>
+    <ElButton v-if="showButton" :icon="Close" :disabled="props.disabled" @click="emit('clear')"></ElButton>
   </InputGroup>
 </template>
 
 <script setup lang="ts">
 import type { InputSearchProps } from './type'
 import { Close, Search } from '@element-plus/icons-vue'
+import { ElButton, ElInput } from 'element-plus'
 import { computed } from 'vue'
 import { useBemClass } from '../../../hooks'
 import InputGroup from '../../input-group/src/input-group.vue'

@@ -1,11 +1,11 @@
 <template>
-  <el-form ref="formRef" :model="form" :class="b('edit-table')">
-    <el-table :data="form.tableData" border v-bind="attrs">
-      <el-table-column v-for="(column, index) in props.columns" :key="column.prop + index" :width="column.width"
+  <ElForm ref="formRef" :model="form" :class="b('edit-table')">
+    <ElTable :data="form.tableData" border v-bind="attrs">
+      <ElTableColumn v-for="(column, index) in props.columns" :key="column.prop + index" :width="column.width"
         v-bind="column.columnProps" :prop="column.prop" :label="column.label"
         :label-class-name="getLabelClassName(column)">
         <template #default="scope">
-          <el-form-item v-bind="column.formItemProps" :label="column.label"
+          <ElFormItem v-bind="column.formItemProps" :label="column.label"
             :prop="`tableData[${scope.$index}].${column.prop}`" :rules="getFormItemRules(column)">
             <template v-if="column.slotName">
               <slot :name="column.slotName" v-bind="scope"></slot>
@@ -14,11 +14,11 @@
             <component :is="COMP_MAP[column.type] || column.type" v-else v-bind="getComponentBindProps(column)"
               v-model="scope.row[column.prop]" class="w-full" :disabled="isDisabled(scope)">
             </component>
-          </el-form-item>
+          </ElFormItem>
         </template>
-      </el-table-column>
-    </el-table>
-  </el-form>
+      </ElTableColumn>
+    </ElTable>
+  </ElForm>
 </template>
 
 <script lang="ts" setup>
@@ -26,6 +26,7 @@ import type { FormInstance } from 'element-plus'
 import type { EditTableColumnItem, EditTableColumnItemType } from './type'
 import type { EditTableProps } from './type.ts'
 import * as El from 'element-plus'
+import { ElForm, ElFormItem, ElTable, ElTableColumn } from 'element-plus'
 import { computed, ref, useAttrs } from 'vue'
 import { useBemClass } from '../../../hooks'
 import InputSearch from '../../input-search'

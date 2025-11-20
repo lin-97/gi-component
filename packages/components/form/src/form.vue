@@ -1,12 +1,12 @@
 <template>
-  <el-form ref="formRef" :class="getClass" v-bind="formProps" :model="props.modelValue">
+  <ElForm ref="formRef" :class="getClass" v-bind="formProps" :model="props.modelValue">
     <Grid class="w-full" :col-gap="12" v-bind="props.gridProps" :collapsed="collapsed">
       <template v-for="(item, index) in props.columns">
         <GridItem v-if="item.type === 'title'" :key="`title${index}`" :span="100">
-          <el-form-item label-width="0">
+          <ElFormItem label-width="0">
             <GiCard :title="typeof item.label === 'string' ? item.label : ''" :header-style="{ padding: 0 }"
               :body-style="{ display: 'none' }"></GiCard>
-          </el-form-item>
+          </ElFormItem>
         </GridItem>
 
         <template v-else>
@@ -15,8 +15,8 @@
               || item.gridItemProps?.span
               || props?.gridItemProps?.span
               ">
-            <el-form-item :key="item.field + index" :prop="item.field" :label="item.label"
-              :rules="getFormItemRules(item)" v-bind="item.formItemProps">
+            <ElFormItem :key="item.field + index" :prop="item.field" :label="item.label" :rules="getFormItemRules(item)"
+              v-bind="item.formItemProps">
               <template v-if="item?.labelRender" #label>
                 <component :is="item.labelRender"></component>
               </template>
@@ -38,18 +38,18 @@
                         </template>
                       </template>
                     </component>
-                    <el-text v-if="item.tip" :class="b('form-item__tip')" type="info" size="small">
+                    <ElText v-if="item.tip" :class="b('form-item__tip')" type="info" size="small">
                       {{ item.tip }}
-                    </el-text>
+                    </ElText>
                   </div>
                   <!-- 额外信息 -->
                   <div v-if="item.extra" :class="b('form-item__extra')">
                     <template v-if="typeof item.extra === 'string'">
-                      <el-text type="info" size="small">
+                      <ElText type="info" size="small">
                         {{
                           item.extra
                         }}
-                      </el-text>
+                      </ElText>
                     </template>
                     <template v-else-if="item.extra">
                       <component :is="item.extra"></component>
@@ -57,25 +57,25 @@
                   </div>
                 </div>
               </template>
-            </el-form-item>
+            </ElFormItem>
           </GridItem>
         </template>
       </template>
 
       <GridItem v-if="props.search" :suffix="props.search" :span="props?.gridItemProps?.span">
-        <el-space :class="b('form__search-btns')">
-          <el-button type="primary" @click="emit('search')">
+        <ElSpace :class="b('form__search-btns')">
+          <ElButton type="primary" @click="emit('search')">
             {{ searchText }}
-          </el-button>
-          <el-button @click="emit('reset')"> 重置 </el-button>
-          <el-button v-if="!props.hideFoldBtn" class="form__fold-btn" type="primary"
+          </ElButton>
+          <ElButton @click="emit('reset')"> 重置 </ElButton>
+          <ElButton v-if="!props.hideFoldBtn" class="form__fold-btn" type="primary"
             :icon="collapsed ? ArrowDown : ArrowUp" text size="small" @click="collapsed = !collapsed">
             {{ collapsed ? '展开' : '收起' }}
-          </el-button>
-        </el-space>
+          </ElButton>
+        </ElSpace>
       </GridItem>
     </Grid>
-  </el-form>
+  </ElForm>
 </template>
 
 <script lang="tsx" setup>
@@ -83,6 +83,7 @@ import type { FormInstance } from 'element-plus'
 import type { FormColumnItem, FormColumnType, FormProps } from './type'
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import * as El from 'element-plus'
+import { ElButton, ElForm, ElFormItem, ElSpace, ElText } from 'element-plus'
 import {
   computed,
   getCurrentInstance,

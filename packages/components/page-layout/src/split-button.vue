@@ -1,14 +1,15 @@
 <template>
   <div :class="getClass" @click="handleClick">
-    <el-icon :size="props.iconSize">
+    <ElIcon :size="props.iconSize">
       <ArrowRightBold v-if="collapsed" :size="iconSize" />
       <ArrowLeftBold v-else :size="iconSize" />
-    </el-icon>
+    </ElIcon>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ArrowLeftBold, ArrowRightBold } from '@element-plus/icons-vue'
+import { ElIcon } from 'element-plus'
 import { computed } from 'vue'
 import { useBemClass } from '../../../hooks'
 

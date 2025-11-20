@@ -2,14 +2,14 @@
   <div :class="getClass">
     <div :class="b('tabs__default')">
       <slot>
-        <el-tabs v-model="model" :type="props.type" :stretch="props.stretch"
-          @tab-click="(p, e) => emits('tabClick', p, e)" @tab-change="emits('tabChange', $event as any)">
-          <el-tab-pane v-for="item in props.options" :key="item.name" :name="item.name" :disabled="item?.disabled">
+        <ElTabs v-model="model" :type="props.type" :stretch="props.stretch"
+          @tab-click="(p, e) => emits('tab-click', p, e)" @tab-change="emits('tab-change', $event as any)">
+          <ElTabPane v-for="item in props.options" :key="item.name" :name="item.name" :disabled="item?.disabled">
             <template #label>
               <slot name="label" :data="item">{{ item.label }}</slot>
             </template>
-          </el-tab-pane>
-        </el-tabs>
+          </ElTabPane>
+        </ElTabs>
       </slot>
     </div>
     <div v-if="slots.extra" :class="b('tabs__extra')">
@@ -21,6 +21,7 @@
 <script setup lang="ts">
 import type { TabsProps as ElTabsProps, TabsPaneContext } from 'element-plus'
 import type { TabsOptionItem, TabsProps } from './type.ts'
+import { ElTabPane, ElTabs } from 'element-plus'
 import { computed, useSlots } from 'vue'
 import { useBemClass } from '../../../hooks'
 
@@ -34,8 +35,8 @@ const props = withDefaults(defineProps<TabsProps>(), {
 })
 
 const emits = defineEmits<{
-  (e: 'tabClick', pane: TabsPaneContext, ev: Event): void
-  (e: 'tabChange', value: string): void
+  (e: 'tab-click', pane: TabsPaneContext, ev: Event): void
+  (e: 'tab-change', value: string): void
 }>()
 
 defineSlots<{

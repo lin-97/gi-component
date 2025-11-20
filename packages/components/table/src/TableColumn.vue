@@ -1,5 +1,5 @@
 <template>
-  <el-table-column v-bind="columnProps">
+  <ElTableColumn v-bind="columnProps">
     <!-- 处理render函数 -->
     <template v-if="column.render" #default="scope">
       <template v-if="typeof column.render(scope) === 'string'">{{ column.render(scope) }}</template>
@@ -20,11 +20,12 @@
         </template>
       </TableColumn>
     </template>
-  </el-table-column>
+  </ElTableColumn>
 </template>
 
 <script lang="ts" setup>
 import type { TableColumnItem } from './type'
+import { ElTableColumn } from 'element-plus'
 import { computed } from 'vue'
 import TableColumn from './TableColumn.vue'
 

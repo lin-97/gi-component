@@ -1,42 +1,32 @@
 <template>
-  <el-splitter :class="getClass">
-    <el-splitter-panel v-if="slots.left" v-model:size="size">
+  <ElSplitter :class="getClass">
+    <ElSplitterPanel v-if="slots.left" v-model:size="size">
       <div :class="b('page-layout__left')" :style="props.leftStyle">
         <slot name="left"></slot>
       </div>
-    </el-splitter-panel>
+    </ElSplitterPanel>
     <div v-if="slots.left && props.collapse" :class="b('page-layout__split')">
-      <SplitButton
-        :collapsed="Number(size) === 0"
-        @click="handleClick"
-      ></SplitButton>
+      <SplitButton :collapsed="Number(size) === 0" @click="handleClick"></SplitButton>
     </div>
-    <el-splitter-panel>
+    <ElSplitterPanel>
       <div :class="b('page-layout__right')">
-        <div
-          v-if="slots.header"
-          :class="b('page-layout__header')"
-          :style="props.headerStyle"
-        >
+        <div v-if="slots.header" :class="b('page-layout__header')" :style="props.headerStyle">
           <slot name="header"></slot>
         </div>
-        <div
-          v-if="slots.tool"
-          :class="b('page-layout__tool')"
-          :style="props.toolStyle"
-        >
+        <div v-if="slots.tool" :class="b('page-layout__tool')" :style="props.toolStyle">
           <slot name="tool"></slot>
         </div>
         <div :class="b('page-layout__body')" :style="props.bodyStyle">
           <slot></slot>
         </div>
       </div>
-    </el-splitter-panel>
-  </el-splitter>
+    </ElSplitterPanel>
+  </ElSplitter>
 </template>
 
 <script lang="ts" setup>
 import type { PageLayoutProps } from './type'
+import { ElSplitter, ElSplitterPanel } from 'element-plus'
 import { computed, ref, useSlots } from 'vue'
 import { useBemClass } from '../../../hooks'
 import SplitButton from './split-button.vue'
@@ -93,6 +83,7 @@ function handleClick() {
 @use '../../../styles/var.scss' as a;
 
 :deep(.el-splitter-bar__dragger-horizontal) {
+
   &::before,
   &::after {
     width: 1px;

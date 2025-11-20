@@ -1,7 +1,7 @@
 <template>
-  <el-button :class="b('button')" v-bind="bindProps" @click="(e: MouseEvent) => emit('click', e)">
+  <ElButton :class="b('button')" v-bind="bindProps" @click="(e: MouseEvent) => emit('click', e)">
     <slot>{{ btnText }}</slot>
-  </el-button>
+  </ElButton>
 </template>
 
 <script setup lang="ts">
@@ -16,6 +16,7 @@ import {
   Search,
   Upload
 } from '@element-plus/icons-vue'
+import { ElButton } from 'element-plus'
 import { computed, useAttrs } from 'vue'
 import { useBemClass } from '../../../hooks'
 
@@ -33,18 +34,18 @@ const { b } = useBemClass()
 
 const obj: Record<string, { btnProps: Partial<ButtonProps>, btnText: string }>
   = {
-    add: { btnProps: { icon: Plus, type: 'primary' }, btnText: '新增' },
-    edit: { btnProps: { icon: Edit, type: 'primary' }, btnText: '编辑' },
-    delete: { btnProps: { icon: Delete, type: 'danger' }, btnText: '删除' },
-    search: { btnProps: { icon: Search, type: 'primary' }, btnText: '搜索' },
-    reset: { btnProps: { type: undefined }, btnText: '重置' },
-    upload: { btnProps: { icon: Upload, type: 'primary' }, btnText: '上传' },
-    download: {
-      btnProps: { icon: Download, type: 'primary' },
-      btnText: '下载'
-    },
-    print: { btnProps: { icon: Printer, type: 'primary' }, btnText: '打印' }
-  }
+  add: { btnProps: { icon: Plus, type: 'primary' }, btnText: '新增' },
+  edit: { btnProps: { icon: Edit, type: 'primary' }, btnText: '编辑' },
+  delete: { btnProps: { icon: Delete, type: 'danger' }, btnText: '删除' },
+  search: { btnProps: { icon: Search, type: 'primary' }, btnText: '搜索' },
+  reset: { btnProps: { type: undefined }, btnText: '重置' },
+  upload: { btnProps: { icon: Upload, type: 'primary' }, btnText: '上传' },
+  download: {
+    btnProps: { icon: Download, type: 'primary' },
+    btnText: '下载'
+  },
+  print: { btnProps: { icon: Printer, type: 'primary' }, btnText: '打印' }
+}
 
 const bindProps = computed(() => {
   const btnProps = obj?.[props.type]?.btnProps || { type: props.type }
