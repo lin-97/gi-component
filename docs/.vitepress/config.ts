@@ -53,6 +53,7 @@ export default defineConfig({
             { text: 'Dialog 对话框', link: '/components/dialog/' },
             { text: 'Dialog 函数对话框', link: '/components/dialog2/' },
             { text: 'Drawer 抽屉', link: '/components/drawer/' },
+            { text: 'Drawer 函数抽屉', link: '/components/drawer2/' },
             { text: 'Form 表单', link: '/components/form/' },
             { text: 'Table 表格', link: '/components/table/' },
             { text: 'EditTable 可编辑表格', link: '/components/edit-table/' },
