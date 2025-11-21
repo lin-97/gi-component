@@ -48,7 +48,8 @@ const props = withDefaults(defineProps<DialogProps>(), {
   okText: '确认',
   cancelText: '取消',
   width: 'calc(100% - 20px)',
-  alignCenter: true
+  alignCenter: true,
+  lockScroll: true
 })
 
 defineSlots<{
