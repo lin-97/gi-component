@@ -6,7 +6,7 @@
 import { http } from '@/utils/http'
 
 interface DefaultP {
-  queryByIdParams?: { pk: string } // 详情查询参数
+  queryByIdParams?: { id: string } // 详情查询参数
   pageQueryListParams?: Record<string, any> // 分页查询参数
   saveInsertParams?: Record<string, any> // 新增参数
   saveUpdateParams?: Record<string, any> // 更新参数
