@@ -72,7 +72,14 @@ const columns = computed(() => {
       label: '姓名',
       field: 'name',
       required: true,
-      extra: '指标单位'
+      extra: '指标单位',
+      props: {
+        // 如果需要用到组件事件，直接在事件名前面拼接上on即可，例如input事件就写成onInput
+        // 其他事件同理，例如focus事件就写成onFocus，blur事件就写成onBlur，
+        onInput: () => {
+          ElMessage.success('输入了内容')
+        }
+      }
     },
     {
       type: 'input',
