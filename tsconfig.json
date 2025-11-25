@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "jsx": "preserve",
+    "jsxImportSource": "vue", // 指定 JSX 导入来源为 Vue 3
     "lib": [
       "ESNext",
       "DOM"

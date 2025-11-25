@@ -9,6 +9,7 @@ import DemoHideFooter from './DemoHideFooter.vue'
 import DemoDrag from './DemoDrag.vue'
 import DemoFullscreen from './DemoFullscreen.vue'
 import DemoForm from './DemoForm.vue'
+import DemoCustomFooter from './DemoCustomFooter.vue'
 </script>
 
 ## 基础用法
@@ -51,6 +52,15 @@ import DemoForm from './DemoForm.vue'
 ::: details 查看代码
 <<< ./DemoForm.vue
 :::
+
+## 自定义底部
+
+<DemoCustomFooter></DemoCustomFooter>
+::: details 查看代码
+<<< ./DemoCustomFooter.vue
+:::
+
+## 继承主应用的上下文
 
 如果要继承主应用的上下文
 
