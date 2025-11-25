@@ -17,21 +17,6 @@ const { b } = useBemClass()
   margin-left: 0;
 }
 
-:deep(.el-select__wrapper) {
-  box-shadow: none;
-  border: 1px solid var(--el-border-color);
-
-  &.is-focused {
-    box-shadow: none;
-    border-color: var(--el-color-primary);
-  }
-
-  &.is-hovering:not(.is-focused) {
-    box-shadow: none;
-    border-color: var(--el-border-color-hover);
-  }
-}
-
 .#{a.$prefix}-input-group {
   display: flex;
 
@@ -51,7 +36,8 @@ const { b } = useBemClass()
   > :deep(*:not(:first-child):not(:last-child)) {
     border-radius: 0;
 
-    .el-input__wrapper {
+    .el-input__wrapper,
+    .el-select__wrapper {
       border-radius: 0;
     }
   }
@@ -83,6 +69,7 @@ const { b } = useBemClass()
   }
 
   > :deep(*) {
+
     .el-input__wrapper.is-focus,
     .el-select__wrapper.is-focused {
       z-index: 2;

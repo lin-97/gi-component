@@ -41,8 +41,8 @@ export default defineConfig({
             { text: 'Button 按钮', link: '/components/button/' },
             { text: 'Card 卡片', link: '/components/card/' },
             { text: 'Grid 栅格', link: '/components/grid/' },
-            { text: 'InputGroup 输入组', link: '/components/input-group/' },
-            { text: 'InputSearch 搜索输入', link: '/components/input-search/' },
+            { text: 'InputGroup 输入框组', link: '/components/input-group/' },
+            { text: 'InputSearch 搜索输入框', link: '/components/input-search/' },
             { text: 'Tabs 标签页', link: '/components/tabs/' },
             { text: 'PageLayout 页面布局', link: '/components/page-layout/' }
           ]
