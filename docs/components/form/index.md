@@ -78,7 +78,7 @@ import DemoFc from './DemoFc.vue'
 | span          | `number`                              | 占用列数                               |
 | props         | `ColumnProps`                         | 组件属性，根据不同的 type 有不同的配置 |
 | formItemProps | `FormItemProps`                       | ElFormItem 的属性配置                  |
-| gridItemProps | `GridItem.Props`                                 | GridItem 的属性配置                    |
+| gridItemProps | `GridItem.Props`                      | GridItem 的属性配置                    |
 | required      | `boolean`                             | 是否必填                               |
 | rules         | `FormItemRule[]`                      | 验证规则                               |
 | hide          | `boolean \| ((form: any) => boolean)` | 是否隐藏，支持函数动态控制             |
@@ -86,3 +86,4 @@ import DemoFc from './DemoFc.vue'
 | slotName      | `string`                              | 插槽名称                               |
 | slots         | `ColumnSlots`                         | 插槽配置                               |
 | extra         | `string \| VNode`                     | 右侧额外内容                           |
+| format   | `((v: string) => string \| number)`         | 格式化函数, 可用来替代修饰符处理         |

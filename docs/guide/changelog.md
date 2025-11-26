@@ -1,10 +1,11 @@
 # 更新日志
 
-## v0.0.14
+## v0.0.15
 
 **发布日期：** 2025-11-26
 
 新增Dialog.info函数、Dialog.success函数、Dialog.warning函数、Dialog.error函数
+Form组件FormColumnItem支持format格式化函数，用于替代修饰符处理
 
 ## v0.0.13
 

@@ -194,6 +194,36 @@ onMounted(() => {
   loadDictData()
 })
 
+/** 获取占位文本 */
+const getPlaceholder = (item: FormColumnItem) => {
+  if (!item.type) return undefined
+  if (['input', 'input-number', 'input-tag'].includes(item.type)) {
+    return `请输入${item.label}`
+  }
+  if (['textarea'].includes(item.type)) {
+    return `请填写${item.label}`
+  }
+  if (
+    [
+      'select',
+      'select-v2',
+      'tree-select',
+      'cascader',
+      'time-select',
+      'input-search'
+    ].includes(item.type)
+  ) {
+    return `请选择${item.label}`
+  }
+  if (['date-picker'].includes(item.type)) {
+    return `请选择日期`
+  }
+  if (['time-picker'].includes(item.type)) {
+    return `请选择时间`
+  }
+  return undefined
+}
+
 // 组件的默认props配置
 function getComponentBindProps(item: FormColumnItem) {
   // 获取默认配置
@@ -263,36 +293,6 @@ const CompMap: Record<Exclude<FormColumnType, 'slot'>, any> = {
 
 const formRef = ref<FormInstance>()
 
-/** 获取占位文本 */
-const getPlaceholder = (item: FormColumnItem) => {
-  if (!item.type) return undefined
-  if (['input', 'input-number', 'input-tag'].includes(item.type)) {
-    return `请输入${item.label}`
-  }
-  if (['textarea'].includes(item.type)) {
-    return `请填写${item.label}`
-  }
-  if (
-    [
-      'select',
-      'select-v2',
-      'tree-select',
-      'cascader',
-      'time-select',
-      'input-search'
-    ].includes(item.type)
-  ) {
-    return `请选择${item.label}`
-  }
-  if (['date-picker'].includes(item.type)) {
-    return `请选择日期`
-  }
-  if (['time-picker'].includes(item.type)) {
-    return `请选择时间`
-  }
-  return undefined
-}
-
 /** 表单项校验规则 */
 function getFormItemRules(item: FormColumnItem) {
   if (item.required) {
@@ -332,9 +332,10 @@ function isDisabled(item: FormColumnItem) {
 
 /** 表单数据更新  */
 function updateModelValue(value: any, item: FormColumnItem) {
+  const val = item?.format ? item.format(value) : value
   emit(
     'update:modelValue',
-    Object.assign(props.modelValue, { [item.field]: value })
+    Object.assign(props.modelValue, { [item.field]: val })
   )
 }
 

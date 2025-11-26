@@ -7,30 +7,30 @@ import type { InputSearchInstance } from '../../input-search'
 
 export type FormColumnType
   = | 'input'
-    | 'textarea'
-    | 'input-number'
-    | 'input-tag'
-    | 'input-search'
-    | 'select'
-    | 'select-v2'
-    | 'tree-select'
-    | 'cascader'
-    | 'slider'
-    | 'switch'
-    | 'rate'
-    | 'checkbox-group'
-    | 'checkbox'
-    | 'radio-group'
-    | 'radio'
-    | 'date-picker'
-    | 'time-picker'
-    | 'time-select'
-    | 'color-picker'
-    | 'transfer'
-    | 'autocomplete'
-    | 'upload'
-    | 'title'
-    | 'slot'
+  | 'textarea'
+  | 'input-number'
+  | 'input-tag'
+  | 'input-search'
+  | 'select'
+  | 'select-v2'
+  | 'tree-select'
+  | 'cascader'
+  | 'slider'
+  | 'switch'
+  | 'rate'
+  | 'checkbox-group'
+  | 'checkbox'
+  | 'radio-group'
+  | 'radio'
+  | 'date-picker'
+  | 'time-picker'
+  | 'time-select'
+  | 'color-picker'
+  | 'transfer'
+  | 'autocomplete'
+  | 'upload'
+  | 'title'
+  | 'slot'
 
 /**
  * 表单列属性类型，根据组件类型使用对应的属性类型
@@ -69,6 +69,7 @@ export interface FormColumnItem<F = any> {
   slotName?: string
   slots?: FormColumnSlots
   extra?: string | (() => VNode) // 右侧额外内容
+  format?: (value: string) => string | number
 }
 
 export interface FormProps extends Partial<ElFormProps> {

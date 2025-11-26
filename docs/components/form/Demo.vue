@@ -31,6 +31,8 @@
         </el-space>
       </template>
     </gi-form>
+
+    <pre class="doc-pre">{{ form }}</pre>
   </gi-card>
 </template>
 
@@ -79,7 +81,8 @@ const columns = computed(() => {
         onInput: () => {
           ElMessage.success('输入了内容')
         }
-      }
+      },
+      format: (v) => v.trim() // 去除空格
     },
     {
       type: 'input',

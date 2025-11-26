@@ -116,7 +116,8 @@ export function createDialog() {
         ...options,
         content: () => h(DialogContent, { type: 'error', content: options.content as string }),
         simple: true,
-        style: { maxWidth: '420px', ...options.style }
+        style: { maxWidth: '420px', ...options.style },
+        lockScroll: false
       })
     }
   }
