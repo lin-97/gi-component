@@ -1,39 +1,41 @@
 <template>
-  <gi-card title="配置表单示例" bordered>
-    <template #extra>
-      <el-space>
-        <el-switch v-model="disabled" active-text="禁用"></el-switch>
-        <el-radio-group v-model="labelPosition" size="small">
-          <el-radio-button label="左侧" value="left" />
-          <el-radio-button label="右侧" value="right" />
-          <el-radio-button label="顶部" value="top" />
-        </el-radio-group>
-      </el-space>
-    </template>
-
-    <gi-form ref="GiFormRef" v-model="form" :columns="columns" :disabled="disabled" label-width="auto"
-      :label-position="labelPosition" :grid-item-props="{
-        span: { xs: 24, sm: 24, md: 24, lg: 12, xl: 12, xxl: 12 },
-      }">
-      <template #customSlot="{ item }">
-        {{ form.status }}-----------{{ item.field }}
-      </template>
-      <template #customSlot2>
-        <el-alert title="Success alert" type="success" effect="dark" />
-        <el-alert title="Info alert" type="info" effect="dark" />
-        <el-alert title="Warning alert" type="warning" effect="dark" />
-        <el-alert title="Error alert" type="error" effect="dark" />
-      </template>
-      <template #btns>
+  <div>
+    <gi-card title="配置表单示例" bordered>
+      <template #extra>
         <el-space>
-          <el-button @click="reset">重置</el-button>
-          <el-button type="primary" @click="submit"> 提交 </el-button>
+          <el-switch v-model="disabled" active-text="禁用"></el-switch>
+          <el-radio-group v-model="labelPosition" size="small">
+            <el-radio-button label="左侧" value="left" />
+            <el-radio-button label="右侧" value="right" />
+            <el-radio-button label="顶部" value="top" />
+          </el-radio-group>
         </el-space>
       </template>
-    </gi-form>
+
+      <gi-form ref="GiFormRef" v-model="form" :columns="columns" :disabled="disabled" label-width="auto"
+        :label-position="labelPosition" :grid-item-props="{
+          span: { xs: 24, sm: 24, md: 24, lg: 12, xl: 12, xxl: 12 },
+        }">
+        <template #customSlot="{ item }">
+          {{ form.status }}-----------{{ item.field }}
+        </template>
+        <template #customSlot2>
+          <el-alert title="Success alert" type="success" effect="dark" />
+          <el-alert title="Info alert" type="info" effect="dark" />
+          <el-alert title="Warning alert" type="warning" effect="dark" />
+          <el-alert title="Error alert" type="error" effect="dark" />
+        </template>
+        <template #btns>
+          <el-space>
+            <el-button @click="reset">重置</el-button>
+            <el-button type="primary" @click="submit"> 提交 </el-button>
+          </el-space>
+        </template>
+      </gi-form>
+    </gi-card>
 
     <pre class="doc-pre">{{ form }}</pre>
-  </gi-card>
+  </div>
 </template>
 
 <script lang="ts" setup>
