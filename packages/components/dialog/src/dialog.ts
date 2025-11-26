@@ -1,7 +1,9 @@
 import type { DialogInstance } from '../index'
 import ElementPlus from 'element-plus'
-import { createApp, h, ref } from 'vue'
+import { createApp, defineAsyncComponent, h, ref } from 'vue'
 import GiDialog from './dialog.vue'
+
+const DialogContent = defineAsyncComponent(() => import('./dialog-content.vue'))
 
 export type DialogOptions = Partial<DialogInstance['$props']>
 
@@ -77,6 +79,45 @@ export function createDialog() {
     /** 对话框-打开 */
     open(options: DialogOptions) {
       return this.create(options)
+    },
+
+    info(options: DialogOptions) {
+      return this.create({
+        ...options,
+        content: () => h(DialogContent, { type: 'info', content: options.content as string }),
+        simple: true,
+        style: { maxWidth: '420px', ...options.style },
+        lockScroll: false
+      })
+    },
+
+    success(options: DialogOptions) {
+      return this.create({
+        ...options,
+        content: () => h(DialogContent, { type: 'success', content: options.content as string }),
+        simple: true,
+        style: { maxWidth: '420px', ...options.style },
+        lockScroll: false
+      })
+    },
+
+    warning(options: DialogOptions) {
+      return this.create({
+        ...options,
+        content: () => h(DialogContent, { type: 'warning', content: options.content as string }),
+        simple: true,
+        style: { maxWidth: '420px', ...options.style },
+        lockScroll: false
+      })
+    },
+
+    error(options: DialogOptions) {
+      return this.create({
+        ...options,
+        content: () => h(DialogContent, { type: 'error', content: options.content as string }),
+        simple: true,
+        style: { maxWidth: '420px', ...options.style }
+      })
     }
   }
 

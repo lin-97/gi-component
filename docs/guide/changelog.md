@@ -1,5 +1,11 @@
 # 更新日志
 
+## v0.0.14
+
+**发布日期：** 2025-11-26
+
+新增Dialog.info函数、Dialog.success函数、Dialog.warning函数、Dialog.error函数
+
 ## v0.0.13
 
 **发布日期：** 2025-11-25

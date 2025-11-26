@@ -10,6 +10,7 @@ import DemoDrag from './DemoDrag.vue'
 import DemoFullscreen from './DemoFullscreen.vue'
 import DemoForm from './DemoForm.vue'
 import DemoCustomFooter from './DemoCustomFooter.vue'
+import DemoBase from './DemoBase.vue'
 </script>
 
 ## 基础用法
@@ -58,6 +59,13 @@ import DemoCustomFooter from './DemoCustomFooter.vue'
 <DemoCustomFooter></DemoCustomFooter>
 ::: details 查看代码
 <<< ./DemoCustomFooter.vue
+:::
+
+## 基础对话框
+
+<DemoBase></DemoBase>
+::: details 查看代码
+<<< ./DemoBase.vue
 :::
 
 ## 继承主应用的上下文
