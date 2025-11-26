@@ -21,7 +21,7 @@
         </el-space>
       </template>
     </gi-table>
-    <pre>{{ headerParams }}</pre>
+    <pre class="doc-pre">{{ headerParams }}</pre>
   </gi-page-layout>
 </template>
 
@@ -97,11 +97,4 @@ function onEdit(scope: any) {
 }
 </script>
 
-<style lang="scss" scoped>
-pre {
-  font-size: 12px;
-  margin-top: 8px;
-  background-color: #f5f5f5;
-  line-height: 1;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -44,8 +44,8 @@ import DemoFc from './DemoFc.vue'
 | -------------------- | ------------------ | ---------------- | -------------------------------------- |
 | modelValue / v-model | `any`              | 表单数据对象     | -                                      |
 | columns              | `FormColumnItem[]` | 表单项配置数组   | `[]`                                   |
-| gridProps            | `any`              | 网格配置         | -                                      |
-| gridItemProps        | `any`              | 网格项默认配置   | `{ span: { xs: 24, sm: 24, md: 12 } }` |
+| gridProps            | `Grid.Props`              | 网格配置         | -                                      |
+| gridItemProps        | `GridItem.Props`              | 网格项默认配置   | `{ span: { xs: 24, sm: 24, md: 12 } }` |
 | search               | `boolean`          | 是否为搜索表单   | `false`                                |
 | searchText           | `string`           | 搜索按钮文本     | `'查询'`                               |
 | hideFoldBtn          | `boolean`          | 是否隐藏折叠按钮 | `false`                                |
@@ -78,7 +78,7 @@ import DemoFc from './DemoFc.vue'
 | span          | `number`                              | 占用列数                               |
 | props         | `ColumnProps`                         | 组件属性，根据不同的 type 有不同的配置 |
 | formItemProps | `FormItemProps`                       | ElFormItem 的属性配置                  |
-| gridItemProps | `any`                                 | GridItem 的属性配置                    |
+| gridItemProps | `GridItem.Props`                                 | GridItem 的属性配置                    |
 | required      | `boolean`                             | 是否必填                               |
 | rules         | `FormItemRule[]`                      | 验证规则                               |
 | hide          | `boolean \| ((form: any) => boolean)` | 是否隐藏，支持函数动态控制             |

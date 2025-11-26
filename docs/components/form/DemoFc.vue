@@ -8,7 +8,7 @@
         <el-button type="primary" @click="handleSubmit">提交</el-button>
       </el-space>
     </el-row>
-    <pre>{{ fc }}</pre>
+    <pre class="doc-pre">{{ fc }}</pre>
   </div>
 </template>
 
@@ -88,12 +88,5 @@ function handleReset() {
 <style lang="scss" scoped>
 .header {
   font-size: 12px;
-}
-
-pre {
-  font-size: 12px;
-  margin-top: 8px;
-  background-color: #f5f5f5;
-  line-height: 1;
 }
 </style>

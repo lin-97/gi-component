@@ -73,3 +73,11 @@ html {
 .padding-0 {
   padding: 0;
 }
+
+.doc-pre {
+  font-size: 12px;
+  margin-top: 8px;
+  background-color: var(--el-fill-color);
+  line-height: 1;
+  padding: 5px;
+}

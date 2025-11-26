@@ -29,18 +29,18 @@ import DemoAsync from './DemoAsync.vue'
 | ----------------- | --------------- | ------- | ------ |
 | okText            | 确认按钮文本    | string  | 确定   |
 | cancelText        | 取消按钮文本    | string  | 取消   |
-| okButtonProps     | 确认按钮的props | -       | -      |
-| cancelButtonProps | 取消按钮的props | boolean | -      |
+| okButtonProps     | 确认按钮的props | Button.Props       | -      |
+| cancelButtonProps | 取消按钮的props | Button.Props | -      |
 | content           | 内容            | string  | -      |
 | footer            | 显示尾部        | boolean | true   |
 
 ### Events
 
-| 事件名   | 说明                     | 参数 |
+| 事件名   | 说明                     | 类型 |
 | -------- | ------------------------ | ---- |
-| ok       | 点击确认按钮时触发       | -    |
-| cancel   | 点击取消按钮时触发       | -    |
-| beforeOk | 触发 ok 事件前的回调函数 | -    |
+| ok       | 点击确认按钮时触发       | `() => void` |
+| cancel   | 点击取消按钮时触发       | `() => void` |
+| beforeOk | 触发 ok 事件前的回调函数 | `() => Promise<boolean>` |
 
 ### Slots
 

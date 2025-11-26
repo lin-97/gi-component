@@ -16,7 +16,7 @@
     <el-row justify="end" style="margin-top: 8px">
       <el-button type="primary" @click="submit">校验并提交</el-button>
     </el-row>
-    <pre>{{ data }}</pre>
+    <pre class="doc-pre">{{ data }}</pre>
   </div>
 </template>
 
@@ -128,11 +128,4 @@ const onDelete = (index: number) => {
 }
 </script>
 
-<style lang="scss" scoped>
-pre {
-  font-size: 12px;
-  margin-top: 8px;
-  background-color: #f5f5f5;
-  line-height: 1;
-}
-</style>
+<style lang="scss" scoped></style>
