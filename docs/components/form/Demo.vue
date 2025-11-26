@@ -33,8 +33,6 @@
         </template>
       </gi-form>
     </gi-card>
-
-    <pre class="doc-pre">{{ form }}</pre>
   </div>
 </template>
 
