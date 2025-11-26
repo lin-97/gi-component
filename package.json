@@ -1,7 +1,7 @@
 {
   "name": "gi-component",
   "type": "module",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Vue3中基于Element Plus二次封装基础组件库",
   "author": "lin",
   "license": "MIT",
