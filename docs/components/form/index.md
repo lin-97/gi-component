@@ -86,4 +86,3 @@ import DemoFc from './DemoFc.vue'
 | slotName      | `string`                              | 插槽名称                               |
 | slots         | `ColumnSlots`                         | 插槽配置                               |
 | extra         | `string \| VNode`                     | 右侧额外内容                           |
-| format   | `((v: string) => string \| number)`         | 格式化函数, 可用来替代修饰符处理         |

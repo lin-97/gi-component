@@ -69,7 +69,6 @@ export interface FormColumnItem<F = any> {
   slotName?: string
   slots?: FormColumnSlots
   extra?: string | (() => VNode) // 右侧额外内容
-  format?: (value: string) => string | number
 }
 
 export interface FormProps extends Partial<ElFormProps> {

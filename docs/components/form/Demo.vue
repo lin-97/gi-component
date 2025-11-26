@@ -81,8 +81,7 @@ const columns = computed(() => {
         onInput: () => {
           ElMessage.success('输入了内容')
         }
-      },
-      format: (v) => v.trim() // 去除空格
+      }
     },
     {
       type: 'input',

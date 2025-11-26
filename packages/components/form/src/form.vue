@@ -332,10 +332,9 @@ function isDisabled(item: FormColumnItem) {
 
 /** 表单数据更新  */
 function updateModelValue(value: any, item: FormColumnItem) {
-  const val = item?.format ? item.format(value) : value
   emit(
     'update:modelValue',
-    Object.assign(props.modelValue, { [item.field]: val })
+    Object.assign(props.modelValue, { [item.field]: value })
   )
 }
 
