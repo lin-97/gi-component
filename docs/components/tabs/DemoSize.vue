@@ -4,14 +4,7 @@
     <el-radio value="card">卡片</el-radio>
     <el-radio value="border-card">边框卡片</el-radio>
   </el-radio-group>
-  <gi-tabs
-    v-model="activeName"
-    :options="options"
-    :type="tabsType"
-    inner
-    size="small"
-    @tab-change="handleTabChange"
-  >
+  <gi-tabs v-model="activeName" :options="options" :type="tabsType" inner size="small" @tab-change="handleTabChange">
     <template #extra>
       <el-space>
         <el-button type="primary" size="small">保存</el-button>

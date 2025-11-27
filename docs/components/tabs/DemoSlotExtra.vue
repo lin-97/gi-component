@@ -1,11 +1,5 @@
 <template>
-  <gi-tabs
-    v-model="activeName"
-    :options="options"
-    type="card"
-    inner
-    @tab-change="handleTabChange"
-  >
+  <gi-tabs v-model="activeName" :options="options" type="card" inner @tab-change="handleTabChange">
     <template #extra>
       <el-space>
         <el-button type="primary">保存</el-button>

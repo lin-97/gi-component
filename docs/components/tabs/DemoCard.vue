@@ -4,12 +4,7 @@
     <el-radio value="card">卡片</el-radio>
     <el-radio value="border-card">边框卡片</el-radio>
   </el-radio-group>
-  <gi-tabs
-    v-model="value"
-    :options="options"
-    :type="tabsType"
-    style="margin-bottom: 10px"
-  >
+  <gi-tabs v-model="value" :options="options" :type="tabsType" style="margin-bottom: 10px">
     <template #extra>
       <el-space>
         <el-button type="primary">保存</el-button>

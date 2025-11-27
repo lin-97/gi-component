@@ -1,12 +1,7 @@
 <template>
-  <gi-form
-    ref="GiFormRef"
-    v-model="form"
-    :columns="columns"
-    :grid-item-props="{
-      span: { xs: 24, sm: 12, md: 12, lg: 12, xl: 12, xxl: 12 },
-    }"
-  >
+  <gi-form ref="GiFormRef" v-model="form" :columns="columns" :grid-item-props="{
+    span: { xs: 24, sm: 12, md: 12, lg: 12, xl: 12, xxl: 12 },
+  }">
   </gi-form>
 </template>
 
