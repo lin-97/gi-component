@@ -70,6 +70,11 @@ const form = reactive({
 const columns = computed(() => {
   return [
     {
+      type: 'title',
+      label: '基本信息',
+      field: 'title-base'
+    },
+    {
       type: 'input',
       label: '姓名',
       field: 'name',
@@ -122,6 +127,11 @@ const columns = computed(() => {
       label: '滑块',
       field: 'slider',
       hide: () => form.status === true
+    },
+    {
+      type: 'title',
+      label: '其他信息',
+      field: 'title-other'
     },
     {
       type: 'rate',

@@ -4,8 +4,8 @@
       <template v-for="(item, index) in props.columns">
         <GridItem v-if="item.type === 'title'" :key="`title${index}`" :span="100">
           <ElFormItem label-width="0">
-            <GiCard :title="typeof item.label === 'string' ? item.label : ''" :header-style="{ padding: 0 }"
-              :body-style="{ display: 'none' }"></GiCard>
+            <el-alert :class="b('form-item__title')" :title="typeof item.label === 'string' ? item.label : ''"
+              type="info" :closable="false" />
           </ElFormItem>
         </GridItem>
 
@@ -411,6 +411,15 @@ defineExpose({ formRef })
 
   .el-date-editor {
     width: 100%;
+  }
+}
+
+:deep(.#{a.$prefix}-form-item__title) {
+  border-radius: 0;
+
+  .el-alert__title {
+    color: var(--el-text-color-primary);
+    font-weight: 600;
   }
 }
 </style>
