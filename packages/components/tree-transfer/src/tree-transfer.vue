@@ -86,19 +86,26 @@ const rightObj = reactive({
 })
 
 const leftAllChecked = computed(() => {
+  const rightListKeys = rightObj.options.map((i) => i.value)
   const arr: string[] = []
   eachTree(props.data, (i) => {
-    if (i.children === undefined) {
+    // 只考虑叶子节点且不在右侧列表中的节点
+    if (i.children === undefined && !rightListKeys.includes(i[nodeKey.value])) {
       arr.push(i[nodeKey.value])
     }
   })
+  // 如果左侧没有可选节点，则返回false
+  if (arr.length === 0) return false
+  // 检查所有左侧叶子节点是否都被选中
   return arr.every((i) => leftObj.checkedKeys.includes(i))
 })
 
 const getLeftTreeNodes = () => {
+  const rightListKeys = rightObj.options.map((i) => i.value)
   const arr: any[] = []
   eachTree(props.data, (i) => {
-    if (i.children === undefined) {
+    // 只返回叶子节点且不在右侧列表中的节点
+    if (i.children === undefined && !rightListKeys.includes(i[nodeKey.value])) {
       arr.push(i)
     }
   })
@@ -130,8 +137,34 @@ function handleRightAllChecked() {
 const leftTreeData = computed(() => {
   const treeData = JSON.parse(JSON.stringify(props.data))
   const rightListKeys = rightObj.options.map((i) => i.value)
-  const data = filterTree(treeData, (i: any) => !rightListKeys.includes(i[nodeKey.value]))
-  return data
+
+  // 递归过滤树节点，只有当节点不在右侧列表中且有子节点存在于左侧时才保留
+  const filterNodes = (nodes: any[]): any[] => {
+    const filtered: any[] = []
+
+    for (const node of nodes) {
+      // 深拷贝当前节点
+      const newNode = { ...node }
+
+      // 如果有子节点，递归处理
+      if (node.children && node.children.length > 0) {
+        newNode.children = filterNodes(node.children)
+        // 如果子节点过滤后仍有内容，或者节点本身不在右侧列表中且是叶子节点，则保留该节点
+        if (newNode.children.length > 0 || (!rightListKeys.includes(node[nodeKey.value]) && (!node.children || node.children.length === 0))) {
+          filtered.push(newNode)
+        }
+      } else {
+        // 叶子节点，只有当它不在右侧列表中时才保留
+        if (!rightListKeys.includes(node[nodeKey.value])) {
+          filtered.push(newNode)
+        }
+      }
+    }
+
+    return filtered
+  }
+
+  return filterNodes(treeData)
 })
 
 const handleCheck = (data: any, obj: any) => {

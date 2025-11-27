@@ -1,9 +1,8 @@
 import type { DialogInstance } from '../index'
 import ElementPlus from 'element-plus'
-import { createApp, defineAsyncComponent, h, ref } from 'vue'
+import { createApp, h, ref } from 'vue'
+import DialogContent from './dialog-content.vue'
 import GiDialog from './dialog.vue'
-
-const DialogContent = defineAsyncComponent(() => import('./dialog-content.vue'))
 
 export type DialogOptions = Partial<DialogInstance['$props']>
 
