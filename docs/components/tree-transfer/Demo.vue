@@ -1,7 +1,7 @@
 <template>
   <gi-tree-transfer v-model:selected-keys="selectedKeys" :titles="['左列表', '右列表']" :data="data"
     :tree-props="treeProps"></gi-tree-transfer>
-  <div>{{ selectedKeys }}</div>
+  <pre class="doc-pre">{{ selectedKeys }}</pre>
 </template>
 
 <script setup lang="ts">

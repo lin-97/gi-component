@@ -17,8 +17,10 @@ import {
   Upload
 } from '@element-plus/icons-vue'
 import { ElButton } from 'element-plus'
-import { computed, useAttrs } from 'vue'
+import { computed, defineOptions, useAttrs } from 'vue'
 import { useBemClass } from '../../../hooks'
+
+defineOptions({ components: { ElButton } })
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   type: ''
