@@ -35,8 +35,6 @@ pnpm install gi-component
 pnpm whoami 
 
 npm login
-#或
-npm login --registry=https://nexusx.cyberwing.cn/repository/judp-npm-test/
 
 npm version patch
 
