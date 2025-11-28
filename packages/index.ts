@@ -3,6 +3,7 @@ import type { App } from 'vue'
 import Button from './components/button'
 import Card from './components/card'
 import Dialog from './components/dialog'
+import Dot from './components/dot'
 import Drawer from './components/drawer'
 import EditTable from './components/edit-table'
 import Form from './components/form'
@@ -29,6 +30,7 @@ const components = {
   Button,
   Card,
   Drawer,
+  Dot,
   Tabs,
   InputGroup,
   InputSearch,
@@ -46,6 +48,7 @@ const components = {
 export const GiButton: typeof Button = Button
 export const GiCard: typeof Card = Card
 export const GiDrawer: typeof Drawer = Drawer
+export const GiDot: typeof Dot = Dot
 export const GiTabs: typeof Tabs = Tabs
 export const GiInputGroup: typeof InputGroup = InputGroup
 export const GiInputSearch: typeof InputSearch = InputSearch
