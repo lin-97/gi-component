@@ -57,7 +57,7 @@ export interface FormColumnItem<F = any> {
   labelRender?: () => VNode
   field: string
   fieldName?: string
-  span?: number
+  span?: number | GridItemProps['span']
   props?: FormColumnProps
   formItemProps?: El.FormItemProps
   gridItemProps?: any

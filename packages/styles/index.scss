@@ -9,21 +9,6 @@ body {
   --padding-y-small: 8px;
 }
 
-.el-table__body-wrapper tr td.el-table-fixed-column--left,
-.el-table__body-wrapper tr td.el-table-fixed-column--right,
-.el-table__body-wrapper tr th.el-table-fixed-column--left,
-.el-table__body-wrapper tr th.el-table-fixed-column--right,
-.el-table__footer-wrapper tr td.el-table-fixed-column--left,
-.el-table__footer-wrapper tr td.el-table-fixed-column--right,
-.el-table__footer-wrapper tr th.el-table-fixed-column--left,
-.el-table__footer-wrapper tr th.el-table-fixed-column--right,
-.el-table__header-wrapper tr td.el-table-fixed-column--left,
-.el-table__header-wrapper tr td.el-table-fixed-column--right,
-.el-table__header-wrapper tr th.el-table-fixed-column--left,
-.el-table__header-wrapper tr th.el-table-fixed-column--right {
-  background: var(--el-bg-color);
-}
-
 .gi-table .el-table {
   --el-table-header-bg-color: var(--el-fill-color-lighter);
 }
@@ -177,6 +162,12 @@ body {
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--el-border-color);
+
+    .el-dialog__headerbtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .el-dialog__body {
