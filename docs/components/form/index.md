@@ -75,7 +75,7 @@ import DemoFc from './DemoFc.vue'
 | labelRender   | `() => VNode`                         | 标签渲染函数                           |
 | field         | `string`                              | 字段名，用于绑定表单数据               |
 | fieldName     | `string`                              | 字段名称                               |
-| span          | `number`                              | 占用列数                               |
+| span          | `number \| GridItemProps['span']`     | 占用列数                               |
 | props         | `ColumnProps`                         | 组件属性，根据不同的 type 有不同的配置 |
 | formItemProps | `FormItemProps`                       | ElFormItem 的属性配置                  |
 | gridItemProps | `GridItem.Props`                      | GridItem 的属性配置                    |
