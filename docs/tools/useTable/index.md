@@ -81,8 +81,9 @@ export function useTable<T extends U, U = T>(api: UseTableApi<T>, options: Optio
       setTotal(total)
       onSuccess?.()
     } catch (error) {
-      loading.value = false
       onError?.(error as Error)
+    } finally {
+      loading.value = false
     }
   }
 
