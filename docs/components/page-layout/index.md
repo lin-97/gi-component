@@ -47,6 +47,18 @@ import Demo5 from './demo5.vue'
 
 ## API
 
+### Props
+
+| 属性名      | 说明                     | 类型                             | 默认值   |
+| :---------- | :----------------------- | :------------------------------- | :------- |
+| size        | 左侧面板宽度/占比        | `SplitterPanelProps['size']`     | `270`    |
+| bordered    | 是否显示外边框           | `boolean`                        | `false`  |
+| collapse    | 是否显示折叠按钮         | `boolean`                        | `true`   |
+| leftStyle   | 左侧区域自定义样式       | `CSSProperties`                  | `{}`     |
+| headerStyle | 头部区域自定义样式       | `CSSProperties`                  | `{}`     |
+| toolStyle   | 操作栏区域自定义样式     | `CSSProperties`                  | `{}`     |
+| bodyStyle   | 内容区域自定义样式       | `CSSProperties`                  | `{}`     |
+
 ### Slots
 
 | 名称    | 说明         |
@@ -55,3 +67,5 @@ import Demo5 from './demo5.vue'
 | header  | 自定义头部   |
 | left    | 自定义左侧   |
 | tool    | 自定义操作栏 |
+
+> 提示：只有在插槽 `left` 存在时才会渲染可折叠的左侧区域与折叠按钮。若 `collapse` 设为 `false`，左侧区域固定展示。

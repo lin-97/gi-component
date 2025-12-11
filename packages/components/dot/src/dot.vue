@@ -10,7 +10,7 @@ import { useBemClass } from '../../../hooks'
 
 const props = withDefaults(defineProps<DotProps>(), {
   type: 'circle',
-  size: 7,
+  size: 6,
   color: 'primary'
 })
 

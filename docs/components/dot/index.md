@@ -34,5 +34,6 @@ import DemoColor from './DemoColor.vue'
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 点的类型 | `circle\|square` | `circle` |
+| size | 尺寸 | number | 6 |
 | color | 点的颜色 | `string\|primary\|success\|warning\|error\|info` | -- |
 | animation | 是否添加动画 | boolean | `false` |
