@@ -94,7 +94,6 @@ import {
   watch
 } from 'vue'
 import { useBemClass } from '../../../hooks'
-import GiCard from '../../card'
 import { Grid, GridItem } from '../../grid'
 import InputSearch from '../../input-search'
 
@@ -338,14 +337,16 @@ function updateModelValue(value: any, item: FormColumnItem) {
   )
 }
 
-watch(
-  () => props.modelValue,
-  () => {
-    // eslint-disable-next-line no-console
-    console.log('form', toRaw(props.modelValue))
-  },
-  { deep: true }
-)
+if (import.meta.env.DEV) {
+  watch(
+    () => props.modelValue,
+    () => {
+      // eslint-disable-next-line no-console
+      console.log('form', toRaw(props.modelValue))
+    },
+    { deep: true }
+  )
+}
 
 defineExpose({ formRef })
 </script>

@@ -59,7 +59,6 @@ import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 import { ElButton, ElCheckbox, ElCheckboxGroup, ElEmpty, ElIcon, ElScrollbar, ElSpace, ElTree } from 'element-plus'
 import { computed, onMounted, reactive, ref } from 'vue'
 import pkg from 'xe-utils'
-import { filterTree } from './utils'
 
 // 右边的列表keys
 const selectedKeys = defineModel('selectedKeys', { type: Array as PropType<string[]>, default: () => [] })
@@ -168,7 +167,6 @@ const leftTreeData = computed(() => {
 })
 
 const handleCheck = (data: any, obj: any) => {
-  console.log(data, obj)
   leftObj.checkedKeys = obj.checkedNodes.filter((i: any) => i?.children === undefined).map((j: any) => j[nodeKey.value])
   leftObj.options = obj.checkedNodes.filter((i: any) => i?.children === undefined).map((j: any) => ({ label: j.label, value: j[nodeKey.value] }))
   // leftObj.checkedKeys = obj.checkedNodes.map((i: any) => i[nodeKey.value])

@@ -3,6 +3,7 @@ import { reactive, ref } from 'vue'
 
 interface Options<T, U> {
   onSuccess?: () => void
+  onError?: (error: Error) => void
   immediate?: boolean
   rowKey?: keyof T
 }
@@ -26,7 +27,7 @@ export interface UseTableApi<T> {
 }
 
 export function useTable<T extends U, U = T>(api: UseTableApi<T>, options: Options<T, U>) {
-  const { onSuccess, immediate = true, rowKey = 'id' } = options || {}
+  const { onSuccess, onError, immediate = true, rowKey = 'id' } = options || {}
 
   // const instance = getCurrentInstance();
   // const globalConfig = instance?.appContext.config.globalProperties?.$config || {};
@@ -63,8 +64,9 @@ export function useTable<T extends U, U = T>(api: UseTableApi<T>, options: Optio
       const total = !Array.isArray(res.data) ? res.data.total : data.length
       setTotal(total)
       onSuccess?.()
-    } finally {
+    } catch (error) {
       loading.value = false
+      onError?.(error as Error)
     }
   }
 

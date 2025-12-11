@@ -70,13 +70,20 @@ function capitalizeWord(word: string) {
   return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 }
 
+// 定义字典数据类型
+export interface DictItem {
+  label: string
+  value: string | number
+  [key: string]: any // 允许扩展其他属性
+}
+
 // 全局默认配置
 export interface Config {
   prefix?: string // 组件前缀
   /** 输入框是否可清除 */
   clearable?: boolean
   /** 字典请求方法 */
-  dictRequest?: () => Promise<any>
+  dictRequest?: (code: string) => Promise<DictItem[]>
   /** 格式化响应数据, 用于useTable */
   // formatResponse?: (data: any) => any;
 }
