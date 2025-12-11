@@ -1,0 +1,278 @@
+# GI Component 项目代码规范
+
+## 项目概述
+这是一个基于 Vue 3 + TypeScript + Element Plus 的组件库项目，使用 Vite 构建，采用 Composition API 和 `<script setup>` 语法。
+
+## 技术栈
+- Vue 3.4+ (Composition API)
+- TypeScript 5.8+ (严格模式)
+- Element Plus 2.11+
+- Vite 6.3+
+- SCSS
+- ESLint (@antfu/eslint-config)
+
+## 代码风格规范
+
+### Vue 组件结构
+
+#### 组件文件结构顺序
+1. `<template>` - 模板部分
+2. `<script setup lang="ts">` - 脚本部分
+3. `<style lang="scss" scoped>` - 样式部分
+
+#### Script Setup 顺序
+```vue
+<script setup lang="ts">
+// 1. 类型导入 (import type)
+import type { ButtonProps } from './type.ts'
+
+// 2. Element Plus 组件导入
+import { ElButton } from 'element-plus'
+
+// 3. Vue 相关导入
+import { computed, ref } from 'vue'
+
+// 4. 项目内部导入
+import { useBemClass } from '../../../hooks'
+
+// 5. defineProps (使用 withDefaults 设置默认值)
+const props = withDefaults(defineProps<ButtonProps>(), {
+  type: ''
+})
+
+// 6. defineEmits (使用 TypeScript 类型)
+const emit = defineEmits<{
+  (e: 'click', event: MouseEvent): void
+}>()
+
+// 7. defineModel (如需要)
+const visible = defineModel('modelValue', {
+  type: Boolean,
+  default: false
+})
+
+// 8. defineSlots (如需要)
+defineSlots<{
+  default: () => VNode
+}>()
+
+// 9. Hooks 和工具函数
+const { b } = useBemClass()
+
+// 10. 响应式数据
+const loading = ref(false)
+
+// 11. 计算属性
+const bindProps = computed(() => {
+  // ...
+})
+
+// 12. 方法定义
+const handleClick = () => {
+  // ...
+}
+</script>
+```
+
+### 命名规范
+
+#### 文件命名
+- 组件文件：使用 kebab-case，如 `button.vue`、`dialog-content.vue`
+- 类型文件：使用 `type.ts`，如 `button/src/type.ts`
+- 工具文件：使用 kebab-case，如 `use-bem-class.ts`（但项目中实际使用 camelCase，如 `useBemClass.ts`）
+- 组件目录：使用 kebab-case，如 `input-group/`
+
+#### 组件命名
+- 组件名：使用 PascalCase，如 `Button`、`InputSearch`
+- 组件导出：通过 `index.ts` 导出，如 `packages/components/button/index.ts`
+- 全局注册前缀：默认使用 `Gi`，如 `GiButton`、`GiTable`
+
+#### 变量和函数命名
+- 变量：使用 camelCase，如 `bindProps`、`okLoading`
+- 函数：使用 camelCase，如 `handleClick`、`getTableData`
+- 常量：使用 camelCase 或 UPPER_SNAKE_CASE（根据使用场景）
+- Props：使用 camelCase，如 `closeOnClickModal`、`okText`
+
+#### 事件命名
+- 自定义事件：使用 kebab-case，如 `@click`、`@update:model-value`
+- 事件处理函数：使用 `handle` 前缀 + PascalCase，如 `handleOk`、`handleCancel`
+
+#### CSS 类名
+- 使用 BEM 命名规范
+- 通过 `useBemClass` hook 生成类名
+- 格式：`${prefix}-${block}__${element}--${modifier}`
+- 示例：`gi-button`、`gi-dialog--simple`
+
+### TypeScript 规范
+
+#### 类型定义
+- 类型定义单独放在 `type.ts` 文件中
+- 使用 `interface` 定义对象类型
+- 使用 `type` 定义联合类型、工具类型等
+- 类型文件位置：`packages/components/{component}/src/type.ts`
+
+#### 类型导入
+- 使用 `import type` 导入类型，与值导入分开
+```typescript
+import type { ButtonProps } from './type.ts'
+import { ElButton } from 'element-plus'
+```
+
+#### Props 类型定义
+- 继承 Element Plus 组件类型并扩展
+- 使用 `Partial` 和 `Omit` 工具类型
+```typescript
+export interface ButtonProps extends Partial<Omit<ElButtonProps, 'type'>> {
+  type?: 'add' | 'edit' | 'delete' | '' | ElButtonProps['type']
+}
+```
+
+#### 泛型使用
+- 在 hooks 和工具函数中使用泛型提高类型安全
+```typescript
+export function useTable<T extends U, U = T>(
+  api: UseTableApi<T>,
+  options: Options<T, U>
+)
+```
+
+### 组件开发规范
+
+#### Props 定义
+- 使用 `defineProps<PropsType>()` 定义 props
+- 使用 `withDefaults()` 设置默认值
+- Props 类型必须从 `type.ts` 导入
+
+#### Emits 定义
+- 使用 `defineEmits<{ (e: 'eventName', ...args): void }>()` 定义事件
+- 事件名使用 kebab-case
+
+#### 组件导出
+- 每个组件目录必须有 `index.ts` 文件
+- 导出组件实例类型：`export type ComponentInstance = InstanceType<typeof Component>`
+- 导出类型：`export * from './src/type'`
+- 默认导出组件：`export default Component`
+
+#### 组件注册
+- 在 `packages/index.ts` 中统一注册组件
+- 支持全局配置前缀（默认 `Gi`）
+- 使用 `install` 方法注册到 Vue 应用
+
+### 工具函数和 Hooks
+
+#### Hooks 命名
+- 使用 `use` 前缀，如 `useBemClass`、`useTable`
+- Hooks 文件放在 `packages/hooks/` 目录
+- 通过 `packages/hooks/index.ts` 统一导出
+
+#### 工具函数
+- 工具函数放在 `packages/utils/` 目录
+- 通过 `packages/utils/index.ts` 统一导出
+- 使用 TypeScript 严格类型
+
+### 样式规范
+
+#### SCSS 使用
+- 使用 `<style lang="scss" scoped>` 定义组件样式
+- 使用 scoped 避免样式污染
+- 样式变量定义在 `packages/styles/var.scss`
+- 主样式文件：`packages/styles/index.scss`
+
+#### BEM 类名生成
+- 使用 `useBemClass` hook 生成 BEM 类名
+- 默认前缀：`gi`（可通过全局配置修改）
+```typescript
+const { b } = useBemClass()
+const className = b('button') // 生成: gi-button
+```
+
+### 导入规范
+
+#### 导入顺序
+1. 类型导入 (`import type`)
+2. Element Plus 组件和图标
+3. Vue 相关 API
+4. 项目内部组件、hooks、utils
+
+#### 路径别名
+- `@/*` 指向 `packages/*`
+- `@docs/*` 指向 `docs/*`
+- `gi-component` 指向 `packages/index.ts`
+
+### 代码质量
+
+#### ESLint 规则
+- 使用 `@antfu/eslint-config` 配置
+- Vue 组件顺序：`[['script', 'template'], 'style']`
+- 自定义事件使用 kebab-case
+- 箭头函数参数需要括号
+- 不使用尾随逗号
+- 单行大括号允许
+
+#### 注释规范
+- 使用 JSDoc 注释描述函数和类型
+- 复杂逻辑添加注释说明
+```typescript
+/**
+ * 创建选择弹窗
+ * @description component组件必须暴露一个getSelectedData方法
+ */
+export const createSelectDialog = <T>(params: CreateSelectDialogParams) => {
+  // ...
+}
+```
+
+### 项目结构
+
+```
+packages/
+  components/          # 组件目录
+    {component}/
+      index.ts         # 组件导出
+      src/
+        {component}.vue  # 组件实现
+        type.ts         # 类型定义
+  hooks/               # 自定义 hooks
+  utils/               # 工具函数
+  types/               # 全局类型定义
+  styles/              # 样式文件
+  index.ts             # 主入口文件
+```
+
+### 最佳实践
+
+1. **组件封装**
+   - 基于 Element Plus 组件二次封装
+   - 保持 Element Plus 原有 API 兼容性
+   - 通过 `v-bind` 透传 props 和 attrs
+
+2. **类型安全**
+   - 所有组件必须定义完整的 TypeScript 类型
+   - 使用类型推断减少显式类型注解
+   - Props 类型继承 Element Plus 类型
+
+3. **响应式设计**
+   - 使用 `computed` 处理派生状态
+   - 使用 `ref` 处理基本类型响应式数据
+   - 使用 `reactive` 处理对象响应式数据
+
+4. **性能优化**
+   - 合理使用 `computed` 缓存计算结果
+   - 使用 `v-memo` 优化列表渲染（如需要）
+   - 避免在模板中使用复杂计算
+
+5. **代码复用**
+   - 提取公共逻辑到 hooks
+   - 提取工具函数到 utils
+   - 使用组合式函数提高代码复用性
+
+## 注意事项
+
+- 所有代码必须通过 ESLint 检查
+- 组件必须提供完整的 TypeScript 类型定义
+- 新组件需要在 `packages/index.ts` 中注册
+- 保持与 Element Plus API 的兼容性
+- 使用 `useBemClass` 统一管理 CSS 类名
+- 事件命名必须使用 kebab-case
+- Props 默认值使用 `withDefaults` 设置
+
