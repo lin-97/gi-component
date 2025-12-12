@@ -1,4 +1,5 @@
 @use './var.scss' as a;
+@use './el.scss';
 
 body {
   --padding: 14px;
@@ -141,83 +142,6 @@ body {
   padding: 0 !important;
 }
 
-.el-dialog {
-  padding: 0 !important;
-
-  &.is-fullscreen {
-    overflow: hidden;
-    display: inline-flex;
-    flex-direction: column;
-
-    .el-dialog__body {
-      flex: 1;
-      overflow-y: auto;
-    }
-  }
-
-  .el-dialog__header {
-    height: 48px;
-    padding-left: var(--el-dialog-padding-primary);
-    padding-bottom: 0;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--el-border-color);
-
-    .el-dialog__headerbtn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  .el-dialog__body {
-    padding: var(--el-dialog-padding-primary);
-  }
-
-  .el-dialog__footer {
-    padding: 12px var(--el-dialog-padding-primary);
-    border-top: 1px solid var(--el-border-color);
-  }
-}
-
-.el-dialog.#{a.$prefix}-dialog--simple {
-  .el-dialog__header {
-    border-bottom: none;
-  }
-
-  .el-dialog__body {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .el-dialog__footer {
-    border-top: none;
-  }
-}
-
-.el-drawer[role=dialog] {
-  --el-drawer-padding-primary: 16px;
-}
-
-.el-drawer {
-  .el-drawer__header {
-    height: 48px;
-    margin-bottom: 0;
-    padding-top: 0;
-    border-bottom: 1px solid var(--el-border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-  }
-
-  .el-drawer__body {
-    font-size: 14px;
-  }
-
-  .el-drawer__footer {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    border-top: 1px solid var(--el-border-color);
-  }
+.gi-flex-column {
+  flex-direction: column;
 }

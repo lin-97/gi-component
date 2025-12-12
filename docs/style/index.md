@@ -133,4 +133,8 @@ body {
 .gi-p0 {
   padding: 0 !important;
 }
+
+.gi-flex-column {
+  flex-direction: column;
+}
 ```
