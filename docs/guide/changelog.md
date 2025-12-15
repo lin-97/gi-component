@@ -1,12 +1,14 @@
 # 更新日志
 
-## v0.0.25
+## v0.0.26
 
 **发布日期：** 2025-12-15
 
 Table组件的pagination属性支持boolean类型
 
 Table组件修复默认值
+
+Table组件补充插槽类型提示
 
 Button组件类型样式调整
 

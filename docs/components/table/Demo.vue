@@ -1,5 +1,5 @@
 <template>
-  <gi-page-layout bordered>
+  <gi-page-layout bordered style="height: 500px">
     <template #tool>
       <el-row justify="space-between" style="width: 100%">
         <el-space warp>
@@ -12,10 +12,10 @@
         </el-space>
       </el-row>
     </template>
-    <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" max-height="400px">
+    <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination">
       <template #action="scope">
         <el-space>
-          <ElButton type="primary" size="small" @click="onEdit(scope)">编辑</ElButton>
+          <ElButton type="primary" size="small" @click="onEdit(scope.row)">编辑</ElButton>
           <ElButton type="danger" size="small">删除</ElButton>
         </el-space>
       </template>

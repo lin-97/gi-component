@@ -1,5 +1,5 @@
 <template>
-  <gi-page-layout bordered>
+  <gi-page-layout bordered style="height: 500px">
     <template #tool>
       <el-row justify="space-between" style="width: 100%">
         <el-space warp>
@@ -12,8 +12,7 @@
         </el-space>
       </el-row>
     </template>
-    <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" border
-      max-height="400px">
+    <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" border>
       <template #action="scope">
         <el-space>
           <ElButton type="primary" size="small" @click="onEdit(scope)">编辑</ElButton>

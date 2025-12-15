@@ -16,20 +16,27 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import type { TableProps } from './type'
+<script lang="ts" setup generic="T extends DefaultRow">
+import type { DefaultRow, TableProps, TableSlotScope } from './type'
 import { ElPagination, ElRow, ElTable } from 'element-plus'
 import { computed, useAttrs, useTemplateRef } from 'vue'
 import { useBemClass } from '../../../hooks'
 import TableColumn from './TableColumn.vue'
 
-const props = withDefaults(defineProps<TableProps>(), {
+const props = withDefaults(defineProps<TableProps<T>>(), {
   fit: true,
   showHeader: true,
   selectOnIndeterminate: true,
+  data: () => [],
   columns: () => [],
   pagination: () => ({})
 })
+
+defineSlots<{
+  append: () => void
+  empty: () => void
+  [propsName: string]: (props: TableSlotScope<T>) => void
+}>()
 
 const attrs = useAttrs()
 const { b } = useBemClass()
