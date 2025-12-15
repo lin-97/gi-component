@@ -34,6 +34,10 @@ import { useTable } from 'gi-component'
 import { h, reactive } from 'vue'
 import { useTableHeaderSearch } from './components/useTableHeaderSearch'
 
+const queryParams = reactive({
+  keyword: ''
+})
+
 const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p, ...queryParams }), {
   onSuccess: () => {
     // ElMessage.success(`页码${pagination.currentPage}, 页数${pagination.pageSize}条--数据成功加载`);
@@ -86,10 +90,6 @@ const columns: TableColumnItem<UserItem>[] = [
     fixed: 'right'
   }
 ]
-
-const queryParams = reactive({
-  keyword: ''
-})
 
 // 编辑操作
 function onEdit(scope: any) {
