@@ -9,9 +9,9 @@
       </TableColumn>
     </ElTable>
 
-    <ElRow justify="end" :class="b('table-pagination')">
-      <ElPagination v-bind="paginationProps" v-model:current-page="paginationProps.currentPage"
-        v-model:page-size="paginationProps.pageSize" />
+    <ElRow v-if="props.pagination !== false" justify="end" :class="b('table-pagination')">
+      <ElPagination v-bind="paginationProps" :current-page="paginationProps.currentPage"
+        :page-size="paginationProps.pageSize" />
     </ElRow>
   </div>
 </template>
@@ -46,7 +46,7 @@ const paginationProps = computed(() => {
     background: true,
     layout: 'prev, pager, next, sizes, total',
     pageSizes: [10, 20, 50, 100],
-    ...props.pagination
+    ...(typeof props.pagination === 'boolean' ? {} : props.pagination)
   }
 })
 

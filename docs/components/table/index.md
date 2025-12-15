@@ -45,7 +45,7 @@ import DemoHeaderSearch from './DemoHeaderSearch.vue'
 | ---------- | -------------------------- | ------ | -------------------------------------- |
 | columns    | `TableColumnItem[]`        | `[]`   | 表格列配置数组                         |
 | data       | `any[]`                    | -      | 表格数据                               |
-| pagination | `Partial<PaginationProps>` | `{}`   | 分页配置                               |
+| pagination | `Partial<PaginationProps> \| boolean` | `{}`   | 分页配置                               |
 | 其他属性   | -                          | -      | 支持 Element Plus Table 组件的所有属性 |
 
 ### TableColumnItem 接口

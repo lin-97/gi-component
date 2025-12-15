@@ -10,5 +10,5 @@ export interface TableColumnItem<T extends DefaultRow = DefaultRow> extends Omit
 
 export interface TableProps extends ExtractPropTypes<ElTableProps<Record<string | number | symbol, any>>> {
   columns?: TableColumnItem[]
-  pagination?: Partial<PaginationProps>
+  pagination?: Partial<PaginationProps> | boolean
 }
