@@ -12,8 +12,7 @@
         </el-space>
       </el-row>
     </template>
-    <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" border
-      max-height="400px">
+    <gi-table v-loading="loading" :columns="columns" :data="tableData" :pagination="pagination" max-height="400px">
       <template #action="scope">
         <el-space>
           <ElButton type="primary" size="small" @click="onEdit(scope)">编辑</ElButton>
@@ -57,11 +56,7 @@ const columns: TableColumnItem[] = [
   },
   {
     prop: 'address',
-    label: '地址',
-    children: [
-      { prop: 'city', label: '城市', width: 100 },
-      { prop: 'district', label: '区县', width: 100 }
-    ]
+    label: '地址'
   },
   { prop: 'remark', label: '描述', width: 150, showOverflowTooltip: true },
   {

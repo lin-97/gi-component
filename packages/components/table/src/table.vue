@@ -24,6 +24,9 @@ import { useBemClass } from '../../../hooks'
 import TableColumn from './TableColumn.vue'
 
 const props = withDefaults(defineProps<TableProps>(), {
+  fit: true,
+  showHeader: true,
+  selectOnIndeterminate: true,
   columns: () => [],
   pagination: () => ({})
 })
