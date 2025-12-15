@@ -34,6 +34,12 @@ import { useTable } from 'gi-component'
 import { h, reactive } from 'vue'
 import { useTableHeaderSearch } from './components/useTableHeaderSearch'
 
+const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p, ...queryParams }), {
+  onSuccess: () => {
+    // ElMessage.success(`页码${pagination.currentPage}, 页数${pagination.pageSize}条--数据成功加载`);
+  }
+})
+
 const { headerParams, createTableHeader } = useTableHeaderSearch({ search: () => search() })
 
 const columns: TableColumnItem<UserItem>[] = [
@@ -56,7 +62,7 @@ const columns: TableColumnItem<UserItem>[] = [
     render: ({ row }) => {
       return h(
         ElTag,
-        { type: row.sex === '男' ? 'primary' : 'danger' },
+        { type: row.sex === '男' ? 'primary' : 'danger', size: 'small' },
         { default: () => row.sex }
       )
     },
@@ -83,12 +89,6 @@ const columns: TableColumnItem<UserItem>[] = [
 
 const queryParams = reactive({
   keyword: ''
-})
-
-const { tableData, getTableData, pagination, search, refresh, loading } = useTable((p) => getUserList({ ...p, ...queryParams }), {
-  onSuccess: () => {
-    // ElMessage.success(`页码${pagination.currentPage}, 页数${pagination.pageSize}条--数据成功加载`);
-  }
 })
 
 // 编辑操作

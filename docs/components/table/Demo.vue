@@ -49,7 +49,7 @@ const columns: TableColumnItem[] = [
     render: ({ row }) => {
       return h(
         ElTag,
-        { type: row.sex === '男' ? 'primary' : 'danger' },
+        { type: row.sex === '男' ? 'primary' : 'danger', size: 'small' },
         { default: () => row.sex }
       )
     }

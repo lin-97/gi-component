@@ -39,12 +39,12 @@ const obj: Record<string, { btnProps: Partial<ButtonProps>, btnText: string }>
   delete: { btnProps: { icon: Delete, type: 'danger' }, btnText: '删除' },
   search: { btnProps: { icon: Search, type: 'primary' }, btnText: '搜索' },
   reset: { btnProps: { type: undefined }, btnText: '重置' },
-  upload: { btnProps: { icon: Upload, type: 'primary' }, btnText: '上传' },
+  upload: { btnProps: { icon: Upload }, btnText: '上传' },
   download: {
-    btnProps: { icon: Download, type: 'primary' },
+    btnProps: { icon: Download },
     btnText: '下载'
   },
-  print: { btnProps: { icon: Printer, type: 'primary' }, btnText: '打印' }
+  print: { btnProps: { icon: Printer }, btnText: '打印' }
 }
 
 const bindProps = computed(() => {

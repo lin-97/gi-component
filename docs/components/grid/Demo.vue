@@ -30,20 +30,21 @@ const collapsed = ref(false)
 .grid-demo-grid .demo-item,
 .grid-demo-grid .demo-suffix {
   min-height: 48px;
-  color: var(--el-color-white);
+  color: var(--el-color-text-primary);
   text-align: center;
   font-size: 12px;
   line-height: 1.3;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 }
 
 .grid-demo-grid .demo-item:nth-child(2n) {
-  background-color: var(--el-color-primary);
+  background-color: var(--el-color-primary-light-7);
 }
 
 .grid-demo-grid .demo-item:nth-child(2n + 1) {
-  background-color: var(--el-color-success);
+  background-color: var(--el-color-info-light-7);
 }
 </style>

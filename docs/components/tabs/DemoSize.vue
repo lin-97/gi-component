@@ -12,8 +12,10 @@
       </el-space>
     </template>
     <template #label="{ data }">
-      <span>{{ data.label }}</span>
-      <el-text type="danger" size="small">{{ countObj[data.name] }}</el-text>
+      <el-space :size="2">
+        <span>{{ data.label }}</span>
+        <el-tag type="danger" size="small" round style="transform: scale(0.8);">{{ countObj[data.name] }}</el-tag>
+      </el-space>
     </template>
   </gi-tabs>
 </template>

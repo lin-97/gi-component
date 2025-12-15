@@ -8,6 +8,8 @@
     <gi-button type="reset"></gi-button>
     <gi-button type="upload"></gi-button>
     <gi-button type="download"></gi-button>
+    <gi-button type="upload">导入</gi-button>
+    <gi-button type="download">导出</gi-button>
     <gi-button type="print"></gi-button>
     <gi-button type="success">按钮</gi-button>
   </el-space>
