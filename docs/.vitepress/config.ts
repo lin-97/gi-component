@@ -66,8 +66,8 @@ export default defineConfig({
         {
           text: '工具',
           items: [
+            { text: 'createSelectDialog(内置)', link: '/tools/createSelectDialog' },
             { text: 'useTable', link: '/tools/useTable' },
-            { text: 'createSelectDialog', link: '/tools/createSelectDialog' },
             { text: 'createBaseAPI', link: '/tools/createBaseAPI' }
           ]
         }

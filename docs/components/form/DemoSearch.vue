@@ -1,7 +1,7 @@
 <template>
-  <gi-form ref="GiFormRef" v-model="form" :columns="columns" search :grid-item-props="{
+  <gi-form ref="GiFormRef" :model-value="form" :columns="columns" search :grid-item-props="{
     span: { xs: 24, sm: 12, md: 12, lg: 12, xl: 8, xxl: 8 },
-  }" @search="search" @reset="reset">
+  }" @search="search" @reset="reset" @update:model-value="Object.assign(form, $event)">
   </gi-form>
 </template>
 

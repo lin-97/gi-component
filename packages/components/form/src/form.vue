@@ -2,7 +2,7 @@
   <ElForm ref="formRef" :class="getClass" v-bind="formProps" :model="props.modelValue">
     <Grid class="w-full" :col-gap="12" v-bind="props.gridProps" :collapsed="collapsed">
       <template v-for="(item, index) in props.columns">
-        <GridItem v-if="item.type === 'title'" :key="`title${index}`" :span="100">
+        <GridItem v-if="item.type === 'title'" :key="`title${index}`" :span="24">
           <ElFormItem label-width="0">
             <el-alert :class="b('form-item__title')" :title="typeof item.label === 'string' ? item.label : ''"
               type="info" :closable="false" />
@@ -11,10 +11,7 @@
 
         <template v-else>
           <GridItem v-if="!isHide(item)" :key="item.field + index" v-bind="item.gridItemProps || props.gridItemProps"
-            :span="item.span
-              || item.gridItemProps?.span
-              || props?.gridItemProps?.span
-              ">
+            :span="item.span || item.gridItemProps?.span || props?.gridItemProps?.span">
             <ElFormItem :key="item.field + index" :prop="item.field" :label="item.label" :rules="getFormItemRules(item)"
               v-bind="item.formItemProps">
               <template v-if="item?.labelRender" #label>
@@ -27,8 +24,8 @@
                 <div :class="b('form-item__content')">
                   <div :class="b('form-item__component')">
                     <component :is="CompMap[item.type] || item.type" :disabled="isDisabled(item)" class="w-full"
-                      v-bind="getComponentBindProps(item)" :model-value="props.modelValue[item.fieldName || item.field]
-                        " @update:model-value="updateModelValue($event, item)">
+                      v-bind="getComponentBindProps(item)" :model-value="props.modelValue[item.fieldName || item.field]"
+                      @update:model-value="updateModelValue($event, item)">
                       <template v-for="(slotValue, slotKey) in item?.slots || {}" :key="slotKey" #[slotKey]="scope">
                         <template v-if="typeof slotValue === 'string'">
                           {{ slotValue }}
@@ -82,8 +79,8 @@
 import type { FormInstance } from 'element-plus'
 import type { FormColumnItem, FormColumnType, FormProps } from './type'
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
+import { ElButton, ElForm, ElFormItem, ElMessage, ElSpace, ElText } from 'element-plus'
 import * as El from 'element-plus'
-import { ElButton, ElForm, ElFormItem, ElSpace, ElText } from 'element-plus'
 import {
   computed,
   getCurrentInstance,
@@ -156,18 +153,33 @@ const STATIC_PROPS = new Map([
   ['title', {}]
 ])
 
-// 获取字典数据
+/** 占位符文本映射 */
+const PLACEHOLDER_MAP = new Map<FormColumnType, (label?: string) => string | undefined>([
+  ['input', (label) => `请输入${label}`],
+  ['input-number', (label) => `请输入${label}`],
+  ['input-tag', (label) => `请输入${label}`],
+  ['textarea', (label) => `请填写${label}`],
+  ['select', (label) => `请选择${label}`],
+  ['select-v2', (label) => `请选择${label}`],
+  ['tree-select', (label) => `请选择${label}`],
+  ['cascader', (label) => `请选择${label}`],
+  ['time-select', (label) => `请选择${label}`],
+  ['input-search', (label) => `请选择${label}`],
+  ['date-picker', () => '请选择日期'],
+  ['time-picker', () => '请选择时间']
+])
+
+/** 获取字典数据 */
 const loadDictData = async () => {
-  const dictCodes: string[] = []
-  // 收集所有需要的字典编码
-  props.columns?.forEach((item) => {
-    if (item.dictCode) {
-      dictCodes.push(item.dictCode)
-    }
-  })
-  if (!dictCodes.length) return
+  const dictCodes = props.columns
+    ?.filter((item) => item.dictCode)
+    .map((item) => item.dictCode!)
+    .filter((code, index, arr) => arr.indexOf(code) === index) // 去重
+
+  if (!dictCodes?.length) return
   if (!globalConfig?.dictRequest) {
-    return El.ElMessage.error('请配置全局字典请求方法dictRequest')
+    ElMessage.error('请配置全局字典请求方法dictRequest')
+    return
   }
   try {
     // 使用Promise.all并行处理所有字典请求
@@ -176,6 +188,10 @@ const loadDictData = async () => {
         globalConfig
           .dictRequest(code)
           .then((response: any) => ({ code, response }))
+          .catch((error: any) => {
+            console.error(`获取字典 ${code} 失败:`, error)
+            return { code, response: [] }
+          })
       )
     )
     // 处理所有响应结果
@@ -184,7 +200,7 @@ const loadDictData = async () => {
     })
   } catch (error) {
     console.error('获取字典数据失败:', error)
-    El.ElMessage.error('获取字典数据失败')
+    ElMessage.error('获取字典数据失败')
   }
 }
 
@@ -194,40 +210,21 @@ onMounted(() => {
 })
 
 /** 获取占位文本 */
-const getPlaceholder = (item: FormColumnItem) => {
+const getPlaceholder = (item: FormColumnItem): string | undefined => {
   if (!item.type) return undefined
-  if (['input', 'input-number', 'input-tag'].includes(item.type)) {
-    return `请输入${item.label}`
-  }
-  if (['textarea'].includes(item.type)) {
-    return `请填写${item.label}`
-  }
-  if (
-    [
-      'select',
-      'select-v2',
-      'tree-select',
-      'cascader',
-      'time-select',
-      'input-search'
-    ].includes(item.type)
-  ) {
-    return `请选择${item.label}`
-  }
-  if (['date-picker'].includes(item.type)) {
-    return `请选择日期`
-  }
-  if (['time-picker'].includes(item.type)) {
-    return `请选择时间`
-  }
-  return undefined
+  const placeholderFn = PLACEHOLDER_MAP.get(item.type)
+  return placeholderFn ? placeholderFn(item.label) : undefined
 }
 
-// 组件的默认props配置
+/** 组件的默认props配置 */
 function getComponentBindProps(item: FormColumnItem) {
   // 获取默认配置
-  const defaultProps: any = STATIC_PROPS.get(item.type) || {}
-  defaultProps.placeholder = getPlaceholder(item)
+  const defaultProps: Record<string, any> = { ...(STATIC_PROPS.get(item.type) || {}) }
+  const placeholder = getPlaceholder(item)
+  if (placeholder) {
+    defaultProps.placeholder = placeholder
+  }
+  // 日期选择器格式化
   if (item.type === 'date-picker') {
     defaultProps.valueFormat = item?.props?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
   }
@@ -240,19 +237,19 @@ function getComponentBindProps(item: FormColumnItem) {
 }
 
 const formProps = computed(() => {
-  return {
-    ...attrs,
-    ...props,
-    columns: undefined,
-    gridProps: undefined,
-    gridItemProps: undefined,
-    search: undefined,
-    searchText: undefined,
-    hideFoldBtn: undefined,
-    defaultCollapsed: undefined,
-    modelValue: undefined,
-    fc: undefined
-  }
+  const {
+    columns,
+    gridProps,
+    gridItemProps,
+    search,
+    searchText,
+    hideFoldBtn,
+    defaultCollapsed,
+    modelValue,
+    fc,
+    ...restProps
+  } = props
+  return { ...attrs, ...restProps }
 })
 
 const getClass = computed(() => {
@@ -294,32 +291,35 @@ const formRef = ref<FormInstance>()
 
 /** 表单项校验规则 */
 function getFormItemRules(item: FormColumnItem) {
+  const rules = Array.isArray(item.rules) ? item.rules : []
+  const requiredMessage = `${item.label}为必填项`
+
   if (item.required) {
     return [
-      { required: true, message: `${item.label}为必填项` },
-      ...(Array.isArray(item.rules) ? item.rules : [])
+      { required: true, message: requiredMessage },
+      ...rules
     ]
   }
   if (props.fc?.[item.field]?.required) {
     return [
       {
-        required: props.fc?.[item.field]?.required,
-        message: `${item.label}为必填项`
+        required: props.fc[item.field].required,
+        message: requiredMessage
       },
-      ...(Array.isArray(item.rules) ? item.rules : [])
+      ...rules
     ]
   }
   return item.rules
 }
 
 /** 隐藏表单项 */
-function isHide(item: FormColumnItem) {
+function isHide(item: FormColumnItem): boolean {
   if (typeof item.hide === 'boolean') return item.hide
   if (typeof item.hide === 'function') {
     return item.hide(props.modelValue)
   }
   if (props.fc?.[item.field]?.hidden) return true
-  if (item.hide === undefined) return false
+  return false
 }
 
 /** 禁用表单项 */
@@ -331,10 +331,7 @@ function isDisabled(item: FormColumnItem) {
 
 /** 表单数据更新  */
 function updateModelValue(value: any, item: FormColumnItem) {
-  emit(
-    'update:modelValue',
-    Object.assign(props.modelValue, { [item.field]: value })
-  )
+  emit('update:modelValue', { ...props.modelValue, [item.field]: value })
 }
 
 if (import.meta.env.DEV) {

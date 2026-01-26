@@ -10,10 +10,11 @@
             <template v-if="column.slotName">
               <slot :name="column.slotName" v-bind="scope"></slot>
             </template>
-            <template v-else-if="!column.type">{{ scope.row[column.prop] }}</template>
+            <template v-else-if="!column.type">
+              {{ scope.row[column.prop] }}
+            </template>
             <component :is="COMP_MAP[column.type] || column.type" v-else v-bind="getComponentBindProps(column)"
-              v-model="scope.row[column.prop]" class="w-full" :disabled="isDisabled(scope)">
-            </component>
+              v-model="scope.row[column.prop]" class="w-full" :disabled="isDisabled(scope)" />
           </ElFormItem>
         </template>
       </ElTableColumn>
@@ -109,36 +110,38 @@ const STATIC_PROPS = new Map([
   ['title', {}]
 ])
 
+/** 占位符文本映射 */
+const PLACEHOLDER_MAP = new Map<EditTableColumnItemType, (label?: string) => string | undefined>([
+  ['input', (label) => `请输入${label}`],
+  ['input-number', (label) => `请输入${label}`],
+  ['input-tag', (label) => `请输入${label}`],
+  ['textarea', (label) => `请填写${label}`],
+  ['select', (label) => `请选择${label}`],
+  ['select-v2', (label) => `请选择${label}`],
+  ['tree-select', (label) => `请选择${label}`],
+  ['cascader', (label) => `请选择${label}`],
+  ['time-select', (label) => `请选择${label}`],
+  ['input-search', (label) => `请选择${label}`],
+  ['date-picker', () => '请选择日期'],
+  ['time-picker', () => '请选择时间']
+])
+
 /** 获取占位文本 */
-const getPlaceholder = (item: EditTableColumnItem) => {
+const getPlaceholder = (item: EditTableColumnItem): string | undefined => {
   if (!item.type) return undefined
-  if (['input', 'input-number', 'input-tag'].includes(item.type)) {
-    return `请输入${item.label}`
-  }
-  if (['textarea'].includes(item.type)) {
-    return `请填写${item.label}`
-  }
-  if (
-    ['select', 'select-v2', 'tree-select', 'cascader', 'time-select', 'input-search'].includes(
-      item.type
-    )
-  ) {
-    return `请选择${item.label}`
-  }
-  if (['date-picker'].includes(item.type)) {
-    return `请选择日期`
-  }
-  if (['time-picker'].includes(item.type)) {
-    return `请选择时间`
-  }
-  return undefined
+  const placeholderFn = PLACEHOLDER_MAP.get(item.type)
+  return placeholderFn ? placeholderFn(item.label) : undefined
 }
 
-// 组件的默认props配置
+/** 组件的默认props配置 */
 function getComponentBindProps(item: EditTableColumnItem) {
   // 获取默认配置
-  const defaultProps: any = STATIC_PROPS.get(item.type || '') || {}
-  defaultProps.placeholder = getPlaceholder(item)
+  const defaultProps: Record<string, any> = { ...(STATIC_PROPS.get(item.type || '') || {}) }
+  const placeholder = getPlaceholder(item)
+  if (placeholder) {
+    defaultProps.placeholder = placeholder
+  }
+  // 日期选择器格式化
   if (item.type === 'date-picker') {
     defaultProps.valueFormat = item?.componentProps?.type === 'datetime' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
   }
@@ -148,10 +151,11 @@ function getComponentBindProps(item: EditTableColumnItem) {
 
 /** 表单项校验规则 */
 function getFormItemRules(item: EditTableColumnItem) {
+  const rules = Array.isArray(item.rules) ? item.rules : []
   if (item.required) {
     return [
       { required: true, message: `${item.label}为必填项` },
-      ...(Array.isArray(item.rules) ? item.rules : [])
+      ...rules
     ]
   }
   return item.rules
@@ -164,8 +168,10 @@ function getLabelClassName(item: EditTableColumnItem) {
 }
 
 /** 判断是否禁用 */
-const isDisabled = (p: any) => {
-  if (typeof props?.cellDisabled === 'function') return props.cellDisabled(p)
+const isDisabled = (scope: any): boolean => {
+  if (typeof props?.cellDisabled === 'function') {
+    return props.cellDisabled(scope)
+  }
   return false
 }
 

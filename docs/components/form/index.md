@@ -9,6 +9,10 @@ import DemoDict from './DemoDict.vue'
 import DemoFc from './DemoFc.vue'
 </script>
 
+::: warning 注意
+注意：0.0.27版本之后，如果是用reactive定义，使用@update:model-value="Object.assign(form, $event)"配合来监听数据变化，如果是ref定义，可以直接使用v-model
+:::
+
 ## 基础用法
 
 <Demo></Demo>

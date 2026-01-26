@@ -12,6 +12,7 @@ interface PageResult<T> {
 
 // 定义表格数据的接口类型
 export interface UserItem {
+  id: string
   name: string
   age: number
   sex: string

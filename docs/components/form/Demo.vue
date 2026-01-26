@@ -12,10 +12,10 @@
         </el-space>
       </template>
 
-      <gi-form ref="GiFormRef" v-model="form" :columns="columns" :disabled="disabled" label-width="auto"
+      <gi-form ref="GiFormRef" :model-value="form" :columns="columns" :disabled="disabled" label-width="auto"
         :label-position="labelPosition" :grid-item-props="{
           span: { xs: 24, sm: 24, md: 24, lg: 12, xl: 12, xxl: 12 },
-        }">
+        }" @update:model-value="Object.assign(form, $event)">
         <template #customSlot="{ item }">
           {{ form.status }}-----------{{ item.field }}
         </template>

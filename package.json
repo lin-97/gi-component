@@ -39,13 +39,13 @@
     "vue": "^3.4.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.2.1",
+    "@antfu/eslint-config": "^7.2.0",
     "@element-plus/icons-vue": "^2.3.1",
     "@types/node": "^24.2.0",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vitejs/plugin-vue-jsx": "^4.2.0",
     "element-plus": "^2.11.2",
-    "eslint": "^9.27.0",
+    "eslint": "^9.39.2",
     "sass": "^1.89.0",
     "sass-loader": "^16.0.5",
     "terser": "^5.44.0",

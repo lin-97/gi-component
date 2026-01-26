@@ -1,5 +1,17 @@
 # 更新日志
 
+## v0.0.27
+
+**发布日期：** 2026-01-26
+
+新增全局类名 .gi-tool (类名作用请看示例)
+
+createSelectDialog增强优化
+
+::: danger 注意
+Form组件存在破坏性更新：0.0.27版本之后，如果是用reactive定义，使用@update:model-value="Object.assign(form, $event)"配合来监听数据变化，如果是ref定义，可以直接使用v-model
+:::
+
 ## v0.0.26
 
 **发布日期：** 2025-12-15

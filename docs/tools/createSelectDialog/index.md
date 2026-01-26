@@ -29,10 +29,8 @@ import type { TableDataItem } from './components/TreeTable.vue'
 import { createSelectDialog } from 'gi-component'
 import TreeTable from './components/TreeTable.vue'
 
-/**
- * 选择用户列表对话框
- */
-export const selectUserListDialog = createSelectDialog<TableDataItem[]>({
+// 选择用户列表对话框
+export const SelectUserListDialog = createSelectDialog<TableDataItem[]>({
   title: '选择用户',
   component: TreeTable,
   componentProps: {
@@ -45,17 +43,17 @@ export const selectUserListDialog = createSelectDialog<TableDataItem[]>({
 ### 2. 打开选择对话框
 
 ```typescript
-import { selectUserListDialog } from './utils'
+import { SelectUserListDialog } from './utils'
 
 // 基础用法
-selectUserListDialog({
+SelectUserListDialog({
   onOk: (data) => {
     console.log('选中的数据:', data)
   }
 })
 
 // 带参数的用法
-selectUserListDialog({
+SelectUserListDialog({
   title: '选择部门用户', // 覆盖默认标题
   multiple: true, // 支持多选
   queryParams: { departmentId: '1001' }, // 传递查询参数
@@ -113,6 +111,10 @@ defineExpose({
 
 5. **样式配置**：可以通过`componentProps`为内容组件传递样式和其他属性
 
+## 源码
+
+<<< ../../../packages/utils/createSelectDialog.ts
+
 ## 参数说明
 
 ### createSelectDialog函数参数
@@ -134,5 +136,6 @@ defineExpose({
 | `options.title` | `string` | 否 | 对话框标题，会覆盖createSelectDialog中的设置 |
 | `options.multiple` | `boolean` | 否 | 是否支持多选，默认为false |
 | `options.queryParams` | `Q['queryParams']` | 否 | 传递给内容组件的查询参数 |
+| `options.componentProps` | `Q['componentProps']` | 否 | 传递给内容组件的属性 |
 | `options.onOk` | `(data: T) => void` | 否 | 点击确定按钮后的回调函数，接收选中的数据 |
- | `options.onBeforeOk` | `(data: T) => Promise<boolean>` | 否 | 点击确定按钮前的回调函数，可用于校验数据，返回`Promise<boolean>` |
+| `options.onBeforeOk` | `(data: T) => Promise<boolean>` | 否 | 点击确定按钮前的回调函数，可用于校验数据，返回`Promise<boolean>` |

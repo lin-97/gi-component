@@ -2,8 +2,10 @@
 @use './el.scss';
 
 body {
+  // 主要作用于页面
   --padding: 14px;
   --margin: 14px;
+  // 主要作用于内置组件（不建议使用）
   --padding-x: 14px;
   --padding-x-small: 10px;
   --padding-y: 12px;
@@ -144,4 +146,8 @@ body {
 
 .gi-flex-column {
   flex-direction: column;
+}
+
+.gi-tool {
+  gap: 8px;
 }

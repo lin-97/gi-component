@@ -1,6 +1,8 @@
 # createBaseAPI
 
-本`createBaseAPI`仅提供参考，根据自身项目自行封装
+::: warning 提示
+仅供参考，根据业务自行封装
+:::
 
 ```typescript
 import { http } from '@/utils/http'
