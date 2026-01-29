@@ -126,3 +126,6 @@ export function createDialog() {
 
 // 默认导出实例
 export const Dialog = createDialog()
+
+// 防止打包时 tree-shake 掉 info/success/warning/error（此处引用保证被打包）
+void [Dialog.info, Dialog.success, Dialog.warning, Dialog.error]
