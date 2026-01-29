@@ -61,6 +61,10 @@ export default defineConfig(() => {
       rollupOptions: {
         // 确保外部化处理那些你不想打包进库的依赖
         external: ['vue', 'element-plus'],
+        // 防止 dialog 模块被 tree-shake 掉 info/success/warning/error 方法
+        treeshake: {
+          moduleSideEffects: (id) => id.includes('dialog/src/dialog') || id.includes('dialog\\src\\dialog'),
+        },
         output: {
           // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
           globals: {
