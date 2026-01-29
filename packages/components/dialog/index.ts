@@ -1,6 +1,6 @@
-import Dialog from './src/dialog.vue'
+import DialogComponent from './src/dialog.vue'
 
-export type DialogInstance = InstanceType<typeof Dialog>
+export type DialogInstance = InstanceType<typeof DialogComponent>
 export * from './src/dialog'
 export * from './src/type'
-export default Dialog
+export default DialogComponent
