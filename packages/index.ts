@@ -2,7 +2,7 @@ import type { App, Component } from 'vue'
 
 import Button from './components/button'
 import Card from './components/card'
-import DialogComponent from './components/dialog'
+import DialogComponent, { Dialog as DialogFunction } from './components/dialog'
 import Dot from './components/dot'
 import Drawer from './components/drawer'
 import EditTable from './components/edit-table'
@@ -16,6 +16,9 @@ import Table from './components/table'
 import Tabs from './components/tabs'
 import TreeTransfer from './components/tree-transfer'
 import './styles/index.scss'
+
+// 防止打包时 tree-shake 掉 Dialog.info/success/warning/error（内部只用到 Dialog.open）
+void [DialogFunction.info, DialogFunction.success, DialogFunction.warning, DialogFunction.error]
 
 export * from './components/dialog'
 export * from './components/drawer'

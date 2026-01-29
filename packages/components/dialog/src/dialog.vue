@@ -33,7 +33,7 @@
 import type { VNode } from 'vue'
 import type { DialogProps } from './type'
 import { ElButton, ElDialog, ElSpace } from 'element-plus'
-import { computed, defineProps, defineSlots, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useBemClass } from '../../../hooks'
 
 const visible = defineModel('modelValue', {
