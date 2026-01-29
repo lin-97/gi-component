@@ -26,8 +26,8 @@
 <script lang="ts" setup>
 import type { TableColumnItem } from 'gi-component'
 import { getUserList } from '@docs/_apis/mockTable'
+import { useTable } from '@docs/_hooks'
 import { ElButton, ElMessage, ElTag } from 'element-plus'
-import { useTable } from 'gi-component'
 import { h, reactive } from 'vue'
 
 const columns: TableColumnItem[] = [

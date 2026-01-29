@@ -16,8 +16,8 @@ import type { TableColumnItem } from 'gi-component'
 import { getUserList } from '@docs/_apis/mockTable'
 import Search from '@docs/_components/Search.vue'
 import Tree from '@docs/_components/Tree.vue'
+import { useTable } from '@docs/_hooks'
 import { ElTag } from 'element-plus'
-import { useTable } from 'gi-component'
 import { h, useTemplateRef } from 'vue'
 
 const columns: TableColumnItem[] = [

@@ -83,7 +83,7 @@ SelectUserListDialog({
 
 <script setup lang="ts">
 import type { TableColumnItem } from 'gi-component'
-import { useTable } from 'gi-component'
+import { useTable } from '@docs/_hooks'
 import { useTemplateRef } from 'vue'
 
 const tableRef = useTemplateRef('tableRef')

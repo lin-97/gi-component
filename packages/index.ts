@@ -1,8 +1,8 @@
-import type { App } from 'vue'
+import type { App, Component } from 'vue'
 
 import Button from './components/button'
 import Card from './components/card'
-import Dialog from './components/dialog'
+import DialogComponent from './components/dialog'
 import Dot from './components/dot'
 import Drawer from './components/drawer'
 import EditTable from './components/edit-table'
@@ -38,11 +38,11 @@ const components = {
   GridItem,
   Form,
   PageLayout,
-  Dialog,
+  Dialog: DialogComponent,
   EditTable,
   Table,
   TreeTransfer
-}
+} as unknown as Record<string, Component>
 
 // 导出Gi前缀的组件并添加明确类型注解
 export const GiButton: typeof Button = Button
@@ -56,7 +56,7 @@ export const GiGrid: typeof Grid = Grid
 export const GiGridItem: typeof GridItem = GridItem
 export const GiForm: typeof Form = Form
 export const GiPageLayout: typeof PageLayout = PageLayout
-export const GiDialog: typeof Dialog = Dialog
+export const GiDialog: typeof DialogComponent = DialogComponent
 export const GiEditTable: typeof EditTable = EditTable
 export const GiTable: typeof Table = Table
 export const GiTreeTransfer: typeof TreeTransfer = TreeTransfer

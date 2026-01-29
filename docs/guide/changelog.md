@@ -1,5 +1,12 @@
 # 更新日志
 
+## v0.0.28
+
+**发布日期：** 2026-01-29
+
+修复Dialog.success、Dialog.waring、Dialog.error没有导出问题
+删除内置useTable
+
 ## v0.0.27
 
 **发布日期：** 2026-01-26
