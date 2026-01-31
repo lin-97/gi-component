@@ -53,7 +53,7 @@ import Demo5 from './demo5.vue'
 | :---------- | :----------------------- | :------------------------------- | :------- |
 | size        | 左侧面板宽度/占比        | `SplitterPanelProps['size']`     | `270`    |
 | bordered    | 是否显示外边框           | `boolean`                        | `false`  |
-| collapse    | 是否显示折叠按钮         | `boolean`                        | `true`   |
+| collapse    | 是否可以折叠             | `boolean`                        | `true`   |
 | leftStyle   | 左侧区域自定义样式       | `CSSProperties`                  | `{}`     |
 | headerStyle | 头部区域自定义样式       | `CSSProperties`                  | `{}`     |
 | toolStyle   | 操作栏区域自定义样式     | `CSSProperties`                  | `{}`     |

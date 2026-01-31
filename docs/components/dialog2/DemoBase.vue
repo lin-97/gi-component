@@ -12,8 +12,8 @@ import { Dialog } from 'gi-component'
 
 const openInfoDialog = () => {
   Dialog.info({
-    title: 'Info Title',
-    content: 'proxy will permanently delete the file. Continue?',
+    title: '信息标题',
+    content: '落霞与孤鹜齐飞，秋水共长天一色',
     onBeforeOk: async () => {
       await new Promise((resolve) => setTimeout(() => resolve(true), 2000))
       return true
@@ -23,22 +23,22 @@ const openInfoDialog = () => {
 
 const openSuccessDialog = () => {
   Dialog.success({
-    title: 'Success Title',
-    content: 'Operation completed successfully'
+    title: '成功标题',
+    content: '落霞与孤鹜齐飞，秋水共长天一色'
   })
 }
 
 const openWarningDialog = () => {
   Dialog.warning({
-    title: 'Warning Title',
-    content: 'Are you sure you want to continue?'
+    title: '警告标题',
+    content: '落霞与孤鹜齐飞，秋水共长天一色'
   })
 }
 
 const openErrorDialog = () => {
   Dialog.error({
-    title: 'Error Title',
-    content: 'Operation failed'
+    title: '错误标题',
+    content: '落霞与孤鹜齐飞，秋水共长天一色'
   })
 }
 </script>

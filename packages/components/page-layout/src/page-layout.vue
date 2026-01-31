@@ -8,7 +8,7 @@
     <div v-if="slots.left && props.collapse" :class="b('page-layout__split')">
       <SplitButton :collapsed="Number(size) === 0" @click="handleClick"></SplitButton>
     </div>
-    <ElSplitterPanel>
+    <ElSplitterPanel :resizable="props.collapse">
       <div :class="b('page-layout__right')">
         <div v-if="slots.header" :class="b('page-layout__header')" :style="props.headerStyle">
           <slot name="header"></slot>

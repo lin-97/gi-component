@@ -1,10 +1,17 @@
 # 更新日志
 
+## v0.0.33
+
+**发布日期：** 2026-01-31
+
+修复page-layout组件设置collapse为false还能拉伸问题
+
 ## v0.0.32
 
 **发布日期：** 2026-01-29
 
 修复Dialog.success、Dialog.waring、Dialog.error没有导出问题
+
 删除内置useTable
 
 ## v0.0.27
