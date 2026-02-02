@@ -72,28 +72,15 @@ jobs:
             exit 1
           fi
 
-      # 9️⃣ 创建 docs 目录并复制构建产物
-      - name: Create docs directory and copy artifacts
-        run: |
-          mkdir -p docs
-          if [ -d "docs/.vitepress/dist" ]; then
-            cp -r docs/.vitepress/dist/* docs/
-            echo "Copied VitePress build artifacts to docs directory"
-            ls -la docs/
-          else
-            echo "Error: Cannot copy - VitePress dist directory not found"
-            exit 1
-          fi
-
       # 9️⃣ 配置 GitHub Pages
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
-      # 🔟 上传构建产物
+      # 🔟 上传构建产物（仅上传 dist，不包含 docs 源码，显著减小 artifact 体积、加快上传）
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: docs/.vitepress/dist
 
       # 🔟 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
