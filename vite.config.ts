@@ -7,12 +7,11 @@ import dts from 'vite-plugin-dts'
 
 export default defineConfig(() => {
   return {
-    // 路径别名
+    // 路径别名（库构建入口在 packages/，此处仅用于 dev 或插件解析）
     resolve: {
       alias: {
         '~': fileURLToPath(new URL('./', import.meta.url)),
-        '@': fileURLToPath(new URL('./src', import.meta.url))
-      }
+      },
     },
     plugins: [
       vue(),
@@ -24,11 +23,12 @@ export default defineConfig(() => {
         prefix: 'Gi'
       }),
       // 配置dts插件生成类型声明文件
+      // rollupTypes: false 按源结构输出多个 .d.ts，避免 index.d.ts 中出现找不到的 ./src/xxx.vue 引用
       dts({
         include: ['packages/**/*.ts', 'packages/**/*.vue'],
         outDir: 'dist',
         entryRoot: 'packages',
-        rollupTypes: true,
+        rollupTypes: false,
         // 排除不需要生成类型的文件
         exclude: ['**/node_modules/**', '**/__tests__/**', '**/dist/**']
       })
@@ -55,8 +55,8 @@ export default defineConfig(() => {
         formats: ['es', 'umd'],
         cssFileName: 'gi'
       },
-      // 生成TypeScript声明文件
       sourcemap: true,
+      // 不清空 dist，避免与 dts 插件输出冲突；需先构建再发布
       emptyOutDir: false,
       rollupOptions: {
         // 确保外部化处理那些你不想打包进库的依赖

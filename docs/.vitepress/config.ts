@@ -1,6 +1,9 @@
+import { createRequire } from 'node:module'
 import path from 'node:path'
 import { defineConfig } from 'vitepress'
-import packageJson from '../../package.json'
+
+const require = createRequire(import.meta.url)
+const packageJson = require('../../package.json') as { version: string }
 
 export default defineConfig({
   title: 'gi-component',
@@ -16,25 +19,21 @@ export default defineConfig({
   },
   themeConfig: {
     nav: [
-      { text: '首页', link: '/' },
-      { text: '指南', link: '/guide/introduction' },
       { text: '组件', link: '/components/button/' },
       { text: '工具', link: '/tools/createSelectDialog' },
-      { text: '内置CSS类名', link: '/style' },
       { text: `v${packageJson.version}`, link: '' }
     ],
     sidebar: {
-      '/guide/': [
+      '/': [
         {
           text: '指南',
           items: [
             { text: '介绍', link: '/guide/introduction' },
             { text: '快速开始', link: '/guide/quick-start' },
-            { text: '更新日志', link: '/guide/changelog' }
+            { text: '更新日志', link: '/guide/changelog' },
+            { text: '内置CSS', link: '/style' }
           ]
-        }
-      ],
-      '/components/': [
+        },
         {
           text: '基础组件',
           items: [

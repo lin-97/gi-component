@@ -65,10 +65,6 @@ gi-component 完全支持 TypeScript，您可以在项目中享受类型提示�
 body {
   --margin: 14px; // 基础外边距
   --padding: 14px; // 基础内边距
-  --padding-x: 14px;
-  --padding-x-small: 10px;
-  --padding-y: 12px;
-  --padding-y-small: 8px;
 }
 ```
 

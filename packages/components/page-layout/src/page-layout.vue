@@ -118,7 +118,7 @@ function handleClick() {
 }
 
 .#{a.$prefix}-page-layout__header {
-  padding: var(--padding-x);
+  padding: var(--padding);
   padding-bottom: 0;
   border-bottom: 1px solid var(--el-border-color);
   box-sizing: border-box;
@@ -126,7 +126,7 @@ function handleClick() {
 
 .#{a.$prefix}-page-layout__tool {
   width: 100%;
-  padding: var(--padding-x);
+  padding: var(--padding);
   padding-bottom: 0;
   display: flex;
   justify-content: end;
@@ -136,7 +136,7 @@ function handleClick() {
 
 .#{a.$prefix}-page-layout__body {
   flex: 1;
-  padding: var(--padding-x);
+  padding: var(--padding);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -144,23 +144,22 @@ function handleClick() {
   box-sizing: border-box;
 }
 
+.#{a.$prefix}-page-layout--has-header {
+  .#{a.$prefix}-page-layout__tool {
+    padding-top: 10px;
+  }
+}
+
+.#{a.$prefix}-page-layout--has-tool {
+  .#{a.$prefix}-page-layout__body {
+    padding-top: 10px;
+  }
+}
+
 .#{a.$prefix}-page-layout__split {
   width: 0;
   height: auto;
   position: relative;
-}
-
-.#{a.$prefix}-page-layout--has-header {
-  .#{a.$prefix}-page-layout__tool {
-    padding-top: var(--padding-y);
-  }
-}
-
-.#{a.$prefix}-page-layout--has-header,
-.#{a.$prefix}-page-layout--has-tool {
-  .#{a.$prefix}-page-layout__body {
-    padding-top: var(--padding-y);
-  }
 }
 
 .#{a.$prefix}-page-layout--collapsing {

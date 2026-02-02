@@ -33,11 +33,6 @@ const { b } = useBemClass()
 @use '../../../styles/var.scss' as a;
 
 .#{a.$prefix}-dialog-content {
-  .el-message-box__status {
-    width: 24px;
-    height: 24px;
-  }
-
   .el-message-box__message {
     font-size: 15px;
   }

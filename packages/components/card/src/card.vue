@@ -5,7 +5,9 @@
         <slot name="title">{{ props.title }}</slot>
       </div>
       <div :class="b('card-header__extra')">
-        <slot name="extra">{{ props.extra }}</slot>
+        <ElSpace>
+          <slot name="extra">{{ props.extra }}</slot>
+        </ElSpace>
       </div>
     </section>
     <section :class="b('card-body')" :style="props.bodyStyle">
@@ -19,6 +21,7 @@
 
 <script lang="ts" setup>
 import type { CardProps } from './type'
+import { ElSpace } from 'element-plus'
 import { computed, useSlots } from 'vue'
 import { useBemClass } from '../../../hooks'
 
@@ -73,10 +76,10 @@ const getHeaderClass = computed(() => {
   flex-direction: column;
   overflow: hidden;
   box-sizing: border-box;
-  --card-padding-x: var(--padding-x);
-  --card-padding-x-small: var(--padding-x-small);
-  --card-padding-y: var(--padding-y);
-  --card-padding-y-small: var(--padding-y-small);
+  --card-padding-x: var(--padding);
+  --card-padding-x-small: 10px;
+  --card-padding-y: var(--padding);
+  --card-padding-y-small: 10px;
 
   &--bordered {
     border: 1px solid var(--el-border-color);
@@ -137,6 +140,7 @@ const getHeaderClass = computed(() => {
 }
 
 .#{a.$prefix}-card--inner {
+
   .#{a.$prefix}-card-header,
   .#{a.$prefix}-card-body,
   .#{a.$prefix}-card-footer {

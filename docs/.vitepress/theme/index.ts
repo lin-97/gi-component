@@ -1,7 +1,8 @@
+import type { EnhanceAppContext } from 'vitepress'
 import ElementPlus from 'element-plus'
 import locale from 'element-plus/es/locale/lang/zh-cn'
+import GiComponent, { Dialog } from 'gi-component'
 import DefaultTheme from 'vitepress/theme'
-import GiComponent, { Dialog } from '../../../packages/index'
 import { getDictData } from '../../_apis/dictRequest'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
@@ -10,7 +11,7 @@ import '../../public/css/index.css'
 
 export default {
   ...DefaultTheme,
-  enhanceApp: async ({ app, router, siteData }) => {
+  enhanceApp: async ({ app }: EnhanceAppContext) => {
     // app is the Vue 3 app instance from `createApp()`. router is VitePress'
     // custom router. `siteData`` is a `ref`` of current site-level metadata.
     Dialog._context = app._context

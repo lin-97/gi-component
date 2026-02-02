@@ -1,10 +1,8 @@
 <template>
   <gi-card title="卡片标题" bordered size="small" class="gi-card-title">
     <template #extra>
-      <el-space>
-        <el-button type="primary" size="small">保存</el-button>
-        <el-button size="small">返回</el-button>
-      </el-space>
+      <el-button type="primary" size="small">保存</el-button>
+      <el-button size="small">返回</el-button>
     </template>
     <el-space wrap>
       <el-button>Default</el-button>

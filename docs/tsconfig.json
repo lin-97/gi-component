@@ -1,0 +1,23 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "gi-component": [
+        "../packages/index.ts"
+      ],
+      "@docs/*": [
+        "docs/*"
+      ]
+    }
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.vue",
+    "./**/*.tsx",
+    ".vitepress/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

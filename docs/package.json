@@ -17,6 +17,7 @@
   "devDependencies": {
     "@element-plus/icons-vue": "^2.3.2",
     "element-plus": "^2.11.2",
+    "gi-component": "workspace:*",
     "typescript": "^5.8.3",
     "vite": "6.3.5",
     "vitepress": "1.6.4",

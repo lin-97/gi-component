@@ -2,14 +2,12 @@
   <div>
     <gi-card title="配置表单示例" bordered>
       <template #extra>
-        <el-space>
-          <el-switch v-model="disabled" active-text="禁用"></el-switch>
-          <el-radio-group v-model="labelPosition" size="small">
-            <el-radio-button label="左侧" value="left" />
-            <el-radio-button label="右侧" value="right" />
-            <el-radio-button label="顶部" value="top" />
-          </el-radio-group>
-        </el-space>
+        <el-switch v-model="disabled" active-text="禁用"></el-switch>
+        <el-radio-group v-model="labelPosition" size="small">
+          <el-radio-button label="左侧" value="left" />
+          <el-radio-button label="右侧" value="right" />
+          <el-radio-button label="顶部" value="top" />
+        </el-radio-group>
       </template>
 
       <gi-form ref="GiFormRef" :model-value="form" :columns="columns" :disabled="disabled" label-width="auto"
