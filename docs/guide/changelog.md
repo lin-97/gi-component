@@ -1,6 +1,6 @@
 # 更新日志
 
-## v0.0.34 (2026-02-02)
+## v0.0.35 (2026-02-02)
 
 ::: danger 注意
 去除了 --padding-x: 14px;--padding-x-small: 10px;--padding-y: 12px;--padding-y-small: 8px;等css内置变量
