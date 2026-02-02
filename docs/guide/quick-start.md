@@ -20,7 +20,7 @@ npm install gi-component --save
 在使用 gi-component 之前，请确保您的项目满足以下要求：
 
 - Vue.js 3.x
-- Element Plus 2.x
+- Element Plus 2.11.0 以上
 - TypeScript 4.5+（可选，但推荐）
 
 ## 引入方式
@@ -47,14 +47,25 @@ app.use(GiComponent)
 app.mount('#app')
 ```
 
+## 按需引入
+
+```js
+import { Dialog, GiCard, GiPageLayout, GiTable } from 'gi-component'
+```
+
 ## TypeScript 支持
 
 gi-component 完全支持 TypeScript，您可以在项目中享受类型提示。如果您的项目使用 TypeScript，建议在 `tsconfig.json` 中添加以下配置：
 
 ```json
 {
+  // 旧版
+  // "compilerOptions": {
+  //   "types": ["element-plus/global", "gi-component/packages/components.d.ts"]
+  // }
+  // 新版 0.0.35版本开始
   "compilerOptions": {
-    "types": ["element-plus/global", "gi-component/packages/components.d.ts"]
+    "types": ["element-plus/global", "gi-component/dist/components.d.ts"]
   }
 }
 ```
