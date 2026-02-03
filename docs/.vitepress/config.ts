@@ -9,6 +9,9 @@ export default defineConfig({
   title: 'gi-component',
   description: 'Vue3中基于Element Plus二次封装基础组件库',
   base: '/gi-component/',
+  head: [
+    ['link', { rel: 'icon', href: '/gi-component/favicon.ico' }]
+  ],
   vite: {
     resolve: {
       alias: {
@@ -18,6 +21,7 @@ export default defineConfig({
     }
   },
   themeConfig: {
+    logo: '/logo.png',
     nav: [
       { text: '组件', link: '/components/button/' },
       { text: '工具', link: '/tools/createSelectDialog' },

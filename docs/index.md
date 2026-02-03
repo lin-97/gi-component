@@ -6,6 +6,9 @@ hero:
   name: 'gi-component'
   text: '一个基于Element Plus二次封装的组件库'
   tagline: 提供高效组件，大幅度提高您的开发速度
+  image:
+    src: /logo.png
+    alt: gi-component
   actions:
     - theme: brand
       text: 开始使用
