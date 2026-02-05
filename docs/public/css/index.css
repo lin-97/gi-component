@@ -25,6 +25,11 @@
   table-layout: fixed;
 } */
 
+/* 代码块统一暗色背景 */
+:root {
+  --vp-code-block-bg: #1e1e1e;
+}
+
 html {
   scroll-behavior: smooth;
 }

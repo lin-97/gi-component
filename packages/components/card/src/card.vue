@@ -71,6 +71,7 @@ const getHeaderClass = computed(() => {
 @use '../../../styles/var.scss' as a;
 
 .#{a.$prefix}-card {
+  width: 100%;
   background-color: var(--el-bg-color);
   display: flex;
   flex-direction: column;

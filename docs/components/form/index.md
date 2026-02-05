@@ -54,6 +54,7 @@ import DemoFc from './DemoFc.vue'
 | searchText           | `string`           | 搜索按钮文本     | `'查询'`                               |
 | hideFoldBtn          | `boolean`          | 是否隐藏折叠按钮 | `false`                                |
 | defaultCollapsed     | `boolean`          | 默认是否折叠     | -                                      |
+| suffix               | `boolean`          | 搜索表单时，搜索/重置/折叠按钮所在行是否作为 Grid 的 suffix 布局（靠右或单独一行） | `true` |
 | fc           | `Record<string, { required: boolean; disabled: boolean; hidden: boolean }>`       | 表单控制属性     | -                                      |
 
 ::: tip

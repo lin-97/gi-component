@@ -81,4 +81,5 @@ export interface FormProps extends Partial<ElFormProps> {
   searchText?: string
   hideFoldBtn?: boolean
   defaultCollapsed?: boolean | undefined
+  suffix?: boolean
 }

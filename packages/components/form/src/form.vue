@@ -59,7 +59,7 @@
         </template>
       </template>
 
-      <GridItem v-if="props.search" :suffix="props.search" :span="props?.gridItemProps?.span">
+      <GridItem v-if="props.search" :suffix="props.suffix && props.search" :span="props?.gridItemProps?.span">
         <ElSpace :class="b('form__search-btns')">
           <ElButton type="primary" @click="emit('search')">
             {{ searchText }}
@@ -104,6 +104,7 @@ const props = withDefaults(defineProps<FormProps>(), {
   searchText: '查询',
   hideFoldBtn: false,
   defaultCollapsed: undefined,
+  suffix: true,
   fc: () => ({})
 })
 

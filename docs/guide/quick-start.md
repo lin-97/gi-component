@@ -9,10 +9,10 @@
 npm install gi-component --save
 
 # 使用 yarn
-# yarn add gi-component
+yarn add gi-component
 
 # 使用 pnpm
-# pnpm install gi-component
+pnpm install gi-component
 ```
 
 ## 环境要求

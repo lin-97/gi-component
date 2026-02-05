@@ -9,6 +9,12 @@ export default defineConfig({
   title: 'gi-component',
   description: 'Vue3中基于Element Plus二次封装基础组件库',
   base: '/gi-component/',
+  markdown: {
+    theme: {
+      light: 'github-dark',
+      dark: 'github-dark'
+    }
+  },
   head: [
     ['link', { rel: 'icon', href: '/gi-component/favicon.ico' }]
   ],
