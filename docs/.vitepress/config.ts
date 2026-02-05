@@ -31,6 +31,7 @@ export default defineConfig({
     nav: [
       { text: '组件', link: '/components/button/' },
       { text: '工具', link: '/tools/createSelectDialog' },
+      { text: '捐赠', link: '/donate' },
       { text: `v${packageJson.version}`, link: '' }
     ],
     sidebar: {
