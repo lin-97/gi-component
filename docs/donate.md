@@ -8,4 +8,4 @@
 
 | 支付宝 |
 | :----: |
-| ![支付宝收款码](/gi-component/alipay.jpg) |
+| ![支付宝收款码](./public/alipay.jpg) |
