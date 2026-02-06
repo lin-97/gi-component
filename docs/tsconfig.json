@@ -2,22 +2,9 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "gi-component": [
-        "../packages/index.ts"
-      ],
-      "@docs/*": [
-        "docs/*"
-      ]
-    }
+    "paths": { "@docs/*": ["*"] },
+    "types": ["vite/client", "element-plus/global", "../packages/types/global.d.ts"]
   },
-  "include": [
-    "./**/*.ts",
-    "./**/*.vue",
-    "./**/*.tsx",
-    ".vitepress/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["./**/*.ts", "./**/*.vue", "./**/*.tsx", ".vitepress/**/*.ts"],
+  "exclude": ["node_modules"]
 }
