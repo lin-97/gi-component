@@ -59,13 +59,8 @@ gi-component 完全支持 TypeScript，您可以在项目中享受类型提示�
 
 ```json
 {
-  // 旧版
-  // "compilerOptions": {
-  //   "types": ["element-plus/global", "gi-component/packages/components.d.ts"]
-  // }
-  // 新版 0.0.35版本开始
   "compilerOptions": {
-    "types": ["element-plus/global", "gi-component/dist/components.d.ts"]
+    "types": ["element-plus/global", "gi-component/packages/components.d.ts"]
   }
 }
 ```
