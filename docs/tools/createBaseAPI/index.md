@@ -7,34 +7,34 @@
 ```typescript
 import { http } from '@/utils/http'
 
-interface DefaultP {
-  queryByIdParams?: { id: string } // 详情查询参数
-  pageQueryListParams?: Record<string, any> // 分页查询参数
-  saveInsertParams?: Record<string, any> // 新增参数
-  saveUpdateParams?: Record<string, any> // 更新参数
-  deleteParams?: { ids: string[] } // 删除参数
+interface P {
+  queryById?: { id: string } // 详情查询参数
+  pageQueryList?: Record<string, any> // 分页查询参数
+  saveInsert?: Record<string, any> // 新增参数
+  saveUpdate?: Record<string, any> // 更新参数
+  delete?: { ids: string[] } // 删除参数
 }
 
-export function createBaseAPI<T, P extends DefaultP = DefaultP>(params: { baseUrl: string }) {
+export function createBaseAPI<T, Q extends P = P>(params: { baseUrl: string }) {
   const { baseUrl } = params
 
   const baseAPI = {
     newBean() {
       return http.get<T>(`${baseUrl}/newBean`, {})
     },
-    queryById(params: P['queryByIdParams']) {
+    queryById(params: Q['queryById']) {
       return http.get<T>(`${baseUrl}/queryById`, params)
     },
-    pageQueryList(params: P['pageQueryListParams'] & { page: number, rows: number }) {
+    pageQueryList(params: Q['pageQueryList'] & { page: number, rows: number }) {
       return http.get<PageResult<T[]>>(`${baseUrl}/pageQueryList`, params)
     },
-    saveInsert(data: P['saveInsertParams']) {
+    saveInsert(data: Q['saveInsert']) {
       return http.post<T>(`${baseUrl}/saveInsert`, data)
     },
-    saveUpdate(data: P['saveUpdateParams']) {
+    saveUpdate(data: Q['saveUpdate']) {
       return http.post<T>(`${baseUrl}/saveUpdate`, data)
     },
-    delete(params: P['deleteParams']) {
+    delete(params: Q['delete']) {
       return http.post<string>(`${baseUrl}/delete`, params)
     }
     // 扩展，根据实际情况添加其他基本接口，如导入、导出等
@@ -62,13 +62,13 @@ interface ListItem {
 }
 
 // 用于覆盖原来的默认类型
-interface TBaseApi {
+interface Q {
   pageQueryList: { name?: string, status?: number }
   // ....
 }
 
 // 基础接口
-export const baseAPI = createBaseAPI<ListItem, TBaseApi>({ baseUrl: '/api/user' })
+export const baseAPI = createBaseAPI<ListItem, Q>({ baseUrl: '/api/user' })
 
 // 其他接口
 export const getUserRoleList = (params: { id: string }) => {

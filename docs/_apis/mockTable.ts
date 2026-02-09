@@ -6,7 +6,7 @@ interface ApiResult<T> {
 }
 
 interface PageResult<T> {
-  list: T[]
+  list: T
   total: number
 }
 
@@ -69,6 +69,7 @@ const generateMockData = (): UserItem[] => {
       = cityInfo.districts[Math.floor(Math.random() * cityInfo.districts.length)]
 
     data.push({
+      id: i.toString(),
       name,
       age,
       sex,
