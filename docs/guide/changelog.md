@@ -2,7 +2,7 @@
 
 ## v0.0.37 (2026-02-09)
 
-优化Form组件，FormColumnItem的props类型改为可选
+优化Form组件，FormColumnItem的props里面的属性类型改为可选
 
 ## v0.0.36 (2026-02-05)
 
