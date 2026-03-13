@@ -6,6 +6,7 @@ import DialogComponent, { Dialog as DialogFunction } from './components/dialog'
 import Dot from './components/dot'
 import Drawer from './components/drawer'
 import EditTable from './components/edit-table'
+import Flex from './components/flex'
 import Form from './components/form'
 import GridItem from './components/grid/src/grid-item.vue'
 import Grid from './components/grid/src/grid.vue'
@@ -37,6 +38,7 @@ const components = {
   Tabs,
   InputGroup,
   InputSearch,
+  Flex,
   Grid,
   GridItem,
   Form,
@@ -55,6 +57,7 @@ export const GiDot: typeof Dot = Dot
 export const GiTabs: typeof Tabs = Tabs
 export const GiInputGroup: typeof InputGroup = InputGroup
 export const GiInputSearch: typeof InputSearch = InputSearch
+export const GiFlex: typeof Flex = Flex
 export const GiGrid: typeof Grid = Grid
 export const GiGridItem: typeof GridItem = GridItem
 export const GiForm: typeof Form = Form

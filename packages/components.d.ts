@@ -15,6 +15,7 @@ declare module 'vue' {
     GiDot: typeof import('./components/dot/src/dot.vue')['default']
     GiDrawer: typeof import('./components/drawer/src/drawer.vue')['default']
     GiEditTable: typeof import('./components/edit-table/src/edit-table.vue')['default']
+    GiFlex: typeof import('./components/flex/src/flex.vue')['default']
     GiForm: typeof import('./components/form/src/form.vue')['default']
     GiGrid: typeof import('./components/grid/src/grid.vue')['default']
     GiGridItem: typeof import('./components/grid/src/grid-item.vue')['default']
