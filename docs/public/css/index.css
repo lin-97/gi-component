@@ -86,3 +86,7 @@ html {
   line-height: 1;
   padding: 5px;
 }
+
+.gi-card-body table {
+  margin: 0;
+}

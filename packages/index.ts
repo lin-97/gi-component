@@ -2,6 +2,7 @@ import type { App, Component } from 'vue'
 
 import Button from './components/button'
 import Card from './components/card'
+import Descriptions from './components/descriptions'
 import DialogComponent, { Dialog as DialogFunction } from './components/dialog'
 import Dot from './components/dot'
 import Drawer from './components/drawer'
@@ -21,6 +22,7 @@ import './styles/index.scss'
 // 防止打包时 tree-shake 掉 Dialog.info/success/warning/error（内部只用到 Dialog.open）
 void [DialogFunction.info, DialogFunction.success, DialogFunction.warning, DialogFunction.error]
 
+export * from './components/descriptions'
 export * from './components/dialog'
 export * from './components/drawer'
 export * from './components/edit-table'
@@ -33,6 +35,7 @@ export * from './utils'
 const components = {
   Button,
   Card,
+  Descriptions,
   Drawer,
   Dot,
   Tabs,
@@ -52,6 +55,7 @@ const components = {
 // 导出Gi前缀的组件并添加明确类型注解
 export const GiButton: typeof Button = Button
 export const GiCard: typeof Card = Card
+export const GiDescriptions: typeof Descriptions = Descriptions
 export const GiDrawer: typeof Drawer = Drawer
 export const GiDot: typeof Dot = Dot
 export const GiTabs: typeof Tabs = Tabs
