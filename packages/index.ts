@@ -16,6 +16,7 @@ import InputSearch from './components/input-search'
 import PageLayout from './components/page-layout'
 import Table from './components/table'
 import Tabs from './components/tabs'
+import Tag from './components/tag'
 import TreeTransfer from './components/tree-transfer'
 import './styles/index.scss'
 
@@ -29,6 +30,7 @@ export * from './components/edit-table'
 export * from './components/form'
 export * from './components/table'
 export * from './components/tabs'
+export * from './components/tag'
 export * from './hooks'
 export * from './utils'
 
@@ -49,6 +51,7 @@ const components = {
   Dialog: DialogComponent,
   EditTable,
   Table,
+  Tag,
   TreeTransfer
 } as unknown as Record<string, Component>
 
@@ -69,6 +72,7 @@ export const GiPageLayout: typeof PageLayout = PageLayout
 export const GiDialog: typeof DialogComponent = DialogComponent
 export const GiEditTable: typeof EditTable = EditTable
 export const GiTable: typeof Table = Table
+export const GiTag: typeof Tag = Tag
 export const GiTreeTransfer: typeof TreeTransfer = TreeTransfer
 
 function capitalizeWord(word: string) {

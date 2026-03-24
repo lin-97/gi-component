@@ -10,9 +10,9 @@ declare module 'vue' {
   export interface GlobalComponents {
     GiButton: typeof import('./components/button/src/button.vue')['default']
     GiCard: typeof import('./components/card/src/card.vue')['default']
+    GiDescriptions: typeof import('./components/descriptions/src/descriptions.vue')['default']
     GiDialog: typeof import('./components/dialog/src/dialog.vue')['default']
     GiDialogContent: typeof import('./components/dialog/src/dialog-content.vue')['default']
-    GiDescriptions: typeof import('./components/descriptions/src/descriptions.vue')['default']
     GiDot: typeof import('./components/dot/src/dot.vue')['default']
     GiDrawer: typeof import('./components/drawer/src/drawer.vue')['default']
     GiEditTable: typeof import('./components/edit-table/src/edit-table.vue')['default']
@@ -27,6 +27,7 @@ declare module 'vue' {
     GiTable: typeof import('./components/table/src/table.vue')['default']
     GiTableColumn: typeof import('./components/table/src/TableColumn.vue')['default']
     GiTabs: typeof import('./components/tabs/src/tabs.vue')['default']
+    GiTag: typeof import('./components/tag/src/tag.vue')['default']
     GiTreeTransfer: typeof import('./components/tree-transfer/src/tree-transfer.vue')['default']
   }
 }

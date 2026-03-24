@@ -56,6 +56,7 @@ export default defineConfig({
             { text: 'InputGroup 输入框组', link: '/components/input-group/' },
             { text: 'InputSearch 搜索输入框', link: '/components/input-search/' },
             { text: 'Tabs 标签页', link: '/components/tabs/' },
+            { text: 'Tag 标签', link: '/components/tag/' },
             { text: 'PageLayout 页面布局', link: '/components/page-layout/' },
             { text: 'Dot 点', link: '/components/dot/' }
           ]
