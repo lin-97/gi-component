@@ -58,6 +58,7 @@ import DemoIcon from './DemoIcon.vue'
 | color | 颜色：主题色（与 Element 一致）或调色板预设名或任意 CSS 颜色字符串 | `primary` \| `success` \| `warning` \| `danger` \| `info` \| 调色板名 \| `string` | `primary` |
 | size | 尺寸 | `small` \| `default` \| `large` | `default` |
 | icon | 左侧图标组件（如 Element Plus Icons）；与 `#icon` 插槽并存时以插槽为准 | `Component` | — |
+| round | 是否为胶囊圆角（大圆角） | `boolean` | `false` |
 | closable | 是否显示关闭按钮 | `boolean` | `false` |
 
 ### Events

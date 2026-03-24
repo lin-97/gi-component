@@ -2,7 +2,7 @@
   <gi-card bordered title="图标">
     <el-space direction="vertical" alignment="normal" style="width: 100%">
       <el-space wrap>
-        <GiTag :icon="User" color="primary">icon 属性</GiTag>
+        <GiTag :icon="User">icon 属性</GiTag>
         <GiTag :icon="CircleCheck" color="success" closable @close="onClose">icon + 可关闭</GiTag>
       </el-space>
       <el-space wrap>

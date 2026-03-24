@@ -26,8 +26,9 @@ import { useBemClass } from '../../../hooks'
 
 const props = withDefaults(defineProps<TagProps>(), {
   type: 'light',
-  color: 'primary',
+  color: 'info',
   size: 'default',
+  round: false,
   closable: false
 })
 
@@ -96,8 +97,6 @@ function stylesForType(
   rgb: { r: number, g: number, b: number }
 ): CSSProperties {
   const { r, g, b } = rgb
-  const bgTint = `rgba(${r}, ${g}, ${b}, 0.1)`
-  const borderTint = `rgba(${r}, ${g}, ${b}, 0.2)`
   /** 与主题色标签一致：悬停时白字 + 实心色底 */
   const closeHoverVars = {
     '--tag-close-hover-color': '#fff',
@@ -116,21 +115,21 @@ function stylesForType(
       return {
         color,
         backgroundColor: 'transparent',
-        borderColor: color,
+        borderColor: `rgba(${r}, ${g}, ${b}, 0.6)`,
         ...closeHoverVars
       }
     case 'light-outline':
       return {
         color,
-        backgroundColor: bgTint,
-        borderColor: borderTint,
+        backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`,
+        borderColor: `rgba(${r}, ${g}, ${b}, 0.2)`,
         ...closeHoverVars
       }
     case 'light':
     default:
       return {
         color,
-        backgroundColor: bgTint,
+        backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`,
         ...closeHoverVars
       }
   }
@@ -142,6 +141,7 @@ const className = computed(() => {
     b('tag'),
     props.type && b(`tag__type--${props.type}`),
     props.size && b(`tag__size--${props.size}`),
+    props.round && b('tag--round'),
     c && isSemanticThemeColor(c) && b(`tag__color--${c}`)
   ].filter(Boolean).join(' ')
 })
@@ -185,8 +185,11 @@ $tag-size-large-padding: 0 10px;
   font-size: 12px;
   line-height: 1;
   white-space: nowrap;
-  cursor: pointer;
   border-radius: 3px;
+}
+
+.#{a.$prefix}-tag--round {
+  border-radius: 9999px;
 }
 
 .#{a.$prefix}-tag__icon {
@@ -237,6 +240,7 @@ $tag-size-large-padding: 0 10px;
   padding: $tag-size-small-padding;
 
   .#{a.$prefix}-tag__icon {
+
     :deep(.el-icon),
     :deep(svg) {
       width: 10px;
@@ -265,6 +269,7 @@ $tag-size-large-padding: 0 10px;
   padding: $tag-size-large-padding;
 
   .#{a.$prefix}-tag__icon {
+
     :deep(.el-icon),
     :deep(svg) {
       width: 12px;
@@ -316,7 +321,7 @@ $tag-size-large-padding: 0 10px;
   @each $s in $theme-colors {
     &.#{a.$prefix}-tag__color--#{$s} {
       color: var(--el-color-#{$s});
-      border-color: var(--el-color-#{$s});
+      border-color: var(--el-color-#{$s}-light-5);
 
       --tag-close-hover-color: #fff;
       --tag-close-hover-bg-color: var(--el-color-#{$s});
@@ -332,11 +337,19 @@ $tag-size-large-padding: 0 10px;
     &.#{a.$prefix}-tag__color--#{$s} {
       color: var(--el-color-#{$s});
       background-color: var(--el-color-#{$s}-light-9);
-      border-color: var(--el-color-#{$s}-light-5);
+      border-color: var(--el-color-#{$s}-light-7);
 
       --tag-close-hover-color: #fff;
       --tag-close-hover-bg-color: var(--el-color-#{$s});
     }
+  }
+}
+
+.#{a.$prefix}-tag__type--light,
+.#{a.$prefix}-tag__type--outline,
+.#{a.$prefix}-tag__type--light-outline {
+  &.#{a.$prefix}-tag__color--info {
+    color: var(--el-color-text-primary);
   }
 }
 </style>

@@ -31,6 +31,8 @@ export interface TagProps {
    * 左侧图标组件（如 `@element-plus/icons-vue` 图标）；与 `#icon` 插槽同时存在时以插槽为准
    */
   icon?: Component
+  /** 是否为胶囊圆角（大圆角） */
+  round?: boolean
   /** 是否可关闭 */
   closable?: boolean
 }
