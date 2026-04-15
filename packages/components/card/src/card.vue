@@ -51,10 +51,10 @@ const getCardClass = computed(() => {
   if (props.bordered) {
     arr.push(b('card--bordered'))
   }
+  arr.push(b(`card--${props.size}`))
   if (props.inner) {
     arr.push(b('card--inner'))
   }
-  arr.push(b(`card--${props.size}`))
   return arr.join(' ')
 })
 
@@ -132,24 +132,6 @@ const getHeaderClass = computed(() => {
   box-sizing: border-box;
 }
 
-.#{a.$prefix}-card--full {
-  .#{a.$prefix}-card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.#{a.$prefix}-card--inner {
-
-  .#{a.$prefix}-card-header,
-  .#{a.$prefix}-card-body,
-  .#{a.$prefix}-card-footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
 .#{a.$prefix}-card--small {
   .#{a.$prefix}-card-header {
     height: 36px;
@@ -166,6 +148,24 @@ const getHeaderClass = computed(() => {
 
   .#{a.$prefix}-card-footer {
     padding: var(--card-padding-y-small) var(--card-padding-x-small);
+  }
+}
+
+.#{a.$prefix}-card--full {
+  .#{a.$prefix}-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.#{a.$prefix}-card--inner {
+
+  .#{a.$prefix}-card-header,
+  .#{a.$prefix}-card-body,
+  .#{a.$prefix}-card-footer {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 </style>

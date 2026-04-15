@@ -24,8 +24,8 @@ const classNames = computed(() => [b('flex')])
 
 const gapMap: Record<string, string> = {
   small: '8px',
-  middle: '16px',
-  large: '24px'
+  middle: '12px',
+  large: '16px'
 }
 
 const resolvedGap = computed(() => {
@@ -50,7 +50,7 @@ const resolvedWrap = computed(() => {
 const style = computed<CSSProperties>(() => {
   const obj: CSSProperties = {
     display: 'flex',
-    flexDirection: props.vertical ? 'column' : 'row',
+    flexDirection: props.column || props.vertical ? 'column' : 'row',
     flexWrap: resolvedWrap.value,
     justifyContent: props.justify,
     alignItems: props.align

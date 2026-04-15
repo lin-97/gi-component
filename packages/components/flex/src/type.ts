@@ -1,5 +1,7 @@
 export interface FlexProps {
   /** Flex 主轴的方向是否垂直，使用 flex-direction: column */
+  column?: boolean
+  /** 与 column 同义，保留用于兼容旧版 API */
   vertical?: boolean
   /** 设置元素单行显示还是多行显示，参考 flex-wrap；支持布尔值，true 为 wrap，false 为 nowrap */
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | boolean | ''

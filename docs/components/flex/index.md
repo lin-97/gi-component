@@ -50,7 +50,7 @@ import DemoWrap from './DemoWrap.vue'
 
 | 属性     | 说明                                       | 类型                                                                 | 默认值   |
 | -------- | ------------------------------------------ | -------------------------------------------------------------------- | -------- |
-| vertical | Flex 主轴的方向是否垂直，使用 `flex-direction: column` | `boolean`                                                            | `false`  |
+| column | Flex 主轴的方向是否垂直，使用 `flex-direction: column` | `boolean`                                                            | `false`  |
 | wrap     | 设置元素单行显示还是多行显示               | `boolean` \| `nowrap` \| `wrap` \| `wrap-reverse`（`true` 为 wrap，`false` 为 nowrap） | `false` |
 | justify  | 设置元素在主轴方向上的对齐方式             | `normal` \| `flex-start` \| `flex-end` \| `center` \| `space-between` \| `space-around` \| `space-evenly` | `normal` |
 | align    | 设置元素在交叉轴方向上的对齐方式           | `normal` \| `flex-start` \| `flex-end` \| `center` \| `stretch` \| `baseline` | `normal` |
