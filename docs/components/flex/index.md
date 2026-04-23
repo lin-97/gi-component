@@ -55,4 +55,4 @@ import DemoWrap from './DemoWrap.vue'
 | justify  | 设置元素在主轴方向上的对齐方式             | `normal` \| `flex-start` \| `flex-end` \| `center` \| `space-between` \| `space-around` \| `space-evenly` | `normal` |
 | align    | 设置元素在交叉轴方向上的对齐方式           | `normal` \| `flex-start` \| `flex-end` \| `center` \| `stretch` \| `baseline` | `normal` |
 | flex     | `flex` CSS 简写属性                       | 参考 `flex` CSS 属性                                                | `normal` |
-| gap      | 设置网格之间的间隙                         | 预设 `small`(8px)、`middle`(16px)、`large`(24px)，或 `string` \| `number` | -        |
+| gap      | 设置网格之间的间隙                         | 预设 `small`(8px)、`middle`(12px)、`large`(16px)，或 `string` \| `number` | -        |
