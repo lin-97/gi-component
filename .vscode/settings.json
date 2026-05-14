@@ -83,6 +83,7 @@
     "less",
     "scss",
     "pcss",
-    "postcss"
+    "postcss",
+    "unplugin"
   ]
 }

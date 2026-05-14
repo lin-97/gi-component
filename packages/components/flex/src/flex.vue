@@ -20,21 +20,15 @@ const props = withDefaults(defineProps<FlexProps>(), {
 
 const { b } = useBemClass()
 
-const classNames = computed(() => [b('flex')])
+const classNames = computed(() => [b('flex'), b(`flex__size--${props.gap}`)])
 
-const gapMap: Record<string, string> = {
-  small: '8px',
-  middle: '12px',
-  large: '16px'
-}
+const SIZE_MAP = ['small', 'middle', 'large']
 
 const resolvedGap = computed(() => {
-  if (props.gap === undefined || props.gap === null || props.gap === '')
+  if (props.gap === undefined || props.gap === null || props.gap === '' || SIZE_MAP.includes(props.gap as string))
     return undefined
   if (typeof props.gap === 'number')
     return `${props.gap}px`
-  if (gapMap[props.gap])
-    return gapMap[props.gap]
   return String(props.gap)
 })
 
@@ -66,7 +60,23 @@ const style = computed<CSSProperties>(() => {
 </script>
 
 <style scoped lang="scss">
+@use '../../../styles/var.scss' as a;
+
 :deep(.el-button+.el-button) {
   margin-left: 0;
+}
+
+.#{a.$prefix}-flex {
+  &__size--small {
+    gap: 8px;
+  }
+
+  &__size--middle {
+    gap: 12px;
+  }
+
+  &__size--large {
+    gap: 16px;
+  }
 }
 </style>

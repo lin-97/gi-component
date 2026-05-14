@@ -32,7 +32,7 @@
 import type { VNode } from 'vue'
 import type { DrawerProps } from './type'
 import { ElButton, ElDrawer, ElSpace } from 'element-plus'
-import { computed, defineProps, defineSlots, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useBemClass } from '../../../hooks'
 
 const visible = defineModel('modelValue', {

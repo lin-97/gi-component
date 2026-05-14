@@ -61,11 +61,11 @@
             </el-button>
           </template>
           <div class="table-setting__popover">
-            <el-scrollbar class="table-setting__draggable" max-height="200px" :wrap-style="{ overflowX: 'hidden' }">
+            <el-scrollbar class="table-setting__draggable" height="200px" :wrap-style="{ overflowX: 'hidden' }">
               <VueDraggable v-model="settingColumnList" :animation="150" handle=".table-setting__drag-handle">
                 <div v-for="item in settingColumnList" :key="item.key" class="table-setting__draggable-item">
                   <span class="table-setting__drag-handle">
-                    <el-icon :size="16">
+                    <el-icon :size="14">
                       <Rank />
                     </el-icon>
                   </span>
@@ -368,10 +368,6 @@ const settingColumns = computed<TableColumnItem[]>(() => {
     overflow: hidden;
   }
 
-  &__popover {
-    padding: 4px 2px 2px;
-  }
-
   &__draggable {
     box-sizing: border-box;
     padding: 2px 0;
@@ -407,6 +403,7 @@ const settingColumns = computed<TableColumnItem[]>(() => {
     align-items: center;
     justify-content: center;
     padding: 0 4px;
+    box-sizing: border-box;
     color: var(--el-text-color-secondary);
     cursor: move;
   }
@@ -420,6 +417,9 @@ const settingColumns = computed<TableColumnItem[]>(() => {
     :deep(.el-checkbox__label) {
       font-size: 12px;
       color: var(--el-text-color-regular);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
