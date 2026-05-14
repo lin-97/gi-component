@@ -11,14 +11,14 @@ interface Options<T, U> {
   deleteAPI?: (_pks: string[]) => Promise<AxiosResponse<unknown> | void>
 }
 
-interface ApiResult<T> {
+export interface ApiResult<T> {
   code: number
   data: T
   message: string
   success: boolean
 }
 
-interface PageResult<T> {
+export interface PageResult<T> {
   list: T[]
   total: number
 }

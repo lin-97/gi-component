@@ -5,6 +5,7 @@
 <script setup>
 import Demo from './Demo.vue'
 import DemoHeaderSearch from './DemoHeaderSearch.vue'
+import DemoTableSetting from './DemoTableSetting.vue'
 </script>
 
 ## 基础用法
@@ -35,6 +36,22 @@ import DemoHeaderSearch from './DemoHeaderSearch.vue'
 
 ::: details HeaderCheckboxGroup.vue
 <<< ./components/HeaderCheckboxGroup.vue
+:::
+
+## TableSetting 表格工具栏(参考)
+
+文档示例组件 `TableSetting` 提供斑马纹、刷新、全屏、边框、表格尺寸与列设置（拖拽排序、显示隐藏、左/右固定），默认插槽向表格注入 `settingColumns`、`isFullscreen`、`tableProps`（`stripe`、`border`、`size`），可与 `gi-table` 组合使用。
+
+::: raw
+<DemoTableSetting></DemoTableSetting>
+:::
+
+::: details 查看代码
+<<< ./DemoTableSetting.vue
+:::
+
+::: details TableSetting.vue
+<<< ./components/TableSetting.vue
 :::
 
 ## API 使用说明

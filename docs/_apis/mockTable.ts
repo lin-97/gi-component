@@ -1,14 +1,4 @@
-interface ApiResult<T> {
-  code: number
-  data: T
-  message: string
-  success: boolean
-}
-
-interface PageResult<T> {
-  list: T
-  total: number
-}
+import type { ApiResult, PageResult } from '../_hooks/useTable'
 
 // 定义表格数据的接口类型
 export interface UserItem {
