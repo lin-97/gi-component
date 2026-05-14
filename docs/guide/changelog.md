@@ -1,5 +1,9 @@
 # 更新日志
 
+## v0.0.43 (2026-05-14)
+
+Flex组件justify和align支持start和end值
+
 ## v0.0.42 (2026-04-15)
 
 Flex组件vertical属性改为column（兼容前版本）

@@ -9,9 +9,9 @@
       </el-form-item>
       <el-form-item label="Select justify:">
         <el-radio-group v-model="justify" size="small">
-          <el-radio value="flex-start">flex-start</el-radio>
+          <el-radio value="start">start</el-radio>
           <el-radio value="center">center</el-radio>
-          <el-radio value="flex-end">flex-end</el-radio>
+          <el-radio value="end">end</el-radio>
           <el-radio value="space-between">space-between</el-radio>
           <el-radio value="space-around">space-around</el-radio>
           <el-radio value="space-evenly">space-evenly</el-radio>
@@ -19,9 +19,9 @@
       </el-form-item>
       <el-form-item label="Select align:">
         <el-radio-group v-model="align" size="small">
-          <el-radio value="flex-start">flex-start</el-radio>
+          <el-radio value="start">start</el-radio>
           <el-radio value="center">center</el-radio>
-          <el-radio value="flex-end">flex-end</el-radio>
+          <el-radio value="end">end</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const justify = ref<'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'>('flex-start')
-const align = ref<'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline'>('flex-start')
+const justify = ref<'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'>('start')
+const align = ref<'start' | 'center' | 'end' | 'stretch' | 'baseline'>('start')
 const column = ref(false)
 </script>
