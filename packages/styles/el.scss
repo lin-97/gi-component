@@ -80,3 +80,11 @@
     border-top: 1px solid var(--el-border-color);
   }
 }
+
+.#{a.$prefix}-table .el-table {
+  --el-table-header-bg-color: var(--el-fill-color-lighter);
+}
+
+.#{a.$prefix}-table .el-table thead.is-group th.el-table__cell {
+  background: var(--el-fill-color-lighter);
+}

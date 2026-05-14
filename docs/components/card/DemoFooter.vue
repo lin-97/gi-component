@@ -1,5 +1,5 @@
 <template>
-  <gi-card title="卡片标题" bordered class="gi-card-title">
+  <gi-card title="卡片标题" bordered class="g-card-title">
     <template #extra>
       <el-button type="primary">保存</el-button>
       <el-button>返回</el-button>

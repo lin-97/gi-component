@@ -13,7 +13,7 @@ const openDialog = () => {
     title: '标题',
     content: () => h(LayoutTable),
     fullscreen: true,
-    bodyClass: 'gi-p0',
+    bodyClass: 'g-p0',
     onOk: () => {
       ElMessage.success('点击了确定按钮')
     },

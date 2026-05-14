@@ -1,7 +1,7 @@
 <template>
   <gi-page-layout bordered style="height: 520px">
     <template #tool>
-      <el-row justify="space-between" class="gi-tool gi-w-full">
+      <el-row justify="space-between" class="g-tool g-w-full">
         <el-space wrap>
           <gi-button type="add"></gi-button>
           <gi-button type="delete"></gi-button>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <gi-edit-table :columns="tableColumns" :data="data" size="small" class="gi-mb"></gi-edit-table>
+    <gi-edit-table :columns="tableColumns" :data="data" size="small" class="g-mb"></gi-edit-table>
     <gi-form ref="formRef" :model-value="formData" :columns="columns" :fc="fc" :scroll-to-error="false"
       @update:model-value="Object.assign(formData, $event)" />
     <el-row justify="end">

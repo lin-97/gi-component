@@ -7,16 +7,8 @@ body {
   --margin: 14px;
 }
 
-.gi-table .el-table {
-  --el-table-header-bg-color: var(--el-fill-color-lighter);
-}
-
-.gi-table .el-table thead.is-group th.el-table__cell {
-  background: var(--el-fill-color-lighter);
-}
-
-.gi-card-title {
-  .gi-card-header__title {
+.g-card-title {
+  .#{a.$prefix}-card-header__title {
     padding-left: 8px;
     position: relative;
 
@@ -34,44 +26,44 @@ body {
   }
 }
 
-.gi-w-full {
+.g-w-full {
   width: 100%;
 }
 
-.gi-h-full {
+.g-h-full {
   height: 100%;
 }
 
-.gi-line-1 {
+.g-line-1 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.gi-line-2 {
+.g-line-2 {
   line-clamp: 2;
   -webkit-line-clamp: 2;
 }
 
-.gi-line-3 {
+.g-line-3 {
   line-clamp: 3;
   -webkit-line-clamp: 3;
 }
 
-.gi-line-4 {
+.g-line-4 {
   line-clamp: 4;
   -webkit-line-clamp: 4;
 }
 
-.gi-line-5 {
+.g-line-5 {
   line-clamp: 5;
   -webkit-line-clamp: 5;
 }
 
-.gi-line-2,
-.gi-line-3,
-.gi-line-4,
-.gi-line-5 {
+.g-line-2,
+.g-line-3,
+.g-line-4,
+.g-line-5 {
   overflow: hidden;
   word-break: break-all;
   text-overflow: ellipsis;
@@ -79,70 +71,71 @@ body {
   -webkit-box-orient: vertical; // 设置伸缩盒子元素排列方式
 }
 
-.gi-mt {
+.g-mt {
   margin-top: var(--margin);
 }
 
-.gi-mb {
+.g-mb {
   margin-bottom: var(--margin);
 }
 
-.gi-ml {
+.g-ml {
   margin-left: var(--margin);
 }
 
-.gi-mr {
+.g-mr {
   margin-right: var(--margin);
 }
 
-.gi-mx {
+.g-mx {
   margin-left: var(--margin);
   margin-right: var(--margin);
 }
 
-.gi-my {
+.g-my {
   margin-top: var(--margin);
   margin-bottom: var(--margin);
 }
 
-.gi-m0 {
+.g-m0 {
   margin: 0 !important;
 }
 
-.gi-pt {
+.g-pt {
   padding-top: var(--padding);
 }
 
-.gi-pb {
+.g-pb {
   padding-bottom: var(--padding);
 }
 
-.gi-pl {
+.g-pl {
   padding-left: var(--padding);
 }
 
-.gi-pr {
+.g-pr {
   padding-right: var(--padding);
 }
 
-.gi-px {
+.g-px {
   padding-left: var(--padding);
   padding-right: var(--padding);
 }
 
-.gi-py {
+.g-py {
   padding-top: var(--padding);
   padding-bottom: var(--padding);
 }
 
-.gi-p0 {
+.g-p0 {
   padding: 0 !important;
 }
 
-.gi-flex-column {
+// 主要作用在el-row组件
+.g-flex-column {
   flex-direction: column;
 }
 
-.gi-tool {
+.g-tool {
   gap: 8px;
 }

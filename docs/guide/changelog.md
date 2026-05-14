@@ -1,5 +1,13 @@
 # 更新日志
 
+## v0.0.44 (2026-05-14)
+
+::: danger 注意
+该版本存在破坏性更新：内置全局css类名前缀从gi改为g，避免与组件类名冲突
+
+如：gi-w-full 已改为 g-w-full
+:::
+
 ## v0.0.43 (2026-05-14)
 
 Flex组件justify和align支持start和end值
@@ -54,7 +62,7 @@ Card组件的extra插槽默认使用el-space包裹
 
 ## v0.0.27 (2026-01-26)
 
-新增全局类名 .gi-tool (类名作用请看示例)
+新增全局类名 .g-tool (类名作用请看示例)
 
 createSelectDialog增强优化
 
@@ -74,7 +82,7 @@ Button组件类型样式调整
 
 ## v0.0.22 (2025-12-12)
 
-新增类名.gi-flex-column
+新增类名.g-flex-column
 
 ## v0.0.21 (2025-12-09)
 

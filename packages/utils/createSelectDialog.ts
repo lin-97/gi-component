@@ -40,7 +40,7 @@ export const createSelectDialog = <T, Q extends DefaultOption = DefaultOption>(
     const { component, componentProps: componentPropsFromParams, tip, ...restParams } = params
 
     Dialog.open({
-      bodyClass: 'gi-p0',
+      bodyClass: 'g-p0',
       ...restParams,
       title: params.title || options.title,
       content: () =>
