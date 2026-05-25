@@ -13,6 +13,7 @@ import GridItem from './components/grid/src/grid-item.vue'
 import Grid from './components/grid/src/grid.vue'
 import InputGroup from './components/input-group'
 import InputSearch from './components/input-search'
+import NavTabs from './components/nav-tabs'
 import PageLayout from './components/page-layout'
 import Table from './components/table'
 import Tabs from './components/tabs'
@@ -28,6 +29,7 @@ export * from './components/dialog'
 export * from './components/drawer'
 export * from './components/edit-table'
 export * from './components/form'
+export * from './components/nav-tabs'
 export * from './components/table'
 export * from './components/tabs'
 export * from './components/tag'
@@ -43,6 +45,7 @@ const components = {
   Tabs,
   InputGroup,
   InputSearch,
+  NavTabs,
   Flex,
   Grid,
   GridItem,
@@ -64,6 +67,7 @@ export const GiDot: typeof Dot = Dot
 export const GiTabs: typeof Tabs = Tabs
 export const GiInputGroup: typeof InputGroup = InputGroup
 export const GiInputSearch: typeof InputSearch = InputSearch
+export const GiNavTabs: typeof NavTabs = NavTabs
 export const GiFlex: typeof Flex = Flex
 export const GiGrid: typeof Grid = Grid
 export const GiGridItem: typeof GridItem = GridItem

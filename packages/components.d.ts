@@ -22,6 +22,7 @@ declare module 'vue' {
     GiGridItem: typeof import('./components/grid/src/grid-item.vue')['default']
     GiInputGroup: typeof import('./components/input-group/src/input-group.vue')['default']
     GiInputSearch: typeof import('./components/input-search/src/input-search.vue')['default']
+    GiNavTabs: typeof import('./components/nav-tabs/src/nav-tabs.vue')['default']
     GiPageLayout: typeof import('./components/page-layout/src/page-layout.vue')['default']
     GiSplitButton: typeof import('./components/page-layout/src/split-button.vue')['default']
     GiTable: typeof import('./components/table/src/table.vue')['default']
