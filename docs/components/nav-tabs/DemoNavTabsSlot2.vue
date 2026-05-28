@@ -2,21 +2,15 @@
   <div class="demo">
     <gi-nav-tabs v-model="activeValue" :data="tabList" custom>
       <template #left-extra>
-        <el-button size="small" type="primary">左插槽</el-button>
+        <el-button size="small" type="primary">左</el-button>
       </template>
       <template #default="{ item, active, disabled }">
         <el-dropdown :ref="(el) => setDropdownRef(item.value, el)" trigger="contextmenu" :disabled="disabled"
           @visible-change="(visible) => handleContextMenuVisible(visible, item.value)">
-          <el-check-tag :checked="active" :disabled="disabled">
-            <el-space :size="4">
-              <span>{{ item.label }}</span>
-              <div class="close-btn" @click.stop>
-                <el-icon>
-                  <Close />
-                </el-icon>
-              </div>
-            </el-space>
-          </el-check-tag>
+          <gi-tag :type="active ? 'dark' : 'light-outline'" :color="active ? 'primary' : 'info'" size="large"
+            :closable="item.value !== '1'" style="height: 26px;">
+            {{ item.label }}
+          </gi-tag>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item>关闭左侧</el-dropdown-item>
@@ -28,7 +22,7 @@
         </el-dropdown>
       </template>
       <template #right-extra>
-        <el-button size="small" type="primary">右插槽</el-button>
+        <el-button size="small" type="primary">右</el-button>
       </template>
     </gi-nav-tabs>
   </div>
@@ -37,7 +31,6 @@
 <script setup lang="ts">
 import type { DropdownInstance } from 'element-plus'
 import type { NavTabItem } from 'gi-component'
-import { Close } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 
 const activeValue = ref('1')
@@ -67,7 +60,7 @@ function handleContextMenuVisible(visible: boolean, value: string | number) {
 const tabList = ref<NavTabItem[]>([
   { label: '工作台', value: '1' },
   { label: '分析页', value: '2' },
-  { label: '图表页', value: '3', disabled: true },
+  { label: '图表页', value: '3' },
   { label: '配置页', value: '4' },
   { label: '个人中心', value: '5' },
   { label: '系统日志', value: '6' },
@@ -97,29 +90,5 @@ const tabList = ref<NavTabItem[]>([
   padding: 0 10px;
   box-sizing: border-box;
   margin-top: 20px;
-
-  :deep(.el-check-tag) {
-    font-size: 12px;
-  }
-
-  :deep(.el-check-tag:not(.is-disabled):not(.is-checked)) {
-    color: var(--el-text-color-primary);
-  }
-}
-
-.close-btn {
-  background-color: transparent;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-
-  &:hover {
-    color: var(--el-color-white);
-    background-color: var(--el-color-info);
-  }
 }
 </style>

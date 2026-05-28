@@ -1,9 +1,10 @@
-import type { MaybeRefOrGetter } from 'vue'
+import type { MaybeRefOrGetter, Ref } from 'vue'
 import {
   getCurrentInstance,
   nextTick,
   onMounted,
   onUnmounted,
+  ref,
   toRef,
   toValue,
   watch
@@ -20,6 +21,16 @@ export interface UseNavTabsOptions {
   activeValue?: MaybeRefOrGetter<string | number | undefined>
   /** 滚轮换算系数，默认 1 */
   wheelSpeed?: number
+  /** 左侧滚动按钮元素 */
+  tabLeftScrollBtnEl?: MaybeRefOrGetter<string | HTMLElement | null>
+  /** 右侧滚动按钮元素 */
+  tabRightScrollBtnEl?: MaybeRefOrGetter<string | HTMLElement | null>
+  /** 按钮滚动步长占可视宽度比例，默认 0.6 */
+  scrollBtnStepRatio?: number
+  /** 按钮滚动最小步长（px），默认 120 */
+  scrollBtnMinStep?: number
+  /** 按钮不可滚动时添加的 class（如 nav-tabs__nav-btn--disabled） */
+  navBtnDisabledClassName?: string
 }
 
 export interface UseNavTabsReturn {
@@ -27,6 +38,16 @@ export interface UseNavTabsReturn {
   scrollToActive: (behavior?: ScrollBehavior) => void
   /** 获取解析后的滚动容器 */
   getScrollEl: () => HTMLElement | null
+  /** 停止滚轮插值动画，避免与 scrollTo 冲突 */
+  cancelWheelScroll: () => void
+  /** 按步滚动（供外部调用，传入按钮时内部已绑定） */
+  scrollByStep: (direction: -1 | 1) => void
+  /** 内容是否溢出（可选，与按钮显隐同步更新） */
+  showNavBtn: Ref<boolean>
+  /** 是否可向左滚动 */
+  canScrollLeft: Ref<boolean>
+  /** 是否可向右滚动 */
+  canScrollRight: Ref<boolean>
 }
 
 function normalizeSelector(value: string): string {
@@ -50,6 +71,21 @@ function resolveElement(
   return scope.querySelector(normalizeSelector(target))
 }
 
+function getMaxScrollLeft(scrollEl: HTMLElement) {
+  return Math.max(0, scrollEl.scrollWidth - scrollEl.clientWidth)
+}
+
+/** 边界容差，避免浮点误差导致禁用态抖动 */
+const SCROLL_EDGE_EPSILON = 1
+
+function canScrollToLeft(scrollEl: HTMLElement) {
+  return scrollEl.scrollLeft > SCROLL_EDGE_EPSILON
+}
+
+function canScrollToRight(scrollEl: HTMLElement) {
+  return scrollEl.scrollLeft < getMaxScrollLeft(scrollEl) - SCROLL_EDGE_EPSILON
+}
+
 /** 滚轮平滑插值系数，越大跟手越快 */
 const WHEEL_SCROLL_LERP = 0.4
 const WHEEL_LINE_HEIGHT = 16
@@ -69,8 +105,7 @@ function getWheelPixelDelta(event: WheelEvent, scrollEl: HTMLElement): number {
 }
 
 function clampScrollLeft(scrollEl: HTMLElement, left: number): number {
-  const maxScroll = Math.max(0, scrollEl.scrollWidth - scrollEl.clientWidth)
-  return Math.max(0, Math.min(left, maxScroll))
+  return Math.max(0, Math.min(left, getMaxScrollLeft(scrollEl)))
 }
 
 function scrollItemToCenter(
@@ -78,12 +113,11 @@ function scrollItemToCenter(
   activeEl: HTMLElement,
   behavior: ScrollBehavior = 'smooth'
 ) {
-  const maxScroll = scrollEl.scrollWidth - scrollEl.clientWidth
+  const maxScroll = getMaxScrollLeft(scrollEl)
   if (maxScroll <= 0) {
     return
   }
 
-  // 使用视口坐标计算，兼容 flex gap / margin 等间距，避免 offsetLeft 偏差
   const scrollRect = scrollEl.getBoundingClientRect()
   const activeRect = activeEl.getBoundingClientRect()
   const activeLeftInContent = activeRect.left - scrollRect.left + scrollEl.scrollLeft
@@ -95,29 +129,75 @@ function scrollItemToCenter(
   })
 }
 
+function setElementVisible(el: HTMLElement | null, visible: boolean) {
+  if (!el) {
+    return
+  }
+  el.style.display = visible ? 'flex' : 'none'
+}
+
+function setBtnDisabled(
+  el: HTMLElement | null,
+  disabled: boolean,
+  disabledClassName?: string
+) {
+  if (!el) {
+    return
+  }
+  if (disabledClassName) {
+    el.classList.toggle(disabledClassName, disabled)
+  }
+  if (disabled) {
+    el.setAttribute('aria-disabled', 'true')
+  } else {
+    el.removeAttribute('aria-disabled')
+  }
+}
+
 export function useNavTabs(options: UseNavTabsOptions): UseNavTabsReturn {
   const {
     tabEl,
     tabScrollEl,
     tabItemClassName,
     activeValue,
-    wheelSpeed = 1
+    wheelSpeed = 1,
+    tabLeftScrollBtnEl,
+    tabRightScrollBtnEl,
+    scrollBtnStepRatio = 0.6,
+    scrollBtnMinStep = 120,
+    navBtnDisabledClassName
   } = options
 
   const activeClassName = `${tabItemClassName}--active`
   const itemSelector = normalizeSelector(tabItemClassName)
+  const showNavBtn = ref(false)
+  const canScrollLeft = ref(false)
+  const canScrollRight = ref(false)
 
   let rootEl: HTMLElement | null = null
   let scrollEl: HTMLElement | null = null
+  let leftBtnEl: HTMLElement | null = null
+  let rightBtnEl: HTMLElement | null = null
   let resizeObserver: ResizeObserver | null = null
   let wheelRafId: number | null = null
   let wheelTargetScrollLeft = 0
+  let navBtnRafId: number | null = null
+
+  let onPrevClick: ((event: MouseEvent) => void) | null = null
+  let onNextClick: ((event: MouseEvent) => void) | null = null
 
   const cancelWheelAnimation = () => {
     if (wheelRafId !== null) {
       cancelAnimationFrame(wheelRafId)
       wheelRafId = null
     }
+  }
+
+  const cancelWheelScroll = () => {
+    if (scrollEl) {
+      wheelTargetScrollLeft = scrollEl.scrollLeft
+    }
+    cancelWheelAnimation()
   }
 
   const runWheelAnimation = () => {
@@ -132,6 +212,7 @@ export function useNavTabs(options: UseNavTabsOptions): UseNavTabsReturn {
     if (Math.abs(diff) < 0.5) {
       scrollEl.scrollLeft = wheelTargetScrollLeft
       cancelWheelAnimation()
+      scheduleUpdateNavBtnState()
       return
     }
 
@@ -139,12 +220,87 @@ export function useNavTabs(options: UseNavTabsOptions): UseNavTabsReturn {
     wheelRafId = requestAnimationFrame(runWheelAnimation)
   }
 
+  const updateNavBtnState = () => {
+    if (!scrollEl) {
+      showNavBtn.value = false
+      canScrollLeft.value = false
+      canScrollRight.value = false
+      setElementVisible(leftBtnEl, false)
+      setElementVisible(rightBtnEl, false)
+      setBtnDisabled(leftBtnEl, false, navBtnDisabledClassName)
+      setBtnDisabled(rightBtnEl, false, navBtnDisabledClassName)
+      return
+    }
+
+    const overflow = getMaxScrollLeft(scrollEl) > 1
+    const scrollLeftEnabled = canScrollToLeft(scrollEl)
+    const scrollRightEnabled = canScrollToRight(scrollEl)
+
+    showNavBtn.value = overflow
+    canScrollLeft.value = scrollLeftEnabled
+    canScrollRight.value = scrollRightEnabled
+
+    setElementVisible(leftBtnEl, overflow)
+    setElementVisible(rightBtnEl, overflow)
+    setBtnDisabled(leftBtnEl, overflow && !scrollLeftEnabled, navBtnDisabledClassName)
+    setBtnDisabled(rightBtnEl, overflow && !scrollRightEnabled, navBtnDisabledClassName)
+  }
+
+  const scheduleUpdateNavBtnState = () => {
+    if (navBtnRafId !== null) {
+      return
+    }
+    navBtnRafId = requestAnimationFrame(() => {
+      navBtnRafId = null
+      updateNavBtnState()
+    })
+  }
+
+  const cancelNavBtnRaf = () => {
+    if (navBtnRafId !== null) {
+      cancelAnimationFrame(navBtnRafId)
+      navBtnRafId = null
+    }
+  }
+
+  const scrollByStep = (direction: -1 | 1) => {
+    if (!scrollEl) {
+      return
+    }
+
+    if (direction === -1 && !canScrollToLeft(scrollEl)) {
+      return
+    }
+    if (direction === 1 && !canScrollToRight(scrollEl)) {
+      return
+    }
+
+    cancelWheelScroll()
+
+    const maxScroll = getMaxScrollLeft(scrollEl)
+    if (maxScroll <= 0) {
+      return
+    }
+
+    const step = Math.max(scrollBtnMinStep, scrollEl.clientWidth * scrollBtnStepRatio)
+    const target = clampScrollLeft(scrollEl, scrollEl.scrollLeft + direction * step)
+
+    if (Math.abs(target - scrollEl.scrollLeft) < 1) {
+      return
+    }
+
+    scrollEl.scrollTo({ left: target, behavior: 'smooth' })
+  }
+
   const resolveElements = () => {
     const instanceRoot = getCurrentInstance()?.proxy?.$el as HTMLElement | undefined
     const fallbackRoot = instanceRoot instanceof HTMLElement ? instanceRoot : document
 
     rootEl = resolveElement(toValue(tabEl), fallbackRoot)
-    scrollEl = resolveElement(toValue(tabScrollEl), rootEl ?? fallbackRoot)
+    const scope = rootEl ?? fallbackRoot
+    scrollEl = resolveElement(toValue(tabScrollEl), scope)
+    leftBtnEl = resolveElement(toValue(tabLeftScrollBtnEl), scope)
+    rightBtnEl = resolveElement(toValue(tabRightScrollBtnEl), scope)
 
     return Boolean(rootEl && scrollEl)
   }
@@ -173,11 +329,12 @@ export function useNavTabs(options: UseNavTabsOptions): UseNavTabsReturn {
     if (!scrollEl) {
       return
     }
-    cancelWheelAnimation()
+    cancelWheelScroll()
     const activeItem = findActiveItem()
     if (activeItem) {
       scrollItemToCenter(scrollEl, activeItem, behavior)
     }
+    scheduleUpdateNavBtnState()
   }
 
   const handleWheel = (event: WheelEvent) => {
@@ -204,15 +361,60 @@ export function useNavTabs(options: UseNavTabsOptions): UseNavTabsReturn {
     if (wheelRafId === null) {
       wheelRafId = requestAnimationFrame(runWheelAnimation)
     }
+
+    scheduleUpdateNavBtnState()
+  }
+
+  const handleScroll = () => {
+    scheduleUpdateNavBtnState()
   }
 
   const bindWheel = () => {
     scrollEl?.addEventListener('wheel', handleWheel, { passive: false })
+    scrollEl?.addEventListener('scroll', handleScroll, { passive: true })
   }
 
   const unbindWheel = () => {
     scrollEl?.removeEventListener('wheel', handleWheel)
+    scrollEl?.removeEventListener('scroll', handleScroll)
     cancelWheelAnimation()
+  }
+
+  const bindNavButtons = () => {
+    unbindNavButtons()
+
+    if (leftBtnEl) {
+      onPrevClick = (event: MouseEvent) => {
+        if (leftBtnEl?.getAttribute('aria-disabled') === 'true') {
+          event.preventDefault()
+          return
+        }
+        scrollByStep(-1)
+      }
+      leftBtnEl.addEventListener('click', onPrevClick)
+    }
+
+    if (rightBtnEl) {
+      onNextClick = (event: MouseEvent) => {
+        if (rightBtnEl?.getAttribute('aria-disabled') === 'true') {
+          event.preventDefault()
+          return
+        }
+        scrollByStep(1)
+      }
+      rightBtnEl.addEventListener('click', onNextClick)
+    }
+  }
+
+  const unbindNavButtons = () => {
+    if (leftBtnEl && onPrevClick) {
+      leftBtnEl.removeEventListener('click', onPrevClick)
+    }
+    if (rightBtnEl && onNextClick) {
+      rightBtnEl.removeEventListener('click', onNextClick)
+    }
+    onPrevClick = null
+    onNextClick = null
   }
 
   const bindResizeObserver = () => {
@@ -221,6 +423,7 @@ export function useNavTabs(options: UseNavTabsOptions): UseNavTabsReturn {
     }
 
     resizeObserver = new ResizeObserver(() => {
+      scheduleUpdateNavBtnState()
       scrollToActive('auto')
     })
     resizeObserver.observe(scrollEl)
@@ -231,13 +434,27 @@ export function useNavTabs(options: UseNavTabsOptions): UseNavTabsReturn {
     resizeObserver = null
   }
 
+  const teardown = () => {
+    unbindWheel()
+    unbindNavButtons()
+    unbindResizeObserver()
+    cancelWheelAnimation()
+    cancelNavBtnRaf()
+    rootEl = null
+    scrollEl = null
+    leftBtnEl = null
+    rightBtnEl = null
+  }
+
   const setup = async () => {
     await nextTick()
     if (!resolveElements()) {
       return
     }
     bindWheel()
+    bindNavButtons()
     bindResizeObserver()
+    updateNavBtnState()
     scrollToActive('auto')
   }
 
@@ -246,10 +463,14 @@ export function useNavTabs(options: UseNavTabsOptions): UseNavTabsReturn {
   })
 
   watch(
-    () => [toValue(tabEl), toValue(tabScrollEl)] as const,
+    () => [
+      toValue(tabEl),
+      toValue(tabScrollEl),
+      toValue(tabLeftScrollBtnEl),
+      toValue(tabRightScrollBtnEl)
+    ] as const,
     () => {
-      unbindWheel()
-      unbindResizeObserver()
+      teardown()
       setup()
     }
   )
@@ -261,15 +482,16 @@ export function useNavTabs(options: UseNavTabsOptions): UseNavTabsReturn {
   }
 
   onUnmounted(() => {
-    unbindWheel()
-    unbindResizeObserver()
-    cancelWheelAnimation()
-    rootEl = null
-    scrollEl = null
+    teardown()
   })
 
   return {
     scrollToActive,
-    getScrollEl: () => scrollEl
+    getScrollEl: () => scrollEl,
+    cancelWheelScroll,
+    scrollByStep,
+    showNavBtn,
+    canScrollLeft,
+    canScrollRight
   }
 }

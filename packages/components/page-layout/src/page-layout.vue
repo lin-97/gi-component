@@ -92,7 +92,7 @@ function handleClick() {
 
 .#{a.$prefix}-page-layout {
   flex: 1;
-  width: 100%;
+  width: auto;
   height: 100%;
   display: flex;
   overflow: hidden;

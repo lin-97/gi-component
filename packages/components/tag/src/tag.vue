@@ -170,8 +170,8 @@ function handleClose(event: MouseEvent) {
 $theme-colors: primary, success, warning, danger, info;
 
 $tag-size-small-height: 20px;
-$tag-size-default-height: 22px;
-$tag-size-large-height: 24px;
+$tag-size-default-height: 24px;
+$tag-size-large-height: 26px;
 
 $tag-size-small-padding: 0 6px;
 $tag-size-default-padding: 0 8px;
