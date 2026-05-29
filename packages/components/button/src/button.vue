@@ -53,7 +53,7 @@ const bindProps = computed(() => {
 })
 
 const btnText = computed(() => {
-  return obj[props.type].btnText
+  return obj?.[props.type]?.btnText || ''
 })
 </script>
 
