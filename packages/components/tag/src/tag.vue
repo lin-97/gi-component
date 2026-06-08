@@ -349,7 +349,7 @@ $tag-size-large-padding: 0 10px;
 .#{a.$prefix}-tag__type--outline,
 .#{a.$prefix}-tag__type--light-outline {
   &.#{a.$prefix}-tag__color--info {
-    color: var(--el-color-text-primary);
+    color: var(--el-text-color-primary);
   }
 }
 </style>

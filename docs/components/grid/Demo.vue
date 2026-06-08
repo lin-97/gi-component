@@ -30,7 +30,7 @@ const collapsed = ref(false)
 .grid-demo-grid .demo-item,
 .grid-demo-grid .demo-suffix {
   min-height: 48px;
-  color: var(--el-color-text-primary);
+  color: var(--el-text-color-primary);
   text-align: center;
   font-size: 12px;
   line-height: 1.3;
