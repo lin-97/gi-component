@@ -38,6 +38,8 @@ npm login
 
 npm version patch
 
+npm run build:lib
+
 npm publish
 ```
 
