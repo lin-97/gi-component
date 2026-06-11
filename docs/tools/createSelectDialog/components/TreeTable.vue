@@ -1,5 +1,5 @@
 <template>
-  <GiPageLayout>
+  <GiPageLayout auto-collapse>
     <template #left>
       <Tree></Tree>
     </template>

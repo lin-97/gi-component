@@ -1,5 +1,13 @@
 # 更新日志
 
+## v0.0.49 (2026-06-11)
+
+PageLayout 新增 `autoCollapse` 属性，支持根据容器宽度自动折叠/展开左侧面板
+
+PageLayout 新增 `collapseBreakpoint` 属性，用于设置自动折叠断点阈值（单位 px）
+
+Flex 新增 `full` 属性，为根元素添加 `flex--full` 类名，实现宽高 100%
+
 ## v0.0.48 (2026-05-29)
 
 修复Button组件控制台报错问题

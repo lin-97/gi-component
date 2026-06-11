@@ -15,12 +15,19 @@ const props = withDefaults(defineProps<FlexProps>(), {
   wrap: false,
   justify: 'normal',
   align: 'normal',
-  flex: 'normal'
+  flex: 'normal',
+  full: false
 })
 
 const { b } = useBemClass()
 
-const classNames = computed(() => [b('flex'), b(`flex__size--${props.gap}`)])
+const classNames = computed(() => {
+  const arr: string[] = [b('flex'), b(`flex__size--${props.gap}`)]
+  if (props.full) {
+    arr.push(b('flex--full'))
+  }
+  return arr
+})
 
 const SIZE_MAP = ['small', 'middle', 'large']
 
@@ -67,6 +74,12 @@ const style = computed<CSSProperties>(() => {
 }
 
 .#{a.$prefix}-flex {
+  &--full {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
   &__size--small {
     gap: 8px;
   }

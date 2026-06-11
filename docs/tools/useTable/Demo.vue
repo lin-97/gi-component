@@ -1,5 +1,5 @@
 <template>
-  <gi-page-layout>
+  <gi-page-layout bordered>
     <template #tool>
       <el-space>
         <ElInput v-model="queryParams.keyword" placeholder="搜索姓名或地址" clearable style="width: 200px" />

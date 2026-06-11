@@ -11,5 +11,6 @@ export const SelectUserListDialog = createSelectDialog<UserItem[]>({
   component: TreeTable,
   componentProps: {
     style: { height: '500px' }
-  }
+  },
+  lockScroll: false
 })

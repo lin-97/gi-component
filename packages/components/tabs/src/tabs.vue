@@ -2,7 +2,7 @@
   <div :class="getClass">
     <div :class="b('tabs__default')">
       <slot>
-        <ElTabs v-model="model" :type="props.type" :stretch="props.stretch"
+        <ElTabs :key="props.type" v-model="model" :type="props.type" :stretch="props.stretch"
           @tab-click="(p, e) => emits('tab-click', p, e)" @tab-change="emits('tab-change', $event as any)">
           <ElTabPane v-for="item in props.options" :key="item.name" :name="item.name" :disabled="item?.disabled">
             <template #label>

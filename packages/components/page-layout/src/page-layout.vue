@@ -1,5 +1,5 @@
 <template>
-  <ElSplitter :class="getClass">
+  <ElSplitter ref="splitterRef" :class="getClass">
     <ElSplitterPanel v-if="slots.left" v-model:size="size">
       <div :class="b('page-layout__left')" :style="props.leftStyle">
         <slot name="left"></slot>
@@ -27,14 +27,17 @@
 <script lang="ts" setup>
 import type { PageLayoutProps } from './type'
 import { ElSplitter, ElSplitterPanel } from 'element-plus'
-import { computed, ref, useSlots } from 'vue'
+import { computed, onBeforeUnmount, ref, useSlots } from 'vue'
 import { useBemClass } from '../../../hooks'
 import SplitButton from './split-button.vue'
+import { useAutoCollapse } from './useAutoCollapse'
 
 const props = withDefaults(defineProps<PageLayoutProps>(), {
   size: 270,
   bordered: false,
   collapse: true,
+  autoCollapse: false,
+  collapseBreakpoint: 850,
   leftStyle: () => ({}),
   headerStyle: () => ({}),
   toolStyle: () => ({}),
@@ -50,8 +53,42 @@ defineSlots<{
 
 const slots = useSlots()
 const { b } = useBemClass()
+const splitterRef = ref<InstanceType<typeof ElSplitter>>()
 const size = ref(props.size)
 const collapsing = ref(false)
+let collapsingTimer: ReturnType<typeof setTimeout> | null = null
+
+const COLLAPSE_TRANSITION_MS = 300
+
+function setCollapsingSize(newSize: typeof size.value) {
+  if (collapsingTimer) {
+    clearTimeout(collapsingTimer)
+  }
+  collapsing.value = true
+  collapsingTimer = setTimeout(() => {
+    collapsing.value = false
+    collapsingTimer = null
+  }, COLLAPSE_TRANSITION_MS)
+  size.value = newSize
+}
+
+const autoCollapseEnabled = props.collapse && props.autoCollapse && !!slots.left && !!props.collapseBreakpoint
+
+useAutoCollapse({
+  splitterRef,
+  size,
+  enabled: autoCollapseEnabled,
+  collapseBreakpoint: props.collapseBreakpoint,
+  panelSize: () => props.size,
+  setCollapsingSize
+})
+
+onBeforeUnmount(() => {
+  if (collapsingTimer) {
+    clearTimeout(collapsingTimer)
+    collapsingTimer = null
+  }
+})
 
 const getClass = computed(() => {
   const arr: string[] = [b('page-layout')]
@@ -71,11 +108,7 @@ const getClass = computed(() => {
 })
 
 function handleClick() {
-  collapsing.value = true
-  setTimeout(() => {
-    collapsing.value = false
-  }, 300)
-  size.value = Number(size.value) > 30 ? 0 : props.size
+  setCollapsingSize(Number(size.value) > 30 ? 0 : props.size)
 }
 </script>
 

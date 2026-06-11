@@ -84,6 +84,6 @@ defineExpose({
 }
 
 .#{a.$prefix}-table-pagination {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 </style>

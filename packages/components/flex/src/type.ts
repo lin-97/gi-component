@@ -13,4 +13,6 @@ export interface FlexProps {
   flex?: string
   /** 设置网格之间的间隙，可选预设 small / middle / large 或 string / number */
   gap?: 'small' | 'middle' | 'large' | string | number
+  /** 是否撑满父容器宽高 */
+  full?: boolean
 }
