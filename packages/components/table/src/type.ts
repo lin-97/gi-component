@@ -1,15 +1,15 @@
 import type { TableProps as ElTableProps, PaginationProps, TableColumnInstance } from 'element-plus'
-import type { ExtractPropTypes, VNode } from 'vue'
+import type { VNode } from 'vue'
 
 export type DefaultRow = Record<PropertyKey, any>
 
-export interface TableColumnItem<T extends DefaultRow = any> extends Omit<TableColumnInstance['$props'], never> {
+export interface TableColumnItem<T extends DefaultRow = DefaultRow> extends Omit<TableColumnInstance['$props'], never> {
   slotName?: string
-  children?: TableColumnItem[]
+  children?: TableColumnItem<T>[]
   render?: (scope: TableSlotScope<T>) => VNode | VNode[] | string
 }
 
-export type TableSlotScope<T extends DefaultRow = any> = {
+export type TableSlotScope<T extends DefaultRow = DefaultRow> = {
   $index: number
   cellIndex: number
   column: TableColumnInstance['$props']
@@ -17,8 +17,8 @@ export type TableSlotScope<T extends DefaultRow = any> = {
   expanded: boolean
 }
 
-export interface TableProps<T extends DefaultRow = any> extends ExtractPropTypes<ElTableProps<Record<string | number | symbol, any>>> {
+export interface TableProps<T extends DefaultRow = DefaultRow> extends Partial<ElTableProps<T>> {
   data?: T[]
-  columns?: TableColumnItem[]
+  columns?: TableColumnItem<T>[]
   pagination?: Partial<PaginationProps> | boolean
 }

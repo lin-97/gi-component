@@ -21,7 +21,7 @@ import type { DefaultRow, TableProps, TableSlotScope } from './type'
 import { ElPagination, ElRow, ElTable } from 'element-plus'
 import { computed, useAttrs, useTemplateRef } from 'vue'
 import { useBemClass } from '../../../hooks'
-import TableColumn from './TableColumn.vue'
+import TableColumn from './table-column.vue'
 
 const props = withDefaults(defineProps<TableProps<T>>(), {
   fit: true,

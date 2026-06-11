@@ -13,12 +13,7 @@
 
     <!-- 递归渲染子列 -->
     <template v-if="column.children && column.children.length > 0">
-      <TableColumn v-for="child in column.children" :key="child.prop || child.label" :column="child">
-        <!-- 将所有插槽传递给子组件 -->
-        <template v-for="(_, slotName) in $slots" :key="slotName" #[slotName]="scope">
-          <slot :name="slotName" v-bind="scope" />
-        </template>
-      </TableColumn>
+      <TableColumn v-for="child in column.children" :key="child.prop || child.label" v-slots="$slots" :column="child" />
     </template>
   </ElTableColumn>
 </template>
@@ -27,7 +22,7 @@
 import type { TableColumnItem } from './type'
 import { ElTableColumn } from 'element-plus'
 import { computed } from 'vue'
-import TableColumn from './TableColumn.vue'
+import TableColumn from './table-column.vue'
 
 const props = defineProps<{
   column: TableColumnItem
