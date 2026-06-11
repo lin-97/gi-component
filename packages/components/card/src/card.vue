@@ -37,10 +37,10 @@ const props = withDefaults(defineProps<CardProps>(), {
 })
 
 defineSlots<{
-  default: () => void
-  title: () => void
-  extra: () => void
-  footer: () => void
+  default?: () => void
+  title?: () => void
+  extra?: () => void
+  footer?: () => void
 }>()
 
 const slot = useSlots()

@@ -14,7 +14,20 @@
 <script setup lang="ts">
 import type { DescriptionsColumnItem } from 'gi-component'
 
-const columns: DescriptionsColumnItem[] = [
+interface UserDetail {
+  name: string
+  tel: string
+  email: string
+  age: number
+  sex: string
+  address: string
+  city: string
+  district: string
+  hobby: string[]
+  remark: string
+}
+
+const columns: DescriptionsColumnItem<UserDetail>[] = [
   { value: 'name', label: '姓名' },
   { value: 'tel', label: '电话' },
   { value: 'email', label: '邮箱' },
@@ -26,7 +39,7 @@ const columns: DescriptionsColumnItem[] = [
   { value: 'remark', label: '备注' }
 ]
 
-const detail = {
+const detail: UserDetail = {
   name: '张三',
   tel: '18100000000',
   address: '江苏省苏州市吴中区吴中大道 1188 号',

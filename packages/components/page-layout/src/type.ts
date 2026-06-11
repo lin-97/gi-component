@@ -1,6 +1,14 @@
 import type { SplitterPanelProps } from 'element-plus'
 import type { CSSProperties } from 'vue'
 
+/** 组件插槽类型 */
+export type PageLayoutSlots = {
+  header?: () => void
+  left?: () => void
+  tool?: () => void
+  default?: () => void
+}
+
 export interface PageLayoutProps {
   size?: SplitterPanelProps['size']
   bordered?: boolean

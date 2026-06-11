@@ -40,8 +40,8 @@ const emits = defineEmits<{
 }>()
 
 defineSlots<{
-  default: () => void
-  extra: () => void
+  default?: () => void
+  extra?: () => void
   label: (e: { data: TabsOptionItem }) => void
 }>()
 

@@ -10,8 +10,8 @@ export default defineConfig(() => {
     // 路径别名（库构建入口在 packages/，此处仅用于 dev 或插件解析）
     resolve: {
       alias: {
-        '~': fileURLToPath(new URL('./', import.meta.url)),
-      },
+        '~': fileURLToPath(new URL('./', import.meta.url))
+      }
     },
     plugins: [
       vue(),
@@ -63,7 +63,7 @@ export default defineConfig(() => {
         external: ['vue', 'element-plus'],
         // 防止 dialog 模块被 tree-shake 掉 info/success/warning/error 方法
         treeshake: {
-          moduleSideEffects: (id) => id.includes('dialog/src/dialog') || id.includes('dialog\\src\\dialog'),
+          moduleSideEffects: (id) => id.includes('dialog/src/dialog') || id.includes('dialog\\src\\dialog')
         },
         output: {
           // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量

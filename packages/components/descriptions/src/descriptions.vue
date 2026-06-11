@@ -12,10 +12,12 @@
         :min-width="col.minWidth" :align="col.align ?? 'left'" :label-align="col.labelAlign" :class-name="col.className"
         :label-class-name="col.labelClassName">
         <template v-if="typeof col.label === 'function'" #label>
-          <NodeRenderer :get-node="() => (col.label as (c: DescriptionsColumnItem) => any)(col)" />
+          <NodeRenderer :get-node="() => getLabelNode(col)" />
         </template>
-        <slot v-if="hasColumnSlot(col.value)" :name="col.value" :value="getFieldValue(col)" :data="data" :column="col" />
-        <NodeRenderer v-else-if="col.render && data" :get-node="() => col.render!({ value: getFieldValue(col), data, column: col })" />
+        <template v-if="hasColumnSlot(col.value)">
+          <slot :name="col.value as string" :value="getFieldValue(col)" :data="data!" :column="col" />
+        </template>
+        <NodeRenderer v-else-if="col.render && data" :get-node="() => getRenderNode(col)" />
         <span v-else>{{ getFieldValue(col) }}</span>
       </ElDescriptionsItem>
     </template>
@@ -25,14 +27,14 @@
   </ElDescriptions>
 </template>
 
-<script setup lang="ts">
-import type { DescriptionsColumnItem, DescriptionsProps } from './type'
+<script setup lang="ts" generic="T extends DefaultRow">
+import type { DefaultRow } from '../../table/src/type'
+import type { DescriptionsColumnItem, DescriptionsProps, DescriptionsSlots } from './type'
 import { ElDescriptions, ElDescriptionsItem } from 'element-plus'
 import { computed, defineComponent, useSlots } from 'vue'
 
-const props = withDefaults(defineProps<DescriptionsProps>(), {
+const props = withDefaults(defineProps<DescriptionsProps<T>>(), {
   columns: () => [],
-  data: () => ({}),
   border: false,
   column: 3,
   direction: 'horizontal',
@@ -41,11 +43,7 @@ const props = withDefaults(defineProps<DescriptionsProps>(), {
   extra: ''
 })
 
-defineSlots<{
-  default?: () => any
-  title?: () => any
-  extra?: () => any
-}>()
+defineSlots<DescriptionsSlots<T>>()
 
 const NodeRenderer = defineComponent({
   name: 'NodeRenderer',
@@ -60,13 +58,24 @@ const NodeRenderer = defineComponent({
 const slots = useSlots()
 const useColumns = computed(() => (props.columns?.length ?? 0) > 0)
 
-function hasColumnSlot(name: string | undefined): boolean {
-  return !!name && !!(slots as Record<string, unknown>)[name]
+function hasColumnSlot(name: string | undefined): name is string {
+  return !!name && name in slots
 }
 
-function getFieldValue(col: DescriptionsColumnItem) {
-  if (!props.data || col.value === undefined || col.value === null)
-    return ''
+function getFieldValue<K extends keyof T & string>(col: DescriptionsColumnItem<T> & { value?: K }) {
+  if (!props.data || col.value === undefined)
+    return undefined as T[K]
   return props.data[col.value]
+}
+
+function getLabelNode(col: DescriptionsColumnItem<T>) {
+  if (typeof col.label === 'function')
+    return col.label(col)
+}
+
+function getRenderNode(col: DescriptionsColumnItem<T>) {
+  if (!col.render || !props.data)
+    return
+  return col.render({ value: getFieldValue(col), data: props.data!, column: col })
 }
 </script>

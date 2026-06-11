@@ -16,7 +16,20 @@ import type { DescriptionsColumnItem } from 'gi-component'
 import { ElSpace, ElTag } from 'element-plus'
 import { h } from 'vue'
 
-const columns: DescriptionsColumnItem[] = [
+interface UserDetail {
+  name: string
+  tel: string
+  email: string
+  age: number
+  sex: string
+  address: string
+  city: string
+  district: string
+  hobby: string[]
+  remark: string
+}
+
+const columns: DescriptionsColumnItem<UserDetail>[] = [
   { value: 'name', label: '姓名' },
   { value: 'tel', label: '电话' },
   { value: 'email', label: '邮箱' },
@@ -28,19 +41,21 @@ const columns: DescriptionsColumnItem[] = [
   {
     value: 'hobby',
     label: '爱好',
-    render: ({ value }: { value: unknown }) =>
-      h(
+    render: ({ value }) => {
+      const list = Array.isArray(value) ? value : []
+      return h(
         ElSpace,
         null,
-        () => (Array.isArray(value) ? value : [value]).map((item: string) =>
+        () => list.map(item =>
           h(ElTag, { type: 'primary', size: 'small' }, () => item)
         )
       )
+    }
   },
   { value: 'remark', label: '备注' }
 ]
 
-const detail = {
+const detail: UserDetail = {
   name: '张三',
   tel: '18100000000',
   address: '江苏省苏州市吴中区吴中大道 1188 号',

@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { PageLayoutProps } from './type'
+import type { PageLayoutProps, PageLayoutSlots } from './type'
 import { ElSplitter, ElSplitterPanel } from 'element-plus'
 import { computed, onBeforeUnmount, ref, useSlots } from 'vue'
 import { useBemClass } from '../../../hooks'
@@ -44,14 +44,9 @@ const props = withDefaults(defineProps<PageLayoutProps>(), {
   bodyStyle: () => ({})
 })
 
-defineSlots<{
-  header: () => void
-  left: () => void
-  tool: () => void
-  default: () => void
-}>()
+defineSlots<PageLayoutSlots>()
 
-const slots = useSlots()
+const slots = useSlots() as PageLayoutSlots
 const { b } = useBemClass()
 const splitterRef = ref<InstanceType<typeof ElSplitter>>()
 const size = ref(props.size)
