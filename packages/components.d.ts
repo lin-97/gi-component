@@ -26,7 +26,7 @@ declare module 'vue' {
     GiPageLayout: typeof import('./components/page-layout/src/page-layout.vue')['default']
     GiSplitButton: typeof import('./components/page-layout/src/split-button.vue')['default']
     GiTable: typeof import('./components/table/src/table.vue')['default']
-    GiTableColumn: typeof import('./components/table/src/TableColumn.vue')['default']
+    GiTableColumn: typeof import('./components/table/src/table-column.vue')['default']
     GiTabs: typeof import('./components/tabs/src/tabs.vue')['default']
     GiTag: typeof import('./components/tag/src/tag.vue')['default']
     GiTreeTransfer: typeof import('./components/tree-transfer/src/tree-transfer.vue')['default']
