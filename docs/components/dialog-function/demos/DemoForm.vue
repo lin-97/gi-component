@@ -18,14 +18,14 @@ const openDialog = () => {
   const formRef = ref<FormInstance>()
   Dialog.open({
     title: '表单新增',
-    content: () => h(GiForm, { 'ref': (e: any) => formRef.value = e, 'columns': columns, 'modelValue': form, 'onUpdate:modelValue': (val) => Object.assign(form, val) }),
+    content: () => h(GiForm, { 'ref': (e: any) => formRef.value = e, 'columns': columns, 'modelValue': form, 'onUpdate:modelValue': (val: Record<string, unknown>) => Object.assign(form, val) }),
     onBeforeOk: async () => {
       try {
         await formRef.value?.formRef?.validate?.()
         ElMessage.success('提交成功')
         await new Promise((resolve) => setTimeout(resolve, 1000))
         return true
-      } catch (error) {
+      } catch {
         ElMessage.error('表单校验失败')
         return false
       }

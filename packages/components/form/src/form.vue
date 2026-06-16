@@ -75,7 +75,7 @@
   </ElForm>
 </template>
 
-<script lang="tsx" setup>
+<script lang="ts" setup>
 import type { FormInstance } from 'element-plus'
 import type { FormColumnItem, FormColumnType, FormProps } from './type'
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'

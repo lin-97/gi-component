@@ -22,7 +22,10 @@
 import type { TableColumnItem } from './type'
 import { ElTableColumn } from 'element-plus'
 import { computed } from 'vue'
-import TableColumn from './table-column.vue'
+
+defineOptions({
+  name: 'TableColumn'
+})
 
 const props = defineProps<{
   column: TableColumnItem

@@ -18,7 +18,7 @@
     "封装组件"
   ],
   "sideEffects": [
-    "packages/components/dialog/src/dialog.ts"
+    "packages/components/dialog/src/create-dialog.ts"
   ],
   "exports": {
     ".": {
@@ -42,7 +42,8 @@
     "docs:dev": "cd docs && pnpm dev",
     "docs:build": "cd docs && pnpm build",
     "docs:preview": "cd docs && pnpm preview",
-    "build:lib": "vite build",
+    "build:lib": "vite build && pnpm type-check",
+    "type-check": "cd docs && pnpm type-check",
     "build:docs": "cd docs && pnpm build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"

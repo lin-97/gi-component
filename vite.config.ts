@@ -57,7 +57,7 @@ export default defineConfig(() => {
       rollupOptions: {
         external: ['vue', 'element-plus'],
         treeshake: {
-          moduleSideEffects: (id) => id.includes('dialog/src/dialog') || id.includes('dialog\\src\\dialog')
+          moduleSideEffects: (id) => id.includes('dialog/src/create-dialog') || id.includes('dialog\\src\\create-dialog')
         },
         output: {
           globals: {
