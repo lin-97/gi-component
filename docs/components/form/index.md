@@ -3,10 +3,10 @@
 该组件是基于`el-form`封装的组件，提供配置表单功能
 
 <script setup>
-import Demo from './Demo.vue'
-import DemoSearch from './DemoSearch.vue'
-import DemoDict from './DemoDict.vue'
-import DemoFc from './DemoFc.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoSearch from './demos/DemoSearch.vue'
+import DemoDict from './demos/DemoDict.vue'
+import DemoFc from './demos/DemoFc.vue'
 </script>
 
 ::: warning 注意
@@ -15,29 +15,29 @@ import DemoFc from './DemoFc.vue'
 
 ## 基础用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 ::: details 查看代码
-<<<./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 搜索表单
 
 <DemoSearch></DemoSearch>
 ::: details 查看代码
-<<<./DemoSearch.vue
+<<< ./demos/DemoSearch.vue
 :::
 
 ## 结合字典
 
 <DemoDict></DemoDict>
 ::: details 查看代码
-<<<./DemoDict.vue
+<<< ./demos/DemoDict.vue
 :::
 
 ## 表单控制
 <DemoFc></DemoFc>
 ::: details 查看代码
-<<<./DemoFc.vue
+<<< ./demos/DemoFc.vue
 :::
 
 ## API 说明

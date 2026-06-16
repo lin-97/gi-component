@@ -3,18 +3,18 @@
 该组件主要是为了弥补`el-tabs`不支持右侧插槽的问题
 
 <script setup>
-import Demo from './Demo.vue'
-import DemoCard from './DemoCard.vue'
-import DemoSlotExtra from './DemoSlotExtra.vue'
-import DemoSize from './DemoSize.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoCard from './demos/DemoCard.vue'
+import DemoSlotExtra from './demos/DemoSlotExtra.vue'
+import DemoSize from './demos/DemoSize.vue'
 </script>
 
 ## 基础用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 卡片类型
@@ -22,7 +22,7 @@ import DemoSize from './DemoSize.vue'
 <DemoCard></DemoCard>
 
 ::: details 查看代码
-<<< ./DemoCard.vue
+<<< ./demos/DemoCard.vue
 :::
 
 ## 使用插槽
@@ -30,7 +30,7 @@ import DemoSize from './DemoSize.vue'
 <DemoSlotExtra></DemoSlotExtra>
 
 ::: details 查看代码
-<<< ./DemoSlotExtra.vue
+<<< ./demos/DemoSlotExtra.vue
 :::
 
 ## 小型尺寸
@@ -38,7 +38,7 @@ import DemoSize from './DemoSize.vue'
 <DemoSize></DemoSize>
 
 ::: details 查看代码
-<<< ./DemoSize.vue
+<<< ./demos/DemoSize.vue
 :::
 
 ## API

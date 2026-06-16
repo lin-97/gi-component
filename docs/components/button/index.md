@@ -3,16 +3,16 @@
 该组件主要是对一些常用图标按钮的封装，如果不满足，请使用`el-button`
 
 <script setup>
-import Demo from './Demo.vue'
-import DemoSize from './DemoSize.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoSize from './demos/DemoSize.vue'
 </script>
 
 ## 基础用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 按钮尺寸
@@ -20,7 +20,7 @@ import DemoSize from './DemoSize.vue'
 <DemoSize></DemoSize>
 
 ::: details 查看代码
-<<< ./DemoSize.vue
+<<< ./demos/DemoSize.vue
 :::
 
 ## API

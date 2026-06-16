@@ -3,10 +3,10 @@
 主要用于后台管理系统页签栏，由于el-tabs功能不足
 
 <script setup>
-import DemoNavTabs from './DemoNavTabs.vue'
-import DemoNavTabsSlot from './DemoNavTabsSlot.vue'
-import DemoNavTabsSlot2 from './DemoNavTabsSlot2.vue'
-import DemoUseNavTabs from './DemoUseNavTabs.vue'
+import DemoNavTabs from './demos/DemoNavTabs.vue'
+import DemoNavTabsSlot from './demos/DemoNavTabsSlot.vue'
+import DemoNavTabsSlot2 from './demos/DemoNavTabsSlot2.vue'
+import DemoUseNavTabs from './demos/DemoUseNavTabs.vue'
 </script>
 
 ### 基础用法
@@ -16,7 +16,7 @@ import DemoUseNavTabs from './DemoUseNavTabs.vue'
 <DemoNavTabs />
 
 ::: details 查看代码
-<<< ./DemoNavTabs.vue
+<<< ./demos/DemoNavTabs.vue
 :::
 
 ### 自定义默认插槽
@@ -24,7 +24,7 @@ import DemoUseNavTabs from './DemoUseNavTabs.vue'
 <DemoNavTabsSlot />
 
 ::: details 查看代码
-<<< ./DemoNavTabsSlot.vue
+<<< ./demos/DemoNavTabsSlot.vue
 :::
 
 ### 自定义默认插槽2（右键菜单）
@@ -32,7 +32,7 @@ import DemoUseNavTabs from './DemoUseNavTabs.vue'
 <DemoNavTabsSlot2 />
 
 ::: details 查看代码
-<<< ./DemoNavTabsSlot2.vue
+<<< ./demos/DemoNavTabsSlot2.vue
 :::
 
 ### Props
@@ -100,7 +100,7 @@ const tabList = ref<MyTab[]>([
 <DemoUseNavTabs></DemoUseNavTabs>
 
 ::: details 查看代码
-<<< ./DemoUseNavTabs.vue
+<<< ./demos/DemoUseNavTabs.vue
 :::
 
 ## 为什么用组合函数而不是构造函数

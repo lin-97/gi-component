@@ -3,20 +3,20 @@
 该组件提供了比`el-card`更加易用，便捷的功能
 
 <script setup>
-import Demo from './Demo.vue'
-import DemoInnerClass from './DemoInnerClass.vue'
-import DemoSize from './DemoSize.vue'
-import DemoFooter from './DemoFooter.vue'
-import DemoScroll from './DemoScroll.vue'
-import DemoInner from './DemoInner.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoInnerClass from './demos/DemoInnerClass.vue'
+import DemoSize from './demos/DemoSize.vue'
+import DemoFooter from './demos/DemoFooter.vue'
+import DemoScroll from './demos/DemoScroll.vue'
+import DemoInner from './demos/DemoInner.vue'
 </script>
 
 ## 基础用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 内置类名
@@ -26,7 +26,7 @@ import DemoInner from './DemoInner.vue'
 <DemoInnerClass></DemoInnerClass>
 
 ::: details 查看代码
-<<< ./DemoInnerClass.vue
+<<< ./demos/DemoInnerClass.vue
 :::
 
 ## 底部插槽
@@ -34,7 +34,7 @@ import DemoInner from './DemoInner.vue'
 <DemoFooter></DemoFooter>
 
 ::: details 查看代码
-<<< ./DemoFooter.vue
+<<< ./demos/DemoFooter.vue
 :::
 
 ## 迷你卡片
@@ -42,7 +42,7 @@ import DemoInner from './DemoInner.vue'
 <DemoSize></DemoSize>
 
 ::: details 查看代码
-<<< ./DemoSize.vue
+<<< ./demos/DemoSize.vue
 :::
 
 ## 内容滚动
@@ -50,7 +50,7 @@ import DemoInner from './DemoInner.vue'
 <DemoScroll></DemoScroll>
 
 ::: details 查看代码
-<<< ./DemoScroll.vue
+<<< ./demos/DemoScroll.vue
 :::
 
 ## 内嵌模式
@@ -58,7 +58,7 @@ import DemoInner from './DemoInner.vue'
 <DemoInner></DemoInner>
 
 ::: details 查看代码
-<<< ./DemoInner.vue
+<<< ./demos/DemoInner.vue
 :::
 
 ## API

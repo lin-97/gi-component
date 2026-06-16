@@ -3,19 +3,19 @@
 `gi-table` 组件是基于 Element Plus 的 `el-table` 和 `el-pagination` 组件封装的高级表格组件，提供了更便捷的配置方式和增强的功能，包括动态列配置、自定义渲染、嵌套列支持、分页集成等
 
 <script setup>
-import Demo from './Demo.vue'
-import DemoHeaderSearch from './DemoHeaderSearch.vue'
-import DemoTableSetting from './DemoTableSetting.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoHeaderSearch from './demos/DemoHeaderSearch.vue'
+import DemoTableSetting from './demos/DemoTableSetting.vue'
 </script>
 
 ## 基础用法
 
 ::: raw
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 :::
 
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 表头搜索
@@ -23,19 +23,19 @@ import DemoTableSetting from './DemoTableSetting.vue'
 
 <DemoHeaderSearch></DemoHeaderSearch>
 ::: details 查看代码
-<<< ./DemoHeaderSearch.vue
+<<< ./demos/DemoHeaderSearch.vue
 :::
 
 ::: details useTableHeaderSearch.ts
-<<< ./components/useTableHeaderSearch.ts
+<<< ./_fragments/useTableHeaderSearch.ts
 :::
 
 ::: details HeaderInput.vue
-<<< ./components/HeaderInput.vue
+<<< ./_fragments/HeaderInput.vue
 :::
 
 ::: details HeaderCheckboxGroup.vue
-<<< ./components/HeaderCheckboxGroup.vue
+<<< ./_fragments/HeaderCheckboxGroup.vue
 :::
 
 ## TableSetting 表格工具栏(参考)
@@ -47,11 +47,11 @@ import DemoTableSetting from './DemoTableSetting.vue'
 :::
 
 ::: details 查看代码
-<<< ./DemoTableSetting.vue
+<<< ./demos/DemoTableSetting.vue
 :::
 
 ::: details TableSetting.vue
-<<< ./components/TableSetting.vue
+<<< ./_fragments/TableSetting.vue
 :::
 
 ## API 使用说明

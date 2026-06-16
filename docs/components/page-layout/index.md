@@ -3,46 +3,46 @@
 该组件是一个页面布局组件，用于快速生成一个页面布局，扩展性强，适合各种场景使用
 
 <script setup>
-import Demo1 from './demo1.vue'
-import Demo2 from './demo2.vue'
-import Demo3 from './demo3.vue'
-import Demo4 from './demo4.vue'
-import Demo5 from './demo5.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoSearch from './demos/DemoSearch.vue'
+import DemoSearchWithActions from './demos/DemoSearchWithActions.vue'
+import DemoWithTree from './demos/DemoWithTree.vue'
+import DemoNestedLayout from './demos/DemoNestedLayout.vue'
 </script>
 
 ## 基础用法
 
-<Demo1></Demo1>
+<DemoBasic></DemoBasic>
 ::: details 查看代码
-<<<./demo1.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 搜索
 
-<Demo2></Demo2>
+<DemoSearch></DemoSearch>
 ::: details 查看代码
-<<<./demo2.vue
+<<< ./demos/DemoSearch.vue
 :::
 
 ## 搜索 + 按钮
 
-<Demo3></Demo3>
+<DemoSearchWithActions></DemoSearchWithActions>
 ::: details 查看代码
-<<<./demo3.vue
+<<< ./demos/DemoSearchWithActions.vue
 :::
 
 ## 左侧树
 
-<Demo4></Demo4>
+<DemoWithTree></DemoWithTree>
 ::: details 查看代码
-<<<./demo4.vue
+<<< ./demos/DemoWithTree.vue
 :::
 
 ## 布局嵌套布局
 
-<Demo5></Demo5>
+<DemoNestedLayout></DemoNestedLayout>
 ::: details 查看代码
-<<<./demo5.vue
+<<< ./demos/DemoNestedLayout.vue
 :::
 
 ## API

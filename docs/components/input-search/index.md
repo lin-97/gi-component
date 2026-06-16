@@ -3,18 +3,18 @@
 该组件主要应用于自定义选择的场景，比如：选择用户、选择部门、选择标签等等
 
 <script setup>
-import Demo from './Demo.vue'
-import DemoDisabled from './DemoDisabled.vue'
-import DemoReadonly from './DemoReadonly.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoDisabled from './demos/DemoDisabled.vue'
+import DemoReadonly from './demos/DemoReadonly.vue'
 
 </script>
 
 ## 基础用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 禁用状态
@@ -22,7 +22,7 @@ import DemoReadonly from './DemoReadonly.vue'
 <DemoDisabled></DemoDisabled>
 
 ::: details 查看代码
-<<< ./DemoDisabled.vue
+<<< ./demos/DemoDisabled.vue
 :::
 
 ## 只读状态
@@ -30,7 +30,7 @@ import DemoReadonly from './DemoReadonly.vue'
 <DemoReadonly></DemoReadonly>
 
 ::: details 查看代码
-<<< ./DemoReadonly.vue
+<<< ./demos/DemoReadonly.vue
 :::
 
 ## API

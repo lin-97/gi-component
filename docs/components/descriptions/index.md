@@ -3,16 +3,16 @@
 基于 `el-descriptions` 封装，支持通过 `columns` + `data` 配置项快速渲染描述列表，也可使用默认插槽自定义内容。`title`、`extra` 支持插槽。
 
 <script setup>
-import Demo from './Demo.vue'
-import DemoSlot from './DemoSlot.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoSlot from './demos/DemoSlot.vue'
 </script>
 
 ## 基本用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 插槽用法
@@ -20,7 +20,7 @@ import DemoSlot from './DemoSlot.vue'
 <DemoSlot></DemoSlot>
 
 ::: details 查看代码
-<<< ./DemoSlot.vue
+<<< ./demos/DemoSlot.vue
 :::
 
 ## API

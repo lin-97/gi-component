@@ -1,25 +1,25 @@
 # Dot 点
 
 <script setup>
-import Demo from './Demo.vue'
-import Demo2 from './Demo2.vue'
-import DemoColor from './DemoColor.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoAnimation from './demos/DemoAnimation.vue'
+import DemoColor from './demos/DemoColor.vue'
 </script>
 
 ## 基础用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 动画
 
-<Demo2></Demo2>
+<DemoAnimation></DemoAnimation>
 
 ::: details 查看代码
-<<< ./Demo2.vue
+<<< ./demos/DemoAnimation.vue
 :::
 
 ## 自定义颜色
@@ -27,7 +27,7 @@ import DemoColor from './DemoColor.vue'
 <DemoColor></DemoColor>
 
 ::: details 查看代码
-<<< ./DemoColor.vue
+<<< ./demos/DemoColor.vue
 :::
 
 ## API

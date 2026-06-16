@@ -3,23 +3,23 @@
 该组件主要用来组合输入框，比如搜索框
 
 <script setup>
-import Demo from './Demo.vue'
-import Demo2 from './Demo2.vue'
-import DemoInputSearch from './DemoInputSearch.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoMixed from './demos/DemoMixed.vue'
+import DemoInputSearch from './demos/DemoInputSearch.vue'
 </script>
 
 ## 基础用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
-<Demo2></Demo2>
+<DemoMixed></DemoMixed>
 
 ::: details 查看代码
-<<< ./Demo2.vue
+<<< ./demos/DemoMixed.vue
 :::
 
 ## 搜索框
@@ -27,5 +27,5 @@ import DemoInputSearch from './DemoInputSearch.vue'
 <DemoInputSearch></DemoInputSearch>
 
 ::: details 查看代码
-<<< ./DemoInputSearch.vue
+<<< ./demos/DemoInputSearch.vue
 :::

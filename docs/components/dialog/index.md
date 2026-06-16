@@ -1,58 +1,139 @@
 # Dialog 对话框
 
-基于`el-dialog`封装的组件，灵活性更高
+基于 `el-dialog` 封装的组件与函数式调用 API，灵活性更高。
 
 <script setup>
-import Demo from './Demo.vue'
-import DemoAsync from './DemoAsync.vue'
-import DemoHideFooter from './DemoHideFooter.vue'
-import DemoButtonText from './DemoButtonText.vue'
-import DemoFullscreen from './DemoFullscreen.vue'
-import DemoSimple from './DemoSimple.vue'
-
+import ComponentDemoBasic from './demos/component/DemoBasic.vue'
+import ComponentDemoAsync from './demos/component/DemoAsync.vue'
+import ComponentDemoHideFooter from './demos/component/DemoHideFooter.vue'
+import ComponentDemoButtonText from './demos/component/DemoButtonText.vue'
+import ComponentDemoFullscreen from './demos/component/DemoFullscreen.vue'
+import ComponentDemoSimple from './demos/component/DemoSimple.vue'
+import ImperativeDemoBasic from './demos/imperative/DemoBasic.vue'
+import ImperativeDemoAsync from './demos/imperative/DemoAsync.vue'
+import ImperativeDemoHideFooter from './demos/imperative/DemoHideFooter.vue'
+import ImperativeDemoDrag from './demos/imperative/DemoDrag.vue'
+import ImperativeDemoFullscreen from './demos/imperative/DemoFullscreen.vue'
+import ImperativeDemoForm from './demos/imperative/DemoForm.vue'
+import ImperativeDemoCustomFooter from './demos/imperative/DemoCustomFooter.vue'
+import ImperativeDemoBase from './demos/imperative/DemoBase.vue'
 </script>
 
-## 基础用法
+## 组件用法
 
-<Demo></Demo>
+### 基础用法
+
+<ComponentDemoBasic></ComponentDemoBasic>
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/component/DemoBasic.vue
 :::
 
-## 异步关闭
+### 异步关闭
 
-<DemoAsync></DemoAsync>
+<ComponentDemoAsync></ComponentDemoAsync>
 ::: details 查看代码
-<<< ./DemoAsync.vue
+<<< ./demos/component/DemoAsync.vue
 :::
 
-## 隐藏底部
+### 隐藏底部
 
-<DemoHideFooter></DemoHideFooter>
+<ComponentDemoHideFooter></ComponentDemoHideFooter>
 ::: details 查看代码
-<<< ./DemoHideFooter.vue
+<<< ./demos/component/DemoHideFooter.vue
 :::
 
-## 修改按钮
+### 修改按钮
 
-<DemoButtonText></DemoButtonText>
+<ComponentDemoButtonText></ComponentDemoButtonText>
 ::: details 查看代码
-<<< ./DemoButtonText.vue
+<<< ./demos/component/DemoButtonText.vue
 :::
 
-## 全屏对话框
+### 全屏对话框
 
-<DemoFullscreen></DemoFullscreen>
+<ComponentDemoFullscreen></ComponentDemoFullscreen>
 ::: details 查看代码
-<<< ./DemoFullscreen.vue
+<<< ./demos/component/DemoFullscreen.vue
 :::
 
-## 简单对话框
+### 简单对话框
 
-<DemoSimple></DemoSimple>
+<ComponentDemoSimple></ComponentDemoSimple>
 ::: details 查看代码
-<<< ./DemoSimple.vue
+<<< ./demos/component/DemoSimple.vue
 :::
+
+## 函数式用法
+
+函数对话框，通过 JS 调用打开，支持异步关闭、隐藏底部、拖拽等。
+
+### 基础用法
+
+<ImperativeDemoBasic></ImperativeDemoBasic>
+::: details 查看代码
+<<< ./demos/imperative/DemoBasic.vue
+:::
+
+### 异步关闭
+
+<ImperativeDemoAsync></ImperativeDemoAsync>
+::: details 查看代码
+<<< ./demos/imperative/DemoAsync.vue
+:::
+
+### 隐藏底部
+
+<ImperativeDemoHideFooter></ImperativeDemoHideFooter>
+::: details 查看代码
+<<< ./demos/imperative/DemoHideFooter.vue
+:::
+
+### 全屏
+
+<ImperativeDemoFullscreen></ImperativeDemoFullscreen>
+::: details 查看代码
+<<< ./demos/imperative/DemoFullscreen.vue
+:::
+
+### 拖拽
+
+<ImperativeDemoDrag></ImperativeDemoDrag>
+::: details 查看代码
+<<< ./demos/imperative/DemoDrag.vue
+:::
+
+### 表单对话框
+
+<ImperativeDemoForm></ImperativeDemoForm>
+::: details 查看代码
+<<< ./demos/imperative/DemoForm.vue
+:::
+
+### 自定义底部
+
+<ImperativeDemoCustomFooter></ImperativeDemoCustomFooter>
+::: details 查看代码
+<<< ./demos/imperative/DemoCustomFooter.vue
+:::
+
+### 基础对话框
+
+<ImperativeDemoBase></ImperativeDemoBase>
+::: details 查看代码
+<<< ./demos/imperative/DemoBase.vue
+:::
+
+### 继承主应用的上下文
+
+如果要继承主应用的上下文：
+
+```js
+// main.ts
+import { Dialog } from 'gi-component'
+
+const app = createApp(App)
+Dialog._context = app._context
+```
 
 ## API
 

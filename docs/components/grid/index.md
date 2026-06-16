@@ -3,14 +3,14 @@
 该组件是一个栅格组件，用于布局，可以嵌套使用
 
 <script setup>
-import Demo from './Demo.vue'
+import DemoBasic from './demos/DemoBasic.vue'
 </script>
 
 ## 基础用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 ::: details 查看代码
-<<<./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## API

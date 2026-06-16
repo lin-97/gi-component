@@ -1,19 +1,19 @@
 # Tag 标签
 
 <script setup>
-import Demo from './Demo.vue'
-import DemoSize from './DemoSize.vue'
-import DemoColors from './DemoColors.vue'
-import DemoCustomColor from './DemoCustomColor.vue'
-import DemoIcon from './DemoIcon.vue'
+import DemoBasic from './demos/DemoBasic.vue'
+import DemoSize from './demos/DemoSize.vue'
+import DemoColors from './demos/DemoColors.vue'
+import DemoCustomColor from './demos/DemoCustomColor.vue'
+import DemoIcon from './demos/DemoIcon.vue'
 </script>
 
 ## 基本使用
 
-<Demo />
+<DemoBasic />
 
 ::: details 查看代码
-<<< ./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
 
 ## 不同尺寸
@@ -21,7 +21,7 @@ import DemoIcon from './DemoIcon.vue'
 <DemoSize />
 
 ::: details 查看代码
-<<< ./DemoSize.vue
+<<< ./demos/DemoSize.vue
 :::
 
 ## 基础颜色
@@ -29,7 +29,7 @@ import DemoIcon from './DemoIcon.vue'
 <DemoColors />
 
 ::: details 查看代码
-<<< ./DemoColors.vue
+<<< ./demos/DemoColors.vue
 :::
 
 ## 自定义颜色
@@ -37,7 +37,7 @@ import DemoIcon from './DemoIcon.vue'
 <DemoCustomColor />
 
 ::: details 查看代码
-<<< ./DemoCustomColor.vue
+<<< ./demos/DemoCustomColor.vue
 :::
 
 ## 图标（属性 / 插槽）
@@ -45,7 +45,7 @@ import DemoIcon from './DemoIcon.vue'
 <DemoIcon />
 
 ::: details 查看代码
-<<< ./DemoIcon.vue
+<<< ./demos/DemoIcon.vue
 :::
 
 ## API

@@ -3,12 +3,12 @@
 该组件主要是配置式的编辑表格
 
 <script setup>
-import Demo from './Demo.vue'
+import DemoBasic from './demos/DemoBasic.vue'
 </script>
 
 ## 基础用法
 
-<Demo></Demo>
+<DemoBasic></DemoBasic>
 ::: details 查看代码
-<<<./Demo.vue
+<<< ./demos/DemoBasic.vue
 :::
