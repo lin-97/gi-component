@@ -20,8 +20,10 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/gi-component/favicon.ico' }]
   ],
   rewrites: {
-    'components/dialog2/index.md': 'components/dialog/index.md',
-    'components/drawer2/index.md': 'components/drawer/index.md',
+    'components/dialog2/index.md': 'components/dialog-function/index.md',
+    'components/drawer2/index.md': 'components/drawer-function/index.md',
+    'components/dialog-imperative/index.md': 'components/dialog-function/index.md',
+    'components/drawer-imperative/index.md': 'components/drawer-function/index.md',
     'style/index.md': 'guide/style.md',
     'tools/createSelectDialog/index.md': 'tools/create-select-dialog/index.md',
     'tools/useTable/index.md': 'tools/use-table/index.md',
