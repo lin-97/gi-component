@@ -1,10 +1,10 @@
 <template>
   <div :class="b('table')">
-    <ElTable v-bind="tableProps" ref="tableRef" :data="props.data as any[]">
+    <ElTable v-bind="tableProps as any" ref="tableRef" :data="props.data as any[]">
       <TableColumn v-for="item in props.columns" :key="item.prop || item.label" :column="item">
         <!-- 将所有插槽传递给子组件 -->
         <template v-for="(_, slotName) in $slots" :key="slotName" #[slotName]="scope">
-          <slot :name="slotName" v-bind="scope" />
+          <slot :name="slotName" v-bind="scope as any" />
         </template>
       </TableColumn>
     </ElTable>
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup generic="T extends DefaultRow">
-import type { DefaultRow, TableProps, TableSlotScope } from './type'
+import type { DefaultRow, TableProps, TableSlots } from './type'
 import { ElPagination, ElRow, ElTable } from 'element-plus'
 import { computed, useAttrs, useTemplateRef } from 'vue'
 import { useBemClass } from '../../../hooks'
@@ -32,11 +32,7 @@ const props = withDefaults(defineProps<TableProps<T>>(), {
   pagination: () => ({})
 })
 
-defineSlots<{
-  append: () => void
-  empty: () => void
-  [propsName: string]: (props: TableSlotScope<T>) => void
-}>()
+defineSlots<TableSlots<T>>()
 
 const attrs = useAttrs()
 const { b } = useBemClass()

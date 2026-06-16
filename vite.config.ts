@@ -18,7 +18,7 @@ export default defineConfig(() => {
       dts({
         tsconfigPath: './tsconfig.build.json',
         include: ['packages/**/*.ts', 'packages/**/*.vue', 'packages/**/*.tsx'],
-        exclude: ['**/node_modules/**', '**/__tests__/**', '**/dist/**'],
+        exclude: ['**/node_modules/**', '**/__tests__/**', '**/dist/**', 'packages/components/table/src/table.vue'],
         outDir: 'dist',
         entryRoot: 'packages',
         rollupTypes: false,

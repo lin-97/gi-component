@@ -24,13 +24,14 @@
 </template>
 
 <script lang="ts" setup>
+import type { UserItem } from '@docs/_shared/apis/mockTable'
 import type { TableColumnItem } from 'gi-component'
 import { getUserList } from '@docs/_shared/apis/mockTable'
 import { useTable } from '@docs/_shared/hooks'
 import { ElButton, ElMessage, ElTag } from 'element-plus'
 import { h, reactive } from 'vue'
 
-const columns: TableColumnItem[] = [
+const columns: TableColumnItem<UserItem>[] = [
   { type: 'selection', width: 55, align: 'center', fixed: 'left' },
   { type: 'index', label: '序号', width: 60, align: 'center' },
   {
@@ -80,9 +81,8 @@ const { tableData, pagination, search, loading } = useTable({
   }
 })
 
-// 编辑操作
-function onEdit(scope: any) {
-  ElMessage.success(`编辑 ${scope.row.name}`)
+function onEdit(row: UserItem) {
+  ElMessage.success(`编辑 ${row.name}`)
 }
 </script>
 
