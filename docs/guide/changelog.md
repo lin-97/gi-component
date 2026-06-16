@@ -1,5 +1,17 @@
 # 更新日志
 
+## v0.0.50 (2026-06-16)
+
+优化 npm 发布类型导出配置
+
+useTable 重构为 `options + listAPI` 模式，文档示例迁移至 `_shared/hooks`
+
+createBaseAPI 文档重构为 RESTful 风格，新增 `search` 接口说明及与 useTable 配合示例
+
+::: danger 注意
+TypeScript 全局组件类型引用路径变更：`gi-component/packages/components.d.ts` 已改为 `gi-component/global`
+:::
+
 ## v0.0.49 (2026-06-11)
 
 PageLayout 新增 `autoCollapse` 属性，支持根据容器宽度自动折叠/展开左侧面板

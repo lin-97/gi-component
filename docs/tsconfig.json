@@ -23,7 +23,7 @@
       "vite/client",
       "element-plus/global",
       "../packages/types/global.d.ts",
-      "gi-component/packages/components.d.ts"
+      "gi-component/global"
     ]
   },
   "include": [

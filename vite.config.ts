@@ -1,13 +1,12 @@
 import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import { generateGlobalDts } from './scripts/generate-global-dts.mjs'
 
 export default defineConfig(() => {
   return {
-    // 路径别名（库构建入口在 packages/，此处仅用于 dev 或插件解析）
     resolve: {
       alias: {
         '~': fileURLToPath(new URL('./', import.meta.url))
@@ -16,36 +15,34 @@ export default defineConfig(() => {
     plugins: [
       vue(),
       vueJsx(),
-      Components({
-        dirs: ['packages/components'],
-        extensions: ['vue', 'tsx'],
-        dts: 'packages/components.d.ts',
-        prefix: 'Gi'
-      }),
-      // 配置dts插件生成类型声明文件
-      // rollupTypes: false 按源结构输出多个 .d.ts，避免 index.d.ts 中出现找不到的 ./src/xxx.vue 引用
       dts({
-        include: ['packages/**/*.ts', 'packages/**/*.vue'],
+        tsconfigPath: './tsconfig.build.json',
+        include: ['packages/**/*.ts', 'packages/**/*.vue', 'packages/**/*.tsx'],
+        exclude: ['**/node_modules/**', '**/__tests__/**', '**/dist/**'],
         outDir: 'dist',
         entryRoot: 'packages',
         rollupTypes: false,
-        // 排除不需要生成类型的文件
-        exclude: ['**/node_modules/**', '**/__tests__/**', '**/dist/**']
+        staticImport: true,
+        cleanVueFileName: true,
+        insertTypesEntry: true,
+        copyDtsFiles: false,
+        afterBuild: async () => {
+          generateGlobalDts()
+        }
       })
     ],
-    // 构建
     build: {
-      chunkSizeWarningLimit: 2000, // 消除打包大小超过500kb警告
-      outDir: 'dist', // 指定打包路径，默认为项目根目录下的dist目录
-      minify: 'terser', // Vite 2.6.x 以上需要配置 minify："terser"，terserOptions才能生效
+      chunkSizeWarningLimit: 2000,
+      outDir: 'dist',
+      minify: 'terser',
       terserOptions: {
         compress: {
-          keep_infinity: true, // 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题
-          drop_console: true, // 生产环境去除 console
-          drop_debugger: true // 生产环境去除 debugger
+          keep_infinity: true,
+          drop_console: true,
+          drop_debugger: true
         },
         format: {
-          comments: false // 删除注释
+          comments: false
         }
       },
       lib: {
@@ -56,17 +53,13 @@ export default defineConfig(() => {
         cssFileName: 'gi'
       },
       sourcemap: true,
-      // 不清空 dist，避免与 dts 插件输出冲突；需先构建再发布
-      emptyOutDir: false,
+      emptyOutDir: true,
       rollupOptions: {
-        // 确保外部化处理那些你不想打包进库的依赖
         external: ['vue', 'element-plus'],
-        // 防止 dialog 模块被 tree-shake 掉 info/success/warning/error 方法
         treeshake: {
           moduleSideEffects: (id) => id.includes('dialog/src/dialog') || id.includes('dialog\\src\\dialog')
         },
         output: {
-          // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
           globals: {
             'vue': 'Vue',
             'element-plus': 'ElementPlus'
