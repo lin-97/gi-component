@@ -76,7 +76,7 @@ async function handleSubmit() {
   try {
     await formRef.value?.formRef?.validate?.()
     ElMessage.success('提交成功')
-  } catch (error) {
+  } catch {
     ElMessage.error('提交失败')
   }
 }

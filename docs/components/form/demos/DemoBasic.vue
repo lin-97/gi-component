@@ -254,10 +254,10 @@ const columns = computed(() => {
 })
 
 async function submit() {
-  await GiFormRef.value?.formRef?.validate()
+  await GiFormRef.value?.formRef?.validate?.()
 }
 function reset() {
-  GiFormRef.value?.formRef?.resetFields()
+  GiFormRef.value?.formRef?.resetFields?.()
 }
 </script>
 

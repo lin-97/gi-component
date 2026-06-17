@@ -77,7 +77,7 @@
 
 <script lang="ts" setup>
 import type { FormInstance } from 'element-plus'
-import type { FormColumnItem, FormColumnType, FormProps } from './type'
+import type { FormColumnItem, FormColumnType, FormProps, FormSlots } from './type'
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { ElButton, ElForm, ElFormItem, ElMessage, ElSpace, ElText } from 'element-plus'
 import * as El from 'element-plus'
@@ -113,6 +113,8 @@ const emit = defineEmits<{
   (e: 'search'): void
   (e: 'reset'): void
 }>()
+
+defineSlots<FormSlots>()
 
 const attrs = useAttrs()
 const { b } = useBemClass()

@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import type { FormColumnItem, FormInstance } from 'gi-component'
+import type { Component } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Dialog, GiForm } from 'gi-component'
 import { h, reactive, ref } from 'vue'
@@ -18,7 +19,7 @@ const openDialog = () => {
   const formRef = ref<FormInstance>()
   Dialog.open({
     title: '表单新增',
-    content: () => h(GiForm, { 'ref': (e: any) => formRef.value = e, 'columns': columns, 'modelValue': form, 'onUpdate:modelValue': (val: Record<string, unknown>) => Object.assign(form, val) }),
+    content: () => h(GiForm as Component, { 'ref': (e: any) => formRef.value = e, 'columns': columns, 'modelValue': form, 'onUpdate:modelValue': (val: Record<string, unknown>) => Object.assign(form, val) }),
     onBeforeOk: async () => {
       try {
         await formRef.value?.formRef?.validate?.()

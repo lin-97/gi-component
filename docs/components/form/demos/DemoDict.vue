@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { FormColumnItem, FormInstance } from 'gi-component'
-import { computed, reactive, ref } from 'vue'
+import type { FormColumnItem } from 'gi-component'
+import { computed, reactive, useTemplateRef } from 'vue'
 import { useDictStore } from '../_fragments/useDictStore'
 
-const GiFormRef = ref<FormInstance | null>()
+const GiFormRef = useTemplateRef('GiFormRef')
 
 const form = reactive({
   status: '1'

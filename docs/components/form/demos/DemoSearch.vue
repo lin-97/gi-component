@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { FormColumnItem, FormInstance } from 'gi-component'
+import type { FormColumnItem } from 'gi-component'
 import { ElMessage } from 'element-plus'
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, useTemplateRef } from 'vue'
 
-const GiFormRef = ref<FormInstance | null>()
+const GiFormRef = useTemplateRef('GiFormRef')
 
 function search() {
   ElMessage.success('点击了搜索')
