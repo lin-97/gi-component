@@ -47,6 +47,7 @@ import DemoAsync from './demos/DemoAsync.vue'
 | 名称    | 说明       |
 | ------- | ---------- |
 | default | 自定义内容 |
+| title   | 自定义标题 |
 | footer  | 自定义底部 |
 
 ::: tip

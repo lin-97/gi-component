@@ -16,8 +16,7 @@
 
   .el-dialog__header {
     height: 48px;
-    padding-left: var(--el-dialog-padding-primary);
-    padding-bottom: 0;
+    padding: 0 var(--el-dialog-padding-primary);
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--el-border-color);

@@ -66,6 +66,7 @@ import DemoSimple from './demos/DemoSimple.vue'
 | content           | 内容            | string  | -      |
 | footer            | 显示尾部        | boolean | true   |
 | simple            | 简单模式        | boolean | false  |
+| showFullscreen    | 是否显示全屏按钮 | boolean | false  |
 
 ### Events
 
@@ -80,6 +81,7 @@ import DemoSimple from './demos/DemoSimple.vue'
 | 名称    | 说明       |
 | ------- | ---------- |
 | default | 自定义内容 |
+| title   | 自定义标题 |
 | footer  | 自定义底部 |
 
 ::: tip

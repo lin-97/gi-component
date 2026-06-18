@@ -1,5 +1,21 @@
 <template>
-  <ElDrawer v-bind="dialogProps" v-model="visible" :class="getClass" :title="props.title" :style="{ ...props.style }">
+  <ElDrawer v-bind="dialogProps" v-model="visible" :class="getClass" :show-close="false" :style="{ ...props.style }">
+    <template v-if="props.withHeader" #header="{ close, titleId, titleClass }">
+      <div :class="b('drawer-header')">
+        <slot name="title">
+          <div :id="titleId" class="el-drawer__title" :class="[titleClass, b('drawer-title')]">
+            {{ props.title }}
+          </div>
+        </slot>
+        <ElSpace :size="8">
+          <ElButton v-if="props.showClose" :class="b('drawer-button')" text circle @click="close">
+            <ElIcon :size="16">
+              <Close />
+            </ElIcon>
+          </ElButton>
+        </ElSpace>
+      </div>
+    </template>
     <slot>
       <template v-if="typeof props.content === 'string'">
         <p>{{ props.content }}</p>
@@ -31,7 +47,8 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue'
 import type { DrawerProps } from './type'
-import { ElButton, ElDrawer, ElSpace } from 'element-plus'
+import { Close } from '@element-plus/icons-vue'
+import { ElButton, ElDrawer, ElIcon, ElSpace } from 'element-plus'
 import { computed, ref } from 'vue'
 import { useBemClass } from '../../../hooks'
 
@@ -80,7 +97,7 @@ const dialogProps = computed(() => {
     onOk: undefined,
     onBeforeOk: undefined,
     onCancel: undefined,
-    simple: undefined
+    title: undefined
   }
 })
 
@@ -111,4 +128,26 @@ const handleOk = async () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use '../../../styles/var.scss' as a;
+
+.#{a.$prefix}-drawer-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 0;
+}
+
+.#{a.$prefix}-drawer .#{a.$prefix}-drawer-button {
+  border-radius: 4px;
+}
+
+.#{a.$prefix}-drawer-title {
+  flex: 1;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+</style>

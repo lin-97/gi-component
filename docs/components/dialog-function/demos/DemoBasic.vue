@@ -10,6 +10,7 @@ const openDialog = () => {
   Dialog.open({
     title: '标题',
     content: '落霞与孤鹜齐飞，秋水共长天一色',
+    showFullscreen: true,
     onOk: () => {
       ElMessage.success('点击了确定按钮')
     },

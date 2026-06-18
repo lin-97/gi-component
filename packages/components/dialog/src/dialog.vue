@@ -1,6 +1,31 @@
 <template>
-  <ElDialog v-bind="dialogProps" v-model="visible" :class="getClass" :title="props.title"
-    :style="{ maxWidth: !props.fullscreen ? '480px' : '100%', ...props.style }">
+  <ElDialog v-bind="dialogProps" v-model="visible" :class="getClass" :fullscreen="isFullscreen" :show-close="false"
+    :style="{ maxWidth: !isFullscreen ? '480px' : '100%', ...props.style }">
+    <template #header="{ close, titleId, titleClass }">
+      <div :class="b('dialog-header')">
+        <slot name="title">
+          <div
+            :id="titleId"
+            class="el-dialog__title"
+            :class="[titleClass, b('dialog-title')]"
+          >
+            {{ props.title }}
+          </div>
+        </slot>
+        <ElSpace :size="8">
+          <ElButton v-if="props.showFullscreen" :class="b('dialog-button')" text circle @click="toggleFullscreen">
+            <ElIcon :size="16">
+              <FullScreen />
+            </ElIcon>
+          </ElButton>
+          <ElButton v-if="props.showClose" :class="b('dialog-button')" text circle @click="close">
+            <ElIcon :size="16">
+              <Close />
+            </ElIcon>
+          </ElButton>
+        </ElSpace>
+      </div>
+    </template>
     <slot>
       <template v-if="typeof props.content === 'string'">
         <p>{{ props.content }}</p>
@@ -32,8 +57,9 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue'
 import type { DialogProps } from './type'
-import { ElButton, ElDialog, ElSpace } from 'element-plus'
-import { computed, ref } from 'vue'
+import { Close, FullScreen } from '@element-plus/icons-vue'
+import { ElButton, ElDialog, ElIcon, ElSpace } from 'element-plus'
+import { computed, ref, watch } from 'vue'
 import { useBemClass } from '../../../hooks'
 
 const visible = defineModel('modelValue', {
@@ -44,6 +70,7 @@ const visible = defineModel('modelValue', {
 const props = withDefaults(defineProps<DialogProps>(), {
   closeOnClickModal: true,
   showClose: true,
+  showFullscreen: false,
   footer: true,
   okText: '确认',
   cancelText: '取消',
@@ -59,6 +86,16 @@ defineSlots<{
 }>()
 
 const { b } = useBemClass()
+
+const isFullscreen = ref(false)
+
+watch(
+  () => props.fullscreen,
+  (val) => {
+    isFullscreen.value = !!val
+  },
+  { immediate: true }
+)
 
 const getClass = computed(() => {
   const arr: string[] = [b('dialog')]
@@ -80,11 +117,18 @@ const dialogProps = computed(() => {
     onOk: undefined,
     onBeforeOk: undefined,
     onCancel: undefined,
-    simple: undefined
+    simple: undefined,
+    showFullscreen: undefined,
+    fullscreen: undefined,
+    title: undefined
   }
 })
 
 const okLoading = ref(false)
+
+const toggleFullscreen = () => {
+  isFullscreen.value = !isFullscreen.value
+}
 
 const handleCancel = () => {
   props.onCancel?.()
@@ -111,4 +155,26 @@ const handleOk = async () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@use '../../../styles/var.scss' as a;
+
+.#{a.$prefix}-dialog-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 0;
+}
+
+.#{a.$prefix}-dialog .#{a.$prefix}-dialog-button {
+  border-radius: 4px;
+}
+
+.#{a.$prefix}-dialog-title {
+  flex: 1;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+</style>

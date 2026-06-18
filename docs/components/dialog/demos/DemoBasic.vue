@@ -3,7 +3,7 @@
     <el-space>
       <el-button type="primary" @click="visible = true">打开对话框</el-button>
     </el-space>
-    <gi-dialog v-model="visible" title="标题" @ok="onOk">
+    <gi-dialog v-model="visible" title="标题" show-fullscreen @ok="onOk">
       <el-space direction="vertical" fill style="width: 100%">
         <el-alert title="Success alert" type="success" :closable="false" />
         <el-alert title="Info alert" type="info" :closable="false" />

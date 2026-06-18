@@ -10,6 +10,7 @@ export interface DialogProps extends Partial<ElDialogProps> {
   cancelButtonProps?: Partial<ButtonProps>
   style?: CSSProperties
   simple?: boolean // 简单模式
+  showFullscreen?: boolean // 是否显示全屏按钮
   onOk?: () => void
   onBeforeOk?: () => Promise<boolean>
   onCancel?: () => void
