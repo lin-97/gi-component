@@ -25,6 +25,8 @@ export default antfu(
       }], // 强制自结束样式
       'vue/custom-event-name-casing': [2, 'kebab-case'], // 对自定义事件名称强制使用特定大小写
       'vue/singleline-html-element-content-newline': 0, // 要求在单行元素的内容前后换行
+      'vue/multiline-html-element-content-newline': 0, // 要求在多行元素的内容前后换行
+      'vue/block-tag-newline': 0, // 强制块级标签前后换行
       'vue/first-attribute-linebreak': 0, // 强制第一个属性的位置
       'vue/define-macros-order': [2, {
         order: ['defineOptions', 'defineModel', 'defineProps', 'defineEmits', 'defineSlots'],

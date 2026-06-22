@@ -15,12 +15,12 @@ type TableSetup<T extends DefaultRow> = {
   emit: Record<string, never>
 }
 
-declare const _TableComponent: <T extends DefaultRow>(
-  __VLS_props: NonNullable<Awaited<typeof __VLS_setup>>['props'],
-  __VLS_ctx?: __VLS_PrettifyLocal<Pick<NonNullable<Awaited<typeof __VLS_setup>>, 'attrs' | 'emit' | 'slots'>>,
-  __VLS_expose?: NonNullable<Awaited<typeof __VLS_setup>>['expose'],
+declare const _TableComponent: <T extends DefaultRow = DefaultRow>(
+  __VLS_props: TableSetup<T>['props'],
+  __VLS_ctx?: __VLS_PrettifyLocal<Pick<TableSetup<T>, 'attrs' | 'emit' | 'slots'>>,
+  __VLS_expose?: TableSetup<T>['expose'],
   __VLS_setup?: Promise<TableSetup<T>>
-) => VNode & { __ctx?: Awaited<typeof __VLS_setup> }
+) => VNode & { __ctx?: TableSetup<T> }
 
 export type TableInstance<T extends DefaultRow = DefaultRow> = DefineComponent<TableProps<T>>
 

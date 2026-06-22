@@ -10,6 +10,7 @@ export const guideSidebar: DefaultTheme.SidebarItem[] = [
 export const basicComponentsSidebar: DefaultTheme.SidebarItem[] = [
   { text: 'Button 按钮', link: '/components/button/' },
   { text: 'Card 卡片', link: '/components/card/' },
+  { text: 'Comment 评论', link: '/components/comment/' },
   { text: 'Descriptions 描述列表', link: '/components/descriptions/' },
   { text: 'Flex 弹性布局', link: '/components/flex/' },
   { text: 'Grid 栅格', link: '/components/grid/' },

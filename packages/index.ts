@@ -2,6 +2,7 @@ import type { App, Component } from 'vue'
 
 import Button from './components/button'
 import Card from './components/card'
+import Comment from './components/comment'
 import Descriptions from './components/descriptions'
 import DialogComponent, { Dialog as DialogFunction } from './components/dialog'
 import Dot from './components/dot'
@@ -9,8 +10,7 @@ import Drawer from './components/drawer'
 import EditTable from './components/edit-table'
 import Flex from './components/flex'
 import Form from './components/form'
-import GridItem from './components/grid/src/grid-item.vue'
-import Grid from './components/grid/src/grid.vue'
+import { Grid, GridItem } from './components/grid'
 import InputGroup from './components/input-group'
 import InputSearch from './components/input-search'
 import NavTabs from './components/nav-tabs'
@@ -24,21 +24,32 @@ import './styles/index.scss'
 // 防止打包时 tree-shake 掉 Dialog.info/success/warning/error（内部只用到 Dialog.open）
 void [DialogFunction.info, DialogFunction.success, DialogFunction.warning, DialogFunction.error]
 
+export * from './components/button'
+export * from './components/card'
+export * from './components/comment'
 export * from './components/descriptions'
 export * from './components/dialog'
+export * from './components/dot'
 export * from './components/drawer'
 export * from './components/edit-table'
+export * from './components/flex'
 export * from './components/form'
+export * from './components/grid'
+export * from './components/input-group'
+export * from './components/input-search'
 export * from './components/nav-tabs'
+export * from './components/page-layout'
 export * from './components/table'
 export * from './components/tabs'
 export * from './components/tag'
+export * from './components/tree-transfer'
 export * from './hooks'
 export * from './utils'
 
 const components = {
   Button,
   Card,
+  Comment,
   Descriptions,
   Drawer,
   Dot,
@@ -61,6 +72,7 @@ const components = {
 // 导出Gi前缀的组件并添加明确类型注解
 export const GiButton: typeof Button = Button
 export const GiCard: typeof Card = Card
+export const GiComment: typeof Comment = Comment
 export const GiDescriptions: typeof Descriptions = Descriptions
 export const GiDrawer: typeof Drawer = Drawer
 export const GiDot: typeof Dot = Dot

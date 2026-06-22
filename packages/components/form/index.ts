@@ -21,12 +21,12 @@ type FormSetup<F extends DefaultFormModel> = {
   emit: FormEmit
 }
 
-declare const _FormComponent: <F extends DefaultFormModel>(
-  __VLS_props: NonNullable<Awaited<typeof __VLS_setup>>['props'],
-  __VLS_ctx?: __VLS_PrettifyLocal<Pick<NonNullable<Awaited<typeof __VLS_setup>>, 'attrs' | 'emit' | 'slots'>>,
-  __VLS_expose?: NonNullable<Awaited<typeof __VLS_setup>>['expose'],
+declare const _FormComponent: <F extends DefaultFormModel = DefaultFormModel>(
+  __VLS_props: FormSetup<F>['props'],
+  __VLS_ctx?: __VLS_PrettifyLocal<Pick<FormSetup<F>, 'attrs' | 'emit' | 'slots'>>,
+  __VLS_expose?: FormSetup<F>['expose'],
   __VLS_setup?: Promise<FormSetup<F>>
-) => VNode & { __ctx?: Awaited<typeof __VLS_setup> }
+) => VNode & { __ctx?: FormSetup<F> }
 
 /** gi-form 组件实例（template ref 绑定后的 exposed 类型） */
 export type FormInstance = {
