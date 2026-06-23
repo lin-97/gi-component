@@ -1,0 +1,34 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en,en-US",
+  "words": [
+    "actived",
+    "Axure",
+    "cascader",
+    "Cascader",
+    "colspan",
+    "dictCode",
+    "gi-component",
+    "headerbtn",
+    "LERP",
+    "orangered",
+    "Prettify",
+    "responsivevalue",
+    "rightwrapper",
+    "rowspan",
+    "slotName",
+    "tree-shake",
+    "Vitepress",
+    "vitepress",
+    "VLS",
+    "xe-utils"
+  ],
+  "ignorePaths": [
+    "node_modules",
+    "dist",
+    "**/dist/**",
+    "pnpm-lock.yaml",
+    "package-lock.json"
+  ]
+}
