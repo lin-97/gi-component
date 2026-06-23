@@ -4,6 +4,7 @@
 
 <script setup>
 import DemoBasic from './demos/DemoBasic.vue'
+import DemoContent from './demos/DemoContent.vue'
 import DemoNested from './demos/DemoNested.vue'
 </script>
 
@@ -21,6 +22,16 @@ import DemoNested from './demos/DemoNested.vue'
 
 ::: details 查看代码
 <<< ./demos/DemoNested.vue
+:::
+
+## 自定义内容
+
+通过 `content` 插槽自定义评论区域，例如评论输入框。
+
+<DemoContent></DemoContent>
+
+::: details 查看代码
+<<< ./demos/DemoContent.vue
 :::
 
 ## API

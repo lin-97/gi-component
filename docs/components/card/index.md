@@ -70,7 +70,7 @@ import DemoInner from './demos/DemoInner.vue'
 | title       | 标题                     | `string`            | -      |
 | extra       | 卡片右上角的操作区域     | `string`            | -      |
 | bordered    | 是否有边框               | `boolean`           | false  |
-| size        | 尺寸                     | `samll` \| `middle` | middle |
+| size        | 尺寸                     | `small` \| `middle` | middle |
 | headerStyle | 卡片头部区域的样式       | `CSSProperties`     | -      |
 | bodyStyle   | 卡片内容区域的样式       | `CSSProperties`     | -      |
 | inner       | 内嵌模式，消除左右内边距 | `boolean`           | false  |

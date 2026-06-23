@@ -1,5 +1,5 @@
 <template>
-  <el-space>
+  <el-space wrap>
     <el-button type="primary" @click="openInfoDialog">信息对话框</el-button>
     <el-button type="success" @click="openSuccessDialog">成功对话框</el-button>
     <el-button type="warning" @click="openWarningDialog">警告对话框</el-button>

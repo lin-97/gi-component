@@ -1,12 +1,13 @@
 <template>
   <div :class="b('table')">
     <ElTable v-bind="tableProps as any" ref="tableRef" :data="props.data as any[]">
-      <TableColumn v-for="item in props.columns" :key="item.prop || item.label" :column="item">
-        <!-- 将所有插槽传递给子组件 -->
-        <template v-for="(_, slotName) in $slots" :key="slotName" #[slotName]="scope">
-          <slot :name="slotName" v-bind="scope as any" />
-        </template>
-      </TableColumn>
+      <TableColumn v-for="item in props.columns" :key="item.prop || item.label" :column="item" />
+      <template v-if="$slots.append" #append>
+        <slot name="append" />
+      </template>
+      <template v-if="$slots.empty" #empty>
+        <slot name="empty" />
+      </template>
     </ElTable>
 
     <ElRow v-if="props.pagination !== false" justify="end" :class="b('table-pagination')">
@@ -19,9 +20,10 @@
 <script lang="ts" setup generic="T extends DefaultRow">
 import type { DefaultRow, TableProps, TableSlots } from './type'
 import { ElPagination, ElRow, ElTable } from 'element-plus'
-import { computed, useAttrs, useTemplateRef } from 'vue'
+import { computed, provide, useAttrs, useSlots, useTemplateRef } from 'vue'
 import { useBemClass } from '../../../hooks'
 import TableColumn from './table-column.vue'
+import { TABLE_SLOTS_KEY } from './type'
 
 const props = withDefaults(defineProps<TableProps<T>>(), {
   fit: true,
@@ -35,6 +37,8 @@ const props = withDefaults(defineProps<TableProps<T>>(), {
 defineSlots<TableSlots<T>>()
 
 const attrs = useAttrs()
+const slots = useSlots()
+provide(TABLE_SLOTS_KEY, slots)
 const { b } = useBemClass()
 const tableRef = useTemplateRef('tableRef')
 

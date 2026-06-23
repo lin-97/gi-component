@@ -1,6 +1,6 @@
 <template>
-  <ElForm ref="formRef" :model="form" :class="b('edit-table')">
-    <ElTable :data="form.tableData" border v-bind="attrs">
+  <ElForm ref="formRef" :model="form" :class="b('edit-table')" :disabled="props.disabled">
+    <ElTable :data="form.tableData" border v-bind="tableProps as any">
       <ElTableColumn v-for="(column, index) in props.columns" :key="column.prop + index" :width="column.width"
         v-bind="column.columnProps" :prop="column.prop" :label="column.label"
         :label-class-name="getLabelClassName(column)">
@@ -18,14 +18,19 @@
           </ElFormItem>
         </template>
       </ElTableColumn>
+      <template v-if="$slots.append" #append>
+        <slot name="append" />
+      </template>
+      <template v-if="$slots.empty" #empty>
+        <slot name="empty" />
+      </template>
     </ElTable>
   </ElForm>
 </template>
 
 <script lang="ts" setup>
 import type { FormInstance } from 'element-plus'
-import type { EditTableColumnItem, EditTableColumnItemType } from './type'
-import type { EditTableProps } from './type.ts'
+import type { EditTableColumnItem, EditTableColumnItemType, EditTableProps, EditTableSlots } from './type'
 import * as El from 'element-plus'
 import { ElForm, ElFormItem, ElTable, ElTableColumn } from 'element-plus'
 import { computed, ref, useAttrs } from 'vue'
@@ -35,11 +40,23 @@ import InputSearch from '../../input-search'
 const props = withDefaults(defineProps<EditTableProps>(), {
   rowKey: 'id',
   data: () => [],
-  columns: () => []
+  columns: () => [],
+  border: true,
+  showHeader: true
 })
+
+defineSlots<EditTableSlots>()
 
 const attrs = useAttrs()
 const { b } = useBemClass()
+
+const tableProps = computed(() => {
+  const { data, columns, cellDisabled, disabled, ...restProps } = props
+  return {
+    ...attrs,
+    ...restProps
+  }
+})
 
 const COMP_MAP: Record<EditTableColumnItemType, any> = {
   'input': El.ElInput,

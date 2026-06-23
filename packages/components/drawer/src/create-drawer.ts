@@ -1,77 +1,81 @@
-import type { DrawerInstance } from '../index'
+import type { DrawerProps } from './type'
 import ElementPlus from 'element-plus'
 import { createApp, h, ref } from 'vue'
 import GiDrawer from './drawer.vue'
 
-export type DrawerOptions = Partial<DrawerInstance['$props']>
+export type DrawerOptions = Partial<DrawerProps>
 
 export interface DrawerReturnObject {
   close: () => void
-  update: (newProps?: Record<string, any>) => void
+  update: (newProps?: Partial<DrawerOptions>) => void
 }
 
+/** 全局默认配置，可按需取消注释 */
 const DEF_OPTIONS: DrawerOptions = {
 
 }
 
 export function createDrawer() {
   const Drawer = {
+    /** 主应用上下文，需在 app.use 后赋值：Drawer._context = app._context */
     _context: {},
-    // 核心创建方法
+    /** 核心创建方法 */
     create(options: DrawerOptions): DrawerReturnObject {
       const mergedOptions = { ...DEF_OPTIONS, ...options }
-      // 创建容器
+      // 创建挂载容器
       const container = document.createElement('div')
       document.body.appendChild(container)
 
-      // 状态管理
+      // 响应式状态
       const visible = ref(true)
-      const dialogOptions = ref(mergedOptions || {})
+      const drawerOptions = ref<DrawerOptions>({ ...mergedOptions })
+      let destroyed = false
+      let drawerApp: ReturnType<typeof createApp>
 
-      // 创建弹窗应用
-      const drawerApp = createApp({
+      // 销毁实例，onClosed 回调中调用，防止重复卸载
+      const destroy = () => {
+        if (destroyed)
+          return
+        destroyed = true
+        drawerApp.unmount()
+        container.remove()
+      }
+
+      // 创建独立 Vue 应用渲染抽屉
+      drawerApp = createApp({
         setup() {
-          // 关闭处理
-          const closed = () => {
-            drawerApp.unmount()
-            container.remove()
-          }
-
           return () =>
             h(GiDrawer, {
-              ...dialogOptions.value,
+              ...drawerOptions.value,
               'modelValue': visible.value,
               'onUpdate:modelValue': (val: boolean) => (visible.value = val),
-              'onClosed': () => closed()
+              'onClosed': destroy
             })
         }
       })
 
       drawerApp.use(ElementPlus)
 
-      // 继承主应用的上下文
+      // 继承主应用的上下文（插件、provide 等）
       Object.assign(drawerApp._context, Drawer._context)
 
-      // 挂载
+      // 挂载到容器
       drawerApp.mount(container)
 
       return {
-        /** 关闭抽屉 */
+        /** 关闭抽屉，等待关闭动画结束后由 onClosed 触发销毁 */
         close: () => {
           visible.value = false
-          setTimeout(() => {
-            drawerApp.unmount()
-            container.remove()
-          }, 300)
         },
-        /** 更新抽屉 */
-        update: (newProps?: Record<string, any>) => {
-          dialogOptions.value = { ...dialogOptions.value, ...newProps }
+        /** 动态更新抽屉 props */
+        update: (newProps?: Partial<DrawerOptions>) => {
+          if (newProps)
+            drawerOptions.value = { ...drawerOptions.value, ...newProps }
         }
       }
     },
 
-    /** 抽屉-打开 */
+    /** 打开抽屉 */
     open(options: DrawerOptions) {
       return this.create(options)
     }

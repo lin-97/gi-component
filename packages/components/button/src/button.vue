@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import type { ButtonProps as ElButtonProps } from 'element-plus'
-import type { ButtonProps } from './type.ts'
+import type { ButtonProps, CustomButtonType } from './type.ts'
 import {
   Delete,
   Download,
@@ -32,7 +32,7 @@ const attrs = useAttrs()
 
 const { b } = useBemClass()
 
-const obj: Record<string, { btnProps: Partial<ButtonProps>, btnText: string }>
+const obj: Record<CustomButtonType, { btnProps: Partial<ElButtonProps>, btnText: string }>
   = {
   add: { btnProps: { icon: Plus, type: 'primary' }, btnText: '新增' },
   edit: { btnProps: { icon: Edit, type: 'primary' }, btnText: '编辑' },
@@ -47,13 +47,19 @@ const obj: Record<string, { btnProps: Partial<ButtonProps>, btnText: string }>
   print: { btnProps: { icon: Printer }, btnText: '打印' }
 }
 
-const bindProps = computed(() => {
-  const btnProps = obj?.[props.type]?.btnProps || { type: props.type }
-  return { ...attrs, ...props, ...btnProps } as Omit<ElButtonProps, 'type'>
+const bindProps = computed((): Partial<ElButtonProps> => {
+  if (props.type in obj) {
+    const { type: _, ...restProps } = props
+    return { ...attrs, ...restProps, ...obj[props.type as CustomButtonType].btnProps }
+  }
+  const { type, ...restProps } = props
+  return { ...attrs, ...restProps, type: type as ElButtonProps['type'] | undefined }
 })
 
 const btnText = computed(() => {
-  return obj?.[props.type]?.btnText || ''
+  if (props.type in obj)
+    return obj[props.type as CustomButtonType].btnText
+  return ''
 })
 </script>
 

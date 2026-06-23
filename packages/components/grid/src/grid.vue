@@ -145,7 +145,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gi-grid {
+@use '../../../styles/var.scss' as a;
+
+.#{a.$prefix}-grid {
   display: grid;
 }
 </style>

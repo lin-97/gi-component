@@ -1,5 +1,7 @@
 import type { PaginationProps, TableColumnInstance } from 'element-plus'
-import type { CSSProperties, VNode } from 'vue'
+import type { CSSProperties, InjectionKey, Slots, VNode } from 'vue'
+
+export const TABLE_SLOTS_KEY: InjectionKey<Slots> = Symbol('tableSlots')
 
 export type DefaultRow = Record<PropertyKey, any>
 

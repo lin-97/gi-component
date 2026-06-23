@@ -1,5 +1,25 @@
 # 更新日志
 
+## v0.0.55 (2026-06-23)
+
+修复 Button 自定义 `type`（upload / download / print 等）透传至 ElButton 导致控制台警告
+
+Button 抽离 `CustomButtonType`，优化 `bindProps` 类型推导
+
+修复 TableColumn 无效 `v-slots` 指令警告，列插槽改用 provide / inject 转发
+
+修复 Table `append`、`empty` 插槽未转发至 ElTable 的问题
+
+优化 Dialog / Drawer 命令式 API 销毁逻辑，防止重复卸载
+
+Dialog 合并 info / success / warning / error 公共配置构建，收紧 `DialogOptions` 与 `update` 类型
+
+Drawer 同步销毁逻辑优化，收紧 `DrawerOptions` 与 `update` 类型
+
+EditTable 补全可移植的 EditTableProps 与组件实例类型导出
+
+修复 EditTable 打包后 dist 类型生成问题
+
 ## v0.0.54 (2026-06-22)
 
 新增 Comment 评论组件

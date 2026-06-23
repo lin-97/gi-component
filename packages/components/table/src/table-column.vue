@@ -8,20 +8,21 @@
 
     <!-- 处理插槽内容 -->
     <template v-else-if="column.slotName" #default="scope">
-      <slot :name="column.slotName" v-bind="scope" />
+      <component :is="() => renderColumnSlot(column.slotName!, scope)" />
     </template>
 
     <!-- 递归渲染子列 -->
     <template v-if="column.children && column.children.length > 0">
-      <TableColumn v-for="child in column.children" :key="child.prop || child.label" v-slots="$slots" :column="child" />
+      <TableColumn v-for="child in column.children" :key="child.prop || child.label" :column="child" />
     </template>
   </ElTableColumn>
 </template>
 
 <script lang="ts" setup>
-import type { TableColumnItem } from './type'
+import type { TableColumnItem, TableSlotScope } from './type'
 import { ElTableColumn } from 'element-plus'
-import { computed } from 'vue'
+import { computed, inject, useSlots } from 'vue'
+import { TABLE_SLOTS_KEY } from './type'
 
 defineOptions({
   name: 'TableColumn'
@@ -30,6 +31,13 @@ defineOptions({
 const props = defineProps<{
   column: TableColumnItem
 }>()
+
+const tableSlots = inject(TABLE_SLOTS_KEY, useSlots())
+
+function renderColumnSlot(slotName: string, scope: TableSlotScope) {
+  const slotFn = tableSlots[slotName]
+  return slotFn ? slotFn(scope) : null
+}
 
 // 计算el-table-column需要的属性
 const columnProps = computed(() => {

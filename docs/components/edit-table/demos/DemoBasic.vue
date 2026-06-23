@@ -13,6 +13,7 @@
         </el-row>
       </template>
     </gi-edit-table>
+    <el-button style="width: 100%;margin-top: 8px;" @click="onAddRow">新增</el-button>
     <el-row justify="end" style="margin-top: 8px">
       <el-button type="primary" @click="submit">校验并提交</el-button>
     </el-row>

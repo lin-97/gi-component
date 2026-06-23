@@ -119,11 +119,12 @@ const hasContent = computed(() => !!slots.content || !!props.content)
 
   &__nested {
     width: 100%;
-    margin-left: 52px;
-    margin-top: 12px;
+    padding-left: 52px;
+    padding-top: 12px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    box-sizing: border-box;
   }
 }
 </style>
