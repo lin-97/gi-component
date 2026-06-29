@@ -1,5 +1,8 @@
 @use './var.scss' as a;
 
+$dialog-header-height: 56px;
+$drawer-header-height: 56px;
+
 .el-dialog {
   padding: 0 !important;
 
@@ -15,7 +18,7 @@
   }
 
   .el-dialog__header {
-    height: 48px;
+    height: $dialog-header-height;
     padding: 0 var(--el-dialog-padding-primary);
     display: flex;
     align-items: center;
@@ -59,7 +62,7 @@
 
 .el-drawer {
   .el-drawer__header {
-    height: 48px;
+    height: $drawer-header-height;
     margin-bottom: 0;
     padding-top: 0;
     border-bottom: 1px solid var(--el-border-color);

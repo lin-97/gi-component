@@ -79,7 +79,7 @@ const getHeaderClass = computed(() => {
   box-sizing: border-box;
   --card-padding-x: var(--padding);
   --card-padding-x-small: 10px;
-  --card-padding-y: var(--padding);
+  --card-padding-y: 14px;
   --card-padding-y-small: 10px;
 
   &--bordered {
@@ -88,7 +88,7 @@ const getHeaderClass = computed(() => {
 }
 
 .#{a.$prefix}-card-header {
-  height: 46px;
+  height: 50px;
   padding: 0 var(--card-padding-x);
   display: flex;
   justify-content: space-between;
@@ -134,7 +134,7 @@ const getHeaderClass = computed(() => {
 
 .#{a.$prefix}-card--small {
   .#{a.$prefix}-card-header {
-    height: 36px;
+    height: 40px;
     padding: 0 var(--card-padding-x-small);
 
     &__title {
