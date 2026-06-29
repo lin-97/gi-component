@@ -57,6 +57,7 @@ import DemoSize from './demos/DemoSize.vue'
 | :------ | :--------------- |
 | default | 自定义内容       |
 | label   | 参数: \{ data \} |
+| extra | 额外插槽 |
 
 ::: tip
 继承 `el-tabs` 的所有属性

@@ -1,5 +1,9 @@
 # 更新日志
 
+## v0.0.56 (2026-06-29)
+
+修复 Dialog 组件遮罩层默认不显示问题
+
 ## v0.0.55 (2026-06-23)
 
 修复 Button 自定义 `type`（upload / download / print 等）透传至 ElButton 导致控制台警告

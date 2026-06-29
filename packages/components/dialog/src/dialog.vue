@@ -76,7 +76,9 @@ const props = withDefaults(defineProps<DialogProps>(), {
   cancelText: '取消',
   width: 'calc(100% - 20px)',
   alignCenter: true,
-  lockScroll: true
+  lockScroll: true,
+  modal: true,
+  appendTo: 'body'
 })
 
 defineSlots<{

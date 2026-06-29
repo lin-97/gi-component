@@ -20,19 +20,21 @@ const props = withDefaults(defineProps<FlexProps>(), {
 })
 
 const { b } = useBemClass()
+const GAP_SIZE = ['small', 'middle', 'large'] as const
 
 const classNames = computed(() => {
-  const arr: string[] = [b('flex'), b(`flex__size--${props.gap}`)]
+  const arr: string[] = [b('flex')]
+  if (GAP_SIZE.includes(props.gap as typeof GAP_SIZE[number])) {
+    arr.push(b(`flex__size--${props.gap}`))
+  }
   if (props.full) {
     arr.push(b('flex--full'))
   }
   return arr
 })
 
-const SIZE_MAP = ['small', 'middle', 'large']
-
 const resolvedGap = computed(() => {
-  if (props.gap === undefined || props.gap === null || props.gap === '' || SIZE_MAP.includes(props.gap as string))
+  if (props.gap === undefined || props.gap === null || props.gap === '' || GAP_SIZE.includes(props.gap as typeof GAP_SIZE[number]))
     return undefined
   if (typeof props.gap === 'number')
     return `${props.gap}px`
