@@ -38,7 +38,8 @@ const openWarningDialog = () => {
 const openErrorDialog = () => {
   Dialog.error({
     title: '错误标题',
-    content: '落霞与孤鹜齐飞，秋水共长天一色'
+    content: '落霞与孤鹜齐飞，秋水共长天一色',
+    okButtonProps: { type: 'danger' }
   })
 }
 </script>

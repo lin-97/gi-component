@@ -1,11 +1,11 @@
 <template>
   <div class="el-message-box__container" :class="b('dialog-content')">
-    <el-icon class="el-message-box__status" :class="`el-message-box-icon--${props.type}`">
+    <ElIcon class="el-message-box__status" :class="`el-message-box-icon--${props.type}`">
       <InfoFilled v-if="props.type === 'info'" />
       <SuccessFilled v-else-if="props.type === 'success'" />
       <WarningFilled v-else-if="props.type === 'warning'" />
       <CircleCloseFilled v-else-if="props.type === 'error'" />
-    </el-icon>
+    </ElIcon>
     <div class="el-message-box__message">
       <p>{{ props.content }}</p>
     </div>
@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import { CircleCloseFilled, InfoFilled, SuccessFilled, WarningFilled } from '@element-plus/icons-vue'
+import { ElIcon } from 'element-plus'
 import { useBemClass } from '../../../hooks'
 
 interface Props {

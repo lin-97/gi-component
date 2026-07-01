@@ -4,7 +4,7 @@
       <template v-for="(item, index) in props.columns">
         <GridItem v-if="item.type === 'title'" :key="`title${index}`" :span="24">
           <ElFormItem label-width="0">
-            <el-alert :class="b('form-item__title')" :title="typeof item.label === 'string' ? item.label : ''"
+            <ElAlert :class="b('form-item__title')" :title="typeof item.label === 'string' ? item.label : ''"
               type="info" :closable="false" />
           </ElFormItem>
         </GridItem>
@@ -79,7 +79,7 @@
 import type { FormInstance } from 'element-plus'
 import type { FormColumnItem, FormColumnType, FormProps, FormSlots } from './type'
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
-import { ElButton, ElForm, ElFormItem, ElMessage, ElSpace, ElText } from 'element-plus'
+import { ElAlert, ElButton, ElForm, ElFormItem, ElMessage, ElSpace, ElText } from 'element-plus'
 import * as El from 'element-plus'
 import {
   computed,
