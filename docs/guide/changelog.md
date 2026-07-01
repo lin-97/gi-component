@@ -1,5 +1,9 @@
 # 更新日志
 
+## v0.0.58 (2026-07-01)
+
+修复 Dialog.info、Dialog.success、Dialog.warning、Dialog.danger函数弹窗不显示图标的问题
+
 ## v0.0.57 (2026-06-29)
 
 Card 默认头部高度调整
