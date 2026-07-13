@@ -8,9 +8,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "vitepress dev .",
-    "build": "vitepress build .",
+    "build": "pnpm clean && vitepress build .",
     "preview": "vitepress preview .",
-    "clean": "rm -rf .vitepress/dist",
+    "clean": "node -e \"const fs=require('fs');['.vitepress/dist','.vitepress/cache','.vitepress/.temp'].forEach(p=>fs.rmSync(p,{recursive:true,force:true}))\"",
     "lint": "echo 'Use root lint command: pnpm lint'",
     "type-check": "vue-tsc --noEmit"
   },
