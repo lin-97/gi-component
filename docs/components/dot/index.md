@@ -8,7 +8,9 @@ import DemoColor from './demos/DemoColor.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
@@ -16,7 +18,9 @@ import DemoColor from './demos/DemoColor.vue'
 
 ## 动画
 
+::: raw
 <DemoAnimation></DemoAnimation>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoAnimation.vue
@@ -24,7 +28,9 @@ import DemoColor from './demos/DemoColor.vue'
 
 ## 自定义颜色
 
+::: raw
 <DemoColor></DemoColor>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoColor.vue

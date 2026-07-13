@@ -9,14 +9,18 @@ import DemoAsync from './demos/DemoAsync.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
 :::
 
 ## 异步关闭
 
+::: raw
 <DemoAsync></DemoAsync>
+:::
 ::: details 查看代码
 <<< ./demos/DemoAsync.vue
 :::

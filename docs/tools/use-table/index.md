@@ -12,7 +12,9 @@ import Demo from './Demo.vue'
 
 ## 基础用法
 
+::: raw
 <Demo></Demo>
+:::
 
 <<< ./Demo.vue
 

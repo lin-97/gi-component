@@ -15,27 +15,35 @@ import DemoFc from './demos/DemoFc.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
 :::
 
 ## 搜索表单
 
+::: raw
 <DemoSearch></DemoSearch>
+:::
 ::: details 查看代码
 <<< ./demos/DemoSearch.vue
 :::
 
 ## 结合字典
 
+::: raw
 <DemoDict></DemoDict>
+:::
 ::: details 查看代码
 <<< ./demos/DemoDict.vue
 :::
 
 ## 表单控制
+::: raw
 <DemoFc></DemoFc>
+:::
 ::: details 查看代码
 <<< ./demos/DemoFc.vue
 :::

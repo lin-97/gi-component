@@ -10,13 +10,17 @@ import DemoInputSearch from './demos/DemoInputSearch.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
 :::
 
+::: raw
 <DemoMixed></DemoMixed>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoMixed.vue
@@ -24,7 +28,9 @@ import DemoInputSearch from './demos/DemoInputSearch.vue'
 
 ## 搜索框
 
+::: raw
 <DemoInputSearch></DemoInputSearch>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoInputSearch.vue

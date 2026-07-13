@@ -13,7 +13,9 @@ import DemoUseNavTabs from './demos/DemoUseNavTabs.vue'
 
 内容超出可视宽度时，会自动出现左右滚动按钮。下方 Demo 支持拖动滑块调整宽度以查看效果。
 
+::: raw
 <DemoNavTabs />
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoNavTabs.vue
@@ -21,7 +23,9 @@ import DemoUseNavTabs from './demos/DemoUseNavTabs.vue'
 
 ### 自定义默认插槽
 
+::: raw
 <DemoNavTabsSlot />
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoNavTabsSlot.vue
@@ -29,7 +33,9 @@ import DemoUseNavTabs from './demos/DemoUseNavTabs.vue'
 
 ### 自定义默认插槽2（右键菜单）
 
+::: raw
 <DemoNavTabsSlot2 />
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoNavTabsSlot2.vue
@@ -97,7 +103,9 @@ const tabList = ref<MyTab[]>([
 
 在自定义标签头模板中调用 `useNavTabs`，传入根容器、滚动容器、标签项 class 以及当前选中值即可。
 
+::: raw
 <DemoUseNavTabs></DemoUseNavTabs>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoUseNavTabs.vue

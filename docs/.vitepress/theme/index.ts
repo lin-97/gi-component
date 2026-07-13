@@ -7,7 +7,6 @@ import { getDictData } from '../../_shared/apis/dictRequest'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '../../../packages/styles/index.scss'
-import '../../public/css/index.css'
 
 export default {
   ...DefaultTheme,

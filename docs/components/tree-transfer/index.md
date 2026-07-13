@@ -6,7 +6,9 @@ import DemoBasic from './demos/DemoBasic.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue

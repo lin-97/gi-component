@@ -13,7 +13,9 @@ import DemoInner from './demos/DemoInner.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
@@ -23,7 +25,9 @@ import DemoInner from './demos/DemoInner.vue'
 
 内置类名提供了卡片标题伪元素样式
 
+::: raw
 <DemoInnerClass></DemoInnerClass>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoInnerClass.vue
@@ -31,7 +35,9 @@ import DemoInner from './demos/DemoInner.vue'
 
 ## 底部插槽
 
+::: raw
 <DemoFooter></DemoFooter>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoFooter.vue
@@ -39,7 +45,9 @@ import DemoInner from './demos/DemoInner.vue'
 
 ## 迷你卡片
 
+::: raw
 <DemoSize></DemoSize>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoSize.vue
@@ -47,7 +55,9 @@ import DemoInner from './demos/DemoInner.vue'
 
 ## 内容滚动
 
+::: raw
 <DemoScroll></DemoScroll>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoScroll.vue
@@ -55,7 +65,9 @@ import DemoInner from './demos/DemoInner.vue'
 
 ## 内嵌模式
 
+::: raw
 <DemoInner></DemoInner>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoInner.vue

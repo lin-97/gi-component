@@ -11,7 +11,9 @@ import DemoReadonly from './demos/DemoReadonly.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
@@ -19,7 +21,9 @@ import DemoReadonly from './demos/DemoReadonly.vue'
 
 ## 禁用状态
 
+::: raw
 <DemoDisabled></DemoDisabled>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoDisabled.vue
@@ -27,7 +31,9 @@ import DemoReadonly from './demos/DemoReadonly.vue'
 
 ## 只读状态
 
+::: raw
 <DemoReadonly></DemoReadonly>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoReadonly.vue

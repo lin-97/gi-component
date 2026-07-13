@@ -10,7 +10,9 @@ import DemoIcon from './demos/DemoIcon.vue'
 
 ## 基本使用
 
+::: raw
 <DemoBasic />
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
@@ -18,7 +20,9 @@ import DemoIcon from './demos/DemoIcon.vue'
 
 ## 不同尺寸
 
+::: raw
 <DemoSize />
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoSize.vue
@@ -26,7 +30,9 @@ import DemoIcon from './demos/DemoIcon.vue'
 
 ## 基础颜色
 
+::: raw
 <DemoColors />
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoColors.vue
@@ -34,7 +40,9 @@ import DemoIcon from './demos/DemoIcon.vue'
 
 ## 自定义颜色
 
+::: raw
 <DemoCustomColor />
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoCustomColor.vue
@@ -42,7 +50,9 @@ import DemoIcon from './demos/DemoIcon.vue'
 
 ## 图标（属性 / 插槽）
 
+::: raw
 <DemoIcon />
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoIcon.vue

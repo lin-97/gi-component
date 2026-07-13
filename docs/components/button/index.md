@@ -9,7 +9,9 @@ import DemoSize from './demos/DemoSize.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
@@ -17,7 +19,9 @@ import DemoSize from './demos/DemoSize.vue'
 
 ## 按钮尺寸
 
+::: raw
 <DemoSize></DemoSize>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoSize.vue

@@ -21,7 +21,9 @@ import DemoTableSetting from './demos/DemoTableSetting.vue'
 ## 表头搜索
 本示例只提供技巧参考，实际项目请根据自身需求进行封装`useTableHeaderSearch`函数hooks
 
+::: raw
 <DemoHeaderSearch></DemoHeaderSearch>
+:::
 ::: details 查看代码
 <<< ./demos/DemoHeaderSearch.vue
 :::

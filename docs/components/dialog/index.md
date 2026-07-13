@@ -13,42 +13,54 @@ import DemoSimple from './demos/DemoSimple.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
 :::
 
 ## 异步关闭
 
+::: raw
 <DemoAsync></DemoAsync>
+:::
 ::: details 查看代码
 <<< ./demos/DemoAsync.vue
 :::
 
 ## 隐藏底部
 
+::: raw
 <DemoHideFooter></DemoHideFooter>
+:::
 ::: details 查看代码
 <<< ./demos/DemoHideFooter.vue
 :::
 
 ## 修改按钮
 
+::: raw
 <DemoButtonText></DemoButtonText>
+:::
 ::: details 查看代码
 <<< ./demos/DemoButtonText.vue
 :::
 
 ## 全屏对话框
 
+::: raw
 <DemoFullscreen></DemoFullscreen>
+:::
 ::: details 查看代码
 <<< ./demos/DemoFullscreen.vue
 :::
 
 ## 简单对话框
 
+::: raw
 <DemoSimple></DemoSimple>
+:::
 ::: details 查看代码
 <<< ./demos/DemoSimple.vue
 :::

@@ -10,7 +10,9 @@ import DemoNested from './demos/DemoNested.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
@@ -18,7 +20,9 @@ import DemoNested from './demos/DemoNested.vue'
 
 ## 嵌套评论
 
+::: raw
 <DemoNested></DemoNested>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoNested.vue
@@ -28,7 +32,9 @@ import DemoNested from './demos/DemoNested.vue'
 
 通过 `content` 插槽自定义评论区域，例如评论输入框。
 
+::: raw
 <DemoContent></DemoContent>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoContent.vue

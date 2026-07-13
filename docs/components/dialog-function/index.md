@@ -15,56 +15,72 @@ import DemoBase from './demos/DemoBase.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
 :::
 
 ## 异步关闭
 
+::: raw
 <DemoAsync></DemoAsync>
+:::
 ::: details 查看代码
 <<< ./demos/DemoAsync.vue
 :::
 
 ## 隐藏底部
 
+::: raw
 <DemoHideFooter></DemoHideFooter>
+:::
 ::: details 查看代码
 <<< ./demos/DemoHideFooter.vue
 :::
 
 ## 全屏
 
+::: raw
 <DemoFullscreen></DemoFullscreen>
+:::
 ::: details 查看代码
 <<< ./demos/DemoFullscreen.vue
 :::
 
 ## 拖拽
 
+::: raw
 <DemoDrag></DemoDrag>
+:::
 ::: details 查看代码
 <<< ./demos/DemoDrag.vue
 :::
 
 ## 表单对话框
 
+::: raw
 <DemoForm></DemoForm>
+:::
 ::: details 查看代码
 <<< ./demos/DemoForm.vue
 :::
 
 ## 自定义底部
 
+::: raw
 <DemoCustomFooter></DemoCustomFooter>
+:::
 ::: details 查看代码
 <<< ./demos/DemoCustomFooter.vue
 :::
 
 ## 基础对话框
 
+::: raw
 <DemoBase></DemoBase>
+:::
 ::: details 查看代码
 <<< ./demos/DemoBase.vue
 :::

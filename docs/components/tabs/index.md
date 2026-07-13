@@ -11,7 +11,9 @@ import DemoSize from './demos/DemoSize.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
@@ -19,7 +21,9 @@ import DemoSize from './demos/DemoSize.vue'
 
 ## 卡片类型
 
+::: raw
 <DemoCard></DemoCard>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoCard.vue
@@ -27,7 +31,9 @@ import DemoSize from './demos/DemoSize.vue'
 
 ## 使用插槽
 
+::: raw
 <DemoSlotExtra></DemoSlotExtra>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoSlotExtra.vue
@@ -35,7 +41,9 @@ import DemoSize from './demos/DemoSize.vue'
 
 ## 小型尺寸
 
+::: raw
 <DemoSize></DemoSize>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoSize.vue

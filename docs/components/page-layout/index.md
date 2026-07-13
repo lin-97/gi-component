@@ -12,35 +12,45 @@ import DemoNestedLayout from './demos/DemoNestedLayout.vue'
 
 ## 基础用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
 :::
 
 ## 搜索
 
+::: raw
 <DemoSearch></DemoSearch>
+:::
 ::: details 查看代码
 <<< ./demos/DemoSearch.vue
 :::
 
 ## 搜索 + 按钮
 
+::: raw
 <DemoSearchWithActions></DemoSearchWithActions>
+:::
 ::: details 查看代码
 <<< ./demos/DemoSearchWithActions.vue
 :::
 
 ## 左侧树
 
+::: raw
 <DemoWithTree></DemoWithTree>
+:::
 ::: details 查看代码
 <<< ./demos/DemoWithTree.vue
 :::
 
 ## 布局嵌套布局
 
+::: raw
 <DemoNestedLayout></DemoNestedLayout>
+:::
 ::: details 查看代码
 <<< ./demos/DemoNestedLayout.vue
 :::

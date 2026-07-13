@@ -9,7 +9,9 @@ import DemoSlot from './demos/DemoSlot.vue'
 
 ## 基本用法
 
+::: raw
 <DemoBasic></DemoBasic>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoBasic.vue
@@ -17,7 +19,9 @@ import DemoSlot from './demos/DemoSlot.vue'
 
 ## 插槽用法
 
+::: raw
 <DemoSlot></DemoSlot>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoSlot.vue

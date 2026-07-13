@@ -18,7 +18,9 @@ import DemoWrap from './demos/DemoWrap.vue'
 
 通过 `justify` 和 `align` 分别控制主轴、交叉轴上的对齐方式。
 
+::: raw
 <DemoJustifyAlign></DemoJustifyAlign>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoJustifyAlign.vue
@@ -28,7 +30,9 @@ import DemoWrap from './demos/DemoWrap.vue'
 
 使用 `gap` 设置元素之间的间距, 预设了 `small`、`middle`、`large` 三种尺寸, 也可以自定义间距。
 
+::: raw
 <DemoGap></DemoGap>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoGap.vue
@@ -38,7 +42,9 @@ import DemoWrap from './demos/DemoWrap.vue'
 
 设置 `wrap` 为 `true` 后，子元素在空间不足时会自动换行。
 
+::: raw
 <DemoWrap></DemoWrap>
+:::
 
 ::: details 查看代码
 <<< ./demos/DemoWrap.vue
