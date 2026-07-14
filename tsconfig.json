@@ -7,13 +7,12 @@
       "ESNext",
       "DOM"
     ],
-    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "types": [
       "vite/client",
       "element-plus/global",
-      "./packages/types/global.d.ts"
+      "./packages/types/config.d.ts"
     ],
     "strict": true,
     "noEmit": true,
@@ -27,10 +26,7 @@
     "packages/**/*.ts",
     "packages/**/*.d.ts",
     "packages/**/*.tsx",
-    "packages/**/*.vue",
-    "docs/**/*.ts",
-    "docs/**/*.tsx",
-    "docs/**/*.vue"
+    "packages/**/*.vue"
   ],
   "exclude": [
     "node_modules",

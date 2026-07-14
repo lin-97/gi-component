@@ -1,28 +1,15 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@docs/*": [
-        "*"
-      ],
-      "@docs/_shared/apis/*": [
-        "_shared/apis/*"
-      ],
-      "@docs/_shared/components/*": [
-        "_shared/components/*"
-      ],
-      "@docs/_shared/hooks": [
-        "_shared/hooks/index.ts"
-      ],
-      "@docs/_shared/hooks/*": [
-        "_shared/hooks/*"
+        "./*"
       ]
     },
     "types": [
       "vite/client",
       "element-plus/global",
-      "../packages/types/global.d.ts",
+      "../packages/types/config.d.ts",
       "gi-component/global"
     ]
   },
