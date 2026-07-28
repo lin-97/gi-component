@@ -3,6 +3,6 @@ import Grid from './src/grid.vue'
 
 export type GridInstance = InstanceType<typeof Grid>
 export type GridItemInstance = InstanceType<typeof GridItem>
-export * from './src/interface'
+export * from './src/type'
 
 export { Grid, GridItem }

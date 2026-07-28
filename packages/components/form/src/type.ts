@@ -1,7 +1,7 @@
 import type * as El from 'element-plus'
 import type { VNode } from 'vue'
 import type { MergeMultiple } from '../../../types/tool'
-import type { GridItemProps, GridProps } from '../../grid/src/interface'
+import type { GridItemProps, GridProps } from '../../grid'
 import type { InputSearchInstance } from '../../input-search'
 
 export type DefaultFormModel = Record<PropertyKey, any>

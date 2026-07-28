@@ -1,9 +1,14 @@
-// https://github.com/ant-design/ant-design/blob/master/components/_util/responsiveObserve.ts
+/**
+ * 响应式断点媒体查询观察器
+ * 参考 ant-design responsiveObserve，供 useResponsiveState 订阅屏幕变化
+ * @see https://github.com/ant-design/ant-design/blob/master/components/_util/responsiveObserve.ts
+ */
 
 export type Breakpoint = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 export type BreakpointMap = Partial<Record<Breakpoint, string>>
 export type ScreenMap = Partial<Record<Breakpoint, boolean>>
 
+/** 断点匹配优先级：从大到小 */
 export const responsiveArray: Breakpoint[] = [
   'xxl',
   'xl',

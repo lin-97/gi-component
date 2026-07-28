@@ -1,10 +1,14 @@
 import type { Ref } from 'vue'
 import { computed, onMounted, onUpdated, ref, watch } from 'vue'
 
-function isUndefined(obj: any): obj is undefined {
+function isUndefined(obj: unknown): obj is undefined {
   return obj === undefined
 }
 
+/**
+ * 根据 DOM 在父节点中的位置计算子项索引
+ * 优先使用外部传入的 index；未传入时通过 selector 查询同级节点顺序
+ */
 export function useIndex({
   itemRef,
   selector,
@@ -21,23 +25,25 @@ export function useIndex({
 
   const parent = ref<HTMLElement>()
 
+  /** 向上查找父容器；可按 className 过滤嵌套场景 */
   const getParent = () => {
-    let parent = itemRef.value?.parentElement ?? undefined
+    let parentEl = itemRef.value?.parentElement ?? undefined
     if (parentClassName) {
-      while (parent && !parent.className.includes(parentClassName)) {
-        parent = parent.parentElement ?? undefined
+      while (parentEl && !parentEl.className.includes(parentClassName)) {
+        parentEl = parentEl.parentElement ?? undefined
       }
     }
-    return parent
+    return parentEl
   }
 
+  /** 通过 querySelectorAll 计算当前节点在同级列表中的下标 */
   const getIndex = () => {
     if (isUndefined(index?.value) && parent.value && itemRef.value) {
-      const index = Array.from(parent.value.querySelectorAll(selector)).indexOf(
+      const nextIndex = Array.from(parent.value.querySelectorAll(selector)).indexOf(
         itemRef.value
       )
-      if (index !== _index.value) {
-        _index.value = index
+      if (nextIndex !== _index.value) {
+        _index.value = nextIndex
       }
     }
   }
@@ -55,6 +61,7 @@ export function useIndex({
     getIndex()
   })
 
+  // 子节点增删后重新计算索引
   onUpdated(() => getIndex())
 
   return {
