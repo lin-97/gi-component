@@ -1,6 +1,6 @@
 <template>
   <gi-card bordered :header-style="{ display: 'none' }">
-    <gi-descriptions title="插槽用法" :columns="columns" :data="detail" border :column="2">
+    <gi-descriptions title="插槽用法" :columns="columns" :data="detail" border :column="2" label-width="80px">
       <template #title>
         <span>自定义标题</span>
       </template>

@@ -3,7 +3,7 @@
     <template #extra>
       <el-button type="primary">编辑</el-button>
     </template>
-    <gi-descriptions :columns="columns" :data="detail" border :column="2">
+    <gi-descriptions :columns="columns" :data="detail" border :column="2" label-width="80px">
       <template #sex="{ value }">
         <ElTag :type="value === '男' ? 'primary' : 'danger'" size="small">{{ value }}</ElTag>
       </template>
@@ -45,8 +45,8 @@ const columns: DescriptionsColumnItem<UserDetail>[] = [
       const list = Array.isArray(value) ? value : []
       return h(
         ElSpace,
-        null,
-        () => list.map(item =>
+        { wrap: true },
+        () => list.map((item) =>
           h(ElTag, { type: 'primary', size: 'small' }, () => item)
         )
       )
