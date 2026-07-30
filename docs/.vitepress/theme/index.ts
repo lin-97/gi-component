@@ -1,13 +1,17 @@
 import type { EnhanceAppContext } from 'vitepress'
+import { addCollection } from '@iconify/vue'
 import ElementPlus from 'element-plus'
 import locale from 'element-plus/es/locale/lang/zh-cn'
 import GiComponent, { Dialog } from 'gi-component'
 import DefaultTheme from 'vitepress/theme'
 import { getDictData } from '../../_shared/apis/dictRequest'
+import { CUSTOM_ICONS } from '../../icons/custom'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '../../../packages/styles/index.scss'
 import '../../public/css/index.css'
+
+addCollection(CUSTOM_ICONS)
 
 export default {
   ...DefaultTheme,

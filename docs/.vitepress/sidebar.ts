@@ -37,7 +37,8 @@ export const advancedComponentsSidebar: DefaultTheme.SidebarItem[] = [
 export const toolsSidebar: DefaultTheme.SidebarItem[] = [
   { text: 'createSelectDialog(内置)', link: '/tools/create-select-dialog' },
   { text: 'useTable（仅参考）', link: '/tools/use-table' },
-  { text: 'createBaseAPI（仅参考）', link: '/tools/create-base-api' }
+  { text: 'createBaseAPI（仅参考）', link: '/tools/create-base-api' },
+  { text: 'iconify使用（仅参考）', link: '/tools/iconify' }
 ]
 
 export const sidebar: DefaultTheme.Sidebar = {
