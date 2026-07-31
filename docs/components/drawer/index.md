@@ -5,6 +5,7 @@
 <script setup>
 import DemoBasic from './demos/DemoBasic.vue'
 import DemoAsync from './demos/DemoAsync.vue'
+import DemoDirection from './demos/DemoDirection.vue'
 </script>
 
 ## 基础用法
@@ -23,6 +24,15 @@ import DemoAsync from './demos/DemoAsync.vue'
 :::
 ::: details 查看代码
 <<< ./demos/DemoAsync.vue
+:::
+
+## 自定义方向
+
+::: raw
+<DemoDirection></DemoDirection>
+:::
+::: details 查看代码
+<<< ./demos/DemoDirection.vue
 :::
 
 ## API
