@@ -6,3 +6,17 @@
 html {
   scroll-behavior: smooth;
 }
+
+.doc-pre {
+  background-color: #1e1e1e;
+  padding: 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.2;
+  font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+}

@@ -42,7 +42,7 @@ export function useTable<F>(options: Options<F>) {
 
   const pagination = reactive({
     currentPage: 1,
-    pageSize: 10,
+    pageSize: 20,
     total: 0,
     onCurrentChange: (size: number) => {
       pagination.currentPage = size
@@ -67,11 +67,9 @@ export function useTable<F>(options: Options<F>) {
       const total = !Array.isArray(res) ? res.total : data.length
       setTotal(total)
       onSuccess?.()
-    }
-    catch (error) {
+    } catch (error) {
       onError?.(error as Error)
-    }
-    finally {
+    } finally {
       loading.value = false
     }
   }
@@ -124,7 +122,7 @@ export function useTable<F>(options: Options<F>) {
 
   const selectedKeys = ref<string[]>([])
   const onSelectionChange = (rows: F[]) => {
-    selectedKeys.value = rows.map(row => row[options.rowKey as keyof F] as unknown as string)
+    selectedKeys.value = rows.map((row) => row[options.rowKey as keyof F] as unknown as string)
   }
 
   const onDelete = (row: F) => {
@@ -146,7 +144,7 @@ export function useTable<F>(options: Options<F>) {
       return
     }
     const deleteAPI = options.deleteAPI
-    handleDelete(() => deleteAPI(selectedKeys.value.map(key => key as unknown as string)), {
+    handleDelete(() => deleteAPI(selectedKeys.value.map((key) => key as unknown as string)), {
       title: '批量删除',
       content: `确定要删除选中的 ${selectedKeys.value.length} 条数据吗？`,
       successTip: '删除成功'
