@@ -38,10 +38,10 @@
       <slot name="footer">
         <template v-if="typeof props.footer === 'boolean'">
           <ElSpace :size="10">
-            <ElButton v-bind="props.cancelButtonProps" @click="handleCancel">
+            <ElButton size="default" v-bind="props.cancelButtonProps" @click="handleCancel">
               {{ props.cancelText }}
             </ElButton>
-            <ElButton type="primary" v-bind="props.okButtonProps" :loading="okLoading" @click="handleOk">
+            <ElButton type="primary" size="default" v-bind="props.okButtonProps" :loading="okLoading" @click="handleOk">
               {{ props.okText }}
             </ElButton>
           </ElSpace>
