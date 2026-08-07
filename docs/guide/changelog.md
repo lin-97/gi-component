@@ -1,5 +1,9 @@
 # 更新日志
 
+## v0.0.59 (2026-08-07)
+
+Dialog、Drawer 底部按钮固定为 `default` 尺寸
+
 ## v0.0.58 (2026-07-01)
 
 修复 Dialog.info、Dialog.success、Dialog.warning、Dialog.danger函数弹窗不显示图标的问题
